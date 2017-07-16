@@ -2,7 +2,7 @@ language: android
 sudo: false # faster builds
 android:
   components:
-    - build-tools-20.0.0
+    - build-tools-26.0-2
     - android-20
 jdk:
   - oraclejdk8
@@ -15,7 +15,3 @@ cache:
     - $HOME/.gradle/wrapper/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
