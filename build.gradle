@@ -92,7 +92,6 @@ project(":html") {
 
 project(":core") {
     apply plugin: "java"
-    apply plugin: 'jacoco'
 
 
     dependencies {
@@ -100,13 +99,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         
     }
-    jacocoTestReport {
-        reports {
-            xml.enabled true
-            html.enabled false
-        }
-    }
-    check.dependsOn jacocoTestReport
 }
 
 project(":ios") {
@@ -123,6 +115,55 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-ios"
         
     }
+}
+
+project(":tests") {
+    apply plugin: "java"
+    apply plugin: 'jacoco'
+
+    sourceSets.test.java.srcDirs = ["src/"]
+    		
+    dependencies {
+	
+		/**
+		 * If you do have some classes to test in os specific code you may want to uncomment
+		 * some of these lines.
+		 * 
+		 * BUT: I recommend to create seperate test sub projects for each platform. Trust me :)
+		 * 
+		 */
+	
+//        compile project(":android")
+//        compile project(":html")
+//        compile project(":desktop")
+        
+        
+//        if(System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
+//        	compile project(":ios")
+//        }
+        
+        compile project(":core")
+        
+        compile "junit:junit:4.+"
+        compile "org.mockito:mockito-all:1.9.+"
+        
+        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"        
+
+        testCompile 'junit:junit:4.+'
+        testCompile "org.mockito:mockito-all:1.9.+"
+
+        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    }
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled false
+        }
+    }
+    check.dependsOn jacocoTestReport
 }
 
 tasks.eclipse.doLast {
