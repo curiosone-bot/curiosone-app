@@ -1,6 +1,14 @@
+apply plugin: 'jacoco'
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+check.dependsOn jacocoTestReport
+
 buildscript {
 
-    apply plugin: 'jacoco'
 
     repositories {
         mavenLocal()
@@ -15,14 +23,6 @@ buildscript {
         
 
     }
-    
-    jacocoTestReport {
-        reports {
-            xml.enabled true
-            html.enabled false
-        }
-    }
-    check.dependsOn jacocoTestReport
 }
 
 allprojects {
