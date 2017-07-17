@@ -14,6 +14,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		//Testo di prova per vedere le modifiche
 	}
 
 	@Override
