@@ -2,14 +2,14 @@ package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.github.bot.curiosone.app.GameCenter;
+import com.github.bot.curiosone.app.workflow.Chat;
 
 public class DifficultyMenuScreen extends ScreenAdapter {
 
-    private GameCenter game;
+    private Chat game;
     private TextButton easy,normal,hard,extreme;
 
-    public DifficultyMenuScreen(GameCenter game) {
+    public DifficultyMenuScreen(Chat game) {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
     }
 

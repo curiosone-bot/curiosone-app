@@ -60,9 +60,9 @@ public class GameCenter extends ScreenAdapter {
    */
   private void update() {
 
-    if(Gdx.input.isTouched()) {  //Se ricevi un input
+    if(Gdx.input.isTouched()) {  //If receives input
       touch = touch.set(Gdx.input.getX(),Gdx.input.getY(),0); //Sets its coordinates to the touch coordinates
-      camera.unproject(touch);   //Translates the Vector coordinates to the camera coordinates
+      camera.unproject(touch);   //Transforms the input coordinates to camera coordinates
       if(wordTiles.contains(touch.x,touch.y)) {
         Gdx.app.log("Touched","WordTiles");
         game.setScreen(new MainMenuScreen(game));

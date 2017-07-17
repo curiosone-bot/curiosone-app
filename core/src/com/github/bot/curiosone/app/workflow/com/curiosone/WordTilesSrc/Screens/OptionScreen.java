@@ -5,15 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.github.bot.curiosone.app.GameCenter;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Settings.Settings;
+import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.Settings;
 
 public class OptionScreen extends ScreenAdapter{
 
-    private GameCenter game;
+    private Chat game;
     private OrthographicCamera camera;
 
-    public OptionScreen(GameCenter game) {
+    public OptionScreen(Chat game) {
         this.game = game;
         this.camera = new OrthographicCamera();
         camera.setToOrtho(true,480,800);
