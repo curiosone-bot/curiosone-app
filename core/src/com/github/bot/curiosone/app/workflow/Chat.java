@@ -19,7 +19,15 @@ public class Chat extends Game {
   @Override
   public void create() {
     batch = new SpriteBatch();
+<<<<<<< HEAD
     setScreen(new ChatScreen(this));
+=======
+<<<<<<< HEAD
+    setScreen(new ChatScreen(this));
+=======
+    
+>>>>>>> 4cc0d37a460a88e299f55e9153bf51c32449de4f
+>>>>>>> master
   }
 
   @Override
