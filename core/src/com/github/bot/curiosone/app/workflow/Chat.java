@@ -4,8 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Chat extends Game
-{
+public class Chat extends Game {
 
   private SpriteBatch batch ;
   private Texture background;
