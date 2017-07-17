@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Settings;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings;
 
 public class Settings {
     public static Difficulty MODE = Difficulty.EASY;

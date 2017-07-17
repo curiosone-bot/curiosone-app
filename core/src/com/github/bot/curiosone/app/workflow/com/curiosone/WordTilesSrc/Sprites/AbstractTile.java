@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Sprites;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

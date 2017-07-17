@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Screens;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
 
 
 import com.badlogic.gdx.Gdx;

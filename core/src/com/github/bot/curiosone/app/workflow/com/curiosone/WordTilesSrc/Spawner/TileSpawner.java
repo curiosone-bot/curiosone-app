@@ -1,14 +1,14 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Spawner;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Spawner;
 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Array;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Sprites.AbstractTile;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Sprites.Tile;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Sprites.WrongTile;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.Settings;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.AbstractTile;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.Tile;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.WrongTile;
 
 import java.util.Iterator;
 

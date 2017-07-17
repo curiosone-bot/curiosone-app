@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Screens;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
 
 
 import com.badlogic.gdx.Application;
@@ -10,12 +10,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.github.bot.curiosone.app.GameCenter;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Settings.*;
+import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.*;
+
 
 public class MainMenuScreen extends ScreenAdapter
 {
-    private GameCenter game;
+    private Chat game;
     private OrthographicCamera camera;
     private Texture background;
     private Vector3 touch;
@@ -25,7 +26,7 @@ public class MainMenuScreen extends ScreenAdapter
     private Rectangle playButton;
     private Texture playTexture;
 
-    public MainMenuScreen(GameCenter game) {
+    public MainMenuScreen(Chat game) {
         this.game=game;
 
         /*Camera Settings*/
@@ -74,11 +75,11 @@ public class MainMenuScreen extends ScreenAdapter
      */
     public void draw() {
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        game.batch.draw(background,0,0,480,800);
-        game.batch.draw(playTexture,playButton.getX(),playButton.getY(),playButton.getWidth(),playButton.getHeight());
-        game.batch.end();
+        game.getBatch().setProjectionMatrix(camera.combined);
+        game.getBatch().begin();
+        game.getBatch().draw(background,0,0,480,800);
+        game.getBatch().draw(playTexture,playButton.getX(),playButton.getY(),playButton.getWidth(),playButton.getHeight());
+        game.getBatch().end();
     }
 
     @Override

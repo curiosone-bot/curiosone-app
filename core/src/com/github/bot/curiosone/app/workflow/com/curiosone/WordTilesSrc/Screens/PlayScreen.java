@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.wordtiles.Screens;
+package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,10 +10,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Spawner.TileSpawner;
-import com.github.bot.curiosone.app.com.curiosone.wordtiles.Sprites.AbstractTile;
-import com.github.bot.curiosone.app.GameCenter;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.*;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Spawner.TileSpawner;
+import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.AbstractTile;
+import com.github.bot.curiosone.app.workflow.Chat;
 import java.util.Iterator;
 
 /**
@@ -22,7 +22,7 @@ import java.util.Iterator;
  */
 public class PlayScreen extends ScreenAdapter {
 
-    private GameCenter game;
+    private Chat game;
     private OrthographicCamera camera;
     private Iterator<AbstractTile> tileIterator;
     private long lastSpawnedTime;
@@ -39,7 +39,7 @@ public class PlayScreen extends ScreenAdapter {
     private Rectangle backButton;
     private Texture winTexure;
 
-    public PlayScreen(GameCenter game) {
+    public PlayScreen(Chat game) {
         //Spawning the tiles
         TileSpawner spawner = new TileSpawner();
         this.tileIterator = spawner.iterator();
@@ -90,20 +90,20 @@ public class PlayScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
+        game.getBatch().setProjectionMatrix(camera.combined);
+        game.getBatch().begin();
 
         if(done) {
                 for (AbstractTile tile : drawer) {
                     if (!tile.isDisposable()) {
-                        tile.draw(game.batch);
+                        tile.draw(game.getBatch());
                     }
                 }
 
         }
 
         if(gameOver){
-            game.batch.draw(gameOverTexture,camera.viewportWidth/2-350/2,camera.viewportHeight/2-450/2,350,450);
+            game.getBatch().draw(gameOverTexture,camera.viewportWidth/2-350/2,camera.viewportHeight/2-450/2,350,450);
             if(Gdx.input.isTouched()) {
                 touch = touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
                 camera.unproject(touch);
@@ -116,7 +116,7 @@ public class PlayScreen extends ScreenAdapter {
 
         if(done&&win){
             //Schermata Win
-            game.batch.draw(winTexure,0,0,480,800);
+            game.getBatch().draw(winTexure,0,0,480,800);
             if(Gdx.input.isTouched()){
                 dispose();
                 winTexure.dispose();
@@ -124,7 +124,7 @@ public class PlayScreen extends ScreenAdapter {
             }
         }
 
-        game.batch.end();
+        game.getBatch().end();
     }
 
     @Override
