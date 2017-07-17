@@ -12,7 +12,7 @@ public class Chat extends Game {
   @Override
   public void create() {
     batch = new SpriteBatch();
-
+    
   }
 
   @Override
