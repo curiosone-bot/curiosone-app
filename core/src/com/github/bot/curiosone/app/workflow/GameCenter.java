@@ -41,10 +41,16 @@ public class GameCenter extends ScreenAdapter {
     draw();
   }
 
+  @Override
+  public void resize(int width, int height) {
+    super.resize(width, height);
+  }
+
   private void draw() {
+    camera.update();
+    game.getBatch().setProjectionMatrix(camera.combined);
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    camera.update();
     game.getBatch().begin();
     game.getBatch().draw(buttonTexture, wordTiles.x,wordTiles.y,wordTiles.width,wordTiles.height);
     game.getBatch().draw(buttonTexture,Arkanoid.x,Arkanoid.y,Arkanoid.width,Arkanoid.height);
@@ -80,6 +86,6 @@ public class GameCenter extends ScreenAdapter {
   }
   @Override
   public void dispose() {
-    game.getBatch().dispose();
+    super.dispose();
   }
 }
