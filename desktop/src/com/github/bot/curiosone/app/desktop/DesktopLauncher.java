@@ -2,11 +2,14 @@ package com.github.bot.curiosone.app.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.github.bot.curiosone.app.MyGdxGame;
+import com.github.bot.curiosone.app.workflow.Chat;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MyGdxGame(), config);
+    config.width = 480;
+    config.height = 800;
+    config.title = "Curiosone";
+		new LwjglApplication(new Chat(), config);
 	}
 }

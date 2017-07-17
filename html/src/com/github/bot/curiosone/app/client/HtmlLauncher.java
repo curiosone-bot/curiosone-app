@@ -3,7 +3,6 @@ package com.github.bot.curiosone.app.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.github.bot.curiosone.app.MyGdxGame;
 
 public class HtmlLauncher extends GwtApplication {
 
