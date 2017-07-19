@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.chat.workflow;
+package com.github.bot.curiosone.app.workflow;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -7,16 +7,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.github.bot.curiosone.app.chat.*;
 
 public class GameCenter extends ScreenAdapter {
 
-  private Chat game;
+  private com.github.bot.curiosone.app.chat.Chat game;
   private OrthographicCamera camera;
   private Vector3 touch;
   private Rectangle wordTiles,Arkanoid,WordCrush,EndlessRoad,bottone4;
   private Texture buttonTexture;
 
-  public GameCenter(Chat game){
+  public GameCenter(com.github.bot.curiosone.app.chat.Chat game){
     this.game = game;
 
     /*Camera Settings*/
