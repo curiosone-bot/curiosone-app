@@ -1,14 +1,13 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Spawner;
+package com.github.bot.curiosone.app.games.wordtiles.Spawner;
 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Array;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.Settings;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.AbstractTile;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.Tile;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.WrongTile;
+import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
+import com.github.bot.curiosone.app.games.wordtiles.Sprites.Tile;
 
 import java.util.Iterator;
 
@@ -57,7 +56,7 @@ public class TileSpawner implements Iterable<AbstractTile>{
 
         for(int b=0;b<spawn_wrong;b++) {
             String random = wrongWords.random();
-            tiles.add(new WrongTile(lines.random(),random));
+            tiles.add(new com.github.bot.curiosone.app.games.wordtiles.Sprites.WrongTile(lines.random(),random));
             wrongWords.removeIndex(wrongWords.indexOf(random,false));
         }
         tiles.shuffle();

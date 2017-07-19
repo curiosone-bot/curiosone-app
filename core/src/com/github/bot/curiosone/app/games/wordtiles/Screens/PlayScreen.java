@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,9 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.*;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Spawner.TileSpawner;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites.AbstractTile;
+import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
+import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
 import com.github.bot.curiosone.app.workflow.Chat;
 import java.util.Iterator;
 
@@ -63,7 +62,7 @@ public class PlayScreen extends ScreenAdapter {
 
     public void update(float dt) {
         //Spawn the tiles every tot seconds
-        if(TimeUtils.nanoTime()-lastSpawnedTime>Settings.SPAWN_RATE){
+        if(TimeUtils.nanoTime()-lastSpawnedTime> com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SPAWN_RATE){
            if(tileIterator.hasNext()) {drawer.add(tileIterator.next());}
             lastSpawnedTime = TimeUtils.nanoTime();
         }

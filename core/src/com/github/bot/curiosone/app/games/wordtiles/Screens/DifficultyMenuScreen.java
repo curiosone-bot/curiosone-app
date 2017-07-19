@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;

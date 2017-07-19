@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Sprites;
+package com.github.bot.curiosone.app.games.wordtiles.Sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.*;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Spawner.TileSpawner;
 
 
 public class Tile extends AbstractTile
@@ -26,7 +24,7 @@ public class Tile extends AbstractTile
     {
         TextureRegionDrawable up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/tile.png"))));
         TextureRegionDrawable down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/Tile_Touched.png"))));
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null, TileSpawner.font);
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null, com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner.font);
         tile = new TextButton(text,style);
         tile.setPosition(x, 1000);
         tile.setSize(118,200);
@@ -49,7 +47,7 @@ public class Tile extends AbstractTile
             }
         }
         if (tile.getY() > -200) {
-            tile.setPosition(tile.getX(), tile.getY() - Settings.SPEED * dt);
+            tile.setPosition(tile.getX(), tile.getY() - com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SPEED * dt);
             area.setPosition(tile.getX(), tile.getY());
         }
         if (tile.getY() < -200) {

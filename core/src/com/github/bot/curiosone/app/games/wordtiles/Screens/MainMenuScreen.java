@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 
 import com.badlogic.gdx.Application;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.github.bot.curiosone.app.workflow.Chat;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.*;
 
 
 public class MainMenuScreen extends ScreenAdapter
@@ -35,12 +34,12 @@ public class MainMenuScreen extends ScreenAdapter
         camera.position.set(480 / 2, 800 / 2, 0);
 
         /*Music & Sound Settings*/
-        if(Settings.MUSIC) {
+        if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.MUSIC) {
             this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
             music.setLooping(true);
             if(Gdx.app.getType()!= Application.ApplicationType.Desktop)music.play();
         }
-        if(Settings.SFX){ this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));}
+        if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SFX){ this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));}
 
         /*Camera Settings*/
         this.camera = new OrthographicCamera();
@@ -60,7 +59,7 @@ public class MainMenuScreen extends ScreenAdapter
             //Transforms the input coordinates to camera coordinates
             camera.unproject(touch.set(Gdx.input.getX(),Gdx.input.getY(),0));
             if(playButton.contains(touch.x,touch.y)){
-                if(Settings.SFX)clickSound.play(1.0f);
+                if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SFX)clickSound.play(1.0f);
                 Gdx.app.log("1","PLAY IS TOUCHED");
                 dispose();
                 game.setScreen(new PlayScreen(game));

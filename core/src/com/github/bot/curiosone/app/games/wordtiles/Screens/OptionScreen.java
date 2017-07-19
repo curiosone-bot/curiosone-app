@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.github.bot.curiosone.app.workflow.Chat;
-import com.github.bot.curiosone.app.workflow.com.curiosone.WordTilesSrc.Settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
 
 public class OptionScreen extends ScreenAdapter{
 
