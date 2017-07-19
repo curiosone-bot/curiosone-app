@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.chat.workflow.Chat;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

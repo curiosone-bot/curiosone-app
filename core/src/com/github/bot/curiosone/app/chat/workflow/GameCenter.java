@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.workflow;
+package com.github.bot.curiosone.app.chat.workflow;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;

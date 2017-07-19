@@ -1,8 +1,8 @@
-package com.github.bot.curiosone.app.workflow;
+package com.github.bot.curiosone.app.chat.workflow;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.bot.curiosone.app.workflow.chatscreens.ChatScreen;
+import com.github.bot.curiosone.app.chat.workflow.chatscreens.ChatScreen;
 
 public class Chat extends Game {
 

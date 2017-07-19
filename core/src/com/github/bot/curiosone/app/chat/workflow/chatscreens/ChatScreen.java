@@ -1,23 +1,22 @@
-package com.github.bot.curiosone.app.workflow.chatscreens;
+package com.github.bot.curiosone.app.chat.workflow.chatscreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.bot.curiosone.app.workflow.Chat;
 
 public class ChatScreen extends ScreenAdapter {
   private static int WIDTH=480;
   private static int HEIGHT=800;
-  private Chat chat;
+  private com.github.bot.curiosone.app.chat.workflow.Chat chat;
   private SpriteBatch sb;
   private Texture space;
   private Texture goku;
   private OrthographicCamera cam;
 
 
-  public ChatScreen (Chat chat) {
+  public ChatScreen (com.github.bot.curiosone.app.chat.workflow.Chat chat) {
     this.chat = chat;
     this.sb = chat.getBatch();
     WIDTH=Gdx.graphics.getWidth();
