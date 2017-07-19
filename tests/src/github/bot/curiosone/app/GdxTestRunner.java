@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package de.tomgrill.gdxtesting;
+package com.github.bot.curiosone.app;
 
 import java.util.HashMap;
 import java.util.Map;
