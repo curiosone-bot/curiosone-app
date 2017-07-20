@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.chat.chatscreens;
+package com.github.bot.curiosone.app.chat.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
