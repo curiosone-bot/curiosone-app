@@ -1,7 +1,6 @@
 package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;

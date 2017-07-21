@@ -1,7 +1,6 @@
 package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
@@ -79,16 +78,16 @@ public class MainMenuScreen extends ScreenAdapter
                 playButton.getStyle().up = playButton.getStyle().down;
                 if(Settings.SFX)clickSound.play();
                 Gdx.app.log("Touched","PlayButton");
+                game.setScreen(new DifficultyMenuScreen(game));
                 dispose();
-                game.setScreen(new PlayScreen(game));
             }
 
             if(optionButtonArea.contains(touch.x,touch.y)){
               optionButton.getStyle().up = optionButton.getStyle().down;
               if(Settings.SFX)clickSound.play();
               Gdx.app.log("Touched","OptionButton");
-              dispose();
               game.setScreen(new OptionScreen(game));
+              dispose();
             }
             //Crediti
         }
