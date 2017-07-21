@@ -8,10 +8,14 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
 import com.github.bot.curiosone.app.workflow.Chat;
-
 
 public class MainMenuScreen extends ScreenAdapter
 {
@@ -22,8 +26,8 @@ public class MainMenuScreen extends ScreenAdapter
     private Music music;
     private Sound clickSound;
 
-    private Rectangle playButton;
-    private Texture playTexture;
+    private Rectangle playButtonArea,optionButtonArea;
+    private TextButton playButton,optionButton;
 
     public MainMenuScreen(Chat game) {
         this.game=game;
@@ -34,22 +38,33 @@ public class MainMenuScreen extends ScreenAdapter
         camera.position.set(480 / 2, 800 / 2, 0);
 
         /*Music & Sound Settings*/
-        if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.MUSIC) {
+        if(Settings.SFX) {
             this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
             music.setLooping(true);
             if(Gdx.app.getType()!= Application.ApplicationType.Desktop)music.play();
         }
-        if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SFX){ this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));}
+        if(Settings.SFX){ this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));}
 
-        /*Camera Settings*/
-        this.camera = new OrthographicCamera();
-        camera.setToOrtho(false,480,800);
-        camera.position.set(480 / 2, 800 / 2, 0);
         /*Background*/
         background = new Texture("WordTiles/Background.png");
+
+        /*General Button Style*/
+        TextureRegionDrawable up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/ButtonTextures/button1.png"))));
+        TextureRegionDrawable down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/ButtonTextures/button2.png"))));
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null,TileSpawner.font);
+
         /*Play Button*/
-        playTexture = new Texture("WordTiles/play2.png");
-        playButton = new Rectangle(480/2-250/2,800/2,250,55);
+        playButton = new TextButton("Play",style);
+        playButtonArea = new Rectangle(480/2-250/2,800/2,250,55);
+        playButton.setPosition(playButtonArea.x,playButtonArea.y);
+        playButton.setSize(playButtonArea.width,playButtonArea.height);
+
+        /*Option Button*/
+        optionButton = new TextButton("Options",style);
+        optionButtonArea = new Rectangle(480/2-250/2,800/2-65,250,55);
+        optionButton.setPosition(optionButtonArea.x,optionButtonArea.y);
+        optionButton.setSize(optionButtonArea.width,optionButtonArea.height);
+
         touch = new Vector3();
     }
 
@@ -58,14 +73,23 @@ public class MainMenuScreen extends ScreenAdapter
         if(Gdx.input.isTouched()){
             //Transforms the input coordinates to camera coordinates
             camera.unproject(touch.set(Gdx.input.getX(),Gdx.input.getY(),0));
-            if(playButton.contains(touch.x,touch.y)){
-                if(com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SFX)clickSound.play(1.0f);
-                Gdx.app.log("1","PLAY IS TOUCHED");
+
+            if(playButtonArea.contains(touch.x,touch.y)){
+                playButton.getStyle().up = playButton.getStyle().down;
+                if(Settings.SFX)clickSound.play();
+                Gdx.app.log("Touched","PlayButton");
                 dispose();
                 game.setScreen(new PlayScreen(game));
-                //return;
             }
-            //Opzioni,Crediti
+
+            if(optionButtonArea.contains(touch.x,touch.y)){
+              optionButton.getStyle().up = optionButton.getStyle().down;
+              if(Settings.SFX)clickSound.play();
+              Gdx.app.log("Touched","OptionButton");
+              dispose();
+              game.setScreen(new OptionScreen(game));
+            }
+            //Crediti
         }
     }
 
@@ -77,7 +101,8 @@ public class MainMenuScreen extends ScreenAdapter
         game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
         game.getBatch().draw(background,0,0,480,800);
-        game.getBatch().draw(playTexture,playButton.getX(),playButton.getY(),playButton.getWidth(),playButton.getHeight());
+        playButton.draw(game.getBatch(),1);
+        optionButton.draw(game.getBatch(),1);
         game.getBatch().end();
     }
 
@@ -94,10 +119,9 @@ public class MainMenuScreen extends ScreenAdapter
 
     @Override
     public void dispose() {
-        music.dispose();
-        clickSound.dispose();
+        if(Settings.MUSIC)music.dispose();
+        if(Settings.SFX)clickSound.dispose();
         background.dispose();
-        playTexture.dispose();
         super.dispose();
     }
 

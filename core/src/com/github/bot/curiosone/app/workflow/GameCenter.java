@@ -61,8 +61,8 @@ public class GameCenter extends ScreenAdapter {
   }
 
   /**
-   *  Update controlla l'input. Se una casella viene toccata, sarà istanziato
-   *  il gioco corrispondente
+   *  Update controlls the input. If any of the buttons is touched, the
+   *  corresponding game will start.
    */
   private void update() {
 

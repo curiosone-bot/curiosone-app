@@ -1,6 +1,5 @@
 package com.github.bot.curiosone.app.games.wordtiles.Spawner;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,7 +7,6 @@ import com.badlogic.gdx.utils.Array;
 import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
 import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
 import com.github.bot.curiosone.app.games.wordtiles.Sprites.Tile;
-
 import java.util.Iterator;
 
 public class TileSpawner implements Iterable<AbstractTile>{

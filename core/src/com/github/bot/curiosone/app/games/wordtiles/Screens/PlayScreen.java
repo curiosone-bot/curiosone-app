@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
 import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
 import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
 import com.github.bot.curiosone.app.workflow.Chat;
@@ -62,7 +63,7 @@ public class PlayScreen extends ScreenAdapter {
 
     public void update(float dt) {
         //Spawn the tiles every tot seconds
-        if(TimeUtils.nanoTime()-lastSpawnedTime> com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SPAWN_RATE){
+        if(TimeUtils.nanoTime()-lastSpawnedTime> Settings.SPAWN_RATE){
            if(tileIterator.hasNext()) {drawer.add(tileIterator.next());}
             lastSpawnedTime = TimeUtils.nanoTime();
         }
@@ -100,7 +101,7 @@ public class PlayScreen extends ScreenAdapter {
                 }
 
         }
-
+        //To Game Over
         if(gameOver){
             game.getBatch().draw(gameOverTexture,camera.viewportWidth/2-350/2,camera.viewportHeight/2-450/2,350,450);
             if(Gdx.input.isTouched()) {
@@ -112,9 +113,8 @@ public class PlayScreen extends ScreenAdapter {
                 }
             }
         }
-
+        //To Win Screen
         if(done&&win){
-            //Schermata Win
             game.getBatch().draw(winTexure,0,0,480,800);
             if(Gdx.input.isTouched()){
                 dispose();
