@@ -38,12 +38,13 @@ public class MainMenuScreen extends ScreenAdapter
         camera.position.set(480 / 2, 800 / 2, 0);
 
         /*Music & Sound Settings*/
-        if(Settings.SFX) {
-            this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
+        this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
+        if(Settings.MUSIC) {
+
             music.setLooping(true);
-            if(Gdx.app.getType()!= Application.ApplicationType.Desktop)music.play();
+            music.play();
         }
-        if(Settings.SFX){ this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));}
+        this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));
 
         /*Background*/
         background = new Texture("WordTiles/Background.png");
@@ -119,8 +120,8 @@ public class MainMenuScreen extends ScreenAdapter
 
     @Override
     public void dispose() {
-        if(Settings.MUSIC)music.dispose();
-        if(Settings.SFX)clickSound.dispose();
+        music.dispose();
+        clickSound.dispose();
         background.dispose();
         super.dispose();
     }

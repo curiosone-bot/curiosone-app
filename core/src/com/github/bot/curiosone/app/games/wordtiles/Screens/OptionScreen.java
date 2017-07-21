@@ -47,11 +47,6 @@ public class OptionScreen extends ScreenAdapter{
         camera.setToOrtho(false,480,800);
         camera.position.set(480 / 2, 800 / 2, 0);
 
-        /*Music & Sound Settings*/
-        music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
-        music.setLooping(true);
-        if(Gdx.app.getType()!= Application.ApplicationType.Desktop)music.play();
-        clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));
 
          /*Background*/
         background = new Texture("WordTiles/Background_Clean.jpg");
@@ -93,14 +88,11 @@ public class OptionScreen extends ScreenAdapter{
           Gdx.app.log("Touched", "Music CheckBox");
           if (Settings.MUSIC) {
             Settings.setMUSIC(false);
-            music.stop();
             musicCheckBox.getStyle().checkboxOff = checked;
           } else {
             Settings.setMUSIC(true);
-            music.play();
             musicCheckBox.getStyle().checkboxOff = unchecked;
           }
-          if (Settings.SFX) clickSound.play();
         }
         //If the sfx checkbox is touched
         if (sfxCheckBoxArea.contains(touch.x, touch.y)) {
@@ -112,7 +104,6 @@ public class OptionScreen extends ScreenAdapter{
             Settings.setSFX(true);
             sfxCheckBox.getStyle().checkboxOff = unchecked;
           }
-          if (Settings.SFX) clickSound.play();
         }
         lastTouched = TimeUtils.nanoTime();
       }
@@ -143,9 +134,6 @@ public class OptionScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
-        music.dispose();
-        clickSound.dispose();
         background.dispose();
-        super.dispose();
     }
 }
