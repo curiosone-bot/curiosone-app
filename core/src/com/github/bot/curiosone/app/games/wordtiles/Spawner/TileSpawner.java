@@ -45,18 +45,13 @@ public class TileSpawner implements Iterable<AbstractTile>{
                 words = new Array<String>(generateWords("WordTiles/Texts/Level_Extreme"));
                 break;
         }
-        spawner();
-    }
-
-
-    private void spawner() {
         for(String word:words){
           if(word.contains(".")){
-              word = word.substring(0,word.length()-2);
-              tiles.add(new WrongTile(lines.random(),word));
+            word = word.substring(0,word.length()-2);
+            tiles.add(new WrongTile(lines.random(),word));
           }
           else {
-              tiles.add(new Tile(lines.random(),word));
+            tiles.add(new Tile(lines.random(),word));
           }
         }
     }
@@ -70,7 +65,7 @@ public class TileSpawner implements Iterable<AbstractTile>{
         FileHandle file = Gdx.files.internal(path);
         String text = file.readString();
         String[] words = text.split("\n");
-        //Every line from the text has to be splitted due to limitations in space
+        //Every line from the text has to be splitted due to space limitations
         for(String string: words){
           if(string.length()>6){
             if(string.length()>12){
