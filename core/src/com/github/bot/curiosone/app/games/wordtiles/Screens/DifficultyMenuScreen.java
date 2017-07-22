@@ -42,7 +42,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
       TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null, TileSpawner.font);
 
       /*Easy Button*/
-      easy = new TextButton("Play",style);
+      easy = new TextButton("Easy",style);
       easyArea = new Rectangle(480/2-250/2,800/2,250,55);
       easy.setPosition(easyArea.x,easyArea.y);
       easy.setSize(easyArea.width,easyArea.height);
@@ -102,6 +102,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           Gdx.app.log("Touched","Normal");
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.NORMAL;
+          Settings.SPEED = 200;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
@@ -110,6 +111,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           Gdx.app.log("Touched","Hard");
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.HARD;
+          Settings.SPEED = 240;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
@@ -118,6 +120,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           Gdx.app.log("Touched","Extreme");
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.EXTREME;
+          Settings.SPEED = 280;
           game.setScreen(new PlayScreen(game));
           dispose();
         }

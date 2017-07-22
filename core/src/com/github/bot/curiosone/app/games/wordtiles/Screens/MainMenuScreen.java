@@ -1,6 +1,6 @@
 package com.github.bot.curiosone.app.games.wordtiles.Screens;
 
-
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
@@ -39,9 +39,8 @@ public class MainMenuScreen extends ScreenAdapter
         /*Music & Sound Settings*/
         this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
         if(Settings.MUSIC) {
-
             music.setLooping(true);
-            music.play();
+           if(Gdx.app.getType()!= Application.ApplicationType.Desktop) music.play();
         }
         this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));
 

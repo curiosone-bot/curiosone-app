@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -46,7 +47,6 @@ public class PlayScreen extends ScreenAdapter {
         this.lastSpawnedTime = 0;
         this.drawer = new Array<AbstractTile>();
         this.game = game;
-        done = true;         //when it's done spawning the tiles,the game can start
 
         //Camera Settings
         this.camera = new OrthographicCamera();
@@ -59,6 +59,8 @@ public class PlayScreen extends ScreenAdapter {
         this.backButton = new Rectangle(325,180,84,84);
         this.winTexure = new Texture("WordTiles/Win.png");
         this.touch = new Vector3();
+
+        done = true;         //when it's done spawning the tiles,the game can start
     }
 
     public void update(float dt) {
@@ -108,8 +110,8 @@ public class PlayScreen extends ScreenAdapter {
                 touch = touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
                 camera.unproject(touch);
                 if (backButton.contains(touch.x, touch.y)) {
-                    dispose();
                     game.setScreen(new MainMenuScreen(game));
+                    dispose();
                 }
             }
         }

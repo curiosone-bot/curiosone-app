@@ -19,10 +19,7 @@ public class WrongTile extends AbstractTile {
     private boolean gameOver = false;
 
     public WrongTile(int x, String text)  {
-
-        TextureRegionDrawable up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/tile.png"))));
-        TextureRegionDrawable down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/Wrong_Tile_Touched.png"))));
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null, TileSpawner.font);
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(TileSpawner.style2);
         tile = new TextButton(text,style);
         tile.setPosition(x, 1000);
         tile.setSize(118,200);

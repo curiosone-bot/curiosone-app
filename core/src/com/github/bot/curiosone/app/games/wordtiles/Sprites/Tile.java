@@ -2,13 +2,11 @@ package com.github.bot.curiosone.app.games.wordtiles.Sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
 
 
 public class Tile extends AbstractTile
@@ -20,12 +18,10 @@ public class Tile extends AbstractTile
     private boolean gameOver = false;
     private Sound hit;
 
-    public Tile(int x,String text)
+  public Tile(int x,String text)
     {
-        TextureRegionDrawable up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/tile.png"))));
-        TextureRegionDrawable down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/Tile_Touched.png"))));
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null, com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner.font);
-        tile = new TextButton(text,style);
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(TileSpawner.style);
+        tile = new TextButton(text, style);
         tile.setPosition(x, 1000);
         tile.setSize(118,200);
         area = new Rectangle(x,800,118,200);
