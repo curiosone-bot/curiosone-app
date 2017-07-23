@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.github.bot.curiosone.app.games.endlessroad.scenes.EndlessRoad;
 
 public class GameCenter extends ScreenAdapter {
 
@@ -73,7 +74,7 @@ public class GameCenter extends ScreenAdapter {
         //game.setScreen() <-- place your game here
       }
       if(EndlessRoad.contains(touch.x,touch.y)){
-        //game.setScreen() <-- place your game here
+        game.setScreen(new EndlessRoad(game));
       }
     }
   }
