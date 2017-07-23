@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
 import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
 
 
@@ -43,7 +44,7 @@ public class Tile extends AbstractTile
             }
         }
         if (tile.getY() > -200) {
-            tile.setPosition(tile.getX(), tile.getY() - com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SPEED * dt);
+            tile.setPosition(tile.getX(), tile.getY() - Settings.SPEED * dt);
             area.setPosition(tile.getX(), tile.getY());
         }
         if (tile.getY() < -200) {

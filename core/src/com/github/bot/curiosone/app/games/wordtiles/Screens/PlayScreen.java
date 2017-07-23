@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -39,6 +40,8 @@ public class PlayScreen extends ScreenAdapter {
     private Texture gameOverTexture;
     private Rectangle backButton;
     private Texture winTexure;
+    private Texture background,background2;
+    private float y1,y2;
 
     public PlayScreen(Chat game) {
         //Spawning the tiles
@@ -60,10 +63,24 @@ public class PlayScreen extends ScreenAdapter {
         this.winTexure = new Texture("WordTiles/Win.png");
         this.touch = new Vector3();
 
-        done = true;         //when it's done spawning the tiles,the game can start
+        //Background
+        background = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
+        background2 = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
+        y1=0;
+        y2=800;
     }
 
     public void update(float dt) {
+        //Scrolls the background
+        float speed = dt*(Settings.SPEED-50);
+        y1-= speed;
+        y2-= speed;
+        if(y1+800<=0){
+          y1=y2 + 800;
+        }
+        if(y2+800<=0){
+          y2=y1+800;
+        }
         //Spawn the tiles every tot seconds
         if(TimeUtils.nanoTime()-lastSpawnedTime> Settings.SPAWN_RATE){
            if(tileIterator.hasNext()) {drawer.add(tileIterator.next());}
@@ -89,20 +106,20 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     public void draw() {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
-
-        if(done) {
-                for (AbstractTile tile : drawer) {
-                    if (!tile.isDisposable()) {
-                        tile.draw(game.getBatch());
-                    }
-                }
-
+        //draw background
+        game.getBatch().draw(background,0,y1,480,800);
+        game.getBatch().draw(background2,0,y2,480,800);
+        //draws the tiles
+        for (AbstractTile tile : drawer) {
+          if (!tile.isDisposable()) {
+            tile.draw(game.getBatch());
+          }
         }
+
         //To Game Over
         if(gameOver){
             game.getBatch().draw(gameOverTexture,camera.viewportWidth/2-350/2,camera.viewportHeight/2-450/2,350,450);
@@ -116,7 +133,7 @@ public class PlayScreen extends ScreenAdapter {
             }
         }
         //To Win Screen
-        if(done&&win){
+        if(win){
             game.getBatch().draw(winTexure,0,0,480,800);
             if(Gdx.input.isTouched()){
                 dispose();
@@ -130,7 +147,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-       if (!gameOver&&done) {
+       if (!gameOver) {
            update(delta);
        }
        draw();
@@ -144,6 +161,8 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         gameOverSound.dispose();
+        background2.dispose();
+        background.dispose();
         super.dispose();
     }
 }

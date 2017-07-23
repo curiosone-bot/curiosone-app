@@ -94,6 +94,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           Gdx.app.log("Touched","Easy");
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.EASY;
+          Settings.SPEED = 175;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
@@ -103,6 +104,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.NORMAL;
           Settings.SPEED = 200;
+          Settings.SPAWN_RATE= 1800000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
@@ -112,6 +114,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.HARD;
           Settings.SPEED = 240;
+          Settings.SPAWN_RATE = 1500000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
@@ -121,6 +124,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
           if(Settings.SFX) clickSound.play();
           Settings.MODE = Settings.Difficulty.EXTREME;
           Settings.SPEED = 280;
+          Settings.SPAWN_RATE = 1000000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
