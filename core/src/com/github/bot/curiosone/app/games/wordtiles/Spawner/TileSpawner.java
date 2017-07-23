@@ -47,7 +47,7 @@ public class TileSpawner implements Iterable<AbstractTile>{
         }
         for(String word:words){
           if(word.contains(".")){
-            word = word.substring(0,word.length()-2);
+            word = word.replace(".","");
             tiles.add(new WrongTile(lines.random(),word));
           }
           else {
@@ -75,7 +75,7 @@ public class TileSpawner implements Iterable<AbstractTile>{
               string = string.substring(0,6)+"\n"+string.substring(6);
             }
           }
-            list.add(string);
+          list.add(string);
         }
         return list;
     }
