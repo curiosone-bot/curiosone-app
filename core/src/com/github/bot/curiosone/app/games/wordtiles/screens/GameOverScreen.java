@@ -2,9 +2,12 @@ package com.github.bot.curiosone.app.games.wordtiles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
 import com.github.bot.curiosone.app.workflow.Chat;
 
 /**
@@ -17,14 +20,23 @@ public class GameOverScreen extends ScreenAdapter{
   private Texture gameOverTexture;
   private OrthographicCamera camera;
   private int count;
+  private Music gameOverSound;
+  private Settings settings;
 
   public GameOverScreen(Chat game) {
     this.game = game;
+    settings = Settings.getIstance();
+    if(settings.MUSIC) {
+      gameOverSound = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Sound Effects/GameOver.mp3"));
+      gameOverSound.play();
+    }
+    settings = Settings.getIstance();
     gameOverTexture = new Texture("WordTiles/GameOver.png");
     //Camera Settings
     camera = new OrthographicCamera();
     camera.setToOrtho(false,480,800);
     camera.position.set(480 / 2, 800 / 2, 0);
+
   }
 
   @Override
@@ -59,5 +71,6 @@ public class GameOverScreen extends ScreenAdapter{
   public void dispose() {
     super.dispose();
     gameOverTexture.dispose();
+    if(settings.MUSIC)gameOverSound.dispose();
   }
 }

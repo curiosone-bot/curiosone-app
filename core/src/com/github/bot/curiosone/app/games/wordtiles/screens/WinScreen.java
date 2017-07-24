@@ -2,9 +2,11 @@ package com.github.bot.curiosone.app.games.wordtiles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
 import com.github.bot.curiosone.app.workflow.Chat;
 
 /**
@@ -17,14 +19,21 @@ public class WinScreen  extends ScreenAdapter{
   private Texture winTexture;
   private OrthographicCamera camera;
   private int count;
+  private Music winMusic;
+  private Settings settings;
 
   public WinScreen(Chat game) {
     this.game = game;
+    settings = Settings.getIstance();
     winTexture = new Texture("WordTiles/Win.png");
     //Camera Settings
     camera = new OrthographicCamera();
     camera.setToOrtho(false,480,800);
     camera.position.set(480 / 2, 800 / 2, 0);
+    if(settings.MUSIC) {
+      winMusic = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Victory.mp3"));
+      winMusic.play();
+    }
   }
 
   @Override
@@ -44,7 +53,7 @@ public class WinScreen  extends ScreenAdapter{
 
   private void update() {
     count++;
-    if(count>120) {
+    if(count>360) {
       game.setScreen(new MainMenuScreen(game));
       dispose();
     }
@@ -56,7 +65,8 @@ public class WinScreen  extends ScreenAdapter{
 
   @Override
   public void dispose() {
-    super.dispose();
     winTexture.dispose();
+    if(settings.MUSIC)winMusic.dispose();
+    super.dispose();
   }
 }

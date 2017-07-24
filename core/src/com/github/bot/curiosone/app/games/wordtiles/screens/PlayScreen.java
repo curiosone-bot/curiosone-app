@@ -1,7 +1,9 @@
 package com.github.bot.curiosone.app.games.wordtiles.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -30,7 +32,6 @@ public class PlayScreen extends ScreenAdapter {
     private Array<AbstractTile> drawer;
     private boolean gameOver = false,win = false;
     private Vector3 touch;
-    private Sound gameOverSound;
     private Texture background,background2;
     private float y1,y2;
     private BitmapFont category;
@@ -39,6 +40,7 @@ public class PlayScreen extends ScreenAdapter {
     private Array<String> categories;
     private long timer=0,timer2=0,timer3=0,timer4=0;
     private Settings settings;
+    private Music music;
 
     public PlayScreen(Chat game) {
         //Spawning the tiles
@@ -47,28 +49,29 @@ public class PlayScreen extends ScreenAdapter {
         tileIterator = spawner.iterator();
         lastSpawnedTime = 0;
         drawer = new Array<AbstractTile>();
-        this.game = game;
-
         //Camera Settings
         camera = new OrthographicCamera();
         camera.setToOrtho(false,480,800);
         camera.position.set(480 / 2, 800 / 2, 0);
-
         //Miscellaneous
-        gameOverSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/GameOver.wav"));
         touch = new Vector3();
-
+        this.game = game;
         //Background
         background = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
         background2 = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
         y1=0;
         y2=800;
-
         //Category
         category = new BitmapFont(Gdx.files.internal("WordTiles/Font/lexie.fnt"));
         layout = new GlyphLayout();
         categories = new Array<String>(new String[]{"Animals","Body Parts","Clothes","Science"});
         categoryCounter = 0;
+        //Music
+        if (settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop){
+          music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Funky Chunk.mp3"));
+          music.setLooping(true);
+          music.play();
+        }
     }
 
     public void update(float dt) {
@@ -106,12 +109,13 @@ public class PlayScreen extends ScreenAdapter {
         camera.unproject(touch);
         //to GameOverScreen
         if(gameOver){
-            gameOverSound.play();
+            if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
             game.setScreen(new GameOverScreen(game));
             dispose();
         }
         //to WinScreen
         if(win){
+          if(settings.MUSIC)music.dispose();
           game.setScreen(new WinScreen(game));
           dispose();
         }
@@ -184,9 +188,9 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        gameOverSound.dispose();
         background2.dispose();
         background.dispose();
+        if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
         super.dispose();
     }
 }
