@@ -1,15 +1,17 @@
-package com.github.bot.curiosone.app.games.wordtiles.Sprites;
+package com.github.bot.curiosone.app.games.wordtiles.tiles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
 
+/**
+ * @author Alessandro Roic
+ * This class represent the tile the player don't have to touch
+ */
 public class WrongTile extends AbstractTile {
 
     private TextButton tile;
@@ -17,8 +19,10 @@ public class WrongTile extends AbstractTile {
     private boolean disposable = false;
     private boolean notTouched = true;
     private boolean gameOver = false;
+    private Settings settings;
 
     public WrongTile(int x, String text)  {
+        settings = Settings.getIstance();
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(TileSpawner.style2);
         tile = new TextButton(text,style);
         tile.setPosition(x, 1000);
@@ -37,7 +41,7 @@ public class WrongTile extends AbstractTile {
             }
         }
         if (tile.getY() > -200) { //sostituisci il -200 con un valore decente
-            this.tile.setPosition(tile.getX(), tile.getY() - com.github.bot.curiosone.app.games.wordtiles.Settings.Settings.SPEED * dt);
+            this.tile.setPosition(tile.getX(), tile.getY() - settings.SPEED * dt);
             this.area.setPosition(tile.getX(), tile.getY());
         }
         if (tile.getY() < -200) {

@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.games.wordtiles.Spawner;
+package com.github.bot.curiosone.app.games.wordtiles.spawner;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -8,13 +8,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
-import com.github.bot.curiosone.app.games.wordtiles.Sprites.Tile;
-import com.github.bot.curiosone.app.games.wordtiles.Sprites.WrongTile;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.tiles.AbstractTile;
+import com.github.bot.curiosone.app.games.wordtiles.tiles.Tile;
+import com.github.bot.curiosone.app.games.wordtiles.tiles.WrongTile;
 
 import java.util.Iterator;
 
+/**
+ * @author Alessandro Roic
+ * This class is the spawner of the tiles
+ */
 public class TileSpawner implements Iterable<AbstractTile>{
 
     private Array<AbstractTile> tiles;
@@ -23,15 +27,19 @@ public class TileSpawner implements Iterable<AbstractTile>{
     public static final BitmapFont font = new BitmapFont(Gdx.files.internal("WordTiles/Font/lexie.fnt"));
     public static TextureRegionDrawable up,down,down2;
     public static TextButton.TextButtonStyle style,style2;
-
-    public TileSpawner() {
+    private Settings settings;
+  /**
+   * Spawn the tiles according to the game difficulty
+   */
+  public TileSpawner() {
+        settings = Settings.getIstance();
         tiles = new Array<AbstractTile>();
         up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/tile.png"))));
         down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/Tile_Touched.png"))));
         down2 = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/TilesTextures/Wrong_Tile_Touched.png"))));
         style = new TextButton.TextButtonStyle(up,down,null, TileSpawner.font);
         style2 = new TextButton.TextButtonStyle(up,down2,null,TileSpawner.font);
-        switch (Settings.MODE){
+        switch (settings.MODE){
             case EASY:
                 words = new Array<String>(generateWords("WordTiles/Texts/Level_Easy"));
                 break;
@@ -60,6 +68,12 @@ public class TileSpawner implements Iterable<AbstractTile>{
     public Iterator<AbstractTile> iterator() {
         return tiles.iterator();
     }
+
+  /**
+   * Generates an array of strings from the level selected
+   * @param path
+   * @return the level words
+   */
     public static Array<String> generateWords(String path){
         Array<String> list = new Array<String>();
         FileHandle file = Gdx.files.internal(path);

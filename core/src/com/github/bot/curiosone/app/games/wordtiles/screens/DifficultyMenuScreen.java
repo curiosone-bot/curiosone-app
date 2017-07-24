@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.games.wordtiles.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,10 +11,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
 import com.github.bot.curiosone.app.workflow.Chat;
 
+/**
+ * @author Alessandro Roic
+ * This class let the player choose the difficulty
+ */
 public class DifficultyMenuScreen extends ScreenAdapter {
 
     private Chat game;
@@ -25,10 +29,12 @@ public class DifficultyMenuScreen extends ScreenAdapter {
     private Texture background;
     private BitmapFont bitmapFont;
     private Sound clickSound;
+    private Settings settings;
 
     public DifficultyMenuScreen(Chat game) {
       this.game = game;
       touch = new Vector3();
+      settings = Settings.getIstance();
       clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));
       background = new Texture("WordTiles/Background_Clean.jpg");
       /*Camera Settings*/
@@ -58,6 +64,7 @@ public class DifficultyMenuScreen extends ScreenAdapter {
       hardArea = new Rectangle(480/2-250/2,800/2-130,250,55);
       hard.setPosition(hardArea.x,hardArea.y);
       hard.setSize(hardArea.width,hardArea.height);
+
       /*Extreme Button*/
       extreme = new TextButton("Extreme",style);
       extremeArea = new Rectangle(480/2-250/2,800/2-195,250,55);
@@ -92,46 +99,46 @@ public class DifficultyMenuScreen extends ScreenAdapter {
 
         if(easyArea.contains(touch.x,touch.y)){
           Gdx.app.log("Touched","Easy");
-          if(Settings.SFX) clickSound.play();
-          Settings.MODE = Settings.Difficulty.EASY;
-          Settings.SPEED = 175;
+          if(settings.SFX) clickSound.play();
+          settings.MODE = Settings.Difficulty.EASY;
+          settings.SPEED = 175;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
 
         if(normalArea.contains(touch.x,touch.y)){
           Gdx.app.log("Touched","Normal");
-          if(Settings.SFX) clickSound.play();
-          Settings.MODE = Settings.Difficulty.NORMAL;
-          Settings.SPEED = 200;
-          Settings.SPAWN_RATE= 1800000000;
+          if(settings.SFX) clickSound.play();
+          settings.MODE = Settings.Difficulty.NORMAL;
+          settings.SPEED = 200;
+          settings.SPAWN_RATE= 1800000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
 
         if(hardArea.contains(touch.x,touch.y)){
           Gdx.app.log("Touched","Hard");
-          if(Settings.SFX) clickSound.play();
-          Settings.MODE = Settings.Difficulty.HARD;
-          Settings.SPEED = 240;
-          Settings.SPAWN_RATE = 1500000000;
+          if(settings.SFX) clickSound.play();
+          settings.MODE = Settings.Difficulty.HARD;
+          settings.SPEED = 240;
+          settings.SPAWN_RATE = 1500000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
 
         if(extremeArea.contains(touch.x,touch.y)){
           Gdx.app.log("Touched","Extreme");
-          if(Settings.SFX) clickSound.play();
-          Settings.MODE = Settings.Difficulty.EXTREME;
-          Settings.SPEED = 280;
-          Settings.SPAWN_RATE = 1000000000;
+          if(settings.SFX) clickSound.play();
+          settings.MODE = Settings.Difficulty.EXTREME;
+          settings.SPEED = 280;
+          settings.SPAWN_RATE = 1000000000;
           game.setScreen(new PlayScreen(game));
           dispose();
         }
         //Go back to the main menu
         if(backArea.contains(touch.x,touch.y)){
           Gdx.app.log("Touched","Back");
-          if(Settings.SFX) clickSound.play();
+          if(settings.SFX) clickSound.play();
           game.setScreen(new MainMenuScreen(game));
           dispose();
         }

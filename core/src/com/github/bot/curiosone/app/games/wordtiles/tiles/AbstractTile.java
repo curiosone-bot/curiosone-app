@@ -1,10 +1,14 @@
-package com.github.bot.curiosone.app.games.wordtiles.Sprites;
+package com.github.bot.curiosone.app.games.wordtiles.tiles;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+/**
+ * @author Alessandro Roic
+ * This class represent the tile
+ */
 abstract public class AbstractTile {
 
     abstract public void update(Vector3 touch,float dt);

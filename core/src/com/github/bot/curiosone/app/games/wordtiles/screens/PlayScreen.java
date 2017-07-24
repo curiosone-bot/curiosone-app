@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.games.wordtiles.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -8,19 +8,18 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
-import com.github.bot.curiosone.app.games.wordtiles.Sprites.AbstractTile;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
+import com.github.bot.curiosone.app.games.wordtiles.tiles.AbstractTile;
 import com.github.bot.curiosone.app.workflow.Chat;
 import java.util.Iterator;
 
 /**
  * @author Alessandro Roic
- * The PlayScreen is the main game class
+ * This class contains the gameplay
  */
 public class PlayScreen extends ScreenAdapter {
 
@@ -29,37 +28,35 @@ public class PlayScreen extends ScreenAdapter {
     private Iterator<AbstractTile> tileIterator;
     private long lastSpawnedTime;
     private Array<AbstractTile> drawer;
-    private boolean gameOver = false,done = false,win = false;
+    private boolean gameOver = false,win = false;
     private Vector3 touch;
     private Sound gameOverSound;
-    private Texture gameOverTexture,winTexure,background,background2;
-    private Rectangle backButton;
+    private Texture background,background2;
     private float y1,y2;
     private BitmapFont category;
     private GlyphLayout layout;
     private int categoryCounter;
     private Array<String> categories;
     private long timer=0,timer2=0,timer3=0,timer4=0;
+    private Settings settings;
 
     public PlayScreen(Chat game) {
         //Spawning the tiles
+        settings = Settings.getIstance();
         TileSpawner spawner = new TileSpawner();
-        this.tileIterator = spawner.iterator();
-        this.lastSpawnedTime = 0;
-        this.drawer = new Array<AbstractTile>();
+        tileIterator = spawner.iterator();
+        lastSpawnedTime = 0;
+        drawer = new Array<AbstractTile>();
         this.game = game;
 
         //Camera Settings
-        this.camera = new OrthographicCamera();
+        camera = new OrthographicCamera();
         camera.setToOrtho(false,480,800);
         camera.position.set(480 / 2, 800 / 2, 0);
 
         //Miscellaneous
-        this.gameOverSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/GameOver.wav"));
-        this.gameOverTexture = new Texture("WordTiles/GameOver.png");
-        this.backButton = new Rectangle(325,180,84,84);
-        this.winTexure = new Texture("WordTiles/Win.png");
-        this.touch = new Vector3();
+        gameOverSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/GameOver.wav"));
+        touch = new Vector3();
 
         //Background
         background = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
@@ -76,7 +73,7 @@ public class PlayScreen extends ScreenAdapter {
 
     public void update(float dt) {
         //Scrolls the background
-        float speed = dt*(Settings.SPEED-50);
+        float speed = dt*(settings.SPEED-50);
         y1-= speed;
         y2-= speed;
         if(y1+800<=0){
@@ -87,13 +84,12 @@ public class PlayScreen extends ScreenAdapter {
         }
 
         //Spawn the tiles every X seconds
-        if(TimeUtils.nanoTime()-lastSpawnedTime> Settings.SPAWN_RATE){
+        if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE){
            if(tileIterator.hasNext()) {drawer.add(tileIterator.next());}
             lastSpawnedTime = TimeUtils.nanoTime();
         }
 
-        touch = touch.set(Gdx.input.getX(),Gdx.input.getY(),0);
-        camera.unproject(touch);
+
         //updates the tiles
         for(AbstractTile tile:drawer){
             if(!tile.isDisposable()){
@@ -106,8 +102,18 @@ public class PlayScreen extends ScreenAdapter {
                 if(drawer.size==0){win= true;}
             }
         }
+        touch = touch.set(Gdx.input.getX(),Gdx.input.getY(),0);
+        camera.unproject(touch);
+        //to GameOverScreen
         if(gameOver){
             gameOverSound.play();
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
+        //to WinScreen
+        if(win){
+          game.setScreen(new WinScreen(game));
+          dispose();
         }
     }
 
@@ -116,7 +122,7 @@ public class PlayScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().setProjectionMatrix(camera.combined);
         game.getBatch().begin();
-        //draw background
+        //draws background
         game.getBatch().draw(background,0,y1,480,800);
         game.getBatch().draw(background2,0,y2,480,800);
         //draws the tiles
@@ -125,8 +131,7 @@ public class PlayScreen extends ScreenAdapter {
             tile.draw(game.getBatch());
           }
         }
-
-        //draw category
+        //draws category
         switch (categoryCounter){
           case 0:
             timer += 1;
@@ -161,30 +166,6 @@ public class PlayScreen extends ScreenAdapter {
             }
             break;
         }
-
-
-        //To Game Over
-        if(gameOver){
-            game.getBatch().draw(gameOverTexture,480/2-350/2,800/2-450/2,350,450);
-            if(Gdx.input.isTouched()) {
-                touch = touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-                camera.unproject(touch);
-                if (backButton.contains(touch.x, touch.y)) {
-                    game.setScreen(new MainMenuScreen(game));
-                    dispose();
-                }
-            }
-        }
-        //To Win Screen
-        if(win){
-            game.getBatch().draw(winTexure,0,0,480,800);
-            if(Gdx.input.isTouched()){
-                dispose();
-                winTexure.dispose();
-                game.setScreen(new MainMenuScreen(game));
-            }
-        }
-
         game.getBatch().end();
     }
 

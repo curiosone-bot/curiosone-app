@@ -1,4 +1,4 @@
-package com.github.bot.curiosone.app.games.wordtiles.Screens;
+package com.github.bot.curiosone.app.games.wordtiles.screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -15,10 +15,14 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.github.bot.curiosone.app.games.wordtiles.Settings.Settings;
-import com.github.bot.curiosone.app.games.wordtiles.Spawner.TileSpawner;
+import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
+import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
 import com.github.bot.curiosone.app.workflow.Chat;
 
+/**
+ * @author Alessandro Roic
+ * This class let the player set the music and sfx.
+ */
 public class OptionScreen extends ScreenAdapter{
 
     private Chat game;
@@ -27,7 +31,6 @@ public class OptionScreen extends ScreenAdapter{
     private Music music;
     private Sound clickSound;
     private Vector3 touch;
-    private Settings settings;
 
     private Rectangle musicCheckBoxArea,sfxCheckBoxArea,backArea;
     private CheckBox musicCheckBox,sfxCheckBox;
@@ -35,12 +38,12 @@ public class OptionScreen extends ScreenAdapter{
     private TextureRegionDrawable checked,unchecked;
     private BitmapFont bitmapFont;
     private long lastTouched;
+    private Settings settings;
 
     public OptionScreen(Chat game) {
         this.game = game;
-        this.settings = new Settings();
         touch = new Vector3();
-
+        settings = Settings.getIstance();
         /*Camera Settings*/
         camera = new OrthographicCamera();
         camera.setToOrtho(false,480,800);
@@ -51,10 +54,10 @@ public class OptionScreen extends ScreenAdapter{
         background = new Texture("WordTiles/Background_Clean.jpg");
 
         /*CheckBoxs Style Settings*/
-        unchecked = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/checkbox-textures/blue_boxCheckmark.png"))));
-        checked = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/checkbox-textures/blue_boxCheckmark2.png"))));
-        style = new CheckBox.CheckBoxStyle(checked,unchecked, TileSpawner.font, Color.WHITE);
-        style2 = new CheckBox.CheckBoxStyle(checked,unchecked,TileSpawner.font,Color.WHITE);
+        unchecked = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/checkbox-textures/blue_boxCheckmark2.png"))));
+        checked = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/checkbox-textures/blue_boxCheckmark.png"))));
+        style = new CheckBox.CheckBoxStyle(unchecked,checked, TileSpawner.font, Color.WHITE);
+        style2 = new CheckBox.CheckBoxStyle(style);
 
         /*Music CheckBox*/
         musicCheckBox = new CheckBox("Music",style);
@@ -76,32 +79,36 @@ public class OptionScreen extends ScreenAdapter{
         /*Back Box*/
         bitmapFont = new BitmapFont(Gdx.files.internal("WordTiles/Font/lexie.fnt"));
         backArea = new Rectangle(480/2-240/2,100,300,50);
+
+        Gdx.app.log("Music is",settings.MUSIC+"");
+        Gdx.app.log("SFX is",settings.SFX+"");
     }
 
     private void update() {
+      if(settings.MUSIC){musicCheckBox.getStyle().checkboxOff = checked;}
+      else {musicCheckBox.getStyle().checkboxOff = unchecked;}
+      if(settings.SFX){sfxCheckBox.getStyle().checkboxOff = checked;}
+      else {sfxCheckBox.getStyle().checkboxOff = unchecked;}
+
       if (Gdx.input.isTouched() & TimeUtils.nanoTime() - lastTouched > 100000000) {
         //Transforms the input coordinates to camera coordinates
         camera.unproject(touch.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         //If the music checkbox is touched
         if (musicCheckBoxArea.contains(touch.x, touch.y)) {
           Gdx.app.log("Touched", "Music CheckBox");
-          if (Settings.MUSIC) {
+          if (settings.MUSIC) {
             Settings.setMUSIC(false);
-            musicCheckBox.getStyle().checkboxOff = checked;
           } else {
             Settings.setMUSIC(true);
-            musicCheckBox.getStyle().checkboxOff = unchecked;
           }
         }
         //If the sfx checkbox is touched
         if (sfxCheckBoxArea.contains(touch.x, touch.y)) {
           Gdx.app.log("Touched", "SFX Checkbox");
-          if (Settings.SFX) {
+          if (settings.SFX) {
             Settings.setSFX(false);
-            sfxCheckBox.getStyle().checkboxOff = checked;
           } else {
             Settings.setSFX(true);
-            sfxCheckBox.getStyle().checkboxOff = unchecked;
           }
         }
         lastTouched = TimeUtils.nanoTime();
