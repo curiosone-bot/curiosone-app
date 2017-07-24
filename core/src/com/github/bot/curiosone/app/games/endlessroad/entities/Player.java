@@ -20,7 +20,6 @@ import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
  */
 public class Player extends AbstractCar
 {
-    private float speed = GameConstants.MIN_PLAYER_SPEED;
 
     private MoveByAction accelerate;
 
@@ -32,7 +31,7 @@ public class Player extends AbstractCar
 
         accelerate = new MoveByAction();
         this.addAction(Actions.forever(accelerate));
-        setSpeed(speed);
+        setSpeed(GameConstants.MIN_PLAYER_SPEED);
 
         addListener(new InputListener()
         {
@@ -91,15 +90,9 @@ public class Player extends AbstractCar
     }
 
     @Override
-    public float getSpeed()
-    {
-        return speed;
-    }
-
-    @Override
     public void setSpeed(float speed)
     {
-        this.speed = speed;
+        super.setSpeed(speed);
         accelerate.setAmount(0,speed);
 
     }

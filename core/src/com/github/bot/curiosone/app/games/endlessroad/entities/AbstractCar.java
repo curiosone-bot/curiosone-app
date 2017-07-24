@@ -17,7 +17,7 @@ public abstract class AbstractCar extends Image
 
     private Sprite sprite;
     private Rectangle rectangle;
-    private static float speed = 15f;
+    protected float speed = 15f;
 
     public AbstractCar(AssetManager manager,Stage stage,String name,float x,float y)
     {
