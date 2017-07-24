@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.workflow;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.github.bot.curiosone.app.workflow.screens.ChatScreen;
 
 public class Chat extends Game {
 
@@ -12,7 +13,11 @@ public class Chat extends Game {
   @Override
   public void create() {
     batch = new SpriteBatch();
+<<<<<<< HEAD
+    setScreen(new ChatScreen(this));
+=======
     
+>>>>>>> 4cc0d37a460a88e299f55e9153bf51c32449de4f
   }
 
   @Override
