@@ -2,7 +2,7 @@ package com.github.bot.curiosone.app.chat;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.bot.curiosone.app.chat.chatscreens.ChatScreen;
+import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 
 public class Chat extends Game {
 
