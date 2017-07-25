@@ -1,21 +1,30 @@
 package com.github.bot.curiosone.app.games.wordtiles.assets_manager;
 
+import com.badlogic.gdx.assets.AssetManager;
+
 /**
  * @author Alessandro Roic
  * This class loads the assets
  */
-public class AssetsManager {
+public class Manager {
 
-  private AssetsManager manager;
+  private static Manager instance;
+  private static AssetManager manager;
 
-  public AssetsManager(){manager = new AssetsManager();}
+  private Manager(){
+    manager = new AssetManager();
+  }
 
-  public AssetsManager getManager() {
+  public static Manager getIstance(){
+    if(instance==null){instance = new Manager();}
+    return instance;
+  }
+
+  private AssetManager getManager(){
     return manager;
   }
 
   public void loadMainMenuScreen(){
-
 
   }
 

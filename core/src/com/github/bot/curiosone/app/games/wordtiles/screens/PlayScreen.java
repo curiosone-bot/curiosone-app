@@ -24,7 +24,6 @@ import java.util.Iterator;
  * This class contains the gameplay
  */
 public class PlayScreen extends ScreenAdapter {
-
     private Chat game;
     private OrthographicCamera camera;
     private Iterator<AbstractTile> tileIterator;

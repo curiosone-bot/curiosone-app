@@ -8,7 +8,6 @@ import com.badlogic.gdx.Preferences;
  * Contais the game settings and constants
  */
 public class Settings {
-
     private static Settings settings;
     private static Preferences prefs = Gdx.app.getPreferences("My Preferences");
     public  boolean MUSIC,SFX; //the only data to save into Preferences
