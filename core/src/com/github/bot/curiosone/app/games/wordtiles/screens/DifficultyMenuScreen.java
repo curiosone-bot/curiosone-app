@@ -78,8 +78,10 @@ public class DifficultyMenuScreen extends ScreenAdapter {
     }
 
 
-
-    private void draw() {
+  /**
+   * Draws the buttons and the back sign
+   */
+  private void draw() {
       camera.update();
       game.getBatch().setProjectionMatrix(camera.combined);
       game.getBatch().begin();
@@ -92,7 +94,10 @@ public class DifficultyMenuScreen extends ScreenAdapter {
       game.getBatch().end();
     }
 
-    private void update() {
+  /**
+   * Updates the button logic
+    */
+  private void update() {
       if(Gdx.input.isTouched()){
         //Transforms the input coordinates to camera coordinates
         camera.unproject(touch.set(Gdx.input.getX(),Gdx.input.getY(),0));

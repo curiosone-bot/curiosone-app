@@ -33,7 +33,7 @@ public class Tile extends AbstractTile
       area = new Rectangle(x,800,118,200);
       hit = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Hit.wav"));
     }
-  
+
   /**
    * @param touch
    * @param dt
