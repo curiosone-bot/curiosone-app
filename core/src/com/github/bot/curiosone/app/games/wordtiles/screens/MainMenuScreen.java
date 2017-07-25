@@ -100,6 +100,7 @@ public class MainMenuScreen extends ScreenAdapter
               if(settings.SFX) clickSound.play();
               Gdx.app.log("Touched","ExitButton");
               game.setScreen(new GameCenter(game));
+              dispose();
             }
             //Crediti
         }

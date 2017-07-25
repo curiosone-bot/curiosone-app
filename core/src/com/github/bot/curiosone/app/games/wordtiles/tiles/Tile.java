@@ -47,10 +47,9 @@ public class Tile extends AbstractTile
       if (area.contains(touch.x, touch.y)) {
         tile.getStyle().up = tile.getStyle().down;
         tile.setText("");
-        hit.play(0.5f);
+        if(settings.SFX)hit.play(0.8f);
         Gdx.app.log("Tile-" + this.hashCode() + "", "Toccato");
         touched= true;
-        hit.dispose();
       }
     }
     //While the tile is still in the screen, move it
@@ -62,6 +61,7 @@ public class Tile extends AbstractTile
       //If the Tile has been touched, then dispose it
       if(touched){
         disposable = true;
+        if(settings.SFX)hit.dispose();
       }
       //If the Tile hasn't been touched and it's out of bounds, then stop the game
       else {
