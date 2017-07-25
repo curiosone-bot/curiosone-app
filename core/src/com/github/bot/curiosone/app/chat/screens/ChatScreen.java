@@ -23,7 +23,7 @@ public class ChatScreen implements Screen {
 
   @Override
   public void show() {
-    Gdx.app.log("Chat", "show called");
+    //Gdx.app.log("Chat", "show called");
   }
 
   @Override
@@ -34,26 +34,26 @@ public class ChatScreen implements Screen {
 
   @Override
   public void resize(int width, int height) {
-    Gdx.app.log("Chat", "resize called");
+    //Gdx.app.log("Chat", "resize called");
   }
 
   @Override
   public void pause() {
-    Gdx.app.log("Chat", "pause called");
+    //Gdx.app.log("Chat", "pause called");
   }
 
   @Override
   public void resume() {
-    Gdx.app.log("Chat", "resume called");
+    //Gdx.app.log("Chat", "resume called");
   }
 
   @Override
   public void hide() {
-    Gdx.app.log("Chat", "hide called");
+    //Gdx.app.log("Chat", "hide called");
   }
 
   @Override
   public void dispose() {
-    Gdx.app.log("Chat", "dispose called");
+    //Gdx.app.log("Chat", "dispose called");
   }
 }

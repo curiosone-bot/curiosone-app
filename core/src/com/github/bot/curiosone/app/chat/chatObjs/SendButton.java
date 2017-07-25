@@ -9,15 +9,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class SendButton extends TextButton {
 
-  public SendButton(float width, float height, float x, float y) {
+  private Inserimento inserimento;
+
+  public SendButton(Inserimento inserimento, float width, float height, float x, float y) {
     super("send", new Skin(Gdx.files.internal("chat-asset/uiskin.json")));
     this.setPosition(x, y);
     this.setSize(width, height);
+    this.inserimento = inserimento;
     this.addListener(this.click());
   }
 
-  public void onClick() {
-    this.setText("ciao");
+  private void onClick() {
+    inserimento.setText("");
+    this.addListener(this.click());
   }
 
   private ClickListener click() {

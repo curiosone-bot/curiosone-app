@@ -6,23 +6,26 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 
 public class ChatWorld {
 
   private Stage stage;
   private SendButton send;
-  private TextField field;
+  private Inserimento inserimento;
 
   public ChatWorld() {
     this.stage = new Stage();
     Gdx.input.setInputProcessor(stage);
-    this.send = new SendButton(100, 100, 0, 0);
+    this.inserimento = new Inserimento(300, 100, 100, 0);
+    this.send = new SendButton(inserimento, 100, 100, 0, 0);
+    stage.addActor(inserimento);
     stage.addActor(send);
   }
 
   public void update(float delta) {
-    Gdx.app.log("ChatWorld", "update");
+    //Gdx.app.log("ChatWorld", "update");
     stage.act(delta);
   }
 
