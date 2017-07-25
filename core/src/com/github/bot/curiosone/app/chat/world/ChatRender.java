@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ChatRender {
@@ -16,5 +17,8 @@ public class ChatRender {
 
   public void render() {
     Gdx.app.log("ChatRender", "render");
+    Gdx.gl.glClearColor(0, 0, 0, 0);
+    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    world.getStage().draw();
   }
 }
