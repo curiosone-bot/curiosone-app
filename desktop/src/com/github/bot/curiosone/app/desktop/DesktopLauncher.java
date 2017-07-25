@@ -7,8 +7,8 @@ import com.github.bot.curiosone.app.chat.Chat;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-    config.width = 480;
-    config.height = 800;
+    config.width = 272;
+    config.height = 480;
     config.title = "Curiosone";
 		new LwjglApplication(new Chat(), config);
 	}

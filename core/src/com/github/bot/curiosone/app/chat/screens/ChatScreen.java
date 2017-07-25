@@ -1,55 +1,59 @@
 package com.github.bot.curiosone.app.chat.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.github.bot.curiosone.app.chat.Chat;
+import com.github.bot.curiosone.app.chat.world.ChatRender;
+import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
-public class ChatScreen extends ScreenAdapter {
-  private static int WIDTH=480;
-  private static int HEIGHT=800;
-  private Chat chat;
-  private SpriteBatch sb;
-  private Texture space;
-  private Texture goku;
-  private OrthographicCamera cam;
+public class ChatScreen implements Screen {
+
+  private ChatRender renderer;
+  private ChatWorld world;
+
+  public ChatScreen() {
+    this.world = new ChatWorld();
+    this.renderer = new ChatRender(world);
+  }
 
 
-  public ChatScreen (Chat chat) {
-    this.chat = chat;
-    this.sb = chat.getBatch();
-    WIDTH=Gdx.graphics.getWidth();
-    HEIGHT=Gdx.graphics.getHeight();
-    cam = new OrthographicCamera();
-    cam.setToOrtho(false,WIDTH,HEIGHT);
-    cam.position.set(WIDTH/2,HEIGHT/2,0);
-    space = new Texture(Gdx.files.internal("chat-asset/space.png"));
-    goku = new Texture(Gdx.files.internal("chat-asset/gokuBlue.png"));
-
+  @Override
+  public void show() {
+    Gdx.app.log("Chat", "show called");
   }
 
   @Override
   public void render(float delta) {
-    super.render(delta);
-  //  sb.draw(space,0,0,WIDTH,HEIGHT);
-    sb.begin();
-    sb.draw(space,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-    sb.draw(goku,WIDTH/4,HEIGHT/4,WIDTH/2,HEIGHT/2);
-    cam.update();
-    sb.end();
+    world.update(delta);
+    renderer.render();
   }
 
   @Override
   public void resize(int width, int height) {
-    super.resize(width, height);
+    Gdx.app.log("Chat", "resize called");
+  }
+
+  @Override
+  public void pause() {
+    Gdx.app.log("Chat", "pause called");
+  }
+
+  @Override
+  public void resume() {
+    Gdx.app.log("Chat", "resume called");
+  }
+
+  @Override
+  public void hide() {
+    Gdx.app.log("Chat", "hide called");
   }
 
   @Override
   public void dispose() {
-    super.dispose();
-    goku.dispose();
-    space.dispose();
+    Gdx.app.log("Chat", "dispose called");
   }
 }

@@ -15,8 +15,7 @@ public class Chat extends Game {
   @Override
   public void create() {
     batch = new SpriteBatch();
-    setScreen(new ChatScreen(this));
-    setScreen(new ChatScreen(this));
+    setScreen(new ChatScreen());
   }
 
   @Override
