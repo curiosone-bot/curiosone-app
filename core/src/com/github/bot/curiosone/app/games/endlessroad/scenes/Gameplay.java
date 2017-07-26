@@ -22,6 +22,7 @@ import com.github.bot.curiosone.app.workflow.Chat;
 import com.github.bot.curiosone.app.games.endlessroad.entities.Car;
 import com.github.bot.curiosone.app.games.endlessroad.entities.Player;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.CarsSpawner;
 
@@ -119,7 +120,7 @@ public class Gameplay implements Screen
     {
         for (int i =0;i<backgrounds.length;i++)
         {
-            backgrounds[i]= new Sprite(loader.getManager().get("EndlessRoad/Backgrounds/road.png",Texture.class));
+            backgrounds[i]= new Sprite(loader.getManager().get(AssetsPaths.ROAD.getPath(),Texture.class));
             backgrounds[i].setPosition(-250f,(backgrounds[i].getHeight()*i));
             lastBackgroundY = backgrounds[i].getY();
         }

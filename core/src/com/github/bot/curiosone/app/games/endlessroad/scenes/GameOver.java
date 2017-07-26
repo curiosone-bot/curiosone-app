@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.bot.curiosone.app.workflow.Chat;
 
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
 
 /**
@@ -31,7 +32,7 @@ public class GameOver implements Screen
     private Stage stage;
     private Viewport viewport;
     private Sprite background,gameover;
-    private ImageButton replayButton,quitButton;
+    private ImageButton replayButton,menuButton;
     private Table table;
 
     public GameOver(Chat game)
@@ -39,9 +40,9 @@ public class GameOver implements Screen
         this.game = game;
         loader = new AssetsLoader();
         loader.loadGameOverAssets();
-        background = new Sprite(loader.getManager().get("EndlessRoad/Backgrounds/menus-bg.png",Texture.class));
+        background = new Sprite(loader.getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
 
-        gameover = new Sprite(loader.getManager().get("EndlessRoad/Logos/gameover.png",Texture.class));
+        gameover = new Sprite(loader.getManager().get(AssetsPaths.GAME_OVER.getPath(),Texture.class));
         gameover.setPosition(0,GameConstants.HEIGHT/2f+150f);
 
         camera = new OrthographicCamera(GameConstants.WIDTH,GameConstants.HEIGHT);
@@ -63,8 +64,8 @@ public class GameOver implements Screen
      */
     private void createAndPositionButtons()
     {
-        replayButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get("EndlessRoad/Buttons/replaybutton.png",Texture.class))));
-        quitButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get("EndlessRoad/Buttons/quitbutton.png",Texture.class))));
+        replayButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.REPLAY_BUTTON.getPath(),Texture.class))));
+        menuButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.MENU_BUTTON.getPath(),Texture.class))));
 
         replayButton.addListener(new ChangeListener()
         {
@@ -76,7 +77,7 @@ public class GameOver implements Screen
 
         });
 
-        quitButton.addListener(new ChangeListener()
+        menuButton.addListener(new ChangeListener()
         {
             @Override
             public void changed(ChangeEvent event,Actor actor)
@@ -87,7 +88,7 @@ public class GameOver implements Screen
 
         table.add(replayButton).padBottom(20f);
         table.row();
-        table.add(quitButton).padBottom(40f);
+        table.add(menuButton).padBottom(40f);
 
     }
 

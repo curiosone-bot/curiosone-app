@@ -14,12 +14,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
 import com.github.bot.curiosone.app.workflow.GameCenter;
+
+import com.github.bot.curiosone.app.games.endlessroad.scenes.Credits;
 
 /**
  * This class represents the main menu screen
@@ -42,8 +46,8 @@ public class EndlessRoad implements Screen
         loader = new AssetsLoader();
         loader.loadMainMenuAssets();
 
-        background = new Sprite(loader.getManager().get("EndlessRoad/Backgrounds/menus-bg.png",Texture.class));
-        logo = new Sprite(loader.getManager().get("EndlessRoad/Logos/endlessroad.png",Texture.class));
+        background = new Sprite(loader.getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
+        logo = new Sprite(loader.getManager().get(AssetsPaths.ENDLESS_ROAD.getPath(),Texture.class));
         logo.setPosition(0,GameConstants.HEIGHT/2f+150f);
 
         camera = new OrthographicCamera(GameConstants.WIDTH,GameConstants.HEIGHT);
@@ -126,9 +130,9 @@ public class EndlessRoad implements Screen
      */
     private void createAndPositionButtons()
     {
-        playButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get("EndlessRoad/Buttons/playbutton.png",Texture.class))));
-        creditsButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get("EndlessRoad/Buttons/creditsbutton.png",Texture.class))));
-        quitButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get("EndlessRoad/Buttons/quitbutton.png",Texture.class))));
+        playButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.PLAY_BUTTON.getPath(),Texture.class))));
+        creditsButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.CREDITS_BUTTON.getPath(),Texture.class))));
+        quitButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.QUIT_BUTTON.getPath(),Texture.class))));
 
         playButton.addListener(new ChangeListener()
         {
@@ -147,10 +151,16 @@ public class EndlessRoad implements Screen
                 EndlessRoad.this.game.setScreen(new GameCenter(EndlessRoad.this.game));
             }
         });
-
-
-
-
+        
+        creditsButton.addListener(new ChangeListener()
+		{
+			@Override
+			public void changed(ChangeEvent event,Actor actor)
+			{
+				EndlessRoad.this.game.setScreen(new Credits(EndlessRoad.this.game));
+			}
+			
+		});
 
         table.add(playButton).padTop(150f).padBottom(30f);
         table.row();

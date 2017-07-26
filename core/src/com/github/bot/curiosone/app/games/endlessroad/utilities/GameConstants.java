@@ -25,6 +25,11 @@ public class GameConstants
      * The maximum player's speed
      */
     public static final float MAX_PLAYER_SPEED = 75f;
+    
+    /**
+     * The number of the different car sprites stored in the EndlessRoad/Cars folder
+     */
+    public static final float CARS_SPRITES_AMOUNT = 10;
 
     /**
      * Here are stored the x values for each lane in the game

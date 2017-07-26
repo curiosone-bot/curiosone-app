@@ -32,7 +32,7 @@ public class CarsSpawner
         this.stage = stage;
         cars = new ArrayList<Car>();
         createCars(GameConstants.MIN_PLAYER_SPEED);
-        positionCars(new Player(manager, stage, 0, 0), true);
+        positionCars();
     }
 
     /**
@@ -57,7 +57,7 @@ public class CarsSpawner
 
 
     /**
-     * Positions the cars created before
+     * Positions all the cars created before
      */
     private void positionCars(Player player, boolean firstTimePositioning)
     {
@@ -93,6 +93,9 @@ public class CarsSpawner
         }
 
     }
+    
+    private void positionCars() {positionCars(null,true);}
+    
 
     /**
      * Makes all the cars visible on the screen
