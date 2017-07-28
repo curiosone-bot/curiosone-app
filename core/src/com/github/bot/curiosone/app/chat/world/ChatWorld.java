@@ -11,25 +11,30 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 
 public class ChatWorld {
 
-  private Stage stage;
   private SendButton send;
   private Inserimento inserimento;
+  private ChatRender render;
 
   public ChatWorld() {
-    this.stage = new Stage();
-    Gdx.input.setInputProcessor(stage);
-    this.inserimento = new Inserimento(300, 100, 100, 0);
+    this.inserimento = new Inserimento(172, 100, 100, 0);
     this.send = new SendButton(inserimento, 100, 100, 0, 0);
-    stage.addActor(inserimento);
-    stage.addActor(send);
+
   }
 
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
-    stage.act(delta);
+    render.getStage().act(delta);
   }
 
-  public Stage getStage() {
-    return stage;
+  public void setRender(ChatRender render) {
+    this.render = render;
+  }
+
+  public SendButton getSendButton() {
+    return send;
+  }
+
+  public Inserimento getInserimento() {
+    return inserimento;
   }
 }

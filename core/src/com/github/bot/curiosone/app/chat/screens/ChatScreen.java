@@ -18,6 +18,7 @@ public class ChatScreen implements Screen {
   public ChatScreen() {
     this.world = new ChatWorld();
     this.renderer = new ChatRender(world);
+    world.setRender(renderer);
   }
 
 
