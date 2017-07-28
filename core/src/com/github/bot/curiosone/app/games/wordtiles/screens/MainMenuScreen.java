@@ -12,9 +12,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Assets;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
 import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
 import com.github.bot.curiosone.app.workflow.Chat;
@@ -27,106 +34,90 @@ import com.github.bot.curiosone.app.workflow.GameCenter;
 public class MainMenuScreen extends ScreenAdapter
 {
     private Chat game;
-    private OrthographicCamera camera;
     private Texture background;
-    private Vector3 touch;
     private Music music;
     private Sound clickSound;
-    private Rectangle playButtonArea,optionButtonArea,exitButtonArea;
-    private TextButton playButton,optionButton,exitButton;
-    private Settings settings;
+    private Stage stage;
+    private Manager manager;
 
-    public MainMenuScreen(Chat game) {
+    public MainMenuScreen(final Chat game) {
         this.game=game;
-        touch = new Vector3();
-        settings = Settings.getIstance();
-        /*Camera Settings*/
-        this.camera = new OrthographicCamera();
-        camera.setToOrtho(false,480,800);
-        camera.position.set(480 / 2, 800 / 2, 0);
-        /*Music & Sound Settings*/
-        this.music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Five Card Shuffle.mp3"));
-        if(settings.MUSIC) {
-            music.setLooping(true);
-           if(Gdx.app.getType()!= Application.ApplicationType.Desktop) music.play();
-        }
-        this.clickSound = Gdx.audio.newSound(Gdx.files.internal("WordTiles/Sound Effects/Click.wav"));
-        /*Background*/
-        background = new Texture("WordTiles/Background.png");
-        /*General Button Style*/
-        TextureRegionDrawable up = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/ButtonTextures/button1.png"))));
-        TextureRegionDrawable down = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("WordTiles/ButtonTextures/button2.png"))));
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(up,down,null,TileSpawner.font);
-        /*Play Button*/
-        playButton = new TextButton("Play",style);
-        playButtonArea = new Rectangle(480/2-250/2,800/2,250,55);
-        playButton.setPosition(playButtonArea.x,playButtonArea.y);
-        playButton.setSize(playButtonArea.width,playButtonArea.height);
+        Settings settings = Settings.getIstance();
+        stage = new Stage(new StretchViewport(480,800));
+        Gdx.input.setInputProcessor(stage);
+        manager = Manager.getIstance();
+        manager.loadMainMenuScreen();
+        //Background
+        background = manager.getAssetManager().get(Assets.background.getPath());
+        //General
+        TextButton.TextButtonStyle style = Manager.getImageButtonStyle();
+        //Play Button
+        TextButton playButton = new TextButton("Play", style);
+        playButton.setPosition(480/2-250/2,800/2);
+        playButton.setSize(250,55);
+        playButton.addListener(new InputListener(){
+          @Override
+          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {return true;}
+
+          @Override
+          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            game.setScreen(new PlayScreen(game));
+            dispose();
+          }
+        });
+        stage.addActor(playButton);
         /*Option Button*/
-        optionButton = new TextButton("Options",style);
-        optionButtonArea = new Rectangle(480/2-250/2,800/2-65,250,55);
-        optionButton.setPosition(optionButtonArea.x,optionButtonArea.y);
-        optionButton.setSize(optionButtonArea.width,optionButtonArea.height);
+        TextButton optionButton = new TextButton("Options", style);
+        optionButton.setPosition(480/2-250/2,800/2-65);
+        optionButton.setSize(250,55);
+        optionButton.addListener(new InputListener(){
+          @Override
+          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            return true;
+          }
+
+          @Override
+          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            game.setScreen(new OptionScreen(game));
+            dispose();
+          }
+        });
+        stage.addActor(optionButton);
         /*Exit Button*/
-        exitButton = new TextButton("Exit",style);
-        exitButtonArea = new Rectangle(480/2-250/2,800/2-130,250,55);
-        exitButton.setPosition(exitButtonArea.x,exitButtonArea.y);
-        exitButton.setSize(exitButtonArea.width,exitButtonArea.height);
-    }
+        TextButton exitButton = new TextButton("Exit", style);
+        exitButton.setPosition(480/2-250/2,800/2-130);
+        exitButton.setSize(250,55);
+        exitButton.addListener(new InputListener(){
+          @Override
+          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            return true;
+          }
 
-  /**
-   * Updates the buttons and handle input
-   */
-  public void update() {
-        if(Gdx.input.isTouched()){
-            //Transforms the input coordinates to camera coordinates
-            camera.unproject(touch.set(Gdx.input.getX(),Gdx.input.getY(),0));
-
-            if(playButtonArea.contains(touch.x,touch.y)){
-                playButton.getStyle().up = playButton.getStyle().down;
-                if(settings.SFX)clickSound.play();
-                Gdx.app.log("Touched","PlayButton");
-                game.setScreen(new DifficultyMenuScreen(game));
-                dispose();
-            }
-
-            if(optionButtonArea.contains(touch.x,touch.y)){
-              optionButton.getStyle().up = optionButton.getStyle().down;
-              if(settings.SFX)clickSound.play();
-              Gdx.app.log("Touched","OptionButton");
-              game.setScreen(new OptionScreen(game));
-              dispose();
-            }
-            if(exitButtonArea.contains(touch.x,touch.y)){
-              optionButton.getStyle().up = optionButton.getStyle().down;
-              if(settings.SFX) clickSound.play();
-              Gdx.app.log("Touched","ExitButton");
-              game.setScreen(new GameCenter(game));
-              dispose();
-            }
-            //Crediti
+          @Override
+          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            manager.getAssetManager().clear();
+            game.setScreen(new GameCenter(game));
+            dispose();
+          }
+        });
+        stage.addActor(exitButton);
+        /*Music & Sound Settings*/
+        this.music = manager.getAssetManager().get(Assets.musicMenu.getPath());
+        if(settings.MUSIC) {
+         music.setLooping(true);
+          if(Gdx.app.getType()!= Application.ApplicationType.Desktop) music.play();
         }
-    }
-
-    /**
-     * Draws the Background and the Menu Buttons
-     */
-    public void draw() {
-        camera.update();
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.getBatch().setProjectionMatrix(camera.combined);
-        game.getBatch().begin();
-        game.getBatch().draw(background,0,0,480,800);
-        playButton.draw(game.getBatch(),1);
-        optionButton.draw(game.getBatch(),1);
-        exitButton.draw(game.getBatch(),1);
-        game.getBatch().end();
+        this.clickSound = manager.getAssetManager().get(Assets.click.getPath());
     }
 
     @Override
     public void render(float delta) {
-        update();
-        draw();
+      Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+      game.getBatch().begin();
+      game.getBatch().draw(background,0,0,480,800);
+      game.getBatch().end();
+      stage.act();
+      stage.draw();
     }
 
     @Override
@@ -139,6 +130,7 @@ public class MainMenuScreen extends ScreenAdapter
         music.dispose();
         clickSound.dispose();
         background.dispose();
+        stage.dispose();
         super.dispose();
     }
 

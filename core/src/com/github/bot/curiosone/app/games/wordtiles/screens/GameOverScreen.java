@@ -7,6 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Assets;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
 import com.github.bot.curiosone.app.workflow.Chat;
 
@@ -22,16 +24,19 @@ public class GameOverScreen extends ScreenAdapter{
   private int count;
   private Music gameOverSound;
   private Settings settings;
+  private Manager manager;
 
   public GameOverScreen(Chat game) {
     this.game = game;
+    manager = Manager.getIstance();
+    manager.loadGameOverScreen();
     settings = Settings.getIstance();
     if(settings.MUSIC) {
-      gameOverSound = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Sound Effects/GameOver.mp3"));
+      gameOverSound = manager.getAssetManager().get(Assets.gameOverMusic.getPath());
       gameOverSound.play();
     }
     settings = Settings.getIstance();
-    gameOverTexture = new Texture("WordTiles/GameOver.png");
+    gameOverTexture = manager.getAssetManager().get(Assets.gameOver.getPath());
     //Camera Settings
     camera = new OrthographicCamera();
     camera.setToOrtho(false,480,800);

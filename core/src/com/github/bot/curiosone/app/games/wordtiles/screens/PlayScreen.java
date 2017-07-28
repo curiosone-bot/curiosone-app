@@ -4,18 +4,19 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Assets;
+import com.github.bot.curiosone.app.games.wordtiles.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.wordtiles.settings.Settings;
 import com.github.bot.curiosone.app.games.wordtiles.spawner.TileSpawner;
-import com.github.bot.curiosone.app.games.wordtiles.tiles.AbstractTile;
+import com.github.bot.curiosone.app.games.wordtiles.gameobjects.AbstractTile;
 import com.github.bot.curiosone.app.workflow.Chat;
 import java.util.Iterator;
 
@@ -28,46 +29,42 @@ public class PlayScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private Iterator<AbstractTile> tileIterator;
     private long lastSpawnedTime;
-    private Array<AbstractTile> drawer;
+    private Array<AbstractTile> updater;
     private boolean gameOver = false,win = false;
-    private Vector3 touch;
     private Texture background,background2;
     private float y1,y2;
-    private BitmapFont category;
-    private GlyphLayout layout;
-    private int categoryCounter;
     private Array<String> categories;
-    private long timer=0,timer2=0,timer3=0,timer4=0;
     private Settings settings;
     private Music music;
+    private Stage stage;
+    private Manager manager;
 
     public PlayScreen(Chat game) {
+        this.game = game;
+        manager = Manager.getIstance();
+        manager.loadPlayScreen();
+        stage = new Stage(new StretchViewport(480,800),game.getBatch());
+        Gdx.input.setInputProcessor(stage);
         //Spawning the tiles
         settings = Settings.getIstance();
         TileSpawner spawner = new TileSpawner();
         tileIterator = spawner.iterator();
         lastSpawnedTime = 0;
-        drawer = new Array<AbstractTile>();
+        updater = new Array<AbstractTile>();
         //Camera Settings
         camera = new OrthographicCamera();
         camera.setToOrtho(false,480,800);
         camera.position.set(480 / 2, 800 / 2, 0);
-        //Miscellaneous
-        touch = new Vector3();
-        this.game = game;
+
         //Background
-        background = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
-        background2 = new Texture(Gdx.files.internal("WordTiles/playbackground.png"));
+        background = manager.getAssetManager().get(Assets.playBackground.getPath());
+        background2 = manager.getAssetManager().get(Assets.playBackground.getPath());
         y1=0;
         y2=800;
-        //Category
-        category = new BitmapFont(Gdx.files.internal("WordTiles/Font/lexie.fnt"));
-        layout = new GlyphLayout();
-        categories = new Array<String>(new String[]{"Animals","Body Parts","Clothes","Science"});
-        categoryCounter = 0;
+
         //Music
         if (settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop){
-          music = Gdx.audio.newMusic(Gdx.files.internal("WordTiles/Songs/Funky Chunk.mp3"));
+          music = manager.getAssetManager().get(Assets.playMusic.getPath());
           music.setLooping(true);
           music.play();
         }
@@ -87,36 +84,31 @@ public class PlayScreen extends ScreenAdapter {
 
         //Spawn the tiles every X seconds
         if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE){
-           if(tileIterator.hasNext()) {drawer.add(tileIterator.next());}
+           if(tileIterator.hasNext()) {
+             AbstractTile tile = tileIterator.next();
+             updater.add(tile);
+             stage.addActor(tile.getActor());
+           }
             lastSpawnedTime = TimeUtils.nanoTime();
         }
-
-
         //updates the tiles
-        for(AbstractTile tile:drawer){
+        for(AbstractTile tile: updater){
             if(!tile.isDisposable()){
                 if(tile.isGameOver()){gameOver = true;}
-                tile.update(touch,dt);
+                tile.update(dt);
             }
-            else{
-                drawer.removeValue(tile,false);
-                categoryCounter++;
-                if(drawer.size==0){win= true;}
+            else {
+              for(Actor actor:stage.getActors()){
+                if(actor.remove()) stage.getActors().removeValue(actor,true);
+              }
             }
         }
-        touch = touch.set(Gdx.input.getX(),Gdx.input.getY(),0);
-        camera.unproject(touch);
         //to GameOverScreen
         if(gameOver){
             if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
+            manager.getAssetManager().clear();
             game.setScreen(new GameOverScreen(game));
             dispose();
-        }
-        //to WinScreen
-        if(win){
-          if(settings.MUSIC)music.dispose();
-          game.setScreen(new WinScreen(game));
-          dispose();
         }
     }
 
@@ -128,48 +120,8 @@ public class PlayScreen extends ScreenAdapter {
         //draws background
         game.getBatch().draw(background,0,y1,480,800);
         game.getBatch().draw(background2,0,y2,480,800);
-        //draws the tiles
-        for (AbstractTile tile : drawer) {
-          if (!tile.isDisposable()) {
-            tile.draw(game.getBatch());
-          }
-        }
-        //draws category
-        switch (categoryCounter){
-          case 0:
-            timer += 1;
-            if(timer <150){
-              String text = categories.get(0);
-              layout.setText(category,text);
-              category.draw(game.getBatch(),text,240-layout.width/2,750);
-            }
-            break;
-          case 48:
-            timer2 += 1;
-            if(timer2 <150){
-              String text = categories.get(1);
-              layout.setText(category,text);
-              category.draw(game.getBatch(),text,240-layout.width/2,750);
-            }
-            break;
-          case 98:
-            timer3 += 1;
-            if(timer3 <150){
-              String text = categories.get(2);
-              layout.setText(category,text);
-              category.draw(game.getBatch(),text,240-layout.width/2,750);
-            }
-            break;
-          case 148:
-            timer4 += 1;
-            if(timer4 <150){
-              String text = categories.get(3);
-              layout.setText(category,text);
-              category.draw(game.getBatch(),text,240-layout.width/2,750);
-            }
-            break;
-        }
         game.getBatch().end();
+        stage.draw();
     }
 
     @Override
@@ -182,7 +134,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        super.resize(width, height);
+        stage.getViewport().update(width,height);
     }
 
     @Override
