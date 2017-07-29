@@ -25,6 +25,7 @@ public class ChatRender {
     Gdx.input.setInputProcessor(stage);
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
+    stage.addActor(world.getTable());
 
   }
 
