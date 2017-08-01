@@ -7,14 +7,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.github.bot.curiosone.app.games.wordtiles.screens.MainMenuScreen;
+import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
 
 public class GameCenter extends ScreenAdapter {
 
   private Chat game;
   private OrthographicCamera camera;
   private Vector3 touch;
-  private Rectangle wordTiles,Arkanoid,WordCrush,EndlessRoad,bottone4;
+  private Rectangle airborneassault,Arkanoid,WordCrush,EndlessRoad,bottone4;
   private Texture buttonTexture;
 
   public GameCenter(Chat game){
@@ -26,7 +26,7 @@ public class GameCenter extends ScreenAdapter {
     camera.position.set(480/2,800/2,0);
 
     /*Button Areas*/
-    wordTiles = new Rectangle(480/2-250/2,800/2,250,55);
+    airborneassault = new Rectangle(480/2-250/2,800/2,250,55);
     Arkanoid = new Rectangle(480/2-250/2,800/2-60,250,55);
     WordCrush = new Rectangle(480/2-250/2,800/2-120,250,55);
     EndlessRoad = new Rectangle(480/2-250/2,800/2-180,250,55);
@@ -52,7 +52,7 @@ public class GameCenter extends ScreenAdapter {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     game.getBatch().begin();
-    game.getBatch().draw(buttonTexture, wordTiles.x,wordTiles.y,wordTiles.width,wordTiles.height);
+    game.getBatch().draw(buttonTexture, airborneassault.x, airborneassault.y, airborneassault.width, airborneassault.height);
     game.getBatch().draw(buttonTexture,Arkanoid.x,Arkanoid.y,Arkanoid.width,Arkanoid.height);
     game.getBatch().draw(buttonTexture,WordCrush.x,WordCrush.y,WordCrush.width,WordCrush.height);
     game.getBatch().draw(buttonTexture,EndlessRoad.x,EndlessRoad.y,EndlessRoad.width,EndlessRoad.height);
@@ -69,7 +69,7 @@ public class GameCenter extends ScreenAdapter {
     if(Gdx.input.isTouched()) {  //If receives input
       touch = touch.set(Gdx.input.getX(),Gdx.input.getY(),0); //Sets its coordinates to the touch coordinates
       camera.unproject(touch);   //Transforms the input coordinates to camera coordinates
-      if(wordTiles.contains(touch.x,touch.y)) {
+      if(airborneassault.contains(touch.x,touch.y)) {
         Gdx.app.log("Touched","WordTiles");
         game.setScreen(new MainMenuScreen(game));
       }
