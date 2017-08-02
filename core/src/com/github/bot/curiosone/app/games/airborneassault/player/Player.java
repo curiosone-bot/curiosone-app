@@ -6,6 +6,7 @@ public class Player {
   private static Player player;
   private Settings settings;
   private String name;
+  private static int CHANGED = 1000;
   private static boolean isDead = false;
   private static int CURRENT_HEALTH = 1000;
   private static final int MAX_HEALTH = 1000;
@@ -37,7 +38,7 @@ public class Player {
     CURRENT_HEALTH +=amount;
     }
     else {
-      CURRENT_HEALTH =100;
+      CURRENT_HEALTH =1000;
     }
   }
   public static int getPlayerHealth(){
@@ -46,6 +47,14 @@ public class Player {
 
   public static int getMaxHealth() {
     return MAX_HEALTH;
+  }
+
+  public static boolean isChanged(){
+    if(CURRENT_HEALTH!= CHANGED){
+      CHANGED = CURRENT_HEALTH;
+      return true;
+    }
+    return false;
   }
 
 }

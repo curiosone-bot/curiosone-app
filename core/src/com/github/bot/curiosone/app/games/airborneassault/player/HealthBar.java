@@ -27,6 +27,7 @@ public class HealthBar {
     return instance;
   }
   public void update(){
+      if(Player.isChanged()){Gdx.app.log("Player Health",Player.getPlayerHealth()+"");}
       progessBarWidth = ((float) Player.getPlayerHealth()/(float)Player.getMaxHealth())*barWidth;
   }
 

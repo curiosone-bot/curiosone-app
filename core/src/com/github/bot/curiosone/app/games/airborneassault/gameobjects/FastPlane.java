@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
+
+import java.util.Random;
 
 public class FastPlane extends Actor {
   private Sprite fastPlaneTexture;
@@ -28,7 +31,7 @@ public class FastPlane extends Actor {
     manager = Manager.getIstance();
     fastPlaneTexture= new Sprite(manager.getAssetManager().get(Assets.fastPlane.getPath(),Texture.class));
     fastPlaneDown = manager.getAssetManager().get(Assets.fastPlaneDown.getPath());
-    explosion = new Animation<TextureRegion>(0.12f,fastPlaneDown.getRegions());
+    explosion = new Animation<TextureRegion>(0.085f,fastPlaneDown.getRegions());
     fastPlaneTexture.setBounds(x,800,118,200);
     this.setBounds(x,800,118,200);
     addListener(new InputListener(){
@@ -39,6 +42,8 @@ public class FastPlane extends Actor {
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+        int random = new Random().nextInt(30);
+        if(random==10){FastPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
         setTouchable(Touchable.disabled);
         touched = true;
       }

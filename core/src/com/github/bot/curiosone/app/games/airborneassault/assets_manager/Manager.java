@@ -43,12 +43,19 @@ public class Manager {
     manager.load(Assets.gameOverBackground.getPath(),Texture.class);
     manager.finishLoading();
   }
-
+  //Loads all the necessary textures
   public void loadPlaneSpawer(){
     manager.load(Assets.planeUp.getPath(),Texture.class);
     manager.load(Assets.planeDown.getPath(),Texture.class);
     manager.load(Assets.fastPlane.getPath(),Texture.class);
     manager.load(Assets.fastPlaneDown.getPath(),TextureAtlas.class);
+    manager.load(Assets.healthPack.getPath(),Texture.class);
+    manager.load(Assets.kamikaze.getPath(),Texture.class);
+    manager.load(Assets.kamikazeDown.getPath(),Texture.class);
+    manager.load(Assets.allied.getPath(),Texture.class);
+    manager.load(Assets.alliedDown.getPath(),Texture.class);
+    manager.load(Assets.stealth.getPath(),Texture.class);
+    manager.load(Assets.stealthDown.getPath(),Texture.class);
 //    manager.load(Assets.allied.getPath(),Texture.class);
 //    manager.load(Assets.alliedDown.getPath(),Texture.class);
     manager.load("airborneassaultassets/planetextures/tankplanetextures/tankplane0.png",Texture.class);

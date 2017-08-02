@@ -26,6 +26,12 @@ public enum Assets {
   fastPlaneDown("airborneassaultassets/planetextures/fastplanetextures/fastplaneAnimation.txt"),
   kamikaze("airborneassaultassets/planetextures/kamikaze.png"),
   kamikazeDown("airborneassaultassets/planetextures/explosion.png"),
+  stealth("airborneassaultassets/planetextures/stealth.png"),
+  stealthDown("airborneassaultassets/planetextures/explosion.png"),
+  allied("airborneassaultassets/planetextures/allied.png"),
+  alliedDown("airborneassaultassets/planetextures/explosion.png"),
+  //HealthPack
+  healthPack("airborneassaultassets/planetextures/healthpack/healthpack.png"),
   //Game Over Assets
   gameOverBackground("airborneassaultassets/Immagine.png"),
   gameOverMusic(""),

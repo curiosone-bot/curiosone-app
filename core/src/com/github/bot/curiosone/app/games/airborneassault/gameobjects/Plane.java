@@ -34,14 +34,13 @@ public class Plane extends Actor
       addListener(new InputListener(){
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            planeTexture = planeDown;
             return true;
           }
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            planeTexture = planeDown;
             setTouchable(Touchable.disabled);
-            disposable = true;
             touched = true;
             settings.ACCELERATION++;
           }

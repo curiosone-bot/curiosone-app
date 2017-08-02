@@ -33,6 +33,7 @@ public class KamikazePlane extends Actor {
     kamikazeTexture = new Sprite(manager.getAssetManager().get(Assets.kamikaze.getPath(),Texture.class));
     kamikazeDown = new Sprite(manager.getAssetManager().get(Assets.kamikazeDown.getPath(),Texture.class));
     kamikazeTexture.setBounds(x,800,100,180);
+    kamikazeDown.setBounds(x,800,100,180);
     this.setBounds(x,800,100,180);
     addListener(new InputListener(){
       @Override
@@ -42,6 +43,8 @@ public class KamikazePlane extends Actor {
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+        //inserire animazione di distruzione e fade
+        kamikazeDown.setPosition(kamikazeTexture.getX(),kamikazeTexture.getY());
         kamikazeTexture = kamikazeDown;
         setTouchable(Touchable.disabled);
         disposable = true;
