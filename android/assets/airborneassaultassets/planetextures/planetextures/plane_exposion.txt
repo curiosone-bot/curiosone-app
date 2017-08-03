@@ -1,0 +1,61 @@
+plane_exposion.png
+size: 1440, 1280
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Biplana_damaged
+  rotate: false
+  xy: 0, 0
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: -1
+Biplane_explosion
+  rotate: false
+  xy: 360, 0
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 1
+Biplane_explosion
+  rotate: false
+  xy: 720, 0
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 2
+Biplane_explosion
+  rotate: false
+  xy: 1080, 0
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 3
+Biplane_explosion
+  rotate: false
+  xy: 0, 640
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 4
+Biplane_explosion
+  rotate: false
+  xy: 360, 640
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 5
+Biplane_explosion
+  rotate: false
+  xy: 720, 640
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 6
+Biplane_explosion
+  rotate: false
+  xy: 1080, 640
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: 7

@@ -31,6 +31,7 @@ public class PlaneSpawnerTest implements Iterable<Actor> {
 
   public void spawn(){
     for(int i=0;i<10;i++){
+      actors.add(new StealthPlane(180));
       actors.add(new FastPlane(new Random().nextInt(326)));
     }
   }

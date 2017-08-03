@@ -1,11 +1,11 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
 public enum  Points {
-  PLANE(50),
-  KAMIKAZE(70),
-  TANK(60),
-  STEALTH(100),
-  FASTPLANE(80),
+  PLANE(60),
+  KAMIKAZE(80),
+  TANK(70),
+  STEALTH(110),
+  FASTPLANE(90),
     ;
 
 

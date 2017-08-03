@@ -3,8 +3,10 @@ package com.github.bot.curiosone.app.games.airborneassault.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
@@ -27,6 +29,8 @@ public class Plane extends Actor
   private Sound hit;
   private Settings settings;
   private Manager manager;
+  private Animation<TextureAtlas> base;
+  private Animation<TextureAtlas> damaged;
 
   public Plane(int x) {
       settings = Settings.getIstance();
@@ -45,9 +49,9 @@ public class Plane extends Actor
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            int random = new Random().nextInt(30);
-            int random2 = new Random().nextInt(50);
-            int random3 = new Random().nextInt(75);
+            int random = new Random().nextInt(40);
+            int random2 = new Random().nextInt(60);
+            int random3 = new Random().nextInt(100);
             if(random==10){Plane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
             if(random2==20){Plane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
             if(random3==30){Plane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}

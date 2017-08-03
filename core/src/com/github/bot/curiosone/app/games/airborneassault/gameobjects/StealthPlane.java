@@ -3,8 +3,11 @@ package com.github.bot.curiosone.app.games.airborneassault.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureArray;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -29,6 +32,7 @@ public class StealthPlane extends Actor{
   private Manager manager;
   private float lastMoved = 0;
   private Timer.Task timer;
+  private Animation<TextureAtlas> invisible,explosion;
 
   public StealthPlane(int x) {
     settings = Settings.getIstance();
@@ -52,9 +56,9 @@ public class StealthPlane extends Actor{
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-        int random = new Random().nextInt(30);
-        int random2 = new Random().nextInt(50);
-        int random3 = new Random().nextInt(75);
+        int random = new Random().nextInt(40);
+        int random2 = new Random().nextInt(60);
+        int random3 = new Random().nextInt(100);
         if(random==10){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
         if(random2==20){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
         if(random3==30){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
