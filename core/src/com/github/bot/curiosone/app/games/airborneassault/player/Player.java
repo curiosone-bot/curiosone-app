@@ -56,5 +56,9 @@ public class Player {
     }
     return false;
   }
-
+  public static void reset(){
+    CURRENT_HEALTH = 1000;
+    isDead = false;
+    CHANGED = 1000;
+  }
 }

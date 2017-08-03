@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.games.airborneassault.assets_manager;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -66,6 +67,10 @@ public class Manager {
     manager.finishLoading();
   }
   public void loadOptionScreen(){
+    manager.load(Assets.cleanBackground.getPath(),Texture.class);
+    manager.load(Assets.checkbox.getPath(),Texture.class);
+    manager.load(Assets.checkbox2.getPath(),Texture.class);
+    manager.load(Assets.font.getPath(), BitmapFont.class);
     manager.finishLoading();
   }
 

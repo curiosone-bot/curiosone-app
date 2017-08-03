@@ -1,14 +1,14 @@
-package com.github.bot.curiosone.app.games.airborneassault.screens;
+package com.github.bot.curiosone.app.games.airborneassault.spawner;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
-import com.github.bot.curiosone.app.games.airborneassault.gameobjects.*;
+import com.github.bot.curiosone.app.games.airborneassault.gameobjects.Plane;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import java.util.Iterator;
-import java.util.Random;
 
-public class PlaneSpawnerTest implements Iterable<Actor> {
+public class ElitePlaneSpawner implements Iterable<Actor> {
+
   private Array<Actor> actors;
   private Settings settings;
   private Manager manager;
@@ -16,12 +16,12 @@ public class PlaneSpawnerTest implements Iterable<Actor> {
   /**
    * Spawn the tiles according to the game difficulty
    */
-  public PlaneSpawnerTest() {
+  public ElitePlaneSpawner() {
     manager = Manager.getIstance();
     manager.loadPlaneSpawer();
     settings = Settings.getIstance();
     actors = new Array<Actor>();
-    spawn();
+    actors.add(new Plane(190));
   }
 
   @Override
@@ -29,13 +29,4 @@ public class PlaneSpawnerTest implements Iterable<Actor> {
     return actors.iterator();
   }
 
-  public void spawn(){
-    for(int i=0;i<10;i++){
-      actors.add(new FastPlane(new Random().nextInt(326)));
-    }
-  }
-
-  public Array<Actor> getActors(){
-    return actors;
-  }
 }

@@ -13,19 +13,15 @@ public class HealthBar {
   private Settings settings;
   private float progessBarWidth;
   private final int barWidth = 134;
-  private static HealthBar instance;
 
-  private HealthBar(){
+  public HealthBar(){
      manager = Manager.getIstance();
      settings = Settings.getIstance();
      baseBar = manager.getAssetManager().get(Assets.baseBar.getPath(),Texture.class);
      healthBar = manager.getAssetManager().get(Assets.healthBar.getPath(),Texture.class);
      progessBarWidth = Player.getPlayerHealth()/Player.getMaxHealth()*barWidth;
   }
-  public static HealthBar getInstance(){
-    if(instance==null){instance = new HealthBar();}
-    return instance;
-  }
+
   public void update(){
       if(Player.isChanged()){Gdx.app.log("Player Health",Player.getPlayerHealth()+"");}
       progessBarWidth = ((float) Player.getPlayerHealth()/(float)Player.getMaxHealth())*barWidth;
@@ -37,6 +33,7 @@ public class HealthBar {
       batch.draw(healthBar,18,23,progessBarWidth,29);
   }
   public void dispose(){
-
+      baseBar.dispose();
+      healthBar.dispose();
   }
 }

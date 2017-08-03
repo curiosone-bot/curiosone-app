@@ -9,12 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
+
+import java.util.Random;
 
 /**
  * @author Alessandro Roic
@@ -26,6 +30,7 @@ public class KamikazePlane extends Actor {
   private Sound hit;
   private Settings settings;
   private Manager manager;
+  private int bombTimer = 0;
 
   public KamikazePlane(int x) {
     settings = Settings.getIstance();
@@ -43,13 +48,19 @@ public class KamikazePlane extends Actor {
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+        int random = new Random().nextInt(30);
+        int random2 = new Random().nextInt(50);
+        int random3 = new Random().nextInt(75);
+        if(random==10){KamikazePlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
+        if(random2==20){KamikazePlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
+        if(random3==30){KamikazePlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
         //inserire animazione di distruzione e fade
         kamikazeDown.setPosition(kamikazeTexture.getX(),kamikazeTexture.getY());
         kamikazeTexture = kamikazeDown;
         setTouchable(Touchable.disabled);
+        Settings.addScore(Points.KAMIKAZE);
         disposable = true;
         touched = true;
-        settings.ACCELERATION++;
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());
@@ -67,15 +78,24 @@ public class KamikazePlane extends Actor {
     if (kamikazeTexture.getY() > -this.getHeight()) {
       kamikazeTexture.setPosition(kamikazeTexture.getX(), kamikazeTexture.getY() - (Speed.PLANE.getSpeed()+settings.ACCELERATION)*dt);
       setPosition(kamikazeTexture.getX(), kamikazeTexture.getY());
+      if(!touched){
+        bombTimer+= 1;
+        if(bombTimer>=180) {
+          if(bombTimer==180)Player.damage(Amount.KAMIKAZE.getAmount());
+          //animazione esplosione
+          kamikazeDown.setPosition(kamikazeTexture.getX(),kamikazeTexture.getY());
+          kamikazeTexture = kamikazeDown;
+          if(bombTimer==200)disposable = true;
+        }
+      }
     }
+
     if (kamikazeTexture.getY() < -this.getHeight()) {
       //If the plane is out of bound, dispose it
       disposable = true;
       Gdx.app.log("Plane"+hashCode(),"Touched = "+touched);
-      if(!touched){
-        Player.damage(Amount.KAMIKAZE.getAmount());
-      }
     }
+
   }
 
   @Override

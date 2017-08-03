@@ -14,14 +14,13 @@ public class Settings {
   private static Preferences prefs = Gdx.app.getPreferences("My Preferences");
     public  boolean MUSIC,SFX; //the only data to save into Preferences
     //default settings and constants
-    public long SPAWN_RATE = 2000000000;
+    public long SPAWN_RATE = 1500000000;
     public int ACCELERATION = 0;
-    public int SCORE = 0;
+    public static int SCORE = 0;
 
     public Settings(){
       MUSIC = prefs.getBoolean("MUSIC");
       SFX = prefs.getBoolean("SFX");
-      SCORE = prefs.getInteger("SCORE");
     }
 
   /**
@@ -51,10 +50,14 @@ public class Settings {
       settings.SFX = bool;
     }
 
-    public static void saveScore(int score){
-      prefs.putInteger("SCORE",score);
-      prefs.flush();
-      settings.SCORE= score;
+    public static void saveScore(){
+      if(prefs.getInteger("SCORE")<settings.SCORE) {
+        prefs.putInteger("SCORE", settings.SCORE);
+        prefs.flush();
+      }
     }
 
+    public static void addScore(Points points){
+      SCORE += points.getPoints();
+    }
 }

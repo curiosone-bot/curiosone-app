@@ -45,7 +45,6 @@ public class AlliedPlane extends Actor {
         Player.damage(Amount.ALLIED.getAmount());
         touched = true;
         disposable = true;
-        settings.ACCELERATION++;
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());

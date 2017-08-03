@@ -5,10 +5,10 @@ public enum Amount {
   KAMIKAZE(50),
   TANK(60),
   STEALTH(80),
+  FASTPLANE(60),
   HEALTHPACK1(25),
   HEALTHPACK2(50),
   HEALTHPACK3(75),
-  HEALTHPACK4(100),
   ;
 
   private int amount;

@@ -6,7 +6,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -33,6 +32,7 @@ public class TestScreen extends ScreenAdapter{
   private Stage stage;
   private Manager manager;
   private HealthBar healthBar;
+  private PlaneSpawnerTest spawner;
 
   public TestScreen(Chat game) {
     this.game = game;
@@ -42,7 +42,7 @@ public class TestScreen extends ScreenAdapter{
     Gdx.input.setInputProcessor(stage);
     //Spawning the tiles
     settings = Settings.getIstance();
-    PlaneSpawnerTest spawner = new PlaneSpawnerTest();
+    spawner = new PlaneSpawnerTest();
     actorIterator = spawner.iterator();
     lastSpawnedTime = 0;
     //Camera Settings
@@ -60,7 +60,7 @@ public class TestScreen extends ScreenAdapter{
 //          music.setLooping(true);
 //          music.play();
 //        }
-    healthBar = HealthBar.getInstance();
+    healthBar = new HealthBar();
   }
 
   public void update(float dt) {
@@ -79,9 +79,13 @@ public class TestScreen extends ScreenAdapter{
     }
 
     //Spawn the actors every X seconds
-    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE){
+    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE-(settings.ACCELERATION*2000000)){
       if(actorIterator.hasNext()) {
-        stage.addActor(actorIterator.next());
+        Actor next = actorIterator.next();
+        stage.addActor(next);
+        if(spawner.getActors().indexOf(next,true)==spawner.getActors().size-2){
+          spawner.spawn();
+        }
       }
       lastSpawnedTime = TimeUtils.nanoTime();
     }
@@ -89,6 +93,7 @@ public class TestScreen extends ScreenAdapter{
     //updates the actors
     for(Actor actor:stage.getActors()){
       if(actor.remove()){
+        settings.ACCELERATION+=2;
         stage.getActors().removeValue(actor,true);
       }
     }
@@ -97,6 +102,7 @@ public class TestScreen extends ScreenAdapter{
     if(Player.isDead()){
 //            if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
       manager.getAssetManager().clear();
+      Player.reset();
       game.setScreen(new GameOverScreen(game));
       dispose();
     }
@@ -135,6 +141,7 @@ public class TestScreen extends ScreenAdapter{
   public void dispose() {
     background2.dispose();
     background.dispose();
+    healthBar.dispose();
 //        if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
     super.dispose();
   }

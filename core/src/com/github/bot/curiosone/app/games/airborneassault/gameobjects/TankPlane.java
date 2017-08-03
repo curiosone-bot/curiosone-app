@@ -13,8 +13,11 @@ import com.badlogic.gdx.utils.Array;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
+
+import java.util.Random;
 
 public class TankPlane extends Actor {
 
@@ -55,7 +58,14 @@ public class TankPlane extends Actor {
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
         count++;
         if(count==5) {
+          int random = new Random().nextInt(30);
+          int random2 = new Random().nextInt(50);
+          int random3 = new Random().nextInt(75);
+          if(random==10){TankPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
+          if(random2==20){TankPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
+          if(random3==30){TankPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
           setTouchable(Touchable.disabled);
+          Settings.addScore(Points.TANK);
           disposable = true;
           destroyed = true;
         }

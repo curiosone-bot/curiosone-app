@@ -15,6 +15,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 
@@ -51,13 +52,19 @@ public class StealthPlane extends Actor{
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+        int random = new Random().nextInt(30);
+        int random2 = new Random().nextInt(50);
+        int random3 = new Random().nextInt(75);
+        if(random==10){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
+        if(random2==20){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
+        if(random3==30){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
         //inserire animazione di distruzione e fade
         stealthDown.setPosition(stealthTexture.getX(),stealthTexture.getY());
         stealthTexture = stealthDown;
         setTouchable(Touchable.disabled);
+        Settings.addScore(Points.STEALTH);
         disposable = true;
         touched = true;
-        settings.ACCELERATION++;
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());

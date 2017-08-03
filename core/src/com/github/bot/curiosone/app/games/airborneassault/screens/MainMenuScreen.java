@@ -18,6 +18,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.workflow.GameCenter;
 
 /**
  * @author Alessandro Roic
@@ -72,8 +73,9 @@ public class MainMenuScreen extends ScreenAdapter
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            //game.setScreen(new OptionScreen(game));
-            //dispose();
+            manager.getAssetManager().clear();
+            game.setScreen(new OptionScreen(game));
+            dispose();
           }
         });
         stage.addActor(optionButton);
@@ -89,9 +91,9 @@ public class MainMenuScreen extends ScreenAdapter
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            //manager.getAssetManager().clear();
-            //game.setScreen(new GameCenter(game));
-            //dispose();
+            manager.getAssetManager().clear();
+            game.setScreen(new GameCenter(game));
+            dispose();
           }
         });
         stage.addActor(exitButton);

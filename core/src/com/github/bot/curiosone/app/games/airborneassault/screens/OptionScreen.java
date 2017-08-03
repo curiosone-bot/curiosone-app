@@ -3,17 +3,24 @@ package com.github.bot.curiosone.app.games.airborneassault.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
+import com.github.bot.curiosone.app.games.airborneassault.gameobjects.AlliedPlane;
 import com.github.bot.curiosone.app.workflow.Chat;
 
 /**
@@ -27,11 +34,13 @@ public class OptionScreen extends ScreenAdapter{
     private CheckBox musicCheckBox,sfxCheckBox;
     private CheckBox.CheckBoxStyle style,style2;
     private TextureRegionDrawable checked,unchecked;
+    private TextButton back;
     private BitmapFont bitmapFont;
     private Stage stage;
     private Manager manager;
+    private OrthographicCamera camera;
 
-    public OptionScreen(Chat game) {
+    public OptionScreen(final Chat game) {
         this.game = game;
         stage = new Stage(new StretchViewport(480,800));
         Gdx.input.setInputProcessor(stage);
@@ -51,18 +60,9 @@ public class OptionScreen extends ScreenAdapter{
         musicCheckBox.setSize(60,60);
         musicCheckBox.getLabelCell().padLeft(-200);
         musicCheckBox.getImageCell().padLeft(100);
-        musicCheckBox.addListener(new InputListener(){
-
-          @Override
-          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.log("Touched","Music");
-            return true;
-          }
-
-          @Override
-          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.log("Touched","Music");
-            musicCheckBox.toggle();
+        musicCheckBox.addListener(new ChangeListener() {
+          public void changed (ChangeEvent event, Actor actor) {
+            Gdx.graphics.setContinuousRendering(musicCheckBox.isChecked());
           }
         });
         stage.addActor(musicCheckBox);
@@ -72,29 +72,38 @@ public class OptionScreen extends ScreenAdapter{
         sfxCheckBox.setSize(60,60);
         sfxCheckBox.getLabelCell().padLeft(-200);
         sfxCheckBox.getImageCell().padLeft(100);
-        sfxCheckBox.addListener(new InputListener(){
-          @Override
-          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.log("Touched","Music");
-            return true;
-          }
-
-          @Override
-          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.log("Touched","Music");
-            sfxCheckBox.toggle();
+        sfxCheckBox.addListener(new ChangeListener() {
+          public void changed (ChangeEvent event, Actor actor) {
+            Gdx.graphics.setContinuousRendering(musicCheckBox.isChecked());
           }
         });
         stage.addActor(sfxCheckBox);
         /*Back Box*/
         bitmapFont = manager.getAssetManager().get(Assets.font.getPath());
+        back = new TextButton("Back",new TextButton.TextButtonStyle(null,null,null,bitmapFont));
+        back.setPosition(480/2-50,150);
+        back.addListener(new ChangeListener() {
+          @Override
+          public void changed(ChangeEvent event, Actor actor) {
+            manager.getAssetManager().clear();
+            game.setScreen(new MainMenuScreen(game));
+            dispose();
+          }
+        });
+        stage.addActor(back);
+      //Camera Settings
+      camera = new OrthographicCamera();
+      camera.setToOrtho(false,480,800);
+      camera.position.set(480 / 2, 800 / 2, 0);
     }
 
     @Override
     public void render(float delta) {
+      Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+      camera.update();
+      game.getBatch().setProjectionMatrix(camera.combined);
       game.getBatch().begin();
       game.getBatch().draw(background,0,0,480,800);
-      bitmapFont.draw(game.getBatch(),"Back",480/2-50,150);
       game.getBatch().end();
       stage.act();
       stage.draw();

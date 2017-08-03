@@ -7,10 +7,10 @@ public enum Assets {
   buttonOff("airborneassaultassets/buttonUp2.png"),
   menuMusic(""),
   click(""),
-  font(""),
+  font("airborneassaultassets/font/optionfont.fnt"),
   //Option Menu Assets
-  checkbox(""),
-  checkbox2(""),
+  checkbox("airborneassaultassets/checkbox/if_checkbox-checked_83249.png"),
+  checkbox2("airborneassaultassets/checkbox/if_checkbox-unchecked_83251.png"),
   cleanBackground("airborneassaultassets/Immagine.png"),
   //Plane Assets
   hit(""),
@@ -35,7 +35,6 @@ public enum Assets {
   //Game Over Assets
   gameOverBackground("airborneassaultassets/Immagine.png"),
   gameOverMusic(""),
-
   ;
   private final String path;
 

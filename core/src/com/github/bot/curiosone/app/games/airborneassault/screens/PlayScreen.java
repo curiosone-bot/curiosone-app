@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
+import com.github.bot.curiosone.app.games.airborneassault.player.HealthBar;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
@@ -35,6 +36,7 @@ public class PlayScreen extends ScreenAdapter {
   private Music music;
   private Stage stage;
   private Manager manager;
+  private HealthBar healthBar;
 
   public PlayScreen(Chat game) {
     this.game = game;
@@ -62,9 +64,11 @@ public class PlayScreen extends ScreenAdapter {
 //          music.setLooping(true);
 //          music.play();
 //        }
+    healthBar = new HealthBar();
   }
 
   public void update(float dt) {
+    healthBar.update();
     //Updates the enemies
     stage.act();
     //Scrolls the background
@@ -89,6 +93,7 @@ public class PlayScreen extends ScreenAdapter {
     //updates the actors
     for(Actor actor:stage.getActors()){
       if(actor.remove()){
+        settings.ACCELERATION+=2;
         stage.getActors().removeValue(actor,true);
       }
     }
@@ -113,6 +118,9 @@ public class PlayScreen extends ScreenAdapter {
     game.getBatch().end();
     //draws the enemies
     stage.draw();
+    game.getBatch().begin();
+    healthBar.draw(game.getBatch());
+    game.getBatch().end();
   }
 
   @Override
