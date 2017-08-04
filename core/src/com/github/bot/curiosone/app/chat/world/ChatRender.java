@@ -26,6 +26,7 @@ public class ChatRender {
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getTable());
+   // stage.addActor(world.getScrollpane());
 
   }
 
