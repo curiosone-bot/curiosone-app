@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
 public enum Amount {
+  PLANE(50),
   ALLIED(90),
   KAMIKAZE(70),
   TANK(80),

@@ -35,6 +35,8 @@ public class Manager {
 
   public void loadPlayScreen(){
     manager.load(Assets.playBackground.getPath(),Texture.class);
+    manager.load(Assets.playBackground2.getPath(),Texture.class);
+    manager.load(Assets.playBackground3.getPath(),Texture.class);
     manager.load(Assets.healthBar.getPath(),Texture.class);
     manager.load(Assets.baseBar.getPath(),Texture.class);
     manager.finishLoading();
@@ -46,8 +48,8 @@ public class Manager {
   }
   //Loads all the necessary textures
   public void loadPlaneSpawer(){
-    manager.load(Assets.planeUp.getPath(),Texture.class);
-    manager.load(Assets.planeDown.getPath(),Texture.class);
+    manager.load(Assets.planeUp.getPath(),TextureAtlas.class);
+    manager.load(Assets.planeDown.getPath(),TextureAtlas.class);
     manager.load(Assets.fastPlane.getPath(),Texture.class);
     manager.load(Assets.fastPlaneDown.getPath(),TextureAtlas.class);
     manager.load(Assets.healthPack.getPath(),Texture.class);
@@ -56,9 +58,8 @@ public class Manager {
     manager.load(Assets.allied.getPath(),Texture.class);
     manager.load(Assets.alliedDown.getPath(),Texture.class);
     manager.load(Assets.stealth.getPath(),Texture.class);
-    manager.load(Assets.stealthDown.getPath(),Texture.class);
-//    manager.load(Assets.allied.getPath(),Texture.class);
-//    manager.load(Assets.alliedDown.getPath(),Texture.class);
+    manager.load(Assets.stealthDown.getPath(),TextureAtlas.class);
+    manager.load(Assets.stealthInvisible.getPath(),TextureAtlas.class);
     manager.load("airborneassaultassets/planetextures/tankplanetextures/tankplane0.png",Texture.class);
     manager.load("airborneassaultassets/planetextures/tankplanetextures/tankplane1.png",Texture.class);
     manager.load("airborneassaultassets/planetextures/tankplanetextures/tankplane2.png",Texture.class);

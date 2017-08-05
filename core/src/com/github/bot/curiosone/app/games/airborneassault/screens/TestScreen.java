@@ -25,7 +25,7 @@ public class TestScreen extends ScreenAdapter{
   private Iterator<Actor> actorIterator;
   private long lastSpawnedTime;
   private boolean gameOver = false;
-  private Texture background,background2;
+  private Texture background, background2, background3;
   private float y1,y2;
   private Settings settings;
   private Music music;
@@ -50,8 +50,9 @@ public class TestScreen extends ScreenAdapter{
     camera.setToOrtho(false,480,800);
     camera.position.set(480 / 2, 800 / 2, 0);
     //Background
+    background2 = manager.getAssetManager().get(Assets.playBackground2.getPath());
+    background3 = manager.getAssetManager().get(Assets.playBackground3.getPath());
     background = manager.getAssetManager().get(Assets.playBackground.getPath());
-    background2 = manager.getAssetManager().get(Assets.playBackground.getPath());
     y1=0;
     y2=800;
     //Music
@@ -67,7 +68,7 @@ public class TestScreen extends ScreenAdapter{
     healthBar.update();
     //Updates the enemies
     stage.act();
-    //Scrolls the background
+    //Scrolls the background2
     float speed = dt*(Speed.BACKGROUND.getSpeed());
     y1-= speed;
     y2-= speed;
@@ -113,9 +114,10 @@ public class TestScreen extends ScreenAdapter{
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     game.getBatch().setProjectionMatrix(camera.combined);
     game.getBatch().begin();
-    //draws background
-    game.getBatch().draw(background,0,y1,480,800);
-    game.getBatch().draw(background2,0,y2,480,800);
+    //draws background2
+    game.getBatch().draw(background,0,0,480,800);
+    game.getBatch().draw(background2,0,y1,480,800);
+    game.getBatch().draw(background3,0,y2,480,800);
     game.getBatch().end();
     //draws the enemies
     stage.draw();
@@ -139,6 +141,7 @@ public class TestScreen extends ScreenAdapter{
 
   @Override
   public void dispose() {
+    background3.dispose();
     background2.dispose();
     background.dispose();
     healthBar.dispose();

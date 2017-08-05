@@ -15,19 +15,22 @@ public enum Assets {
   //Plane Assets
   hit(""),
   //Play Screen Assets
-  playBackground("airborneassaultassets/Immagine.png"),
+  playBackground("airborneassaultassets/backgrounds/background1.png"),
+  playBackground2("airborneassaultassets/backgrounds/background2.png"),
+  playBackground3("airborneassaultassets/backgrounds/background3.png"),
   playMusic(""),
   baseBar("airborneassaultassets/basebar.png"),
   healthBar("airborneassaultassets/healthbar.png"),
   //Planes Textures
-  planeUp("airborneassaultassets/planetextures/plane.png"),
-  planeDown("airborneassaultassets/planetextures/explosion.png"),
+  planeUp("airborneassaultassets/planetextures/planetextures/plane.txt"),
+  planeDown("airborneassaultassets/planetextures/planetextures/plane_exposion.txt"),
   fastPlane("airborneassaultassets/planetextures/fastplanetextures/fastplanebase.png"),
   fastPlaneDown("airborneassaultassets/planetextures/fastplanetextures/fastplaneAnimation.txt"),
   kamikaze("airborneassaultassets/planetextures/kamikaze.png"),
   kamikazeDown("airborneassaultassets/planetextures/explosion.png"),
-  stealth("airborneassaultassets/planetextures/stealth.png"),
-  stealthDown("airborneassaultassets/planetextures/explosion.png"),
+  stealth("airborneassaultassets/planetextures/stealthtextures/stealth_base.png"),
+  stealthDown("airborneassaultassets/planetextures/stealthtextures/stealth_explosion.txt"),
+  stealthInvisible("airborneassaultassets/planetextures/stealthtextures/stealth.txt"),
   allied("airborneassaultassets/planetextures/allied.png"),
   alliedDown("airborneassaultassets/planetextures/explosion.png"),
   //HealthPack
