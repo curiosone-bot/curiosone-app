@@ -40,7 +40,8 @@ public class ChatWorld {
     scrollpane =new ScrollPane(lista,skin);
     scrollpane.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     scrollpane.setPosition(0,-send.getHeight());
-
+    scrollpane.setScrollingDisabled(true,false);
+    scrollpane.setupFadeScrollBars(0,0);
     table.add(scrollpane);
   }
 
