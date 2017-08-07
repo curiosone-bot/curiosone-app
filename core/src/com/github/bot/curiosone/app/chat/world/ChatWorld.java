@@ -24,25 +24,20 @@ public class ChatWorld {
   private Table table;
   private ScrollPane scrollpane;
   private Skin skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));  // Da mettere in AssetLoader
-  private List lista;
+  public Table table2 = new Table();
 
   public ChatWorld() {
-     lista=new List(skin);
-    lista.setItems(new String[]{"aaaaaaa","bbbbbbbb","cccccccccc","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan","maccherone infame hai detto alle 9","goku super sayan god super sayan"});
     this.inserimento = new Inserimento(172, 100, 100, 0);
     this.table = new Table();
-
-
-
-    this.send = new SendButton(inserimento, 100, 100, 0, 0, table);
-    table.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getWidth()-send.getWidth());
+    this.send = new SendButton(inserimento, 100, 100, 0, 0, table2);
+    table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getWidth() - send.getWidth());
     table.setPosition(0, 204);
-    scrollpane =new ScrollPane(lista,skin);
-    scrollpane.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-    scrollpane.setPosition(0,-send.getHeight());
-    scrollpane.setScrollingDisabled(true,false);
-    scrollpane.setupFadeScrollBars(0,0);
-    table.add(scrollpane);
+    table2.setSize(table.getWidth(), table.getHeight());
+    scrollpane = new ScrollPane(table2, skin);
+    scrollpane.setSize(table.getWidth(), table.getHeight());
+    table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
+    scrollpane.setScrollingDisabled(true, false);
+    scrollpane.setupFadeScrollBars(0, 0);
   }
 
   public void update(float delta) {
