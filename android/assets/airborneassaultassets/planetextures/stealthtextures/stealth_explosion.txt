@@ -1,5 +1,5 @@
 stealth_explosion.png
-size: 1600, 1092
+size: 1600, 1820
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -45,3 +45,31 @@ Stealth_Explosion
   orig: 800, 364
   offset: 0, 0
   index: 6
+Stealth_Explosion
+  rotate: false
+  xy: 0, 1092
+  size: 800, 364
+  orig: 800, 364
+  offset: 0, 0
+  index: 7
+Stealth_Explosion
+  rotate: false
+  xy: 800, 1092
+  size: 800, 364
+  orig: 800, 364
+  offset: 0, 0
+  index: 8
+Stealth_Explosion
+  rotate: false
+  xy: 0, 1456
+  size: 800, 364
+  orig: 800, 364
+  offset: 0, 0
+  index: 9
+Stealth_Explosion
+  rotate: false
+  xy: 800, 1456
+  size: 800, 364
+  orig: 800, 364
+  offset: 0, 0
+  index: 10

@@ -9,16 +9,14 @@ import com.badlogic.gdx.Preferences;
  */
 public class Settings {
     private static Settings settings;
-
-
-  private static Preferences prefs = Gdx.app.getPreferences("My Preferences");
-    public  boolean MUSIC,SFX; //the only data to save into Preferences
+    private static Preferences prefs = Gdx.app.getPreferences("My Preferences");
+    private boolean MUSIC,SFX; //the only data to save into Preferences
     //default settings and constants
-    public long SPAWN_RATE = 1500000000;
-    public int ACCELERATION = 0;
-    public static int SCORE = 0;
+    private long SPAWN_RATE = 1500000000;
+    private int ACCELERATION = 0;
+    private int SCORE = 0;
 
-    public Settings(){
+    private Settings(){
       MUSIC = prefs.getBoolean("MUSIC");
       SFX = prefs.getBoolean("SFX");
     }
@@ -35,7 +33,7 @@ public class Settings {
    * Sets the music to the @param bool and
    * save it into preferences
    */
-  public static void setMUSIC(boolean bool) {
+    public void setMUSIC(boolean bool) {
       prefs.putBoolean("MUSIC",bool);
       prefs.flush();
       settings.MUSIC = bool;
@@ -44,20 +42,36 @@ public class Settings {
    * Sets the sfx to the @param bool and
    * save it into preferences
    */
-    public static void setSFX(boolean bool) {
+    public void setSFX(boolean bool) {
       prefs.putBoolean("SFX",bool);
       prefs.flush();
       settings.SFX = bool;
     }
 
-    public static void saveScore(){
-      if(prefs.getInteger("SCORE")<settings.SCORE) {
-        prefs.putInteger("SCORE", settings.SCORE);
+    public void saveScore(){
+      if(prefs.getInteger("SCORE")<SCORE) {
+        prefs.putInteger("SCORE", SCORE);
         prefs.flush();
       }
     }
 
-    public static void addScore(Points points){
+    public void addScore(Points points){
       SCORE += points.getPoints();
     }
+
+    public int getScore() {
+      return SCORE;
+    }
+
+    public int getSavedScore(){
+      return prefs.getInteger("SCORE");
+    }
+    public long getSpawnRate() {
+      return SPAWN_RATE;
+    }
+
+    public int getAccelleration() {
+      return ACCELERATION;
+    }
+    public void addAccelleration(int amount){ACCELERATION+=amount;}
 }

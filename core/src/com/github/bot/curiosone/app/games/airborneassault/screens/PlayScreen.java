@@ -83,7 +83,7 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     //Spawn the actors every X seconds
-    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE){
+    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.getSpawnRate()){
       if(actorIterator.hasNext()) {
         stage.addActor(actorIterator.next());
       }
@@ -93,7 +93,7 @@ public class PlayScreen extends ScreenAdapter {
     //updates the actors
     for(Actor actor:stage.getActors()){
       if(actor.remove()){
-        settings.ACCELERATION+=2;
+        settings.addAccelleration(2);
         stage.getActors().removeValue(actor,true);
       }
     }

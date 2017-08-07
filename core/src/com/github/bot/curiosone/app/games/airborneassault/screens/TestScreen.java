@@ -80,7 +80,7 @@ public class TestScreen extends ScreenAdapter{
     }
 
     //Spawn the actors every X seconds
-    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.SPAWN_RATE-(settings.ACCELERATION*2000000)){
+    if(TimeUtils.nanoTime()-lastSpawnedTime> settings.getSpawnRate()-(settings.getAccelleration()*2000000)){
       if(actorIterator.hasNext()) {
         Actor next = actorIterator.next();
         stage.addActor(next);
@@ -94,7 +94,7 @@ public class TestScreen extends ScreenAdapter{
     //updates the actors
     for(Actor actor:stage.getActors()){
       if(actor.remove()){
-        settings.ACCELERATION+=2;
+        settings.addAccelleration(2);
         stage.getActors().removeValue(actor,true);
       }
     }

@@ -52,7 +52,7 @@ public class FastPlane extends Actor {
         if(random3==30){FastPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
         setTouchable(Touchable.disabled);
         touched = true;
-        Settings.addScore(Points.FASTPLANE);
+        settings.addScore(Points.FASTPLANE);
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());
@@ -69,11 +69,11 @@ public class FastPlane extends Actor {
     //While the plane is still in the screen, move it
     if(touched){elapsedTime += dt;}
     if (fastPlaneTexture.getY() > -this.getHeight()) {
-      fastPlaneTexture.setPosition(fastPlaneTexture.getX(), fastPlaneTexture.getY() - (Speed.FASTPLANE.getSpeed()+settings.ACCELERATION)*dt);
+      fastPlaneTexture.setPosition(fastPlaneTexture.getX(), fastPlaneTexture.getY() - (Speed.FASTPLANE.getSpeed()+settings.getAccelleration())*dt);
       setPosition(fastPlaneTexture.getX(),fastPlaneTexture.getY());
     }
     if (fastPlaneTexture.getY() < -this.getHeight()) {
-      //If the Plane has been touched, then dispose it
+      //If the Plane is out of bounds, then dispose it
       if(!touched){
         Player.damage(Amount.FASTPLANE.getAmount());
       }

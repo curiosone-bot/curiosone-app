@@ -20,12 +20,11 @@ public class HealthPack extends Actor{
 
   private int amount;
   private Sprite texture;
-  private Manager manager;
   private Settings settings;
   private boolean disposable = false;
 
   public HealthPack(Amount amount) {
-      manager = Manager.getIstance();
+    Manager manager = Manager.getIstance();
       settings = Settings.getIstance();
       this.amount = amount.getAmount();
       texture = new Sprite(manager.getAssetManager().get(Assets.healthPack.getPath(),Texture.class));
@@ -59,7 +58,7 @@ public class HealthPack extends Actor{
   public void act(float delta) {
     super.act(delta);
     if(texture.getY()> -this.getHeight()){
-      texture.setPosition(texture.getX(),texture.getY()-(Speed.HEALTHPACK.getSpeed()+settings.ACCELERATION)*delta);
+      texture.setPosition(texture.getX(),texture.getY()-(Speed.HEALTHPACK.getSpeed()+settings.getAccelleration())*delta);
       setPosition(texture.getX(),texture.getY());
     }
     com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {

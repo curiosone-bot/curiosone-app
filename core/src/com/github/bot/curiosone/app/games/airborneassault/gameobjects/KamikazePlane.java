@@ -3,10 +3,7 @@ package com.github.bot.curiosone.app.games.airborneassault.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -27,21 +24,21 @@ import java.util.Random;
  * This class represent the tile the player don't have to touch
  */
 public class KamikazePlane extends Actor {
-  private Sprite kamikazeTexture, kamikazeDown;
+  private Sprite kamikazeTexture;
   private boolean disposable = false,touched = false;
   private Sound hit;
   private Settings settings;
-  private Manager manager;
   private int bombTimer = 0;
-  private Animation<TextureAtlas> explosion;
+  private Animation<TextureRegion> explosion;
+  private float elapsedTime;
 
   public KamikazePlane(int x) {
     settings = Settings.getIstance();
-    manager = Manager.getIstance();
+    Manager manager = Manager.getIstance();
     kamikazeTexture = new Sprite(manager.getAssetManager().get(Assets.kamikaze.getPath(),Texture.class));
-    kamikazeDown = new Sprite(manager.getAssetManager().get(Assets.kamikazeDown.getPath(),Texture.class));
+    TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.kamikazeDown.getPath());
+    explosion = new Animation<TextureRegion>(0.5f,textureAtlas.getRegions());
     kamikazeTexture.setBounds(x,800,100,180);
-    kamikazeDown.setBounds(x,800,100,180);
     this.setBounds(x,800,100,180);
     addListener(new InputListener(){
       @Override
@@ -58,11 +55,8 @@ public class KamikazePlane extends Actor {
         if(random2==20){KamikazePlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
         if(random3==30){KamikazePlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
         //inserire animazione di distruzione e fade
-        kamikazeDown.setPosition(kamikazeTexture.getX(),kamikazeTexture.getY());
-        kamikazeTexture = kamikazeDown;
         setTouchable(Touchable.disabled);
-        Settings.addScore(Points.KAMIKAZE);
-        disposable = true;
+        settings.addScore(Points.KAMIKAZE);
         touched = true;
       }
     });
@@ -77,18 +71,16 @@ public class KamikazePlane extends Actor {
    */
   @Override
   public void act(float dt) {
+    if(touched){elapsedTime+= dt;}
     //While the plane is still in the screen, move it
     if (kamikazeTexture.getY() > -this.getHeight()) {
-      kamikazeTexture.setPosition(kamikazeTexture.getX(), kamikazeTexture.getY() - (Speed.PLANE.getSpeed()+settings.ACCELERATION)*dt);
+      kamikazeTexture.setPosition(kamikazeTexture.getX(), kamikazeTexture.getY() - (Speed.PLANE.getSpeed()+settings.getAccelleration())*dt);
       setPosition(kamikazeTexture.getX(), kamikazeTexture.getY());
       if(!touched){
         bombTimer+= 1;
-        if(bombTimer>=180) {
-          if(bombTimer==180)Player.damage(Amount.KAMIKAZE.getAmount());
-          //animazione esplosione
-          kamikazeDown.setPosition(kamikazeTexture.getX(),kamikazeTexture.getY());
-          kamikazeTexture = kamikazeDown;
-          if(bombTimer==200)disposable = true;
+        if(bombTimer==180) {
+          touched = true;
+          Player.damage(Amount.KAMIKAZE.getAmount());
         }
       }
     }
@@ -104,7 +96,15 @@ public class KamikazePlane extends Actor {
   @Override
   public void draw(Batch batch, float parentAlpha) {
     super.draw(batch,parentAlpha);
-    kamikazeTexture.draw(batch,parentAlpha);
+    if(!touched){
+      kamikazeTexture.draw(batch,parentAlpha);
+    }
+    else {
+      batch.draw(explosion.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
+      if(explosion.isAnimationFinished(elapsedTime)){
+        disposable = true;
+      }
+    }
   }
 
   @Override

@@ -33,6 +33,7 @@ public enum Assets {
   stealthInvisible("airborneassaultassets/planetextures/stealthtextures/stealth.txt"),
   allied("airborneassaultassets/planetextures/allied.png"),
   alliedDown("airborneassaultassets/planetextures/explosion.png"),
+  tankDown(""),
   //HealthPack
   healthPack("airborneassaultassets/planetextures/healthpack/healthpack.png"),
   //Game Over Assets

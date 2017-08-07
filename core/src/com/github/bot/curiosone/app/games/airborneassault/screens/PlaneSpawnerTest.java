@@ -11,13 +11,12 @@ import java.util.Random;
 public class PlaneSpawnerTest implements Iterable<Actor> {
   private Array<Actor> actors;
   private Settings settings;
-  private Manager manager;
 
   /**
    * Spawn the tiles according to the game difficulty
    */
   public PlaneSpawnerTest() {
-    manager = Manager.getIstance();
+    Manager manager = Manager.getIstance();
     manager.loadPlaneSpawer();
     settings = Settings.getIstance();
     actors = new Array<Actor>();

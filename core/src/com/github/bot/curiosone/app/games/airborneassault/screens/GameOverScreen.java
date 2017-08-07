@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
@@ -23,24 +24,25 @@ public class GameOverScreen extends ScreenAdapter{
   private int count;
   private Music gameOverSound;
   private Settings settings;
-  private Manager manager;
+  private BitmapFont bitmapFont;
 
   public GameOverScreen(Chat game) {
     this.game = game;
-    manager = Manager.getIstance();
+    Manager manager = Manager.getIstance();
     manager.loadGameOverScreen();
     settings = Settings.getIstance();
+    settings.saveScore();
 //    if(settings.MUSIC) {
 //      gameOverSound = manager.getAssetManager().get(Assets.gameOverMusic.getPath());
 //      gameOverSound.play();
 //    }
-    settings = Settings.getIstance();
     gameOverTexture = manager.getAssetManager().get(Assets.gameOverBackground.getPath());
     //Camera Settings
     camera = new OrthographicCamera();
     camera.setToOrtho(false,480,800);
     camera.position.set(480 / 2, 800 / 2, 0);
-
+    //Text
+    bitmapFont = manager.getAssetManager().get(Assets.font.getPath());
   }
 
   @Override
@@ -55,6 +57,8 @@ public class GameOverScreen extends ScreenAdapter{
     game.getBatch().setProjectionMatrix(camera.combined);
     game.getBatch().begin();
     game.getBatch().draw(gameOverTexture,0,0,480,800);
+    bitmapFont.draw(game.getBatch(),"Points"+settings.getScore(),480/2,800/2);
+    bitmapFont.draw(game.getBatch(),"Record"+settings.getSavedScore(),480/2,800/2);
     game.getBatch().end();
   }
 

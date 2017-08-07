@@ -3,13 +3,11 @@ package com.github.bot.curiosone.app.games.airborneassault.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureArray;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
@@ -23,26 +21,24 @@ import java.util.Random;
 
 public class StealthPlane extends Actor{
   private Sprite stealthTexture;
-  private boolean disposable = false,touched = false,moved = false;
+  private boolean disposable = false,touched = false, flag = false;
   private Sound hit;
   private Settings settings;
-  private Manager manager;
-  private float lastMoved = 0;
-  private float elapsedTime = 0;
+  private int lastMoved = 0;
+  private float elapsedTime;
   private Timer.Task timer;
   private Animation<TextureRegion> invisible,explosion;
-  private TextureAtlas invisibleAtlas,explosionAtlas;
 
   public StealthPlane(int x) {
     settings = Settings.getIstance();
-    manager = Manager.getIstance();
+    Manager manager = Manager.getIstance();
     stealthTexture = new Sprite(manager.getAssetManager().get(Assets.stealth.getPath(),Texture.class));
     stealthTexture.setBounds(x,800,160,120);
     this.setBounds(x,800,160,120);
-    invisibleAtlas = manager.getAssetManager().get(Assets.stealthInvisible.getPath());
-    explosionAtlas = manager.getAssetManager().get(Assets.stealthDown.getPath());
-    invisible = new Animation<TextureRegion>(0.2f,invisibleAtlas.getRegions());
-    explosion = new Animation<TextureRegion>(0.15f,explosionAtlas.getRegions());
+    TextureAtlas invisibleAtlas = manager.getAssetManager().get(Assets.stealthInvisible.getPath());
+    TextureAtlas explosionAtlas = manager.getAssetManager().get(Assets.stealthDown.getPath());
+    invisible = new Animation<TextureRegion>(0.08f, invisibleAtlas.getRegions());
+    explosion = new Animation<TextureRegion>(0.15f, explosionAtlas.getRegions());
     addListener(new InputListener(){
       @Override
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -59,7 +55,7 @@ public class StealthPlane extends Actor{
         if(random3==30){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
         //inserire animazione di distruzione e fade
         setTouchable(Touchable.disabled);
-        Settings.addScore(Points.STEALTH);
+        settings.addScore(Points.STEALTH);
         touched = true;
         elapsedTime = 0;
       }
@@ -77,16 +73,13 @@ public class StealthPlane extends Actor{
   public void act(float dt) {
     elapsedTime += dt;
     lastMoved += 1;
-    if(lastMoved>=90){
-        moved = true;
-        lastMoved = 0;
-    }
-    else {
-        moved = false;
+    if(lastMoved == 100) {
+      flag = false;
+      lastMoved = 0;
     }
     //While the plane is still in the screen, move it
     if (stealthTexture.getY() > -this.getHeight()) {
-      stealthTexture.setPosition(stealthTexture.getX(), stealthTexture.getY() - (Speed.PLANE.getSpeed() + settings.ACCELERATION) * dt);
+      stealthTexture.setPosition(stealthTexture.getX(), stealthTexture.getY() - (Speed.PLANE.getSpeed() + settings.getAccelleration()) * dt);
       setPosition(stealthTexture.getX(), stealthTexture.getY());
     }
     if (stealthTexture.getY() < -this.getHeight()) {
@@ -103,14 +96,16 @@ public class StealthPlane extends Actor{
   public void draw(Batch batch, float parentAlpha) {
     super.draw(batch,parentAlpha);
     if(!touched){
-      if(!moved)stealthTexture.draw(batch,parentAlpha);
-      else {
-
+      if(!flag){
+        stealthTexture.draw(batch,parentAlpha);
       }
-      if(lastMoved == 60){
+      if(lastMoved >= 60&&lastMoved<=94){
+        if(!flag){elapsedTime = 0;}
+        flag = true;
         batch.draw(invisible.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
         if(invisible.isAnimationFinished(elapsedTime)){
-
+          stealthTexture.setPosition(new Random().nextInt(320), stealthTexture.getY());
+          setPosition(stealthTexture.getX(), stealthTexture.getY());
         }
       }
     }

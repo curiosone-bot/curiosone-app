@@ -55,7 +55,7 @@ public class Plane extends Actor
             if(random3==30){Plane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
             setTouchable(Touchable.disabled);
             touched = true;
-            Settings.addScore(Points.PLANE);
+            settings.addScore(Points.PLANE);
             elapsedTime = 0;
           }
       });
@@ -73,7 +73,7 @@ public class Plane extends Actor
     //While the plane is still in the screen, move it
     elapsedTime+= dt;
     if (this.getY() > -this.getHeight()) {
-      this.setPosition(this.getX(), this.getY() - (Speed.PLANE.getSpeed()+settings.ACCELERATION)*dt);
+      this.setPosition(this.getX(), this.getY() - (Speed.PLANE.getSpeed()+settings.getAccelleration())*dt);
       setPosition(this.getX(),this.getY());
     }
     if (this.getY() < -this.getHeight()) {
