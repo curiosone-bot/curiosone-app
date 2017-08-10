@@ -21,12 +21,13 @@ public class ChatRender {
     this.batch = new SpriteBatch();
     batch.setProjectionMatrix(cam.combined);
     FitViewport viewp = new FitViewport(272, 408, cam);
+    world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getTable());
-   // stage.addActor(world.getScrollpane());
+
 
   }
 

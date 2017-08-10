@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -24,16 +25,16 @@ public class ChatWorld {
   private Table table;
   private ScrollPane scrollpane;
   private Skin skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));  // Da mettere in AssetLoader
-  public Table table2 = new Table();
+  public Table scrollTable = new Table();
 
   public ChatWorld() {
     this.inserimento = new Inserimento(172, 100, 100, 0);
     this.table = new Table();
-    this.send = new SendButton(inserimento, 100, 100, 0, 0, table2);
-    table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getWidth() - send.getWidth());
-    table.setPosition(0, 204);
-    table2.setSize(table.getWidth(), table.getHeight());
-    scrollpane = new ScrollPane(table2, skin);
+    this.send = new SendButton(100, 100, 0, 0);
+    table.setSize(272, 408 - send.getHeight());
+    table.setPosition(0, send.getY()+send.getHeight());
+    scrollTable.setSize(table.getWidth(), table.getHeight());
+    scrollpane = new ScrollPane(scrollTable, skin);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
@@ -63,4 +64,10 @@ public class ChatWorld {
 
   public ScrollPane getScrollpane()
   {return scrollpane;}
+
+  public Table getScrollTable() {
+    return scrollTable;
+  }
+
 }
+
