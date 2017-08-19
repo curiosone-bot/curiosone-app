@@ -1,9 +1,12 @@
 package com.github.bot.curiosone.app.games.airborneassault.assets_manager;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class Manager {
   private static Manager instance;
@@ -26,6 +29,8 @@ public class Manager {
     manager.load(Assets.menubackground.getPath(), Texture.class);
     manager.load(Assets.buttonOn.getPath(),Texture.class);
     manager.load(Assets.buttonOff.getPath(),Texture.class);
+    manager.load(Assets.menuMusic.getPath(),Music.class);
+    manager.load(Assets.click.getPath(),Sound.class);
     manager.finishLoading();
   }
 
@@ -35,6 +40,12 @@ public class Manager {
     manager.load(Assets.playBackground3.getPath(),Texture.class);
     manager.load(Assets.healthBar.getPath(),Texture.class);
     manager.load(Assets.baseBar.getPath(),Texture.class);
+    manager.load(Assets.playMusic.getPath(),Music.class);
+    manager.load(Assets.backButton.getPath(),Texture.class);
+    manager.load(Assets.backToButton.getPath(),Texture.class);
+    manager.load(Assets.backToButtonPressed.getPath(), Texture.class);
+    manager.load(Assets.continueButton.getPath(),Texture.class);
+    manager.load(Assets.continueButtonPressed.getPath(),Texture.class);
     manager.finishLoading();
   }
 
@@ -50,8 +61,9 @@ public class Manager {
     manager.load(Assets.fastPlane.getPath(),Texture.class);
     manager.load(Assets.fastPlaneDown.getPath(),TextureAtlas.class);
     manager.load(Assets.healthPack.getPath(),Texture.class);
-    manager.load(Assets.kamikaze.getPath(),Texture.class);
-    manager.load(Assets.kamikazeDown.getPath(),TextureAtlas.class);
+//    manager.load(Assets.kamikaze.getPath(),Texture.class);
+//    manager.load(Assets.kamikazeDown.getPath(),TextureAtlas.class);
+//    manager.load(Assets.kamikazeSelfExplosion.getPath(),TextureAtlas.class);
     manager.load(Assets.allied.getPath(),Texture.class);
     manager.load(Assets.alliedDown.getPath(),TextureAtlas.class);
     manager.load(Assets.stealth.getPath(),Texture.class);
@@ -66,7 +78,7 @@ public class Manager {
     manager.finishLoading();
   }
   public void loadOptionScreen(){
-    manager.load(Assets.cleanBackground.getPath(),Texture.class);
+    manager.load(Assets.optionBackground.getPath(),Texture.class);
     manager.load(Assets.checkbox.getPath(),Texture.class);
     manager.load(Assets.checkbox2.getPath(),Texture.class);
     manager.load(Assets.font.getPath(), BitmapFont.class);

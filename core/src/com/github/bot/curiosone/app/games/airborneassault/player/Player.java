@@ -34,7 +34,7 @@ public class Player {
     }
   }
   public static void heal(int amount){
-    if(CURRENT_HEALTH +amount<100){
+    if(CURRENT_HEALTH +amount<1000){
     CURRENT_HEALTH +=amount;
     }
     else {

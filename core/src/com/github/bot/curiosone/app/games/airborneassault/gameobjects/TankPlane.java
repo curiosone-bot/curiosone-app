@@ -12,10 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 import java.util.Random;
 
@@ -28,14 +25,14 @@ public class TankPlane extends Actor {
   private Settings settings;
   private Manager manager;
   private Sprite current;
-  private int count;
+  private int count = 0;
   private float elapsedTime;
 
   public TankPlane(int x) {
     settings = Settings.getIstance();
     manager = Manager.getIstance();
     TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.tankDown.getPath());
-    explosion = new Animation<TextureRegion>(0.5f,textureAtlas.getRegions());
+    explosion = new Animation<TextureRegion>(0.12f,textureAtlas.getRegions());
     textures = new Array<Sprite>();
     for(int i=0;i<5;i++){
       //TO DO --> inserire file
@@ -43,10 +40,9 @@ public class TankPlane extends Actor {
         path = path.substring(0,63)+i+path.substring(64);
         textures.add(new Sprite(manager.getAssetManager().get(path,Texture.class)));
     }
-    count = 0;
-    current = textures.get(0); //CONTROLLARE
-    current.setBounds(x,800,130,220);
-    this.setBounds(x,800,130,220);
+    current = textures.get(0);
+    current.setBounds(x,Constants.TOP, Dimensions.TANK.getWidth(),Dimensions.TANK.getHeight());
+    this.setBounds(x,Constants.TOP,Dimensions.TANK.getWidth(),Dimensions.TANK.getHeight());
     addListener(new InputListener(){
       @Override
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -71,6 +67,7 @@ public class TankPlane extends Actor {
           setTouchable(Touchable.disabled);
           settings.addScore(Points.TANK);
           touched = true;
+          elapsedTime = 0;
         }
       }
     });
@@ -94,7 +91,7 @@ public class TankPlane extends Actor {
   public void act(float delta) {
     super.act(delta);
     //While the plane is still in the screen, move it
-    if(touched){elapsedTime += delta;}
+    elapsedTime += delta;
     if (current.getY() > -this.getHeight()) {
       current.setPosition(current.getX(), current.getY() - (Speed.TANK.getSpeed()+settings.getAccelleration())*delta);
       setPosition(current.getX(),current.getY());

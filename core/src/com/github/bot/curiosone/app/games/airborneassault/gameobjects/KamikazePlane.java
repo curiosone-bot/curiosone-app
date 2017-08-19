@@ -12,10 +12,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 import java.util.Random;
 
@@ -25,11 +22,11 @@ import java.util.Random;
  */
 public class KamikazePlane extends Actor {
   private Sprite kamikazeTexture;
-  private boolean disposable = false,touched = false;
+  private boolean disposable = false,touched = false,explode = false;
   private Sound hit;
   private Settings settings;
   private int bombTimer = 0;
-  private Animation<TextureRegion> explosion;
+  private Animation<TextureRegion> explosion,selfExplosion;
   private float elapsedTime;
 
   public KamikazePlane(int x) {
@@ -37,9 +34,11 @@ public class KamikazePlane extends Actor {
     Manager manager = Manager.getIstance();
     kamikazeTexture = new Sprite(manager.getAssetManager().get(Assets.kamikaze.getPath(),Texture.class));
     TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.kamikazeDown.getPath());
-    explosion = new Animation<TextureRegion>(0.5f,textureAtlas.getRegions());
-    kamikazeTexture.setBounds(x,800,100,180);
-    this.setBounds(x,800,100,180);
+    TextureAtlas textureAtlas2 = manager.getAssetManager().get(Assets.kamikazeSelfExplosion.getPath());
+    explosion = new Animation<TextureRegion>(0.12f,textureAtlas.getRegions());
+    selfExplosion = new Animation<TextureRegion>(0.12f,textureAtlas2.getRegions());
+    kamikazeTexture.setBounds(x,Constants.TOP, Dimensions.KAMIKAZE.getWidth(),Dimensions.KAMIKAZE.getHeight());
+    this.setBounds(x,Constants.TOP,Dimensions.KAMIKAZE.getWidth(),Dimensions.KAMIKAZE.getHeight());
     addListener(new InputListener(){
       @Override
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -58,6 +57,7 @@ public class KamikazePlane extends Actor {
         setTouchable(Touchable.disabled);
         settings.addScore(Points.KAMIKAZE);
         touched = true;
+        elapsedTime = 0;
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());
@@ -71,15 +71,17 @@ public class KamikazePlane extends Actor {
    */
   @Override
   public void act(float dt) {
-    if(touched){elapsedTime+= dt;}
+    elapsedTime+= dt;
     //While the plane is still in the screen, move it
     if (kamikazeTexture.getY() > -this.getHeight()) {
-      kamikazeTexture.setPosition(kamikazeTexture.getX(), kamikazeTexture.getY() - (Speed.PLANE.getSpeed()+settings.getAccelleration())*dt);
+      kamikazeTexture.setPosition(kamikazeTexture.getX(), kamikazeTexture.getY() - (Speed.KAMIKAZE.getSpeed()+settings.getAccelleration())*dt);
       setPosition(kamikazeTexture.getX(), kamikazeTexture.getY());
       if(!touched){
         bombTimer+= 1;
         if(bombTimer==180) {
-          touched = true;
+          setTouchable(Touchable.disabled);
+          elapsedTime = 0;
+          explode = true;
           Player.damage(Amount.KAMIKAZE.getAmount());
         }
       }
@@ -97,7 +99,15 @@ public class KamikazePlane extends Actor {
   public void draw(Batch batch, float parentAlpha) {
     super.draw(batch,parentAlpha);
     if(!touched){
-      kamikazeTexture.draw(batch,parentAlpha);
+      if(!explode){
+        kamikazeTexture.draw(batch,parentAlpha);
+      }
+      else {
+        batch.draw(selfExplosion.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getWidth());
+        if(explosion.isAnimationFinished(elapsedTime)){
+          disposable = true;
+        }
+      }
     }
     else {
       batch.draw(explosion.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());

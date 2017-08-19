@@ -2,16 +2,12 @@ package com.github.bot.curiosone.app.games.airborneassault.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 import java.util.Random;
 
@@ -34,7 +30,7 @@ public class Plane extends Actor
   public Plane(int x) {
       settings = Settings.getIstance();
       manager = Manager.getIstance();
-      this.setBounds(x,800,118,200);
+      this.setBounds(x,800, Dimensions.PLANE.getWidth(),Dimensions.PLANE.getHeight());
       planeUp = manager.getAssetManager().get(Assets.planeUp.getPath());
       planeDown = manager.getAssetManager().get(Assets.planeDown.getPath());
       base = new Animation<TextureRegion>(0.2f,planeUp.getRegions(), Animation.PlayMode.LOOP);

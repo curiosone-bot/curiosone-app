@@ -10,11 +10,11 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Dimensions;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 
 import java.util.Random;
-import java.util.Timer;
 
 public class HealthPack extends Actor{
 
@@ -29,9 +29,9 @@ public class HealthPack extends Actor{
       this.amount = amount.getAmount();
       texture = new Sprite(manager.getAssetManager().get(Assets.healthPack.getPath(),Texture.class));
       int x = new Random().nextInt(420);
-      int y = new Random().nextInt(540)+120;
-      texture.setBounds(x,y,50,50);
-      this.setBounds(x,y,50,50);
+      int y = new Random().nextInt(540)+220;
+      texture.setBounds(x,y, Dimensions.HEALTHPACK.getWidth(),Dimensions.HEALTHPACK.getHeight());
+      this.setBounds(x,y,Dimensions.HEALTHPACK.getWidth(),Dimensions.HEALTHPACK.getHeight());
       addListener(new InputListener(){
 
         @Override
@@ -41,7 +41,7 @@ public class HealthPack extends Actor{
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-          Player.heal(HealthPack.this.amount);
+          heal();
           disposable = true;
         }
       });
@@ -72,5 +72,9 @@ public class HealthPack extends Actor{
   @Override
   public boolean remove() {
     return disposable;
+  }
+
+  private void heal(){
+    Player.heal(amount);
   }
 }

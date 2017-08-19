@@ -9,18 +9,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
-import com.github.bot.curiosone.app.games.airborneassault.gameobjects.AlliedPlane;
+import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
 import com.github.bot.curiosone.app.workflow.Chat;
 
 /**
@@ -42,21 +39,21 @@ public class OptionScreen extends ScreenAdapter{
 
     public OptionScreen(final Chat game) {
         this.game = game;
-        stage = new Stage(new StretchViewport(480,800));
+        stage = new Stage(new StretchViewport(Constants.WIDTH, Constants.HEIGHT),game.getBatch());
         Gdx.input.setInputProcessor(stage);
         manager = Manager.getIstance();
         manager.loadOptionScreen();
          /*Background*/
-        background =  manager.getAssetManager().get(Assets.cleanBackground.getPath());
+        background =  manager.getAssetManager().get(Assets.optionBackground.getPath());
         /*CheckBoxs Style Settings*/
         unchecked = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.checkbox.getPath(),Texture.class)));
         checked = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.checkbox2.getPath(),Texture.class)));
-        style = new CheckBox.CheckBoxStyle(unchecked,checked,manager.getAssetManager().get(Assets.font.getPath(),BitmapFont.class) , Color.WHITE);
+        style = new CheckBox.CheckBoxStyle(unchecked,checked,manager.getAssetManager().get(Assets.font.getPath(),BitmapFont.class) , Color.BLACK);
         style2 = new CheckBox.CheckBoxStyle(style);
 
         /*Music CheckBox*/
         musicCheckBox = new CheckBox("Music",style);
-        musicCheckBox.setPosition(480/2-60/2,800/2);
+        musicCheckBox.setPosition(Constants.WIDTH/2-60/2, Constants.HEIGHT/2);
         musicCheckBox.setSize(60,60);
         musicCheckBox.getLabelCell().padLeft(-200);
         musicCheckBox.getImageCell().padLeft(100);
@@ -68,7 +65,7 @@ public class OptionScreen extends ScreenAdapter{
         stage.addActor(musicCheckBox);
         /*SFX CheckBox*/
         sfxCheckBox = new CheckBox("Effects",style2);
-        sfxCheckBox.setPosition(480/2-60/2,800/2-80);
+        sfxCheckBox.setPosition(Constants.WIDTH/2-60/2, Constants.HEIGHT/2-80);
         sfxCheckBox.setSize(60,60);
         sfxCheckBox.getLabelCell().padLeft(-200);
         sfxCheckBox.getImageCell().padLeft(100);
@@ -81,7 +78,7 @@ public class OptionScreen extends ScreenAdapter{
         /*Back Box*/
         bitmapFont = manager.getAssetManager().get(Assets.font.getPath());
         back = new TextButton("Back",new TextButton.TextButtonStyle(null,null,null,bitmapFont));
-        back.setPosition(480/2-50,150);
+        back.setPosition(Constants.WIDTH/2-50,150);
         back.addListener(new ChangeListener() {
           @Override
           public void changed(ChangeEvent event, Actor actor) {
@@ -93,8 +90,8 @@ public class OptionScreen extends ScreenAdapter{
         stage.addActor(back);
       //Camera Settings
       camera = new OrthographicCamera();
-      camera.setToOrtho(false,480,800);
-      camera.position.set(480 / 2, 800 / 2, 0);
+      camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
+      camera.position.set(Constants.WIDTH / 2, Constants.HEIGHT / 2, 0);
     }
 
     @Override
@@ -103,7 +100,7 @@ public class OptionScreen extends ScreenAdapter{
       camera.update();
       game.getBatch().setProjectionMatrix(camera.combined);
       game.getBatch().begin();
-      game.getBatch().draw(background,0,0,480,800);
+      game.getBatch().draw(background,0,0, Constants.WIDTH, Constants.HEIGHT);
       game.getBatch().end();
       stage.act();
       stage.draw();

@@ -14,14 +14,14 @@ public class ElitePlaneSpawner implements Iterable<Actor> {
   private Manager manager;
 
   /**
-   * Spawn the tiles according to the game difficulty
+   * Spawn the elite planes
    */
   public ElitePlaneSpawner() {
     manager = Manager.getIstance();
     manager.loadPlaneSpawer();
     settings = Settings.getIstance();
     actors = new Array<Actor>();
-    actors.add(new Plane(190));
+    spawn();
   }
 
   @Override
@@ -29,4 +29,9 @@ public class ElitePlaneSpawner implements Iterable<Actor> {
     return actors.iterator();
   }
 
+  public void spawn(){
+
+  }
+
+  public Array<Actor> getActors(){return actors;}
 }

@@ -11,10 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 import java.util.Random;
 
@@ -34,8 +31,8 @@ public class FastPlane extends Actor {
     fastPlaneTexture= new Sprite(manager.getAssetManager().get(Assets.fastPlane.getPath(),Texture.class));
     fastPlaneDown = manager.getAssetManager().get(Assets.fastPlaneDown.getPath());
     explosion = new Animation<TextureRegion>(0.085f,fastPlaneDown.getRegions());
-    fastPlaneTexture.setBounds(x,800,118,200);
-    this.setBounds(x,800,118,200);
+    fastPlaneTexture.setBounds(x,Constants.TOP, Dimensions.FASTPLANE.getWidth(),Dimensions.FASTPLANE.getHeight());
+    this.setBounds(x,Constants.TOP,Dimensions.FASTPLANE.getWidth(),Dimensions.FASTPLANE.getHeight());
     addListener(new InputListener(){
       @Override
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

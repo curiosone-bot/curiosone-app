@@ -11,9 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 public class AlliedPlane extends Actor {
   private Sprite alliedTexture;
@@ -29,9 +27,9 @@ public class AlliedPlane extends Actor {
     manager = Manager.getIstance();
     alliedTexture = new Sprite(manager.getAssetManager().get(Assets.allied.getPath(),Texture.class));
     TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.alliedDown.getPath());
-    explosion = new Animation<TextureRegion>(0.5f,textureAtlas.getRegions());
-    alliedTexture.setBounds(x,800,90,180);
-    this.setBounds(x,800,90,180);
+    explosion = new Animation<TextureRegion>(0.12f,textureAtlas.getRegions());
+    alliedTexture.setBounds(x, Constants.TOP,Dimensions.ALLIED.getWidth(),Dimensions.ALLIED.getHeight());
+    this.setBounds(x,Constants.TOP, Dimensions.ALLIED.getWidth(),Dimensions.ALLIED.getHeight());
     addListener(new InputListener(){
       @Override
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -44,6 +42,7 @@ public class AlliedPlane extends Actor {
         setTouchable(Touchable.disabled);
         Player.damage(Amount.ALLIED.getAmount());
         touched = true;
+        elapsedTime = 0;
       }
     });
 //      hit = manager.getAssetManager().get(Assets.hit.getPath());
@@ -58,7 +57,7 @@ public class AlliedPlane extends Actor {
   @Override
   public void act(float dt) {
     //While the plane is still in the screen, move it
-    if(touched){elapsedTime += dt;}
+    elapsedTime += dt;
     if (alliedTexture.getY() > -this.getHeight()) {
       alliedTexture.setPosition(alliedTexture.getX(), alliedTexture.getY() - (Speed.PLANE.getSpeed()+settings.getAccelleration())*dt);
       setPosition(alliedTexture.getX(), alliedTexture.getY());

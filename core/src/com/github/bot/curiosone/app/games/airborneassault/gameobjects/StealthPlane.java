@@ -12,10 +12,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Amount;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Points;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
+import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 import java.util.Random;
 
@@ -33,8 +30,8 @@ public class StealthPlane extends Actor{
     settings = Settings.getIstance();
     Manager manager = Manager.getIstance();
     stealthTexture = new Sprite(manager.getAssetManager().get(Assets.stealth.getPath(),Texture.class));
-    stealthTexture.setBounds(x,800,160,120);
-    this.setBounds(x,800,160,120);
+    stealthTexture.setBounds(x,Constants.TOP, Dimensions.STEALTH.getWidth(),Dimensions.STEALTH.getHeight());
+    this.setBounds(x,Constants.TOP,Dimensions.STEALTH.getWidth(),Dimensions.STEALTH.getHeight());
     TextureAtlas invisibleAtlas = manager.getAssetManager().get(Assets.stealthInvisible.getPath());
     TextureAtlas explosionAtlas = manager.getAssetManager().get(Assets.stealthDown.getPath());
     invisible = new Animation<TextureRegion>(0.08f, invisibleAtlas.getRegions());
@@ -53,7 +50,6 @@ public class StealthPlane extends Actor{
         if(random==10){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK1));}
         if(random2==20){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK2));}
         if(random3==30){StealthPlane.super.getStage().addActor(new HealthPack(Amount.HEALTHPACK3));}
-        //inserire animazione di distruzione e fade
         setTouchable(Touchable.disabled);
         settings.addScore(Points.STEALTH);
         touched = true;
@@ -79,7 +75,7 @@ public class StealthPlane extends Actor{
     }
     //While the plane is still in the screen, move it
     if (stealthTexture.getY() > -this.getHeight()) {
-      stealthTexture.setPosition(stealthTexture.getX(), stealthTexture.getY() - (Speed.PLANE.getSpeed() + settings.getAccelleration()) * dt);
+      stealthTexture.setPosition(stealthTexture.getX(), stealthTexture.getY() - (Speed.STEALTH.getSpeed() + settings.getAccelleration()) * dt);
       setPosition(stealthTexture.getX(), stealthTexture.getY());
     }
     if (stealthTexture.getY() < -this.getHeight()) {
@@ -99,12 +95,12 @@ public class StealthPlane extends Actor{
       if(!flag){
         stealthTexture.draw(batch,parentAlpha);
       }
-      if(lastMoved >= 60&&lastMoved<=94){
+      if(lastMoved >= 30&&lastMoved<=64){
         if(!flag){elapsedTime = 0;}
         flag = true;
         batch.draw(invisible.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
         if(invisible.isAnimationFinished(elapsedTime)){
-          stealthTexture.setPosition(new Random().nextInt(320), stealthTexture.getY());
+          stealthTexture.setPosition(new Random().nextInt(Bounds.STEALTH.getBound()), stealthTexture.getY());
           setPosition(stealthTexture.getX(), stealthTexture.getY());
         }
       }

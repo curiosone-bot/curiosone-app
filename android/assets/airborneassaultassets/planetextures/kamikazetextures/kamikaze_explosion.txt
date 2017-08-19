@@ -1,0 +1,142 @@
+kamikaze_explosion-0.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_damaged
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-1.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_1
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-2.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_2
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-3.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_3
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-4.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_4
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-5.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_5
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-6.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_6
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-7.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_7
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-8.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_8
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-9.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_9
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1
+
+kamikaze_explosion-10.png
+size: 1316, 1694
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Kamikaze_Explsion_10
+  rotate: false
+  xy: 1, 1
+  size: 1314, 1692
+  orig: 1314, 1692
+  offset: 0, 0
+  index: -1

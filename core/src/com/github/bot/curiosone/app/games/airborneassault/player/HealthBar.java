@@ -9,14 +9,11 @@ import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 
 public class HealthBar {
   private Texture baseBar,healthBar;
-  private Manager manager;
-  private Settings settings;
   private float progessBarWidth;
-  private final int barWidth = 134;
+  private final int barWidth = 154;
 
   public HealthBar(){
-     manager = Manager.getIstance();
-     settings = Settings.getIstance();
+     Manager manager = Manager.getIstance();
      baseBar = manager.getAssetManager().get(Assets.baseBar.getPath(),Texture.class);
      healthBar = manager.getAssetManager().get(Assets.healthBar.getPath(),Texture.class);
      progessBarWidth = Player.getPlayerHealth()/Player.getMaxHealth()*barWidth;
@@ -28,8 +25,7 @@ public class HealthBar {
   }
 
   public void draw(SpriteBatch batch){
-    //make it fit
-      batch.draw(baseBar,10,10,150,55);
+      batch.draw(baseBar,10,10,170,55);
       batch.draw(healthBar,18,23,progessBarWidth,29);
   }
   public void dispose(){
