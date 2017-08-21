@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
+import java.util.StringTokenizer;
+
 
 public class SendButton extends TextButton {
 
@@ -31,9 +33,9 @@ public class SendButton extends TextButton {
     Inserimento inserimento = world.getInserimento();
     ScrollPane scrollPane = world.getScrollpane();
     table.row();
-    table.add(new Label(inserimento.getText(), skin)).expandX().right();
+    table.add(new Label(modifyPhrase(inserimento.getText()), skin)).expandX().right();
     table.row();
-    table.add(new Label(ai.getRisposta(inserimento.getText()), skin)).expandX().left();
+    table.add(new Label(modifyPhrase(ai.getRisposta(inserimento.getText())), skin)).expandX().left();
     scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
     table.bottom();
 
@@ -52,5 +54,27 @@ public class SendButton extends TextButton {
 
   public void setWorld(ChatWorld world) {
     this.world = world;
+  }
+
+  public String modifyPhrase(String phrase)//taglio a 24 caratteri
+  {
+    StringTokenizer st=new StringTokenizer(phrase);
+    String newPhrase="";
+    final int TAGLIO_FRASE=24;
+    String stringaTemporanea;
+    int dimensioneFraseTemporanea=0;//per vedere se si e' arrivati al limite della frase
+    while(st.hasMoreTokens())
+    {
+      stringaTemporanea = st.nextToken();
+      if(stringaTemporanea.length()+dimensioneFraseTemporanea>TAGLIO_FRASE)
+      {
+        newPhrase+="\n";
+        dimensioneFraseTemporanea=0;
+      }
+      dimensioneFraseTemporanea+=stringaTemporanea.length();
+      newPhrase+=stringaTemporanea+" ";
+
+    }
+      return newPhrase;
   }
 }
