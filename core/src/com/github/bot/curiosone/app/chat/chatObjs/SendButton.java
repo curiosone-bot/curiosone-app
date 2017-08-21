@@ -12,7 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
+import org.w3c.dom.css.Rect;
+
 import java.util.StringTokenizer;
+
+import javax.swing.text.View;
 
 
 public class SendButton extends TextButton {
@@ -48,6 +52,7 @@ public class SendButton extends TextButton {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         onClick();
+
       }
     };
   }
@@ -56,7 +61,7 @@ public class SendButton extends TextButton {
     this.world = world;
   }
 
-  public String modifyPhrase(String phrase)//taglio a 24 caratteri
+  private String modifyPhrase(String phrase)
   {
     StringTokenizer st=new StringTokenizer(phrase);
     String newPhrase="";
@@ -76,5 +81,11 @@ public class SendButton extends TextButton {
 
     }
       return newPhrase;
+  }
+
+  private int getHeightKeyboard()
+  {
+
+    return 0;
   }
 }
