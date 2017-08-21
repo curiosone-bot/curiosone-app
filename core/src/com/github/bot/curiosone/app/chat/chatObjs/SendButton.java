@@ -56,7 +56,7 @@ public class SendButton extends TextButton {
     this.world = world;
   }
 
-  public String modifyPhrase(String phrase)//taglio a 24 caratteri
+  private static String modifyPhrase(String phrase)//taglio a 24 caratteri
   {
     StringTokenizer st=new StringTokenizer(phrase);
     String newPhrase="";
