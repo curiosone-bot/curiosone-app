@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 
 public class Chat extends Game {
@@ -15,6 +16,7 @@ public class Chat extends Game {
   @Override
   public void create() {
     batch = new SpriteBatch();
+    AssetLoader.load();
     setScreen(new ChatScreen());
   }
 
@@ -22,5 +24,6 @@ public class Chat extends Game {
   public void dispose() {
     batch.dispose();
     super.dispose();
+    AssetLoader.dispose();
   }
 }
