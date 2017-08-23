@@ -11,8 +11,6 @@ public class AssetLoader {
 
   public static void load() {
     skin = new Skin();
-    send = new Texture(Gdx.files.internal("chat-asset/send.png"));
-    skin.add("send", send);
   }
 
   public static void dispose() {

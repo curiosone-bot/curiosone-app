@@ -27,15 +27,16 @@ public class ChatWorld {
   private ScrollPane scrollpane;
   private Skin skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));  // Da mettere in AssetLoader
   public Table scrollTable = new Table();
+  private Skin skinScrollPane = new Skin(Gdx.files.internal("chat-asset/bgScrollPane.json"));  // Da mettere in AssetLoader
 
   public ChatWorld() {
-    this.inserimento = new Inserimento(172, 100, 100, 0);
+    this.inserimento = new Inserimento(172, 100, 0, 0);
     this.table = new Table();
-    this.send = new SendButton(100, 100, 0, 0);
+    this.send = new SendButton(100, 100, 172, 0);
     table.setSize(272, 408 - send.getHeight());
     table.setPosition(0, send.getY()+send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
-    scrollpane = new ScrollPane(scrollTable, skin);
+    scrollpane = new ScrollPane(scrollTable, skinScrollPane);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
