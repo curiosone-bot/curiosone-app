@@ -12,5 +12,7 @@ public class Inserimento extends TextField {
     super("", new Skin(Gdx.files.internal("chat-asset/uiskin.json")));
     this.setSize(width, height);
     this.setPosition(x,y);
+
+
   }
 }

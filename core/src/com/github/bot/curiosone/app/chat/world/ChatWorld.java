@@ -31,6 +31,23 @@ public class ChatWorld {
 
   public ChatWorld() {
     this.inserimento = new Inserimento(172, 100, 0, 0);
+    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
+      @Override
+      public void show(boolean visible) {
+        //Gdx.input.setOnscreenKeyboardVisible(true);
+        Gdx.input.getTextInput(new Input.TextInputListener() {
+          @Override
+          public void input(String text) {
+            inserimento.setText(text);
+          }
+
+          @Override
+          public void canceled() {
+            System.out.println("Cancelled.");
+          }
+        }, "talk to curiosoneBot", "","insert text...");
+      }
+    });
     this.table = new Table();
     this.send = new SendButton(100, 100, 172, 0);
     table.setSize(272, 408 - send.getHeight());
@@ -41,6 +58,7 @@ public class ChatWorld {
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
+
   }
 
   public void update(float delta) {
