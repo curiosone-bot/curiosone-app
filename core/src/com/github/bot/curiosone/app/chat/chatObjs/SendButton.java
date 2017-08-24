@@ -33,7 +33,6 @@ public class SendButton extends TextButton {
   }
 
   private void onClick() {
-
       Table table = world.getScrollTable();
       Inserimento inserimento = world.getInserimento();
       ScrollPane scrollPane = world.getScrollpane();
@@ -42,9 +41,9 @@ public class SendButton extends TextButton {
       table.add(new Label(modifyPhrase(inserimento.getText()), skinLabelUtente)).expandX().right();
       table.row();
       table.add(new Label(modifyPhrase(ai.getRisposta(inserimento.getText())), skinLabelBot)).expandX().left();
-      scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
       table.bottom();
-
+      scrollPane.layout();
+      scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
       inserimento.setText("");
     }
     this.addListener(this.click());
