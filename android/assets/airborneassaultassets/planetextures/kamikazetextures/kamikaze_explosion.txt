@@ -1,142 +1,82 @@
-kamikaze_explosion-0.png
-size: 1316, 1694
+explosion.png
+size: 1440, 1044
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Kamikaze_damaged
+Explosion
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 0, 0
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-1.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_1
+Explosion0
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 360, 0
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-2.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_2
+Explosion1
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 720, 0
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-3.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_3
+Explosion2
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 1080, 0
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-4.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_4
+Explosion3
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 0, 348
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-5.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_5
+Explosion4
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 360, 348
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-6.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_6
+Explosion5
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 720, 348
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-7.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_7
+Explosion6
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 1080, 348
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-8.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_8
+Explosion7
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 0, 696
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-9.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_9
+Explosion8
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 360, 696
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1
-
-kamikaze_explosion-10.png
-size: 1316, 1694
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Kamikaze_Explsion_10
+Explosion9
   rotate: false
-  xy: 1, 1
-  size: 1314, 1692
-  orig: 1314, 1692
+  xy: 720, 696
+  size: 360, 348
+  orig: 360, 348
   offset: 0, 0
   index: -1

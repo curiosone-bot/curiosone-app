@@ -46,7 +46,6 @@ public class PlayScreen extends ScreenAdapter {
 
   @Override
   public void dispose() {
-//        if(settings.MUSIC&&Gdx.app.getType()!= Application.ApplicationType.Desktop)music.dispose();
     super.dispose();
     worldRenderer.dispose();
   }

@@ -1,7 +1,7 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
 /**
- * Enumerates the gameobjects dimensions
+ * Enumerates the game objects dimensions
  */
 public enum Dimensions {
   PLANE(118,200),

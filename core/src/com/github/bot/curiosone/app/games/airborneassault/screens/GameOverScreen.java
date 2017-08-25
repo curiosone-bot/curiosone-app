@@ -34,19 +34,16 @@ public class GameOverScreen extends ScreenAdapter{
   public GameOverScreen(Chat game) {
     this.game = game;
     Manager manager = Manager.getIstance();
-    manager.loadGameOverScreen();
     settings = Settings.getIstance();
     settings.saveScore();
-//    if(settings.MUSIC) {
-//      gameOverSound = manager.getAssetManager().get(Assets.gameOverMusic.getPath());
-//      gameOverSound.play();
-//    }
     gameOverTexture = manager.getAssetManager().get(Assets.gameOverBackground.getPath());
-    //Camera Settings
+
+    /*Camera Settings*/
     camera = new OrthographicCamera();
     camera.setToOrtho(false,Constants.WIDTH, Constants.HEIGHT);
     camera.position.set(Constants.WIDTH / 2, Constants.HEIGHT / 2, 0);
-    //Text
+
+    /*Text*/
     bitmapFont = manager.getAssetManager().get(Assets.font.getPath());
     bitmapFont.setColor(Color.WHITE);
     text1 = "Points : "+settings.getScore();
@@ -89,8 +86,8 @@ public class GameOverScreen extends ScreenAdapter{
 
   @Override
   public void dispose() {
+    settings.resetAcceleration();
+    settings.resetScore();
     super.dispose();
-    gameOverTexture.dispose();
-//    if(settings.MUSIC)gameOverSound.dispose();
   }
 }

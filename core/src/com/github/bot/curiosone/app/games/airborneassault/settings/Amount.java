@@ -1,5 +1,8 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
+/**
+ * Enumerates the Damage or Heal amount.
+ */
 public enum Amount {
   PLANE(100),
   ALLIED(180),
@@ -7,9 +10,9 @@ public enum Amount {
   TANK(160),
   STEALTH(200),
   FASTPLANE(160),
-  HEALTHPACK1(25),
-  HEALTHPACK2(50),
-  HEALTHPACK3(75),
+  HEALTHPACK1(50),
+  HEALTHPACK2(100),
+  HEALTHPACK3(150),
   ;
 
   private int amount;

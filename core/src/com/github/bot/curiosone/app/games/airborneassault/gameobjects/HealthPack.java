@@ -16,6 +16,9 @@ import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 
 import java.util.Random;
 
+/**
+ * Heals the player once touched.
+ */
 public class HealthPack extends Actor{
 
   private int amount;
@@ -58,7 +61,7 @@ public class HealthPack extends Actor{
   public void act(float delta) {
     super.act(delta);
     if(texture.getY()> -this.getHeight()){
-      texture.setPosition(texture.getX(),texture.getY()-(Speed.HEALTHPACK.getSpeed()+settings.getAccelleration())*delta);
+      texture.setPosition(texture.getX(),texture.getY()-(Speed.HEALTHPACK.getSpeed()+settings.getAccelleration())*delta/2);
       setPosition(texture.getX(),texture.getY());
     }
     com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {

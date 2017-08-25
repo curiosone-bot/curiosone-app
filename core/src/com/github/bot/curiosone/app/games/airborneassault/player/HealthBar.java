@@ -5,8 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
-import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 
+/**
+ * This class creates the healthbar
+ */
 public class HealthBar {
   private Texture baseBar,healthBar;
   private float progessBarWidth;
@@ -19,11 +21,18 @@ public class HealthBar {
      progessBarWidth = Player.getPlayerHealth()/Player.getMaxHealth()*barWidth;
   }
 
+  /**
+   * Updates the bar width according to the player's health
+   */
   public void update(){
       if(Player.isChanged()){Gdx.app.log("Player Health",Player.getPlayerHealth()+"");}
       progessBarWidth = ((float) Player.getPlayerHealth()/(float)Player.getMaxHealth())*barWidth;
   }
 
+  /**
+   * Draws in the
+   * @param batch the textures
+   */
   public void draw(SpriteBatch batch){
       batch.draw(baseBar,10,10,170,55);
       batch.draw(healthBar,18,23,progessBarWidth,29);

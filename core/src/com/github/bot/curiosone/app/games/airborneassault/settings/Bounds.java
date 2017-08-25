@@ -1,5 +1,8 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
+/**
+ * Enumerates the X limit where the objects can be spawned according to their width.
+ */
 public enum Bounds {
   FASTPLANE(362),
   PLANE(362),

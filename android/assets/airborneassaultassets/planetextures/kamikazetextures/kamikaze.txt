@@ -1,74 +1,60 @@
-kamikaze_self_explosion.png
-size: 1800, 696
+kamikaze.png
+size: 720, 1392
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Webp.net-resizeimage (30)
+1
   rotate: false
   xy: 0, 0
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webp.net-resizeimage (31)
+2
   rotate: false
   xy: 360, 0
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webp.net-resizeimage (32)
-  rotate: false
-  xy: 720, 0
-  size: 360, 348
-  orig: 360, 348
-  offset: 0, 0
-  index: -1
-Webp.net-resizeimage (33)
-  rotate: false
-  xy: 1080, 0
-  size: 360, 348
-  orig: 360, 348
-  offset: 0, 0
-  index: -1
-Webp.net-resizeimage (34)
-  rotate: false
-  xy: 1440, 0
-  size: 360, 348
-  orig: 360, 348
-  offset: 0, 0
-  index: -1
-Webp.net-resizeimage (35)
+3
   rotate: false
   xy: 0, 348
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webpnet-resizeimage 36
+4
   rotate: false
   xy: 360, 348
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webpnet-resizeimage 37
+5
   rotate: false
-  xy: 720, 348
+  xy: 0, 696
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webpnet-resizeimage 38
+6
   rotate: false
-  xy: 1080, 348
+  xy: 360, 696
   size: 360, 348
   orig: 360, 348
   offset: 0, 0
   index: -1
-Webpnet-resizeimage 39
+7 (1)
   rotate: false
-  xy: 1440, 348
+  xy: 0, 1044
+  size: 360, 348
+  orig: 360, 348
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 360, 1044
   size: 360, 348
   orig: 360, 348
   offset: 0, 0

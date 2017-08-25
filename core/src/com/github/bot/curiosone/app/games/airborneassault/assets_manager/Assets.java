@@ -1,5 +1,8 @@
 package com.github.bot.curiosone.app.games.airborneassault.assets_manager;
 
+/**
+ * This enum contains all the assets paths
+ */
 public enum Assets {
   //Main Menu Assets
   menubackground("airborneassaultassets/backgrounds/menubackground.png"),
@@ -13,7 +16,10 @@ public enum Assets {
   checkbox2("airborneassaultassets/checkbox/if_checkbox-unchecked_83251.png"),
   optionBackground("airborneassaultassets/backgrounds/optionbackground.png"),
   //Plane SFX
-  hit(""),
+  hit("airborneassaultassets/sound_effects/Plane_Explosion_1.mp3"),
+  hit2("airborneassaultassets/sound_effects/Plane_Explosion_2.mp3"),
+  hit3("airborneassaultassets/sound_effects/Plane_Explosion_3.mp3"),
+  shot("airborneassaultassets/sound_effects/shot.mp3"),
   //Play Screen Assets
   playBackground("airborneassaultassets/backgrounds/background1.png"),
   playBackground2("airborneassaultassets/backgrounds/background2.png"),
@@ -31,7 +37,7 @@ public enum Assets {
   planeDown("airborneassaultassets/planetextures/planetextures/plane_exposion.txt"),
   fastPlane("airborneassaultassets/planetextures/fastplanetextures/fastplanebase.png"),
   fastPlaneDown("airborneassaultassets/planetextures/fastplanetextures/fastplaneAnimation.txt"),
-  kamikaze("airborneassaultassets/planetextures/kamikazetextures/kamikaze.png"),
+  kamikaze("airborneassaultassets/planetextures/kamikazetextures/kamikaze.txt"),
   kamikazeDown("airborneassaultassets/planetextures/kamikazetextures/kamikaze_explosion.txt"),
   kamikazeSelfExplosion("airborneassaultassets/planetextures/kamikazetextures/kamikaze_self_explosion.txt"),
   stealth("airborneassaultassets/planetextures/stealthtextures/stealth_base.png"),

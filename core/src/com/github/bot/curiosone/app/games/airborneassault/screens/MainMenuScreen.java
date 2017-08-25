@@ -34,27 +34,32 @@ public class MainMenuScreen extends ScreenAdapter
     private Stage stage;
     private Manager manager;
     private OrthographicCamera camera;
-    private int count;
+    private Settings settings;
 
     public MainMenuScreen(final Chat game) {
         this.game=game;
-        Settings settings = Settings.getIstance();
+        manager = Manager.getIstance();
+        manager.loadAll();
+        settings = Settings.getIstance();
         stage = new Stage(new StretchViewport(Constants.WIDTH,Constants.HEIGHT));
         Gdx.input.setInputProcessor(stage);
-        manager = Manager.getIstance();
-        manager.loadMainMenuScreen();
-        //Background
+
+        /*Background*/
         background = manager.getAssetManager().get(Assets.menubackground.getPath());
-        //Music Settings
+
+        /*Music Settings*/
         music = manager.getAssetManager().get(Assets.menuMusic.getPath());
-        music.play();
-        //Sfx Settings
+        if(settings.isMUSIC()){music.play();}
+
+        /*Sfx Settings*/
         clickSound = manager.getAssetManager().get(Assets.click.getPath());
-        //Camera Settings
+
+        /*Camera Settings*/
         camera = new OrthographicCamera();
         camera.setToOrtho(false,1080,1920);
         camera.position.set(1080 / 2, 1920 / 2, 0); //Need to fill the background image dimensions
-        //Play Button
+
+        /*Play Button*/
         TextureRegionDrawable buttonOn = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.buttonOn.getPath(),Texture.class)));
         TextureRegionDrawable buttonOff = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.buttonOff.getPath(),Texture.class)));
         ImageButton playButton = new ImageButton(buttonOn,buttonOff);
@@ -63,18 +68,18 @@ public class MainMenuScreen extends ScreenAdapter
         playButton.addListener(new InputListener(){
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            clickSound.play(2f);
+            if(settings.isSFX()){clickSound.play(2f);}
             return true;
           }
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            manager.getAssetManager().clear();
+            if(settings.isMUSIC()){music.stop();}
             game.setScreen(new PlayScreen(game));
-            dispose();
           }
         });
         stage.addActor(playButton);
+
         /*Option Button*/
         ImageButton optionButton = new ImageButton(buttonOn,buttonOff);
         optionButton.setSize(400,80);
@@ -82,18 +87,18 @@ public class MainMenuScreen extends ScreenAdapter
         optionButton.addListener(new InputListener(){
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            clickSound.play();
+            if(settings.isSFX()){clickSound.play();}
             return true;
           }
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            manager.getAssetManager().clear();
+            if(settings.isMUSIC()){music.stop();}
             game.setScreen(new OptionScreen(game));
-            dispose();
           }
         });
         stage.addActor(optionButton);
+
         /*Exit Button*/
         ImageButton exitButton = new ImageButton(buttonOn,buttonOff);
         exitButton.setSize(400,80);
@@ -101,15 +106,14 @@ public class MainMenuScreen extends ScreenAdapter
         exitButton.addListener(new InputListener(){
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            clickSound.play();
+            if(settings.isSFX()){clickSound.play();}
             return true;
           }
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            manager.getAssetManager().clear();
-            game.setScreen(new GameCenter(game));
             dispose();
+            game.setScreen(new GameCenter(game));
           }
         });
         stage.addActor(exitButton);
@@ -117,7 +121,6 @@ public class MainMenuScreen extends ScreenAdapter
 
     @Override
     public void render(float delta) {
-        count++;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
@@ -136,6 +139,7 @@ public class MainMenuScreen extends ScreenAdapter
 
     @Override
     public void dispose() {
+        manager.getAssetManager().clear();
         music.dispose();
         background.dispose();
         stage.dispose();

@@ -1,5 +1,8 @@
 package com.github.bot.curiosone.app.games.airborneassault.settings;
 
+/**
+ * Enumerates the points every game object is worth.
+ */
 public enum  Points {
   PLANE(60),
   KAMIKAZE(80),

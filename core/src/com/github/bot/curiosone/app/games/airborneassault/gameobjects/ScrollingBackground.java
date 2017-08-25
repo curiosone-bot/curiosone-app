@@ -7,6 +7,9 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 
+/**
+ * This class creates the background for the PlayScreen
+ */
 public class ScrollingBackground {
   private Texture background,background2,background3;
   private float y1,y2;

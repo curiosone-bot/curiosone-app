@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app;
 
+import com.github.bot.curiosone.app.workflow.Chat;
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
 
@@ -10,7 +11,7 @@ public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
-        return new IOSApplication(new MyGdxGame(), config);
+        return new IOSApplication(new Chat(), config);
     }
 
     public static void main(String[] argv) {
