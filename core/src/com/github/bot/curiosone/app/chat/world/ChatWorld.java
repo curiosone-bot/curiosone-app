@@ -31,33 +31,11 @@ public class ChatWorld {
   private Skin skinScrollPane = new Skin(Gdx.files.internal("chat-asset/bgScrollPane.json"));  // Da mettere in AssetLoader
 
   public ChatWorld() {
-    this.inserimento = new Inserimento(172, 100, 0, 0);
-   /* inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
-      @Override
-      public void show(boolean visible) {
-        //Gdx.input.setOnscreenKeyboardVisible(true);
-        Gdx.input.getTextInput(new Input.TextInputListener() {
-          @Override
-          public void input(String text) {
-            inserimento.setText(text);
-          }
-
-          @Override
-          public void canceled() {
-            System.out.println("Cancelled.");
-          }
-        }, "talk to curiosoneBot", "","insert text...");
-      }
-    });*/
-    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
-      public void show(boolean visible) {
-        //richiamo metodo per spostare
-      }
-    });
+    this.inserimento = new Inserimento(197, 50, 0, 0);
     this.table = new Table();
-    this.send = new SendButton(100, 100, 172, 0);
+    this.send = new SendButton(75, 50, 197, 0);
     table.setSize(272, 408 - send.getHeight());
-    table.setPosition(0, send.getY()+send.getHeight());
+    table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
     scrollpane = new ScrollPane(scrollTable, skinScrollPane);
     scrollpane.setSize(table.getWidth(), table.getHeight());
@@ -69,6 +47,9 @@ public class ChatWorld {
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
+    inserimento.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
+    scrollpane.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
+    send.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
   }
 
   public void setRender(ChatRender render) {

@@ -21,7 +21,7 @@ public class AITemporanea {
         answer = "scarica xenoverse 2";
         break;
       default:
-        answer="hai gia' fatto i soldi";
+        answer = "non ho capito!";
     }
   return answer;
   }

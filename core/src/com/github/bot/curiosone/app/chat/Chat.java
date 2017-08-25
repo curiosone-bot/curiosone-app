@@ -21,20 +21,19 @@ public class Chat extends Game {
   private SpriteBatch batch ;
   private View view;
   private Stage stage;
-  private boolean fromAndroid=false;
+  private boolean fromAndroid = false;
   private Skin skin;
-  public static float keyboardHeight=2.0f;
+  public static float keyboardHeight;
   public SpriteBatch getBatch() {
     return batch;
   }
 
   public Chat(ApplicationBundle applicationBundle) {
     view = applicationBundle.getView();
-    fromAndroid=true;
+    fromAndroid = true;
   }
 
-  public Chat()
-  {}
+  public Chat() {}
 
   @Override
   public void create() {
