@@ -16,7 +16,7 @@ public class ChatRender {
 
   public ChatRender(ChatWorld world) {
     this.world = world;
-    this.cam = new OrthographicCamera();        // Setting camera
+    this.cam = new OrthographicCamera();       // Setting camera
     cam.setToOrtho(false, 136, 204);
     this.batch = new SpriteBatch();
     batch.setProjectionMatrix(cam.combined);
@@ -27,8 +27,6 @@ public class ChatRender {
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getTable());
-
-
   }
 
   public void render() {

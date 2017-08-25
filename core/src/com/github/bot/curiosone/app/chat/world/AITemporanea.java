@@ -1,15 +1,8 @@
 package com.github.bot.curiosone.app.chat.world;
 
-/**
- * Created by federico-pc on 07/08/2017.
- */
-
 public class AITemporanea {
 
-  public String getRisposta(String question)
-  {
-
-
+  public String getRisposta(String question) {
     String answer;
     switch (question) {
       case "ciao":
@@ -30,10 +23,6 @@ public class AITemporanea {
       default:
         answer="hai gia' fatto i soldi";
     }
-
   return answer;
   }
-
-
-
 }

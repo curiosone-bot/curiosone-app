@@ -29,13 +29,12 @@ public class SendButton extends TextButton {
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
-
   }
 
   private void onClick() {
-      Table table = world.getScrollTable();
-      Inserimento inserimento = world.getInserimento();
-      ScrollPane scrollPane = world.getScrollpane();
+    Table table = world.getScrollTable();
+    Inserimento inserimento = world.getInserimento();
+    ScrollPane scrollPane = world.getScrollpane();
     if(!inserimento.getText().isEmpty()) {
       table.row();
       table.add(new Label(modifyPhrase(inserimento.getText()), skinLabelUtente)).expandX().right();
@@ -63,32 +62,22 @@ public class SendButton extends TextButton {
     this.world = world;
   }
 
-  private static String modifyPhrase(String phrase)//taglio a 24 caratteri
-
-  {
+  private static String modifyPhrase(String phrase) { //taglio a 24 caratteri
     StringTokenizer st=new StringTokenizer(phrase);
     String newPhrase="";
-    final int TAGLIO_FRASE=12;//originale 24
+    final int TAGLIO_FRASE=12; //originale 24
     String stringaTemporanea;
-    int dimensioneFraseTemporanea=0;//per vedere se si e' arrivati al limite della frase
-    while(st.hasMoreTokens())
-    {
+    int dimensioneFraseTemporanea=0; //per vedere se si e' arrivati al limite della frase
+    while(st.hasMoreTokens()) {
       stringaTemporanea = st.nextToken();
-      if(stringaTemporanea.length()+dimensioneFraseTemporanea>TAGLIO_FRASE)
-      {
+      if(stringaTemporanea.length() + dimensioneFraseTemporanea > TAGLIO_FRASE) {
         newPhrase+="\n";
         dimensioneFraseTemporanea=0;
       }
       dimensioneFraseTemporanea+=stringaTemporanea.length();
       newPhrase+=stringaTemporanea+" ";
-
     }
       return newPhrase;
   }
 
-  private int getHeightKeyboard()
-  {
-
-    return 0;
-  }
 }

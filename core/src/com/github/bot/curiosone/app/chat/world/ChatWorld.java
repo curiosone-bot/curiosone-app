@@ -49,14 +49,11 @@ public class ChatWorld {
         }, "talk to curiosoneBot", "","insert text...");
       }
     });*/
-    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard()
-    {
-      public void show(boolean visible)
-      {
+    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
+      public void show(boolean visible) {
         //richiamo metodo per spostare
       }
-    }
-    );
+    });
     this.table = new Table();
     this.send = new SendButton(100, 100, 172, 0);
     table.setSize(272, 408 - send.getHeight());
@@ -67,7 +64,6 @@ public class ChatWorld {
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
-
   }
 
   public void update(float delta) {
@@ -97,6 +93,5 @@ public class ChatWorld {
   public Table getScrollTable() {
     return scrollTable;
   }
-
 }
 

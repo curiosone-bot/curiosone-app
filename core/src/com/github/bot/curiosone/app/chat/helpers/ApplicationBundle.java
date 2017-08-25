@@ -1,9 +1,5 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
-/**
- * Created by federico-pc on 25/08/2017.
- */
-
 public class ApplicationBundle {
 
   private final View view;
