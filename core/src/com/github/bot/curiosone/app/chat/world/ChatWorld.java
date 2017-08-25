@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 
@@ -31,7 +32,7 @@ public class ChatWorld {
 
   public ChatWorld() {
     this.inserimento = new Inserimento(172, 100, 0, 0);
-    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
+   /* inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard() {
       @Override
       public void show(boolean visible) {
         //Gdx.input.setOnscreenKeyboardVisible(true);
@@ -47,7 +48,15 @@ public class ChatWorld {
           }
         }, "talk to curiosoneBot", "","insert text...");
       }
-    });
+    });*/
+    inserimento.setOnscreenKeyboard(new TextField.OnscreenKeyboard()
+    {
+      public void show(boolean visible)
+      {
+        //richiamo metodo per spostare
+      }
+    }
+    );
     this.table = new Table();
     this.send = new SendButton(100, 100, 172, 0);
     table.setSize(272, 408 - send.getHeight());
