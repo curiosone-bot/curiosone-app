@@ -17,10 +17,10 @@ public class ChatRender {
   public ChatRender(ChatWorld world) {
     this.world = world;
     this.cam = new OrthographicCamera();       // Setting camera
-    cam.setToOrtho(false, 136, 204);
+    cam.setToOrtho(false, 480, 800);
     this.batch = new SpriteBatch();
     batch.setProjectionMatrix(cam.combined);
-    FitViewport viewp = new FitViewport(272, 408, cam);
+    FitViewport viewp = new FitViewport(480, 800, cam);
     world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);

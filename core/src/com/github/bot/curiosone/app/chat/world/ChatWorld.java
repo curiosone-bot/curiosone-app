@@ -31,10 +31,10 @@ public class ChatWorld {
   private Skin skinScrollPane = new Skin(Gdx.files.internal("chat-asset/bgScrollPane2.json"));  // Da mettere in AssetLoader
 
   public ChatWorld() {
-    this.inserimento = new Inserimento(197, 50, 0, 0);
+    this.inserimento = new Inserimento(347, 98, 0, 0);
     this.table = new Table();
-    this.send = new SendButton(75, 50, 197, 0);
-    table.setSize(272, 408 - send.getHeight());
+    this.send = new SendButton(132, 98, 347, 0);
+    table.setSize(480, 800 - send.getHeight());
     table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
     scrollpane = new ScrollPane(scrollTable, skinScrollPane);
@@ -47,9 +47,9 @@ public class ChatWorld {
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
-    inserimento.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
-    scrollpane.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
-    send.setY(Chat.keyboardHeight * 408 / Gdx.graphics.getHeight());
+    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
+    scrollpane.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
   }
 
   public void setRender(ChatRender render) {
