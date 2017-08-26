@@ -31,15 +31,16 @@ public class SendButton extends TextButton {
     this.addListener(this.click());
   }
 
-  private void onClick() {
+  private void onClick()
+  {
     Table table = world.getScrollTable();
     Inserimento inserimento = world.getInserimento();
     ScrollPane scrollPane = world.getScrollpane();
     if(!inserimento.getText().isEmpty()) {
       table.row();
-      table.add(new Label(modifyPhrase(inserimento.getText()), skinLabelUtente)).expandX().right();
+      table.add(getLabel(modifyPhrase(inserimento.getText()),skinLabelUtente)).expandX().right();
       table.row();
-      table.add(new Label(modifyPhrase(ai.getRisposta(inserimento.getText())), skinLabelBot)).expandX().left();
+      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())),skinLabelBot)).expandX().left();
       table.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
@@ -78,6 +79,13 @@ public class SendButton extends TextButton {
       newPhrase+=stringaTemporanea+" ";
     }
       return newPhrase;
+  }
+
+  private Label getLabel(String text,Skin skin)
+  {
+    Label l = new Label(text, skin);
+    l.setFontScale(0.9f);
+    return l;
   }
 
 }

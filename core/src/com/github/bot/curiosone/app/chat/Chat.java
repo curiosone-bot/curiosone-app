@@ -49,8 +49,6 @@ public class Chat extends Game {
       view.addListener(new SizeChangeListener() {
         @Override
         public void onSizeChange(float width, float height) {
-          Gdx.app.log("INFO", "Visible area: " + width + "   " + height);
-          Gdx.app.log("INFO", "Stage area: " + stage.getWidth() + "   " + stage.getHeight());
           keyboardHeight = getKeyboardHeight();
           tf1.addAction(Actions.moveTo(width / 2 - tf1.getWidth() / 2.0f, keyboardHeight + (6 * (height / 8)), 1, Interpolation.sineOut));
           tf2.addAction(Actions.moveTo(width / 2 - tf2.getWidth() / 2.0f, keyboardHeight + (7 * (height / 8)), 1, Interpolation.sineOut));
