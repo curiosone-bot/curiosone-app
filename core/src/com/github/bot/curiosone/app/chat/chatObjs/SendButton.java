@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat.chatObjs;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,17 +16,15 @@ import java.util.StringTokenizer;
 
 
 
-public class SendButton extends TextButton {
+public class SendButton extends ImageButton {
 
   private ChatWorld world;
-  private Skin skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));  // Da mettere in AssetLoader
-  private Skin skinLabelUtente = new Skin(Gdx.files.internal("chat-asset/labelVerde.json"));  // Da mettere in AssetLoader
-  private Skin skinLabelBot = new Skin(Gdx.files.internal("chat-asset/labelBianca.json"));  // Da mettere in AssetLoader
+  private Skin skin = new Skin(Gdx.files.internal("chat-asset/skin.json"));
 
   private AITemporanea ai = new AITemporanea();
 
   public SendButton(float width, float height, float x, float y) {
-    super("send", new Skin(Gdx.files.internal("chat-asset/uiskin.json")));
+    super(new Skin(Gdx.files.internal("chat-asset/skin.json")));
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
@@ -38,9 +37,9 @@ public class SendButton extends TextButton {
     ScrollPane scrollPane = world.getScrollpane();
     if(!inserimento.getText().isEmpty()) {
       table.row();
-      table.add(getLabel(modifyPhrase(inserimento.getText()),skinLabelUtente)).expandX().right();
+      table.add(getLabel(modifyPhrase(inserimento.getText()), skin.get("User", Label.LabelStyle.class))).expandX().right();
       table.row();
-      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())),skinLabelBot)).expandX().left();
+      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())),skin.get("Bot", Label.LabelStyle.class))).expandX().left();
       table.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
@@ -64,26 +63,26 @@ public class SendButton extends TextButton {
   }
 
   private static String modifyPhrase(String phrase) { //taglio a 24 caratteri
-    StringTokenizer st=new StringTokenizer(phrase);
-    String newPhrase="";
-    final int TAGLIO_FRASE=12; //originale 24
+    StringTokenizer st = new StringTokenizer(phrase);
+    String newPhrase = "";
+    final int TAGLIO_FRASE = 20; //originale 24
     String stringaTemporanea;
     int dimensioneFraseTemporanea=0; //per vedere se si e' arrivati al limite della frase
     while(st.hasMoreTokens()) {
       stringaTemporanea = st.nextToken();
       if(stringaTemporanea.length() + dimensioneFraseTemporanea > TAGLIO_FRASE) {
-        newPhrase+="\n";
-        dimensioneFraseTemporanea=0;
+        newPhrase += "\n";
+        dimensioneFraseTemporanea = 0;
       }
-      dimensioneFraseTemporanea+=stringaTemporanea.length();
-      newPhrase+=stringaTemporanea+" ";
+      dimensioneFraseTemporanea += stringaTemporanea.length();
+      newPhrase+=stringaTemporanea + " ";
     }
       return newPhrase;
   }
 
-  private Label getLabel(String text,Skin skin)
+  private Label getLabel(String text, Label.LabelStyle style)
   {
-    Label l = new Label(text, skin);
+    Label l = new Label(text, style);
     l.setFontScale(0.9f);
     return l;
   }

@@ -26,9 +26,7 @@ public class ChatWorld {
   private ChatRender render;
   private Table table;
   private ScrollPane scrollpane;
-  private Skin skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));  // Da mettere in AssetLoader
   public Table scrollTable = new Table();
-  private Skin skinScrollPane = new Skin(Gdx.files.internal("chat-asset/bgScrollPane2.json"));  // Da mettere in AssetLoader
 
   public ChatWorld() {
     this.inserimento = new Inserimento(347, 98, 0, 0);
@@ -37,12 +35,12 @@ public class ChatWorld {
     table.setSize(480, 800 - send.getHeight());
     table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
-    scrollpane = new ScrollPane(scrollTable, skinScrollPane);
+    scrollpane = new ScrollPane(scrollTable, new Skin(Gdx.files.internal("chat-asset/bgScrollPane.json")));
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
-                      }
+  }
 
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");

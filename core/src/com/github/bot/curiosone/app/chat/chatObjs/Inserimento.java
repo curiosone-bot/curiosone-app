@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class Inserimento extends TextField {
 
   public Inserimento(int width, int height, int x, int y) {
-    super("", new Skin(Gdx.files.internal("chat-asset/uiskin.json")));
+    super("", new Skin(Gdx.files.internal("chat-asset/skin.json")));
     this.setSize(width, height);
     this.setPosition(x,y);
   }
