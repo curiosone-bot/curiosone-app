@@ -35,7 +35,7 @@ public class ChatWorld {
     table.setSize(480, 800 - send.getHeight());
     table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
-    scrollpane = new ScrollPane(scrollTable, new Skin(Gdx.files.internal("chat-asset/bgScrollPane.json")));
+    scrollpane = new ScrollPane(scrollTable, new Skin(Gdx.files.internal("chat-asset/skin.json")));
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     scrollpane.setScrollingDisabled(true, false);
