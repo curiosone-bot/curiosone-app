@@ -19,12 +19,12 @@ import java.util.StringTokenizer;
 public class SendButton extends ImageButton {
 
   private ChatWorld world;
-  private Skin skin = new Skin(Gdx.files.internal("chat-asset/skin.json"));
+  private Skin skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
 
   private AITemporanea ai = new AITemporanea();
 
   public SendButton(float width, float height, float x, float y) {
-    super(new Skin(Gdx.files.internal("chat-asset/skin.json")));
+    super(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
