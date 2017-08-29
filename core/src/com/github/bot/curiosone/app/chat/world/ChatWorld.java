@@ -32,19 +32,19 @@ public class ChatWorld {
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
   public Image bg = new Image(AssetLoader.bg);
-  private ImageButton buttonLeft;
-  private ImageButton buttonRight;
+  private ImageButton gameButton;
+  private ImageButton optionButton;
 
   public ChatWorld() {
     //pulsante in alto a sinistra: x:65 y: 58 Width: 75  height: 30
     //pulsante in alto a destra: x:415 y:58 Width: 75  height:30
-    buttonLeft = new ImageButton(AssetLoader.skin);
-    buttonLeft.setPosition(65, 58);
-    buttonLeft.setSize(75, 30);
+    gameButton = new ImageButton(AssetLoader.skin);
+    gameButton.setPosition(65, 742);
+    gameButton.setSize(75, 30);
 
-    buttonRight = new ImageButton(AssetLoader.skin);
-    buttonRight.setPosition(415, 58);
-    buttonRight.setSize(75, 30);
+    optionButton = new ImageButton(AssetLoader.skin);
+    optionButton.setPosition(415, 742);
+    optionButton.setSize(75, 30);
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.table = new Table();
@@ -55,8 +55,6 @@ public class ChatWorld {
     scrollpane = new ScrollPane(scrollTable, AssetLoader.skin);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
-    table.add(buttonLeft);
-    table.add(buttonRight);
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
   }
@@ -94,6 +92,14 @@ public class ChatWorld {
 
   public Image getBg() {
     return bg;
+  }
+
+  public ImageButton getGameButton() {
+    return gameButton;
+  }
+
+  public ImageButton getOptionButton() {
+    return optionButton;
   }
 
   public int getIncremento(int n) {

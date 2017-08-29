@@ -27,6 +27,8 @@ public class ChatRender {
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);
     stage.addActor(world.getBg());
+    stage.addActor(world.getGameButton());
+    stage.addActor(world.getOptionButton());
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getTable());
