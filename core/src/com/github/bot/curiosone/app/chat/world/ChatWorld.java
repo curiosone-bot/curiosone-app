@@ -32,9 +32,9 @@ public class ChatWorld {
   public Image bg = new Image(new Texture("chat-asset/bg.png"));
 
   public ChatWorld() {
-    this.inserimento = new Inserimento(347, 98, 0, 0);
+    this.inserimento = new Inserimento(290, 80, 45, 40);
     this.table = new Table();
-    this.send = new SendButton(132, 98, 347, 0);
+    this.send = new SendButton(75, 58, 362, 52);
     table.setSize(480, 800 - send.getHeight());
     table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
@@ -48,9 +48,9 @@ public class ChatWorld {
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
-    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
+    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight()+40);
     scrollpane.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
-    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight()+52);
   }
 
   public void setRender(ChatRender render) {
