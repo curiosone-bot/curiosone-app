@@ -37,8 +37,6 @@ public class ChatWorld {
   private TextButton optionButton;
 
   public ChatWorld() {
-    //pulsante in alto a sinistra: x:65 y: 58 Width: 75  height: 30
-    //pulsante in alto a destra: x:415 y:58 Width: 75  height:30
     gameButton = new TextButton("", AssetLoader.defaultSkin);
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
@@ -50,9 +48,10 @@ public class ChatWorld {
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.table = new Table();
     this.send = new SendButton(75, 58, 362, 52);
-    table.setSize(480, 800 - send.getHeight());
-    table.setPosition(0, send.getY() + send.getHeight());
-    scrollTable.setSize(table.getWidth(), table.getHeight());
+
+    table.setPosition(45, send.getY() + send.getHeight() + 20);
+    table.setSize(390, 700 - table.getY());
+    //scrollTable.setSize(table.getWidth(), table.getHeight());
     scrollpane = new ScrollPane(scrollTable, AssetLoader.skin);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
@@ -104,8 +103,9 @@ public class ChatWorld {
   }
 
   public int getIncremento(int n) {
-    if(Chat.keyboardHeight != 0)
+    if(Chat.keyboardHeight != 0) {
       return 17;
+    }
     else
       return n;
   }
