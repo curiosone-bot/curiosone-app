@@ -2,9 +2,11 @@ package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 
@@ -27,6 +29,7 @@ public class ChatWorld {
   private Table table;
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
+  public Image bg = new Image(new Texture("chat-asset/bg.png"));
 
   public ChatWorld() {
     this.inserimento = new Inserimento(347, 98, 0, 0);
@@ -71,6 +74,10 @@ public class ChatWorld {
 
   public Table getScrollTable() {
     return scrollTable;
+  }
+
+  public Image getBg() {
+    return bg;
   }
 }
 
