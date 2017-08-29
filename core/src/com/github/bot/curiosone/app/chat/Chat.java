@@ -62,8 +62,8 @@ public class Chat extends Game {
 
   @Override
   public void dispose() {
-    batch.dispose();
     super.dispose();
+    batch.dispose();
     AssetLoader.dispose();
   }
 

@@ -31,21 +31,20 @@ public class ChatWorld {
   private Table table;
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
-  public Image bg = new Image(new Texture("chat-asset/bg.png"));
+  public Image bg = new Image(AssetLoader.bg);
   private ImageButton buttonLeft;
   private ImageButton buttonRight;
-  private AssetLoader al;
 
   public ChatWorld() {
     //pulsante in alto a sinistra: x:65 y: 58 Width: 75  height: 30
     //pulsante in alto a destra: x:415 y:58 Width: 75  height:30
-    buttonLeft=new ImageButton(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
-    buttonLeft.setPosition(65,58);
-    buttonLeft.setSize(75,30);
+    buttonLeft = new ImageButton(AssetLoader.skin);
+    buttonLeft.setPosition(65, 58);
+    buttonLeft.setSize(75, 30);
 
-    buttonRight=new ImageButton(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
-    buttonRight.setPosition(415,58);
-    buttonRight.setSize(75,30);
+    buttonRight = new ImageButton(AssetLoader.skin);
+    buttonRight.setPosition(415, 58);
+    buttonRight.setSize(75, 30);
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.table = new Table();
@@ -53,7 +52,7 @@ public class ChatWorld {
     table.setSize(480, 800 - send.getHeight());
     table.setPosition(0, send.getY() + send.getHeight());
     scrollTable.setSize(table.getWidth(), table.getHeight());
-    scrollpane = new ScrollPane(scrollTable, new Skin(Gdx.files.internal("chat-asset/Skin.json")));
+    scrollpane = new ScrollPane(scrollTable, AssetLoader.skin);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
     table.add(buttonLeft);
@@ -65,9 +64,9 @@ public class ChatWorld {
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
-    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight()+getIncremento(40));
+    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
     scrollpane.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
-    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight()+getIncremento(52));
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
   }
 
   public void setRender(ChatRender render) {
@@ -98,7 +97,7 @@ public class ChatWorld {
   }
 
   public int getIncremento(int n) {
-    if(Chat.keyboardHeight!=0)
+    if(Chat.keyboardHeight != 0)
       return 17;
     else
       return n;

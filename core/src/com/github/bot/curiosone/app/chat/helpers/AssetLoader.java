@@ -9,22 +9,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class  AssetLoader {
 
   public static Skin skin;
-  public static Image bg;
+  public static Texture bg = new Texture("chat-asset/bg.png");
 
   public static void load() {
     skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
-    bg =new Image(new Texture("chat-asset/bg.png"));
   }
 
   public static void dispose() {
-//    send.dispose();
+    skin.dispose();
+    bg.dispose();
   }
-
-  public Image getBg()
-  {return bg;}
-
-  public Skin getSkin()
-  {return skin;}
-
 
 }

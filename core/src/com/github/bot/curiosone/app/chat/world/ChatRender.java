@@ -15,7 +15,7 @@ public class ChatRender {
   private ChatWorld world;
   private Stage stage;
   private SpriteBatch batch;
-  private AssetLoader al;
+
   public ChatRender(ChatWorld world) {
     this.world = world;
     this.cam = new OrthographicCamera();       // Setting camera
