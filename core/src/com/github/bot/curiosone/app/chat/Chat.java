@@ -38,7 +38,7 @@ public class Chat extends Game {
   @Override
   public void create() {
     if(fromAndroid){
-      skin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));
+      skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
       stage = new Stage();
       final TextField tf1 = new TextField("", skin);
       final TextField tf2 = new TextField("", skin);
