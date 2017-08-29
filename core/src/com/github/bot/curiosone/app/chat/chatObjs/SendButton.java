@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
@@ -19,12 +20,11 @@ import java.util.StringTokenizer;
 public class SendButton extends ImageButton {
 
   private ChatWorld world;
-  private Skin skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
 
   private AITemporanea ai = new AITemporanea();
 
   public SendButton(float width, float height, float x, float y) {
-    super(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
+    super(AssetLoader.skin);
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
@@ -37,9 +37,9 @@ public class SendButton extends ImageButton {
     ScrollPane scrollPane = world.getScrollpane();
     if(!inserimento.getText().isEmpty()) {
       table.row();
-      table.add(getLabel(modifyPhrase(inserimento.getText()), skin.get("User", Label.LabelStyle.class))).expandX().right();
+      table.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
       table.row();
-      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())),skin.get("Bot", Label.LabelStyle.class))).expandX().left();
+      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
       table.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());

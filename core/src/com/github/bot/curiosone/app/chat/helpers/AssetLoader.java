@@ -9,10 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class  AssetLoader {
 
   public static Skin skin;
-  public static Texture bg = new Texture("chat-asset/bg.png");
+  public static Texture bg;
+  public static Skin defaultSkin;
 
   public static void load() {
     skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
+    bg = new Texture("chat-asset/bg.png");
+    defaultSkin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));
   }
 
   public static void dispose() {

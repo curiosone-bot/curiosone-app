@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.Chat;
@@ -32,18 +33,18 @@ public class ChatWorld {
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
   public Image bg = new Image(AssetLoader.bg);
-  private ImageButton gameButton;
-  private ImageButton optionButton;
+  private TextButton gameButton;
+  private TextButton optionButton;
 
   public ChatWorld() {
     //pulsante in alto a sinistra: x:65 y: 58 Width: 75  height: 30
     //pulsante in alto a destra: x:415 y:58 Width: 75  height:30
-    gameButton = new ImageButton(AssetLoader.skin);
-    gameButton.setPosition(65, 742);
+    gameButton = new TextButton("", AssetLoader.defaultSkin);
+    gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
 
-    optionButton = new ImageButton(AssetLoader.skin);
-    optionButton.setPosition(415, 742);
+    optionButton = new TextButton("", AssetLoader.defaultSkin);
+    optionButton.setPosition(354, 727);
     optionButton.setSize(75, 30);
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
@@ -94,11 +95,11 @@ public class ChatWorld {
     return bg;
   }
 
-  public ImageButton getGameButton() {
+  public TextButton getGameButton() {
     return gameButton;
   }
 
-  public ImageButton getOptionButton() {
+  public TextButton getOptionButton() {
     return optionButton;
   }
 
