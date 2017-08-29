@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 
@@ -19,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
+import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
 
 public class ChatWorld {
@@ -30,8 +32,21 @@ public class ChatWorld {
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
   public Image bg = new Image(new Texture("chat-asset/bg.png"));
+  private ImageButton buttonLeft;
+  private ImageButton buttonRight;
+  private AssetLoader al;
 
   public ChatWorld() {
+    //pulsante in alto a sinistra: x:65 y: 58 Width: 75  height: 30
+    //pulsante in alto a destra: x:415 y:58 Width: 75  height:30
+    buttonLeft=new ImageButton(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
+    buttonLeft.setPosition(65,58);
+    buttonLeft.setSize(75,30);
+
+    buttonRight=new ImageButton(new Skin(Gdx.files.internal("chat-asset/Skin.json")));
+    buttonRight.setPosition(415,58);
+    buttonRight.setSize(75,30);
+
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.table = new Table();
     this.send = new SendButton(75, 58, 362, 52);
@@ -41,6 +56,8 @@ public class ChatWorld {
     scrollpane = new ScrollPane(scrollTable, new Skin(Gdx.files.internal("chat-asset/Skin.json")));
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
+    table.add(buttonLeft);
+    table.add(buttonRight);
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
   }

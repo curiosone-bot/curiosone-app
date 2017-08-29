@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
 public class ChatRender {
 
@@ -14,7 +15,7 @@ public class ChatRender {
   private ChatWorld world;
   private Stage stage;
   private SpriteBatch batch;
-
+  private AssetLoader al;
   public ChatRender(ChatWorld world) {
     this.world = world;
     this.cam = new OrthographicCamera();       // Setting camera
