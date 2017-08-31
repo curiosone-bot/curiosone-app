@@ -32,15 +32,16 @@ public class SendButton extends ImageButton {
 
   private void onClick()
   {
-    Table table = world.getScrollTable();
+    Table scrollTable = world.getScrollTable();
     Inserimento inserimento = world.getInserimento();
     ScrollPane scrollPane = world.getScrollpane();
+    Table table = world.getTable();
     if(!inserimento.getText().isEmpty()) {
-      table.row();
-      table.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
-      table.row();
-      table.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
-      table.bottom();
+      scrollTable.row();
+      scrollTable.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
+      scrollTable.row();
+      scrollTable.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
+      scrollTable.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
       inserimento.setText("");
