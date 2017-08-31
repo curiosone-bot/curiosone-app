@@ -49,9 +49,8 @@ public class ChatWorld {
     this.table = new Table();
     this.send = new SendButton(75, 58, 362, 52);
 
-    table.setPosition(45, send.getY() + send.getHeight() + 20);
+    table.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
     table.setSize(390, 700 - table.getY());
-    //scrollTable.setSize(table.getWidth(), table.getHeight());
     scrollpane = new ScrollPane(scrollTable, AssetLoader.skin);
     scrollpane.setSize(table.getWidth(), table.getHeight());
     table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
@@ -63,8 +62,11 @@ public class ChatWorld {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
     inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
-    scrollpane.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight());
+    table.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
+    scrollpane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
+    //scrollpane.setY(100);
+    Gdx.app.log("scroll", scrollpane.getY() + "");
   }
 
   public void setRender(ChatRender render) {
