@@ -24,6 +24,8 @@ public class Chat extends Game {
   private boolean fromAndroid = false;
   private Skin skin;
   public static float keyboardHeight;
+  public static boolean keyboard;
+
   public SpriteBatch getBatch() {
     return batch;
   }
@@ -50,6 +52,7 @@ public class Chat extends Game {
         @Override
         public void onSizeChange(float width, float height) {
           keyboardHeight = getKeyboardHeight();
+          keyboard = keyboardHeight!=0;
           tf1.addAction(Actions.moveTo(width / 2 - tf1.getWidth() / 2.0f, keyboardHeight + (6 * (height / 8)), 1, Interpolation.sineOut));
           tf2.addAction(Actions.moveTo(width / 2 - tf2.getWidth() / 2.0f, keyboardHeight + (7 * (height / 8)), 1, Interpolation.sineOut));
         }
