@@ -34,6 +34,7 @@ public class ChatWorld {
   public Image bg = new Image(AssetLoader.bg);
   private TextButton gameButton;
   private TextButton optionButton;
+  private int cliccato=2;
 
   public ChatWorld() {
     gameButton = new TextButton("", AssetLoader.defaultSkin);
@@ -56,11 +57,21 @@ public class ChatWorld {
 
   public void update(float delta) {
     //Gdx.app.log("ChatWorld", "update");
+
+
     render.getStage().act(delta);
     inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
     scrollpane.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     scrollpane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
     send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
+      if(cliccato>0&&Chat.keyboard&&scrollpane.getMaxY()==scrollpane.getScrollY()) {
+        scrollpane.scrollTo(0,0,0,0);
+        cliccato--;
+      }
+    else
+      cliccato=2;
+
+
   }
 
   public void setRender(ChatRender render) {
@@ -99,8 +110,10 @@ public class ChatWorld {
     if(Chat.keyboardHeight != 0) {
       return 17;
     }
-    else
+    else {
+
       return n;
+    }
   }
 }
 

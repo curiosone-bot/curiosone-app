@@ -20,6 +20,9 @@ public class AITemporanea {
       case "voglio giocare":
         answer = "scarica xenoverse 2";
         break;
+      case "a":
+        answer = "e' il super sayan di un sayan che ha superato la potenza del super sayan god diventando super sayan god super sayan";
+        break;
       default:
         answer = "non ho capito!";
     }
