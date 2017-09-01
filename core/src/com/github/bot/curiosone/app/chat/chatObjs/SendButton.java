@@ -35,7 +35,6 @@ public class SendButton extends ImageButton {
     Table scrollTable = world.getScrollTable();
     Inserimento inserimento = world.getInserimento();
     ScrollPane scrollPane = world.getScrollpane();
-    Table table = world.getTable();
     if(!inserimento.getText().isEmpty()) {
       scrollTable.row();
       scrollTable.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();

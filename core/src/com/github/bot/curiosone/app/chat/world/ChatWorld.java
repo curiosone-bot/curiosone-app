@@ -29,7 +29,6 @@ public class ChatWorld {
   private SendButton send;
   private Inserimento inserimento;
   private ChatRender render;
-  private Table table;
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
   public Image bg = new Image(AssetLoader.bg);
@@ -46,14 +45,11 @@ public class ChatWorld {
     optionButton.setSize(75, 30);
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
-    this.table = new Table();
     this.send = new SendButton(75, 58, 362, 52);
 
-    table.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
-    table.setSize(390, 700 - table.getY());
     scrollpane = new ScrollPane(scrollTable, AssetLoader.skin);
-    scrollpane.setSize(table.getWidth(), table.getHeight());
-    table.add(scrollpane).bottom().width(table.getWidth()).height(table.getHeight());
+    scrollpane.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
+    scrollpane.setSize(390, 700 - scrollpane.getY());
     scrollpane.setScrollingDisabled(true, false);
     scrollpane.setupFadeScrollBars(0, 0);
   }
@@ -62,11 +58,9 @@ public class ChatWorld {
     //Gdx.app.log("ChatWorld", "update");
     render.getStage().act(delta);
     inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
-    table.setY(inserimento.getY()+ inserimento.getHeight() + 20);
-    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
+    scrollpane.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     scrollpane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
-    //scrollpane.setY(100);
-    Gdx.app.log("scroll", scrollpane.getY() + "");
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
   }
 
   public void setRender(ChatRender render) {
@@ -81,9 +75,6 @@ public class ChatWorld {
     return inserimento;
   }
 
-  public Table getTable() {
-    return table;
-  }
 
   public ScrollPane getScrollpane()
   {return scrollpane;}
