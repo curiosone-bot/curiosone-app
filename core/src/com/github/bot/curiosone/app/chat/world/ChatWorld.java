@@ -64,14 +64,16 @@ public class ChatWorld {
     scrollpane.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     scrollpane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
     send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
-      if(cliccato>0&&Chat.keyboard&&scrollpane.getMaxY()==scrollpane.getScrollY()) {
-        scrollpane.scrollTo(0,0,0,0);
+
+    if(Chat.keyboard) {
+      if (cliccato > 0) {
+        scrollpane.scrollTo(0, 0, 0, 0);
         cliccato--;
       }
-    else
-      cliccato=2;
-
-
+    }
+    else {
+      cliccato = 2;
+    }
   }
 
   public void setRender(ChatRender render) {
