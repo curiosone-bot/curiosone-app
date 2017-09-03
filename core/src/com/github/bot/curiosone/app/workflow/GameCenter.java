@@ -1,24 +1,30 @@
 package com.github.bot.curiosone.app.workflow;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.github.bot.curiosone.app.chat.*;
 
 public class GameCenter extends ScreenAdapter {
 
-  private com.github.bot.curiosone.app.chat.Chat game;
+  private SpriteBatch batch;
+  private Game game;
   private OrthographicCamera camera;
   private Vector3 touch;
   private Rectangle wordTiles,Arkanoid,WordCrush,EndlessRoad,bottone4;
   private Texture buttonTexture;
 
-  public GameCenter(com.github.bot.curiosone.app.chat.Chat game){
+  public GameCenter(Game game){
+
     this.game = game;
+    this.batch = new SpriteBatch();
 
     /*Camera Settings*/
     camera = new OrthographicCamera();
@@ -45,13 +51,13 @@ public class GameCenter extends ScreenAdapter {
     Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     camera.update();
-    game.getBatch().begin();
-    game.getBatch().draw(buttonTexture, wordTiles.x,wordTiles.y,wordTiles.width,wordTiles.height);
-    game.getBatch().draw(buttonTexture,Arkanoid.x,Arkanoid.y,Arkanoid.width,Arkanoid.height);
-    game.getBatch().draw(buttonTexture,WordCrush.x,WordCrush.y,WordCrush.width,WordCrush.height);
-    game.getBatch().draw(buttonTexture,EndlessRoad.x,EndlessRoad.y,EndlessRoad.width,EndlessRoad.height);
-    game.getBatch().draw(buttonTexture,bottone4.x,bottone4.y,bottone4.width,bottone4.height);
-    game.getBatch().end();
+    batch.begin();
+    batch.draw(buttonTexture, wordTiles.x,wordTiles.y,wordTiles.width,wordTiles.height);
+    batch.draw(buttonTexture,Arkanoid.x,Arkanoid.y,Arkanoid.width,Arkanoid.height);
+    batch.draw(buttonTexture,WordCrush.x,WordCrush.y,WordCrush.width,WordCrush.height);
+    batch.draw(buttonTexture,EndlessRoad.x,EndlessRoad.y,EndlessRoad.width,EndlessRoad.height);
+    batch.draw(buttonTexture,bottone4.x,bottone4.y,bottone4.width,bottone4.height);
+    batch.end();
   }
 
   /**
@@ -80,6 +86,6 @@ public class GameCenter extends ScreenAdapter {
   }
   @Override
   public void dispose() {
-    game.getBatch().dispose();
+    batch.dispose();
   }
 }

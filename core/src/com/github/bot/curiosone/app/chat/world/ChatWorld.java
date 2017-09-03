@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.chat.world;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +23,7 @@ import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.workflow.GameCenter;
 
 
 public class ChatWorld {
@@ -34,12 +36,18 @@ public class ChatWorld {
   public Image bg = new Image(AssetLoader.bg);
   private TextButton gameButton;
   private TextButton optionButton;
-  private int cliccato=2;
+  private int cliccato = 2;
 
-  public ChatWorld() {
+  public ChatWorld(final Game game) {
     gameButton = new TextButton("", AssetLoader.defaultSkin);
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
+    gameButton.addListener(new ClickListener() {
+      @Override
+      public void touchUp(InputEvent e, float x, float y, int point, int button) {
+        game.setScreen(new GameCenter(game));
+      }
+    });
 
     optionButton = new TextButton("", AssetLoader.defaultSkin);
     optionButton.setPosition(354, 727);

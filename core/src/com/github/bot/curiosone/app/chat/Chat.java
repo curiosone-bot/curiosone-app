@@ -18,17 +18,12 @@ import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 
 public class Chat extends Game {
 
-  private SpriteBatch batch ;
   private View view;
   private Stage stage;
   private boolean fromAndroid = false;
   private Skin skin;
   public static float keyboardHeight;
   public static boolean keyboard;
-
-  public SpriteBatch getBatch() {
-    return batch;
-  }
 
   public Chat(ApplicationBundle applicationBundle) {
     view = applicationBundle.getView();
@@ -58,15 +53,13 @@ public class Chat extends Game {
         }
       });
     }
-    batch = new SpriteBatch();
     AssetLoader.load();
-    setScreen(new ChatScreen());
+    setScreen(new ChatScreen(this));
   }
 
   @Override
   public void dispose() {
     super.dispose();
-    batch.dispose();
     AssetLoader.dispose();
   }
 

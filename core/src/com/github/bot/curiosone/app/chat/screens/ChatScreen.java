@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.chat.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
@@ -15,8 +16,8 @@ public class ChatScreen implements Screen {
   private ChatRender renderer;
   private ChatWorld world;
 
-  public ChatScreen() {
-    this.world = new ChatWorld();
+  public ChatScreen(Game game) {
+    this.world = new ChatWorld(game);
     this.renderer = new ChatRender(world);
     world.setRender(renderer);
   }
