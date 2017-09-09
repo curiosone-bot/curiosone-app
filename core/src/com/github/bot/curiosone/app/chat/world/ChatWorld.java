@@ -34,12 +34,12 @@ public class ChatWorld {
   private ScrollPane scrollpane;
   public Table scrollTable = new Table();
   public Image bg = new Image(AssetLoader.bg);
-  private TextButton gameButton;
+  private ImageButton gameButton;
   private TextButton optionButton;
   private int cliccato = 2;
 
   public ChatWorld(final Game game) {
-    gameButton = new TextButton("", AssetLoader.defaultSkin);
+    gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
     gameButton.addListener(new ClickListener() {
@@ -108,7 +108,7 @@ public class ChatWorld {
     return bg;
   }
 
-  public TextButton getGameButton() {
+  public ImageButton getGameButton() {
     return gameButton;
   }
 

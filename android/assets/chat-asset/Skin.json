@@ -29,6 +29,9 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		imageUp: Button
 		imageDown: ButtonPressed
 	}
+	gamecenter: {
+		imageUp: Gamecenterxxxhdpi
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {

@@ -6,14 +6,14 @@ filter: Linear,Linear
 repeat: none
 Button
   rotate: false
-  xy: 1, 108
+  xy: 246, 181
   size: 80, 60
   orig: 80, 60
   offset: 0, 0
   index: -1
 ButtonPressed
   rotate: false
-  xy: 246, 188
+  xy: 515, 641
   size: 69, 53
   orig: 69, 53
   offset: 0, 0
@@ -37,5 +37,12 @@ digital
   xy: 1, 243
   size: 512, 512
   orig: 512, 512
+  offset: 0, 0
+  index: -1
+Gamecenterxxxhdpi
+  rotate: false
+  xy: 1, 100
+  size: 167, 68
+  orig: 167, 68
   offset: 0, 0
   index: -1
