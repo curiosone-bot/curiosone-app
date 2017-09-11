@@ -13,9 +13,9 @@ public class  AssetLoader {
   public static Skin defaultSkin;
 
   public static void load() {
-    skin = new Skin(Gdx.files.internal("android/assets/chat-asset/Skin.json"));
-    bg = new Texture("android/assets/chat-asset/bg.png");
-    defaultSkin = new Skin(Gdx.files.internal("android/assets/chat-asset/uiskin.json"));
+    skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
+    bg = new Texture("chat-asset/bg.png");
+    defaultSkin = new Skin(Gdx.files.internal("chat-asset/uiskin.json"));
   }
 
   public static void dispose() {
