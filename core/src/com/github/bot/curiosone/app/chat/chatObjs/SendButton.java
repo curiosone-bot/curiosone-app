@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 import com.github.bot.curiosone.app.chat.world.ServerConnection;
@@ -24,7 +25,7 @@ public class SendButton extends ImageButton {
   private ChatWorld world;
 
   private AITemporanea ai = new AITemporanea();
-  private ServerConnection sc= new ServerConnection();
+  private ServerConnection sc = new ServerConnection();
 
   public SendButton(float width, float height, float x, float y) throws IOException {
     super(AssetLoader.skin);
@@ -41,7 +42,7 @@ public class SendButton extends ImageButton {
       scrollTable.row();
       scrollTable.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
       scrollTable.row();
-      scrollTable.add(getLabel(modifyPhrase(sc.getAnswer(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
+      scrollTable.add(getLabel(modifyPhrase(sc.getAnswer(new TalkRequestResponse(inserimento.getText()))), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
       scrollTable.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
