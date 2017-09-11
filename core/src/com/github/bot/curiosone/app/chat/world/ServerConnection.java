@@ -27,7 +27,7 @@ public class ServerConnection{
 
   public String getAnswer(TalkRequestResponse message) throws IOException {
     Json json = new Json();
-    System.out.println(json.toJson(message));
+    //System.out.println(json.toJson(message));
     String url = BASE_URL + "/talk";
 
     RequestBody body = RequestBody.create(JSON, json.toString());
@@ -42,7 +42,7 @@ public class ServerConnection{
     }
     catch (Exception e){
       System.out.println(e);
-      return "";
+      return "errore,riprovare piu' tardi: "+e.toString();
     }
   }
 
