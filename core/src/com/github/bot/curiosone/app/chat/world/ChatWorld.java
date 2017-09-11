@@ -25,6 +25,8 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.workflow.GameCenter;
 
+import java.io.IOException;
+
 
 public class ChatWorld {
 
@@ -38,7 +40,7 @@ public class ChatWorld {
   private TextButton optionButton;
   private int cliccato = 2;
 
-  public ChatWorld(final Game game) {
+  public ChatWorld(final Game game) throws IOException {
     gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);

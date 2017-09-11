@@ -11,12 +11,14 @@ import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.world.ChatRender;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
+import java.io.IOException;
+
 public class ChatScreen implements Screen {
 
   private ChatRender renderer;
   private ChatWorld world;
 
-  public ChatScreen(Game game) {
+  public ChatScreen(Game game) throws IOException {
     this.world = new ChatWorld(game);
     this.renderer = new ChatRender(world);
     world.setRender(renderer);

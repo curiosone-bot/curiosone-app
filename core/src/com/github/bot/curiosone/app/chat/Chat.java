@@ -14,6 +14,7 @@ import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
 import com.github.bot.curiosone.app.chat.helpers.View;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 
+import java.io.IOException;
 
 
 public class Chat extends Game {
@@ -54,7 +55,11 @@ public class Chat extends Game {
       });
     }
     AssetLoader.load();
-    setScreen(new ChatScreen(this));
+    try {
+      setScreen(new ChatScreen(this));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override

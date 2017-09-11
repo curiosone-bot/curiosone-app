@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
+import com.github.bot.curiosone.app.chat.world.ServerConnection;
 
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 
@@ -22,16 +24,16 @@ public class SendButton extends ImageButton {
   private ChatWorld world;
 
   private AITemporanea ai = new AITemporanea();
+  private ServerConnection sc= new ServerConnection();
 
-  public SendButton(float width, float height, float x, float y) {
+  public SendButton(float width, float height, float x, float y) throws IOException {
     super(AssetLoader.skin);
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
   }
 
-  private void onClick()
-  {
+  private void onClick() throws IOException {
     Table scrollTable = world.getScrollTable();
     Inserimento inserimento = world.getInserimento();
     ScrollPane scrollPane = world.getScrollpane();
@@ -39,7 +41,7 @@ public class SendButton extends ImageButton {
       scrollTable.row();
       scrollTable.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
       scrollTable.row();
-      scrollTable.add(getLabel(modifyPhrase(ai.getRisposta(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
+      scrollTable.add(getLabel(modifyPhrase(sc.getAnswer(inserimento.getText())), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
       scrollTable.bottom();
       scrollPane.layout();
       scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
@@ -52,7 +54,11 @@ public class SendButton extends ImageButton {
     return new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        onClick();
+        try {
+          onClick();
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
 
       }
     };
