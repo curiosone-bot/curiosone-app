@@ -27,10 +27,9 @@ public class ServerConnection{
 
   public String getAnswer(TalkRequestResponse message) throws IOException {
     Json json = new Json();
-    System.out.println(json.toJson(message));
     String url = BASE_URL + "/talk";
 
-    RequestBody body = RequestBody.create(JSON, json.toString());
+    RequestBody body = RequestBody.create(JSON, json.toJson(message).toString());
     Request request = new Request.Builder()
       .url(url)
       .post(body)
