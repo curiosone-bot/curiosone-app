@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat.world;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -20,12 +21,17 @@ public class ServerConnection{
 
 
   public ServerConnection() throws IOException {
-     client = new OkHttpClient();
+    client = new OkHttpClient().newBuilder()
+      .connectTimeout(10,TimeUnit.SECONDS)
+      .writeTimeout(10, TimeUnit.SECONDS)
+      .readTimeout(30, TimeUnit.SECONDS)
+      .build();
+
   }
 
   public String getAnswer(TalkRequestResponse message) throws IOException {
     Json json = new Json();
-    System.out.println(json.toJson(message));
+   // System.out.println(json.toJson(message));
     String url = BASE_URL + "/talk";
 
     RequestBody body = RequestBody.create(JSON, json.toJson(message).toString());
