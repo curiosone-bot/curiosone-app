@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -17,8 +19,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
-import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
 import com.github.bot.curiosone.app.workflow.Chat;
+
 
 /**
  * Represents the credits screen of the game
@@ -28,47 +31,61 @@ import com.github.bot.curiosone.app.workflow.Chat;
 public class Credits implements Screen
 {
 	private Chat game;
-	private AssetsLoader loader;
 	private OrthographicCamera camera;
 	private Stage stage;
 	private Viewport viewport;
 	private Sprite background,credits;
 	private ImageButton backButton;
-	private Table table;
-	private BitmapFont creditsFont;
-	private String creditsText;
 
 	
 	public Credits(Chat game)
 	{
 		this.game = game;
-		loader = new AssetsLoader();
-		loader.loadCreditsAssets();
-		background = new Sprite(loader.getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
+		AssetsLoader.getInstance().loadCreditsAssets();
+		background = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
 		
-		credits = new Sprite(loader.getManager().get(AssetsPaths.CREDITS.getPath(),Texture.class));
-		credits.setPosition(0,GameConstants.HEIGHT/2f+150f);		
-		camera = new OrthographicCamera(GameConstants.WIDTH,GameConstants.HEIGHT);
-		camera.position.set(GameConstants.WIDTH/2f,GameConstants.HEIGHT/2f,0);
-		viewport = new StretchViewport(GameConstants.WIDTH,GameConstants.HEIGHT,camera);
+		credits = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.CREDITS.getPath(),Texture.class));
+		credits.setPosition(0,GameInfos.HEIGHT/2f+180f);		
+		camera = new OrthographicCamera(GameInfos.WIDTH,GameInfos.HEIGHT);
+		camera.position.set(GameInfos.WIDTH/2f,GameInfos.HEIGHT/2f,0);
+		viewport = new StretchViewport(GameInfos.WIDTH,GameInfos.HEIGHT,camera);
 		stage = new Stage(viewport,game.getBatch());
-		creditsFont = loader.getManager().get(AssetsPaths.AGENCY_FB.getPath());
-		creditsFont.getData().setScale(0.8f);
-		creditsText = "CODE: \n    Paolo Pierantozzi \n\nGRAPHICS: \n    Paolo Pierantozzi \n    FreeCreatives.com \n    UnLuckyStudio.com";
 		
-		table = new Table();
-		table.bottom();
-		table.setFillParent(true);
-		createAndPositionButtons();
-		stage.addActor(table);
+		createMenu();
 		Gdx.input.setInputProcessor(stage);
 		
 	}
 	
-	private void createAndPositionButtons()
+	/**
+	 * Creates and positions the credits menu's elements on the screen
+	 */
+	private void createMenu()
 	{
+		BitmapFont creditsFont = AssetsLoader.getInstance().getManager().get(AssetsPaths.AGENCY_FB.getPath());
+		creditsFont.getData().setScale(1,0.7f);
 		
-		backButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.BACK_BUTTON.getPath(),Texture.class))));
+		Label codeLabel = new Label("          CODE:\n Paolo Pierantozzi",new Label.LabelStyle(creditsFont,Color.WHITE));
+		Label graphicsLabel = new Label("        GRAPHICS:      \n  Paolo Pierantozzi\n FreeCreatives.com\n UnLuckyStudio.com",new Label.LabelStyle(creditsFont,Color.WHITE));
+		Label musicLabel = new Label("  MUSIC & FX:\n freeSFX.co.uk\nLooperman.com",new Label.LabelStyle(creditsFont,Color.WHITE));
+		
+		Table creditsTable = new Table();
+		creditsTable.padTop(40f);
+		creditsTable.row();
+		creditsTable.setFillParent(true);
+		
+		creditsTable.center();
+		creditsTable.row();
+		creditsTable.add(codeLabel);
+		creditsTable.row();
+		creditsTable.add(graphicsLabel).padTop(20f);
+		creditsTable.row();
+		creditsTable.add(musicLabel).padTop(20f);
+		creditsTable.row();
+		
+		Table buttonTable = new Table();
+		buttonTable.setFillParent(true);
+		
+		backButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.BACK_BUTTON.getPath(),Texture.class))));
 		
 		backButton.addListener(new ChangeListener()
 		{
@@ -80,9 +97,16 @@ public class Credits implements Screen
 			
 		});
 		
+		buttonTable.bottom();
+		buttonTable.add(backButton).padBottom(40f);
 		
-		table.add(backButton).padBottom(40f);
+		stage.addActor(creditsTable);
+		stage.addActor(buttonTable);
+		
 	}
+	
+	
+	
 	@Override
 	public void show()
 	{
@@ -98,7 +122,6 @@ public class Credits implements Screen
 		game.getBatch().begin();
 		game.getBatch().draw(background,background.getX(),background.getY());
 		game.getBatch().draw(credits,credits.getX(),credits.getY());
-		creditsFont.draw(game.getBatch(),creditsText,50f,GameConstants.HEIGHT/2f*1.3f);
 		game.getBatch().end();
 		stage.draw();
 		camera.update();
@@ -137,7 +160,7 @@ public class Credits implements Screen
 	public void dispose()
 	{
 		 game.dispose();
-	     loader.getManager().clear();
+	     AssetsLoader.getInstance().dispose();
 		
 	}
 

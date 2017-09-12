@@ -3,8 +3,8 @@ package com.github.bot.curiosone.app.games.endlessroad.scenes;
 import java.text.DecimalFormat;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,8 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
@@ -29,49 +27,34 @@ import com.github.bot.curiosone.app.workflow.Chat;
 
 
 /**
- * This class represents the game over screen
+ * This class represents the records screen
  * @author Paolo Pierantozzi
  */
-public class GameOver implements Screen
+public class Records implements Screen
 {
     private Chat game;
     private OrthographicCamera camera;
     private Stage stage;
     private Viewport viewport;
-    private Sprite background,gameover,crown;
-    private ImageButton replayButton,menuButton;
+    private Sprite background,records;
+    private ImageButton backButton;
     private String score,distance;
     private Label scoreLabel,distanceLabel,scoreText,distanceText;
-    private Music loop;
+    private Preferences preferences;
     
-    public GameOver(Chat game)
+    public Records(Chat game)
     {
         this.game = game;
         
-        AssetsLoader.getInstance().loadGameOverAssets();
-             
+        AssetsLoader.getInstance().loadRecordsAssets();
+     
+        preferences = Gdx.app.getPreferences("");
+        
         background = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
-        loop = AssetsLoader.getInstance().getInstance().getManager().get(AssetsPaths.GAMEOVER_LOOP.getPath(),Music.class);
+
+        records = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.RECORDS.getPath(),Texture.class));
+        records.setPosition(0,GameInfos.HEIGHT/2f+190f);
         
-        if (!GameInfos.muteMusic)
-        {
-        	loop.setLooping(true);
-        	loop.setVolume(0.2f);
-        	float waitTime = !GameInfos.muteFX? 0.15f:0;
-        	Timer.schedule(new Task()
-        	{
-        		@Override
-        		public void run()
-				{
-        			loop.play();
-				}
-        	}, waitTime);
-        	
-        }
-        gameover = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.GAME_OVER.getPath(),Texture.class));
-        gameover.setPosition(0,GameInfos.HEIGHT/2f+150f);
-        
-        crown = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.CROWN.getPath(),Texture.class));
         camera = new OrthographicCamera(GameInfos.WIDTH,GameInfos.HEIGHT);
         camera.position.set(GameInfos.WIDTH/2f,GameInfos.HEIGHT/2f,0);
         viewport = new StretchViewport(GameInfos.WIDTH,GameInfos.HEIGHT,camera);
@@ -86,66 +69,49 @@ public class GameOver implements Screen
     }
 
     /**
-     * Creates and positions the game over menu's buttons on the screen
+     * Creates and positions the record's buttons on the screen
      */
     private void createAndPositionButtons()
     {	
     	
-    	score = String.valueOf(GameInfos.lastScore);
+    	score = String.valueOf(preferences.getInteger("scoreRecord"));
     	DecimalFormat formatter = new DecimalFormat("#.#");
-    	distance = String.valueOf(formatter.format(GameInfos.lastDistance).replaceAll(",",".")) + " Km";
+    	distance = String.valueOf(formatter.format(preferences.getFloat("distanceRecord")).replaceAll(",",".")) + " Km";
     	BitmapFont infosFont = AssetsLoader.getInstance().getManager().get(AssetsPaths.AGENCY_FB.getPath());
         infosFont.getData().setScale(1.2f);
-        scoreLabel = new Label("SCORE:",new Label.LabelStyle(infosFont,Color.RED));
-		distanceLabel = new Label("DISTANCE:",new Label.LabelStyle(infosFont,Color.RED)); 	
-    	scoreText = new Label(score,new Label.LabelStyle(infosFont,Color.WHITE));
-    	distanceText = new Label(distance,new Label.LabelStyle(infosFont,Color.WHITE));
-    	replayButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.REPLAY_BUTTON.getPath(),Texture.class))));
-        menuButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MENU_BUTTON.getPath(),Texture.class))));
-        
-        replayButton.addListener(new ChangeListener()
-        {
-            @Override
-            public void changed(ChangeEvent event, Actor actor)
-            {
-            	loop.stop();
-            	GameInfos.startFromMainMenu = false;
-            	game.setScreen(new Gameplay(game));
-            }
+        scoreLabel = new Label("BEST SCORE:",new Label.LabelStyle(infosFont,Color.WHITE));
+		distanceLabel = new Label("BEST DISTANCE:",new Label.LabelStyle(infosFont,Color.WHITE)); 	
+    	scoreText = new Label(score,new Label.LabelStyle(infosFont,Color.ORANGE));
+    	distanceText = new Label(distance,new Label.LabelStyle(infosFont,Color.ORANGE));
+        backButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.BACK_BUTTON.getPath(),Texture.class))));
 
-        });
-
-        menuButton.addListener(new ChangeListener()
+        backButton.addListener(new ChangeListener()
         {
             @Override
             public void changed(ChangeEvent event,Actor actor)
             {
-            	loop.stop();
                 game.setScreen(new EndlessRoad(game));
             }
         });
         
         Table infosTable = new Table();
-        infosTable.padBottom(40f);
         infosTable.center();
         infosTable.setFillParent(true);
-        infosTable.add(scoreLabel).center();
+        infosTable.add(scoreLabel).center().padTop(50f);
         infosTable.row();
-        infosTable.add(scoreText);
+        infosTable.add(scoreText).padTop(20f);
         infosTable.row();
-        infosTable.add(distanceLabel);
+        infosTable.add(distanceLabel).padTop(40f);
         infosTable.row();
-        infosTable.add(distanceText);
-        
+        infosTable.add(distanceText).padTop(20f);
+        infosTable.setScale(50f);
         stage.addActor(infosTable);
         
         
         Table buttonsTable = new Table();
         buttonsTable.bottom();
         buttonsTable.setFillParent(true);
-        buttonsTable.add(replayButton).padBottom(20f);
-        buttonsTable.row();
-        buttonsTable.add(menuButton).padBottom(40f);
+        buttonsTable.add(backButton).padBottom(40f);
         stage.addActor(buttonsTable);
     }
 
@@ -163,22 +129,7 @@ public class GameOver implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
         game.getBatch().draw(background,background.getX(),background.getY());
-        game.getBatch().draw(gameover,gameover.getX(),gameover.getY());
-        
-        if (GameInfos.newScoreRecord)
-        {
-        	scoreText.setColor(Color.LIME);
-        	game.getBatch().draw(crown,scoreText.getX()+scoreText.getWidth()+20f,scoreText.getY()+10f);
-        }
-        	
-        if (GameInfos.newDistanceRecord)
-        {
-        	distanceText.setColor(Color.LIME);
-        	game.getBatch().draw(crown,distanceText.getX()+distanceText.getWidth()+20f,distanceText.getY()+10f);
-        }
-        	
-
-      
+        game.getBatch().draw(records,records.getX(),records.getY());
         game.getBatch().end();
         stage.draw();
         camera.update();

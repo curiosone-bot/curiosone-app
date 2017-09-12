@@ -1,9 +1,9 @@
 package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
-import com.badlogic.gdx.Screen;
-import com.github.bot.curiosone.app.workflow.Chat;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,16 +14,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
-import com.github.bot.curiosone.app.games.endlessroad.utilities.GameConstants;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
+import com.github.bot.curiosone.app.workflow.Chat;
 import com.github.bot.curiosone.app.workflow.GameCenter;
 
-import com.github.bot.curiosone.app.games.endlessroad.scenes.Credits;
 
 /**
  * This class represents the main menu screen
@@ -32,34 +32,39 @@ import com.github.bot.curiosone.app.games.endlessroad.scenes.Credits;
 public class EndlessRoad implements Screen
 {
     private Chat game;
-    private AssetsLoader loader;
     private Sprite background,logo;
-    private Table table;
-    private ImageButton playButton,creditsButton,quitButton;
+    private ImageButton playButton,recordsButton,creditsButton,quitButton,musicGreen,musicRed,speakerButton,muteButton;
     private Stage stage;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private boolean playTouched = false;
+    private Music loop;
+
 
     public EndlessRoad(Chat game)
     {
+    	
         this.game = game;
-        loader = new AssetsLoader();
-        loader.loadMainMenuAssets();
+        AssetsLoader.getInstance().loadMainMenuAssets();
+        
+        loop = AssetsLoader.getInstance().getManager().get(AssetsPaths.MENU_LOOP.getPath(),Music.class);
+        
+        if (!GameInfos.muteMusic)
+        {
+        	loop.setLooping(true);
+        	loop.setVolume(0.3f);
+        	loop.play();
+        }
+        
+        background = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
+        logo = new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.ENDLESS_ROAD.getPath(),Texture.class));
+        logo.setPosition(0,GameInfos.HEIGHT/2f+180f);
 
-        background = new Sprite(loader.getManager().get(AssetsPaths.MENUS_BG.getPath(),Texture.class));
-        logo = new Sprite(loader.getManager().get(AssetsPaths.ENDLESS_ROAD.getPath(),Texture.class));
-        logo.setPosition(0,GameConstants.HEIGHT/2f+150f);
-
-        camera = new OrthographicCamera(GameConstants.WIDTH,GameConstants.HEIGHT);
-        camera.position.set(GameConstants.WIDTH/2f,GameConstants.HEIGHT/2f,0);
-        viewport = new StretchViewport(GameConstants.WIDTH,GameConstants.HEIGHT,camera);
+        camera = new OrthographicCamera(GameInfos.WIDTH,GameInfos.HEIGHT);
+        camera.position.set(GameInfos.WIDTH/2f,GameInfos.HEIGHT/2f,0);
+        viewport = new StretchViewport(GameInfos.WIDTH,GameInfos.HEIGHT,camera);
         stage = new Stage(viewport,game.getBatch());
-
-        table = new Table();
-        table.center();
-        table.setFillParent(true);
         createAndPositionButtons();
-        stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
 
 
@@ -121,25 +126,63 @@ public class EndlessRoad implements Screen
     public void dispose()
     {
         game.dispose();
-        loader.getManager().clear();
+        AssetsLoader.getInstance().dispose();
 
     }
 
     /**
-     * Creates and positions the buttons on the screen
+     * Creates and positions the main menu's buttons on the screen
      */
     private void createAndPositionButtons()
     {
-        playButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.PLAY_BUTTON.getPath(),Texture.class))));
-        creditsButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.CREDITS_BUTTON.getPath(),Texture.class))));
-        quitButton = new ImageButton(new SpriteDrawable(new Sprite(loader.getManager().get(AssetsPaths.QUIT_BUTTON.getPath(),Texture.class))));
-
+        playButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.PLAY_BUTTON.getPath(),Texture.class))));
+        recordsButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.RECORDS_BUTTON.getPath(),Texture.class))));
+        creditsButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.CREDITS_BUTTON.getPath(),Texture.class))));
+        quitButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.QUIT_BUTTON.getPath(),Texture.class))));
+        musicGreen = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MUSIC_GREEN.getPath(),Texture.class))));
+        if (GameInfos.muteMusic) musicGreen.setVisible(false);
+        musicGreen.setPosition(0,-50f);
+        musicGreen.setWidth(100f);
+        musicRed = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MUSIC_RED.getPath(),Texture.class))));
+        if (!GameInfos.muteMusic) musicRed.setVisible(false);
+        musicRed.setPosition(0,-50f);
+        musicRed.setWidth(100f);
+        
+        speakerButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.SPEAKER.getPath(),Texture.class))));
+        if (GameInfos.muteFX) speakerButton.setVisible(false);
+        speakerButton.setPosition(GameInfos.WIDTH-115f,-50f);
+        speakerButton.setWidth(100f);
+        muteButton = new ImageButton(new SpriteDrawable(new Sprite(AssetsLoader.getInstance().getManager().get(AssetsPaths.MUTE.getPath(),Texture.class))));
+        if (!GameInfos.muteFX) muteButton.setVisible(false);
+        muteButton.setPosition(GameInfos.WIDTH-115f,-50f);
+        muteButton.setWidth(100f);
+        
         playButton.addListener(new ChangeListener()
         {
+        	Sound sound = AssetsLoader.getInstance().getManager().get(AssetsPaths.ENGINE_ON.getPath(),Sound.class);
+        	
             @Override
             public void changed(ChangeEvent event,Actor actor)
             {
-                EndlessRoad.this.game.setScreen(new Gameplay(EndlessRoad.this.game));
+            	GameInfos.startFromMainMenu = true;
+            	float waitTime = !GameInfos.muteFX? 1:0;
+            	if (!playTouched)
+            	{
+            		playTouched = true;            		
+            		if (!GameInfos.muteFX)sound.play();
+            		loop.stop();
+                	Timer.schedule(new Task() 
+                	{
+                		@Override
+                		public void run()
+                		{
+                			//EndlessRoad.this.game.setScreen(new Gameplay(EndlessRoad.this.game));
+                			EndlessRoad.this.game.setScreen(new Gameplay(EndlessRoad.this.game));
+                		}
+                	},waitTime);
+            	}
+            	
+                
             }
         });
 
@@ -148,7 +191,8 @@ public class EndlessRoad implements Screen
             @Override
             public void changed(ChangeEvent event,Actor actor)
             {
-                EndlessRoad.this.game.setScreen(new GameCenter(EndlessRoad.this.game));
+            	AssetsLoader.getInstance().dispose();
+                EndlessRoad.this.game.setScreen(new GameCenter(EndlessRoad.this.game)); 
             }
         });
         
@@ -161,13 +205,86 @@ public class EndlessRoad implements Screen
 			}
 			
 		});
+        
+        recordsButton.addListener(new ChangeListener()
+		{
+			@Override
+			public void changed(ChangeEvent event,Actor actor)
+			{
+				EndlessRoad.this.game.setScreen(new Records(EndlessRoad.this.game));
+			}
+			
+		});
+        
+        musicGreen.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event,Actor actor)
+            {
+            	GameInfos.muteMusic = true;
+            	loop.stop();
+                musicGreen.setVisible(false);
+                musicRed.setVisible(true);
 
-        table.add(playButton).padTop(150f).padBottom(30f);
-        table.row();
-        table.add(creditsButton).padBottom(30f);
-        table.row();
-        table.add(quitButton);
+            }
+        });
+        
+        musicRed.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event,Actor actor)
+            {
+            	GameInfos.muteMusic = false;
+            	loop.play();
+                musicRed.setVisible(false);
+                musicGreen.setVisible(true);
 
+            }
+        });
+        
+        speakerButton.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event,Actor actor)
+            {
+            	GameInfos.muteFX = true;
+                speakerButton.setVisible(false);
+                muteButton.setVisible(true);
+
+            }
+        });
+        
+        muteButton.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event,Actor actor)
+            {
+            	GameInfos.muteFX = false;
+            	muteButton.setVisible(false);
+                speakerButton.setVisible(true);
+
+            }
+        });
+        
+
+        Table menuTable = new Table();
+        menuTable.center();
+        menuTable.setFillParent(true);
+        
+        menuTable.add(playButton).padTop(180f).padBottom(15f);
+        menuTable.row();
+        menuTable.add(recordsButton).padBottom(15f);
+        menuTable.row();
+        menuTable.add(creditsButton).padBottom(15f);
+        menuTable.row();
+        menuTable.add(quitButton).padBottom(60f);
+        menuTable.row();
+        
+        stage.addActor(musicGreen);
+        stage.addActor(musicRed);
+        stage.addActor(speakerButton);
+        stage.addActor(muteButton);
+        stage.addActor(menuTable);
     }
 
 }

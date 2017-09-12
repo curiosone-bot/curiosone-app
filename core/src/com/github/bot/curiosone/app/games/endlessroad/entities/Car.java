@@ -10,10 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Car extends AbstractCar
 {
 
-    public Car(AssetManager manager,Stage stage,String name,float x,float y)
+    public Car(Stage stage,String name,float x,float y)
     {
-        super(manager,stage,name,x,y);
+        super(stage,name,x,y);
     }
+    
     @Override
     public void act(float delta)
     {

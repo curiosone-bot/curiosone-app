@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
+
+
 
 
 /**
@@ -14,14 +17,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public abstract class AbstractCar extends Image
 {
-
     private Sprite sprite;
     private Rectangle rectangle;
     protected float speed = 15f;
 
-    public AbstractCar(AssetManager manager,Stage stage,String name,float x,float y)
+    public AbstractCar(Stage stage,String name,float x,float y)
     {
-        sprite = new Sprite(manager.get("EndlessRoad/Cars/" + name + ".png",Texture.class));
+        sprite = new Sprite(AssetsLoader.getInstance().getManager().get("EndlessRoad/Cars/" + name + ".png",Texture.class));
         setBounds(sprite.getX(),sprite.getY(),sprite.getWidth(),sprite.getHeight());
         rectangle = new Rectangle(sprite.getX()+10f,sprite.getY(),sprite.getWidth()-20f,sprite.getHeight());
         setPosition(x,y);
@@ -30,7 +32,7 @@ public abstract class AbstractCar extends Image
 
 
     /**
-     * Returns the car's sprite
+     * @return the car's sprite
      */
     public Sprite getSprite() {return sprite;}
 
@@ -43,19 +45,28 @@ public abstract class AbstractCar extends Image
     }
 
     /**
-     * Returns the car's speed
+     * @return the car's speed
      */
     public float getSpeed() {return speed;}
 
     /**
      * Sets the car's speed
+     * @param speed The new car's speed
      */
     public void setSpeed(float speed) {this.speed = speed;}
 
     /**
-     * Returns the bounding rectangle of the car
+     * @return the bounding rectangle of the car
      */
     public Rectangle getBounds() {return rectangle;}
-
+    
+    /**
+     * Adds the car to the stage as an Actor
+     * @param stage The stage in which to add the car
+     */
+    public void addToStage(Stage stage)
+    {
+    	stage.addActor(this);
+    }
 }
 

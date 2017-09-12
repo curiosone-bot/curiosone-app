@@ -16,8 +16,18 @@ public enum AssetsPaths
 	CREDITS_BUTTON("EndlessRoad/Buttons/creditsbutton.png"),
 	MENU_BUTTON("EndlessRoad/Buttons/menubutton.png"),
 	PLAY_BUTTON("EndlessRoad/Buttons/playbutton.png"),
+	RECORDS_BUTTON("EndlessRoad/Buttons/recordsbutton.png"),
 	QUIT_BUTTON("EndlessRoad/Buttons/quitbutton.png"),
 	REPLAY_BUTTON("EndlessRoad/Buttons/replaybutton.png"),
+	ACCELERATOR_BUTTON("EndlessRoad/Buttons/accelerator.png"),
+	BRAKE_BUTTON("EndlessRoad/Buttons/brake.png"),
+	LEFT_ARROW("EndlessRoad/Buttons/left_arrow.png"),
+	RIGHT_ARROW("EndlessRoad/Buttons/right_arrow.png"),
+	SPEAKER("EndlessRoad/Buttons/speaker.png"),
+	MUTE("EndlessRoad/Buttons/mute.png"),
+	MUSIC_GREEN("EndlessRoad/Buttons/music_green.png"),
+	MUSIC_RED("EndlessRoad/Buttons/music_red.png"),
+	
 	
 	//Cars
 	PLAYER("EndlessRoad/Cars/player.png"),
@@ -36,8 +46,23 @@ public enum AssetsPaths
 	
 	//Logos
 	ENDLESS_ROAD("EndlessRoad/Logos/endlessroad.png"),
+	RECORDS("EndlessRoad/Logos/records.png"),
 	CREDITS("EndlessRoad/Logos/credits.png"),
-	GAME_OVER("EndlessRoad/Logos/gameover.png");
+	GAME_OVER("EndlessRoad/Logos/gameover.png"),
+	
+	//Miscellaneous
+	CROWN("EndlessRoad/Miscellaneous/crown.png"),
+	
+	//Sounds
+	ENGINE_ON("EndlessRoad/Sounds/engine_on.mp3"),
+	CRASH("EndlessRoad/Sounds/crash.mp3"),
+	IDLE("EndlessRoad/Sounds/idle.ogg"),
+	BRAKE("EndlessRoad/Sounds/brake.mp3"),
+	MENU_LOOP("EndlessRoad/Sounds/menu_loop.ogg"),
+	MUSIC_LOOP("EndlessRoad/Sounds/loop.ogg"),
+	GAMEOVER_LOOP("EndlessRoad/Sounds/gameover_loop.ogg");
+	
+	
 	
 	private String path;
 	
