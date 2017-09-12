@@ -135,9 +135,9 @@ project(":tests") {
 		 * 
 		 */
 	
-//        compile project(":android")
+        compile project(":android")
 //        compile project(":html")
-//        compile project(":desktop")
+        compile project(":desktop")
         
         
 //        if(System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
