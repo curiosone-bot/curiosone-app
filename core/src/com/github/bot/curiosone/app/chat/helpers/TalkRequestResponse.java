@@ -1,7 +1,7 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
 /**
- * Created by andreapierfederici on 11/09/2017.
+ * Created by Luca Pierfederici on 11/09/2017.
  */
 
 public class TalkRequestResponse {

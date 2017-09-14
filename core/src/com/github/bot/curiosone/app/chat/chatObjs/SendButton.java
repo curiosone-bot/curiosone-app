@@ -35,17 +35,10 @@ public class SendButton extends ImageButton {
   }
 
   private void onClick() throws IOException {
-    Table scrollTable = world.getScrollTable();
     Inserimento inserimento = world.getInserimento();
-    ScrollPane scrollPane = world.getScrollpane();
     if(!inserimento.getText().isEmpty()) {
-      scrollTable.row();
-      scrollTable.add(getLabel(modifyPhrase(inserimento.getText()), AssetLoader.skin.get("User", Label.LabelStyle.class))).expandX().right();
-      scrollTable.row();
-      scrollTable.add(getLabel(modifyPhrase(sc.getAnswer(new TalkRequestResponse(inserimento.getText()))), AssetLoader.skin.get("Bot", Label.LabelStyle.class))).expandX().left();
-      scrollTable.bottom();
-      scrollPane.layout();
-      scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
+      world.addMessage(inserimento.getText(), "User");
+      world.addMessage(sc.getAnswer(new TalkRequestResponse(inserimento.getText())), "Bot");
       inserimento.setText("");
     }
     this.addListener(this.click());
@@ -67,31 +60,6 @@ public class SendButton extends ImageButton {
 
   public void setWorld(ChatWorld world) {
     this.world = world;
-  }
-
-  private static String modifyPhrase(String phrase) { //taglio a 24 caratteri
-    StringTokenizer st = new StringTokenizer(phrase);
-    String newPhrase = "";
-    final int TAGLIO_FRASE = 20; //originale 24
-    String stringaTemporanea;
-    int dimensioneFraseTemporanea=0; //per vedere se si e' arrivati al limite della frase
-    while(st.hasMoreTokens()) {
-      stringaTemporanea = st.nextToken();
-      if(stringaTemporanea.length() + dimensioneFraseTemporanea > TAGLIO_FRASE) {
-        newPhrase += "\n";
-        dimensioneFraseTemporanea = 0;
-      }
-      dimensioneFraseTemporanea += stringaTemporanea.length();
-      newPhrase+=stringaTemporanea + " ";
-    }
-      return newPhrase;
-  }
-
-  private Label getLabel(String text, Label.LabelStyle style)
-  {
-    Label l = new Label(text, style);
-    l.setFontScale(0.9f);
-    return l;
   }
 
 }
