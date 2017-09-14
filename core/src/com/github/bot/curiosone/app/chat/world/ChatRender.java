@@ -15,6 +15,7 @@ public class ChatRender {
   private ChatWorld world;
   private Stage stage;
   private SpriteBatch batch;
+  private FitViewport viewp;
 
   public ChatRender(ChatWorld world) {
     this.world = world;
@@ -22,7 +23,7 @@ public class ChatRender {
     cam.setToOrtho(false, 480, 800);
     this.batch = new SpriteBatch();
     batch.setProjectionMatrix(cam.combined);
-    FitViewport viewp = new FitViewport(480, 800, cam);
+    viewp = new FitViewport(480, 800, cam);
     world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);
@@ -43,5 +44,9 @@ public class ChatRender {
 
   public Stage getStage() {
     return stage;
+  }
+
+  public FitViewport getView() {
+    return viewp;
   }
 }

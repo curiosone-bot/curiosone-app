@@ -39,6 +39,7 @@ public class ChatScreen implements Screen {
   @Override
   public void resize(int width, int height) {
     //Gdx.app.log("Chat", "resize called");
+    renderer.getView().update(width, height);
   }
 
   @Override
