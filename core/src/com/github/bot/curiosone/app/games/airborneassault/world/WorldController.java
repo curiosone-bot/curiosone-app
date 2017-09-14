@@ -109,7 +109,7 @@ public class WorldController {
       for (Actor actor : stage.getActors()) {
         if(!actor.getClass().equals(ImageButton.class)) {
           if (actor.remove()) {
-            settings.addAccelleration(2);
+            settings.addAccelleration(1);
             stage.getActors().removeValue(actor, true);
           }
         }

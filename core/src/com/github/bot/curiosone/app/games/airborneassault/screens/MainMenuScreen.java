@@ -60,8 +60,8 @@ public class MainMenuScreen extends ScreenAdapter
         camera.position.set(1080 / 2, 1920 / 2, 0); //Need to fill the background image dimensions
 
         /*Play Button*/
-        TextureRegionDrawable buttonOn = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.buttonOn.getPath(),Texture.class)));
-        TextureRegionDrawable buttonOff = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.buttonOff.getPath(),Texture.class)));
+        TextureRegionDrawable buttonOn = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.playOn.getPath(),Texture.class)));
+        TextureRegionDrawable buttonOff = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.playOff.getPath(),Texture.class)));
         ImageButton playButton = new ImageButton(buttonOn,buttonOff);
         playButton.setSize(400,80);
         playButton.setPosition(Constants.WIDTH/2-playButton.getWidth()/2,Constants.HEIGHT/2);
@@ -81,7 +81,9 @@ public class MainMenuScreen extends ScreenAdapter
         stage.addActor(playButton);
 
         /*Option Button*/
-        ImageButton optionButton = new ImageButton(buttonOn,buttonOff);
+        TextureRegionDrawable optionOn = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.optionOn.getPath(),Texture.class)));
+        TextureRegionDrawable optionOff = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.optionOff.getPath(),Texture.class)));
+        ImageButton optionButton = new ImageButton(optionOn,optionOff);
         optionButton.setSize(400,80);
         optionButton.setPosition(Constants.WIDTH/2-optionButton.getWidth()/2,Constants.HEIGHT/2-80);
         optionButton.addListener(new InputListener(){
@@ -100,7 +102,9 @@ public class MainMenuScreen extends ScreenAdapter
         stage.addActor(optionButton);
 
         /*Exit Button*/
-        ImageButton exitButton = new ImageButton(buttonOn,buttonOff);
+        TextureRegionDrawable exitOn = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.exitOn.getPath(),Texture.class)));
+        TextureRegionDrawable exitOff = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.exitOff.getPath(),Texture.class)));
+        ImageButton exitButton = new ImageButton(exitOn,exitOff);
         exitButton.setSize(400,80);
         exitButton.setPosition(Constants.WIDTH/2-exitButton.getWidth()/2,Constants.HEIGHT/2-160);
         exitButton.addListener(new InputListener(){

@@ -6,8 +6,12 @@ package com.github.bot.curiosone.app.games.airborneassault.assets_manager;
 public enum Assets {
   //Main Menu Assets
   menubackground("airborneassaultassets/backgrounds/menubackground.png"),
-  buttonOn("airborneassaultassets/buttonUp.png"),
-  buttonOff("airborneassaultassets/buttonUp2.png"),
+  playOn("airborneassaultassets/buttons/PLAY1.png"),
+  playOff("airborneassaultassets/buttons/PLAY2.png"),
+  optionOn("airborneassaultassets/buttons/options1.png"),
+  optionOff("airborneassaultassets/buttons/options2.png"),
+  exitOn("airborneassaultassets/buttons/exit1.png"),
+  exitOff("airborneassaultassets/buttons/exit2.png"),
   menuMusic("airborneassaultassets/music/Volatile Reaction.mp3"),
   click("airborneassaultassets/sound_effects/clickButton.mp3"),
   font("airborneassaultassets/font/optionfont.fnt"),

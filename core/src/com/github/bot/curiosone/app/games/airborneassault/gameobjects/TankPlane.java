@@ -28,7 +28,7 @@ public class TankPlane extends Actor {
     private Settings settings;
     private Manager manager;
     private Sprite current;
-    private int count = 0;
+    private int count = 0,speedLimit = 400;
     private float elapsedTime;
 
     public TankPlane(int x) {
@@ -100,8 +100,14 @@ public class TankPlane extends Actor {
         super.act(delta);
         //While the plane is still in the screen, move it
         elapsedTime += delta;
+        Gdx.app.log("TANKPLANE SPEED",Speed.TANK.getSpeed()+settings.getAccelleration()+"");
         if (current.getY() > -this.getHeight()) {
-          current.setPosition(current.getX(), current.getY() - (Speed.TANK.getSpeed()+settings.getAccelleration())*delta);
+          if(Speed.TANK.getSpeed()+settings.getAccelleration()<speedLimit){
+            current.setPosition(current.getX(), current.getY() - (Speed.TANK.getSpeed()+settings.getAccelleration())*delta);
+          }
+          else{
+            current.setPosition(current.getX(),current.getY()-speedLimit);
+          }
           setPosition(current.getX(),current.getY());
         }
         if (current.getY() < -this.getHeight()) {
