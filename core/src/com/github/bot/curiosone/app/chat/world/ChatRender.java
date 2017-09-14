@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
 public class ChatRender {
@@ -15,7 +16,7 @@ public class ChatRender {
   private ChatWorld world;
   private Stage stage;
   private SpriteBatch batch;
-  private FitViewport viewp;
+  private StretchViewport viewp;
 
   public ChatRender(ChatWorld world) {
     this.world = world;
@@ -23,7 +24,7 @@ public class ChatRender {
     cam.setToOrtho(false, 480, 800);
     this.batch = new SpriteBatch();
     batch.setProjectionMatrix(cam.combined);
-    viewp = new FitViewport(480, 800, cam);
+    viewp = new StretchViewport(480, 800, cam);
     world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);
@@ -46,7 +47,7 @@ public class ChatRender {
     return stage;
   }
 
-  public FitViewport getView() {
+  public StretchViewport getView() {
     return viewp;
   }
 }
