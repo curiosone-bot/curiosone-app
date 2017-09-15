@@ -43,7 +43,11 @@ public class ChatWorld {
     gameButton.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        game.setScreen(new GameCenter2(game));
+        try {
+          game.setScreen(new GameCenter2(game));
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
       }
     });
 
