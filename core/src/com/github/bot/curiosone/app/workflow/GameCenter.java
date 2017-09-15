@@ -18,7 +18,7 @@ public class GameCenter extends ScreenAdapter {
   private Game game;
   private OrthographicCamera camera;
   private Vector3 touch;
-  private Rectangle wordTiles,Arkanoid,WordCrush,EndlessRoad,bottone4;
+  private Rectangle wordTiles,Arkanoid,WordCrush,EndlessRoad,bottone4,chat;
   private Texture buttonTexture;
 
   public GameCenter(Game game){
@@ -37,6 +37,7 @@ public class GameCenter extends ScreenAdapter {
     WordCrush = new Rectangle(480/2-250/2,800/2-120,250,55);
     EndlessRoad = new Rectangle(480/2-250/2,800/2-180,250,55);
     bottone4 = new Rectangle(480/2-250/2,800/2-240,250,55);
+    chat = new Rectangle(480/2-250/2,800/2-300,250,55);
     buttonTexture = new Texture("green_button00.png");
     touch = new Vector3();
   }
@@ -57,6 +58,7 @@ public class GameCenter extends ScreenAdapter {
     batch.draw(buttonTexture,WordCrush.x,WordCrush.y,WordCrush.width,WordCrush.height);
     batch.draw(buttonTexture,EndlessRoad.x,EndlessRoad.y,EndlessRoad.width,EndlessRoad.height);
     batch.draw(buttonTexture,bottone4.x,bottone4.y,bottone4.width,bottone4.height);
+    batch.draw(buttonTexture,chat.x,chat.y,chat.width,chat.height);
     batch.end();
   }
 

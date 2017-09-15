@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat.world;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -44,8 +45,12 @@ public class ServerConnection{
       return json.fromJson(TalkRequestResponse.class, data).getMessage();
 
     }
-    catch (Exception e){
+    /*catch (){
       return "errore,riprovare piu' tardi: "+e.toString();
+    }*/
+    catch(UnknownHostException e)
+    {
+      return "errore con la comunicazione con il server, controlla la tua connessione e riprova";
     }
   }
 
