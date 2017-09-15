@@ -11,6 +11,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.SerializationException;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 
 
@@ -51,6 +52,9 @@ public class ServerConnection{
     catch(UnknownHostException e)
     {
       return "errore con la comunicazione con il server, controlla la tua connessione e riprova";
+    }
+    catch (SerializationException e) {
+      return "qualcosa";
     }
   }
 
