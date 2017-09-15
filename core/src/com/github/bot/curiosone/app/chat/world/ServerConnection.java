@@ -46,15 +46,12 @@ public class ServerConnection{
       return json.fromJson(TalkRequestResponse.class, data).getMessage();
 
     }
-    /*catch (){
-      return "errore,riprovare piu' tardi: "+e.toString();
-    }*/
     catch(UnknownHostException e)
     {
-      return "errore con la comunicazione con il server, controlla la tua connessione e riprova";
+      return "error with server comunication, please check your connection and retry ";
     }
     catch (SerializationException e) {
-      return "qualcosa";
+      return "error with server , please retry later";
     }
   }
 
