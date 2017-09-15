@@ -80,7 +80,7 @@ public class GameCenter2 extends ScreenAdapter {
         }
       }
     });
-    buildWords = CreateButton("Bottone4",480/2-250/2,800/2-240,250,55);
+    buildWords = CreateButton("buildWords",480/2-250/2,800/2-240,250,55);
     buildWords.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
