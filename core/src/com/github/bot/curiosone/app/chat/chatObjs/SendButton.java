@@ -38,7 +38,17 @@ public class SendButton extends ImageButton {
     Inserimento inserimento = world.getInserimento();
     if(!inserimento.getText().isEmpty()) {
       world.addMessage(inserimento.getText(), "User");
-      world.addMessage(sc.getAnswer(new TalkRequestResponse(inserimento.getText())), "Bot");
+      new Thread() {
+        public void run() {
+          try {
+            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText())), "Bot");
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+      }.start();
+
+      System.out.println(Thread.getAllStackTraces().keySet().size());
       inserimento.setText("");
     }
     this.addListener(this.click());
