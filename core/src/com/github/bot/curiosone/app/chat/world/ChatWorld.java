@@ -18,6 +18,7 @@ import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.workflow.GameCenter;
+import com.github.bot.curiosone.app.workflow.GameCenter2;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -42,7 +43,11 @@ public class ChatWorld {
     gameButton.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        game.setScreen(new GameCenter(game));
+        try {
+          game.setScreen(new GameCenter2(game));
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
       }
     });
 
