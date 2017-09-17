@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
- * This class manages the assets by using a AssetManager.
+ * @author Alessandro Roic
+ * This class manages the assets by using a AssetManager
  */
 public class Manager {
   private static Manager instance;
@@ -27,6 +28,9 @@ public class Manager {
     return manager;
   }
 
+  /**
+   * Loads all the assets
+   */
   public void loadAll(){
     manager.load(Assets.menubackground.getPath(), Texture.class);
     manager.load(Assets.playOn.getPath(),Texture.class);
@@ -77,6 +81,7 @@ public class Manager {
     manager.load(Assets.hit2.getPath(),Sound.class);
     manager.load(Assets.hit3.getPath(),Sound.class);
     manager.load(Assets.shot.getPath(),Sound.class);
+    manager.load(Assets.gameOverMusic.getPath(),Music.class);
     manager.finishLoading();
   }
 }

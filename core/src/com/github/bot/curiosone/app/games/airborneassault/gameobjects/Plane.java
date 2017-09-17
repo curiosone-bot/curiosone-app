@@ -29,12 +29,14 @@ public class Plane extends Actor  {
     public Plane(int x) {
         settings = Settings.getIstance();
         manager = Manager.getIstance();
+        //Load the textures and animations
         hit = manager.getAssetManager().get(Assets.hit.getPath());
-        this.setBounds(x,800, Dimensions.PLANE.getWidth(),Dimensions.PLANE.getHeight());
         planeUp = manager.getAssetManager().get(Assets.planeUp.getPath());
         planeDown = manager.getAssetManager().get(Assets.planeDown.getPath());
         base = new Animation<TextureRegion>(0.2f,planeUp.getRegions(), Animation.PlayMode.LOOP);
         explosion = new Animation<TextureRegion>(0.12f,planeDown.getRegions());
+        //Sets the bounds of the plane and its properties
+        this.setBounds(x,800, Dimensions.PLANE.getWidth(),Dimensions.PLANE.getHeight());
         addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -83,13 +85,20 @@ public class Plane extends Actor  {
         }
     }
 
+  /**
+   * Draws the plane into the provided batch
+   * @param batch
+   * @param parentAlpha
+   */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch,parentAlpha);
         if(!touched) {
+          //Draws the base animation
           batch.draw(base.getKeyFrame(elapsedTime),this.getX(),this.getY(),this.getWidth(),this.getHeight());
         }
         else {
+          //Draws the explosion animation
           batch.draw(explosion.getKeyFrame(elapsedTime),this.getX(),this.getY(),this.getWidth(),this.getHeight());
           if(explosion.isAnimationFinished(elapsedTime)){
             disposable = true;
@@ -97,6 +106,9 @@ public class Plane extends Actor  {
         }
     }
 
+  /**
+   * @return true if the plane can be disposed.
+   */
     @Override
     public boolean remove() {
         return disposable;

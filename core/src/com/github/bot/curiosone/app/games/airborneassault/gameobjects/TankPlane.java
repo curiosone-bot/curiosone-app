@@ -17,6 +17,7 @@ import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 import java.util.Random;
 
 /**
+ * @author Alessandro Roic
  * This plane has to be touched 5 times in order to destroy it
  */
 public class TankPlane extends Actor {
@@ -36,6 +37,7 @@ public class TankPlane extends Actor {
         manager = Manager.getIstance();
         hit = manager.getAssetManager().get(Assets.hit3.getPath());
         shot = manager.getAssetManager().get(Assets.shot.getPath());
+        //Load the textures and animations
         TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.tankDown.getPath());
         explosion = new Animation<TextureRegion>(0.12f,textureAtlas.getRegions());
         textures = new Array<Sprite>();
@@ -45,6 +47,7 @@ public class TankPlane extends Actor {
             textures.add(new Sprite(manager.getAssetManager().get(path,Texture.class)));
         }
         current = textures.get(0);
+        //Sets the bounds of the plane and its properties
         current.setBounds(x,Constants.TOP, Dimensions.TANK.getWidth(),Dimensions.TANK.getHeight());
         this.setBounds(x,Constants.TOP,Dimensions.TANK.getWidth(),Dimensions.TANK.getHeight());
         addListener(new InputListener(){
@@ -81,6 +84,11 @@ public class TankPlane extends Actor {
       });
     }
 
+  /**
+   * Draws the plane into the provided batch
+   * @param batch
+   * @param parentAlpha
+   */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
@@ -94,13 +102,16 @@ public class TankPlane extends Actor {
           }
         }
     }
-
+  /**
+   * @param delta
+   * Updates the single plane logic, has to be called into the main screen
+   * update method.
+   */
     @Override
     public void act(float delta) {
         super.act(delta);
         //While the plane is still in the screen, move it
         elapsedTime += delta;
-        Gdx.app.log("TANKPLANE SPEED",Speed.TANK.getSpeed()+settings.getAccelleration()+"");
         if (current.getY() > -this.getHeight()) {
           if(Speed.TANK.getSpeed()+settings.getAccelleration()<speedLimit){
             current.setPosition(current.getX(), current.getY() - (Speed.TANK.getSpeed()+settings.getAccelleration())*delta);
@@ -120,6 +131,9 @@ public class TankPlane extends Actor {
         }
     }
 
+  /**
+   * @return true if the plane can be disposed.
+   */
     @Override
     public boolean remove() {
       return disposable;

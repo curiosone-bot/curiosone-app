@@ -17,6 +17,7 @@ import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 import java.util.Random;
 
 /**
+ * @author Alessandro Roic
  * This plane has the ability to hide himself and change position.
  */
 public class StealthPlane extends Actor{
@@ -26,20 +27,21 @@ public class StealthPlane extends Actor{
     private Settings settings;
     private int lastMoved = 0;
     private float elapsedTime;
-    private Timer.Task timer;
     private Animation<TextureRegion> invisible,explosion;
 
     public StealthPlane(int x) {
         settings = Settings.getIstance();
         Manager manager = Manager.getIstance();
+        //Load the textures and animations
         hit = manager.getAssetManager().get(Assets.hit3.getPath());
         stealthTexture = new Sprite(manager.getAssetManager().get(Assets.stealth.getPath(),Texture.class));
         stealthTexture.setBounds(x,Constants.TOP, Dimensions.STEALTH.getWidth(),Dimensions.STEALTH.getHeight());
-        this.setBounds(x,Constants.TOP,Dimensions.STEALTH.getWidth(),Dimensions.STEALTH.getHeight());
         TextureAtlas invisibleAtlas = manager.getAssetManager().get(Assets.stealthInvisible.getPath());
         TextureAtlas explosionAtlas = manager.getAssetManager().get(Assets.stealthDown.getPath());
         invisible = new Animation<TextureRegion>(0.08f, invisibleAtlas.getRegions());
         explosion = new Animation<TextureRegion>(0.15f, explosionAtlas.getRegions());
+        //Sets the bounds of the plane and its properties
+        this.setBounds(x,Constants.TOP,Dimensions.STEALTH.getWidth(),Dimensions.STEALTH.getHeight());
         addListener(new InputListener(){
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -64,15 +66,16 @@ public class StealthPlane extends Actor{
         });
     }
 
-    /**
-     * @param dt
-     * Updates the single plane logic, has to be called into the main screen
-     * update method.
-     */
+  /**
+   * @param dt
+   * Updates the single plane logic, has to be called into the main screen
+   * update method.
+   */
     @Override
     public void act(float dt) {
         elapsedTime += dt;
-        lastMoved += 1;
+        //Every frame the counter gets updated,after 100 frames the stealth animation starts
+        lastMoved++;
         if(lastMoved == 100) {
           flag = false;
           lastMoved = 0;
@@ -92,24 +95,34 @@ public class StealthPlane extends Actor{
         }
     }
 
+  /**
+   * Draws the plane into the provided batch
+   * @param batch
+   * @param parentAlpha
+   */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch,parentAlpha);
+
         if(!touched){
+          //Draws the nomal state of the plane
           if(!flag){
             stealthTexture.draw(batch,parentAlpha);
           }
           if(lastMoved >= 30&&lastMoved<=64){
+            //Animate the stealth move
             if(!flag){elapsedTime = 0;}
             flag = true;
             batch.draw(invisible.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
             if(invisible.isAnimationFinished(elapsedTime)){
+              //Draws the stealth animation
               stealthTexture.setPosition(new Random().nextInt(Bounds.STEALTH.getBound()), stealthTexture.getY());
               setPosition(stealthTexture.getX(), stealthTexture.getY());
             }
           }
         }
         else {
+            //Draws the explosion
             batch.draw(explosion.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
             if(explosion.isAnimationFinished(elapsedTime)){
               disposable = true;
@@ -117,6 +130,9 @@ public class StealthPlane extends Actor{
         }
     }
 
+  /**
+   * @return true if the plane can be disposed.
+   */
     @Override
     public boolean remove() {
       return disposable;

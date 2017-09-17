@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.games.airborneassault.assets_manager;
 
 /**
+ * @author Alessandro Roic
  * This enum contains all the assets paths
  */
 public enum Assets {
@@ -54,7 +55,7 @@ public enum Assets {
   healthPack("airborneassaultassets/planetextures/healthpack/healthpack.png"),
   //Game Over Assets
   gameOverBackground("airborneassaultassets/backgrounds/gameoverbackground.png"),
-  gameOverMusic(""),
+  gameOverMusic("airborneassaultassets/music/end_song.mp3"),
   ;
   private final String path;
 

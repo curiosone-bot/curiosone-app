@@ -16,7 +16,8 @@ import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 import java.util.Random;
 
 /**
- * This plane is a faster plane
+ * @author Alessandro Roic
+ * This class represent a plane with faster speed than the normal one.
  */
 public class FastPlane extends Actor {
     private Sprite fastPlaneTexture;
@@ -32,9 +33,11 @@ public class FastPlane extends Actor {
         settings = Settings.getIstance();
         manager = Manager.getIstance();
         hit = manager.getAssetManager().get(Assets.hit2.getPath());
+        //Load the textures and animations
         fastPlaneTexture= new Sprite(manager.getAssetManager().get(Assets.fastPlane.getPath(),Texture.class));
         fastPlaneDown = manager.getAssetManager().get(Assets.fastPlaneDown.getPath());
         explosion = new Animation<TextureRegion>(0.085f,fastPlaneDown.getRegions());
+        //Sets the bounds of the plane and its properties
         fastPlaneTexture.setBounds(x,Constants.TOP, Dimensions.FASTPLANE.getWidth(),Dimensions.FASTPLANE.getHeight());
         this.setBounds(x,Constants.TOP,Dimensions.FASTPLANE.getWidth(),Dimensions.FASTPLANE.getHeight());
         addListener(new InputListener(){
@@ -46,6 +49,7 @@ public class FastPlane extends Actor {
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            //Randomly spawn the healthpack
             int random = new Random().nextInt(40);
             int random2 = new Random().nextInt(60);
             int random3 = new Random().nextInt(100);
@@ -82,20 +86,29 @@ public class FastPlane extends Actor {
         }
     }
 
+  /**
+   * Draws the plane into the provided batch
+   * @param batch
+   * @param parentAlpha
+   */
     @Override
     public void draw(Batch batch, float parentAlpha) {
       super.draw(batch,parentAlpha);
       if(!touched){
+        //Draws the base texture
         fastPlaneTexture.draw(batch,parentAlpha);
       }
       else {
+        //Draws the explosion animation
         batch.draw(explosion.getKeyFrame(elapsedTime),fastPlaneTexture.getX(),fastPlaneTexture.getY(),fastPlaneTexture.getWidth(),fastPlaneTexture.getHeight());
         if(explosion.isAnimationFinished(elapsedTime)){
           disposable = true;
         }
       }
     }
-
+  /**
+   * @return true if the plane can be disposed.
+   */
     @Override
     public boolean remove() {
       return disposable;

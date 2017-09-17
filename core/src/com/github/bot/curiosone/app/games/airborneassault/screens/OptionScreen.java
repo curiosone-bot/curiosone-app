@@ -49,21 +49,22 @@ public class OptionScreen extends ScreenAdapter{
         Gdx.input.setInputProcessor(stage);
         manager = Manager.getIstance();
 
-        /*Background*/
+        //Background
         background =  manager.getAssetManager().get(Assets.optionBackground.getPath());
 
-        /*CheckBox Style Settings*/
+        //CheckBox Style Settings
         unchecked = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.checkbox.getPath(),Texture.class)));
         checked = new TextureRegionDrawable(new TextureRegion(manager.getAssetManager().get(Assets.checkbox2.getPath(),Texture.class)));
         CheckBox.CheckBoxStyle style = new CheckBox.CheckBoxStyle(checked,unchecked,manager.getAssetManager().get(Assets.font.getPath(),BitmapFont.class) , Color.BLACK);
         CheckBox.CheckBoxStyle style2 = new CheckBox.CheckBoxStyle(style);
 
-        /*Music CheckBox*/
+        //Music CheckBox Settings
         musicCheckBox = new CheckBox("Music",style);
-        musicCheckBox.setPosition(Constants.WIDTH/2-60/2, Constants.HEIGHT/2);
-        musicCheckBox.setSize(60,60);
+        musicCheckBox.setPosition(Constants.WIDTH/2-150/2, Constants.HEIGHT/2);
+        musicCheckBox.setSize(150,60);
         musicCheckBox.getLabelCell().padLeft(-200);
         musicCheckBox.getImageCell().padLeft(100);
+        //Adds properties to checkbox
         musicCheckBox.addListener(new InputListener(){
 
         @Override
@@ -83,10 +84,10 @@ public class OptionScreen extends ScreenAdapter{
         });
         stage.addActor(musicCheckBox);
 
-        /*SFX CheckBox*/
+        //SFX CheckBox Settings
         sfxCheckBox = new CheckBox("Effects",style2);
-        sfxCheckBox.setPosition(Constants.WIDTH/2-60/2, Constants.HEIGHT/2-80);
-        sfxCheckBox.setSize(60,60);
+        sfxCheckBox.setPosition(Constants.WIDTH/2-150/2, Constants.HEIGHT/2-80);
+        sfxCheckBox.setSize(150,60);
         sfxCheckBox.getLabelCell().padLeft(-200);
         sfxCheckBox.getImageCell().padLeft(100);
         sfxCheckBox.addListener(new InputListener(){
@@ -108,7 +109,7 @@ public class OptionScreen extends ScreenAdapter{
         });
         stage.addActor(sfxCheckBox);
 
-        /*Back Box*/
+        //Back Box Settings
         bitmapFont = manager.getAssetManager().get(Assets.font.getPath());
         back = new TextButton("Back",new TextButton.TextButtonStyle(null,null,null,bitmapFont));
         back.getLabel().setColor(Color.BLACK);
@@ -122,24 +123,28 @@ public class OptionScreen extends ScreenAdapter{
         });
         stage.addActor(back);
 
-        /*Camera Settings*/
+        //Camera Settings
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.WIDTH, Constants.HEIGHT);
         camera.position.set(Constants.WIDTH / 2, Constants.HEIGHT / 2, 0);
     }
 
+    /**
+     * Draws the needed textures
+     * @param delta
+     */
     @Override
-    public void render(float delta) {
-        update();
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
-        game.getBatch().begin();
-        game.getBatch().draw(background,0,0, Constants.WIDTH, Constants.HEIGHT);
-        game.getBatch().end();
-        stage.act();
-        stage.draw();
-    }
+      public void render(float delta) {
+          update();
+          Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+          camera.update();
+          game.getBatch().setProjectionMatrix(camera.combined);
+          game.getBatch().begin();
+          game.getBatch().draw(background,0,0, Constants.WIDTH, Constants.HEIGHT);
+          game.getBatch().end();
+          stage.act();
+          stage.draw();
+      }
 
     /**
      * Updates the checkboxes

@@ -8,6 +8,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager
 import com.github.bot.curiosone.app.games.airborneassault.settings.Speed;
 
 /**
+ * @author Alessandro Roic
  * This class creates the background for the PlayScreen
  */
 public class ScrollingBackground {
@@ -23,6 +24,7 @@ public class ScrollingBackground {
     y2=800;
   }
   public void update(float deltaTime){
+    //Moves down the 2 textures
     float speed = Gdx.graphics.getDeltaTime()*(Speed.BACKGROUND.getSpeed());
     y1-= speed;
     y2-= speed;

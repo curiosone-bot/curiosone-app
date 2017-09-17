@@ -36,15 +36,17 @@ public class PlaneSpawner implements Iterable<Actor>{
         spawnType = random.nextInt(5);
         switch (spawnType){
           case 0: spawn1();
-            break;
+              break;
           case 1: spawn2();
-            break;
+              break;
           case 2: spawn3();
-            break;
+              break;
           case 3: spawn4();
-            break;
+              break;
           case 4: spawn5();
-            break;
+              break;
+          case 5: test();
+              break;
         }
     }
 
@@ -139,6 +141,11 @@ public class PlaneSpawner implements Iterable<Actor>{
       }
     }
 
+    private void test(){
+      for(int i=0;i<5;i++){
+        actors.add(new KamikazePlane(random.nextInt(Bounds.KAMIKAZE.getBound())));
+      }
+    }
     public Array<Actor> getActors(){
       return actors;
     }

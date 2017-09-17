@@ -14,6 +14,7 @@ import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.settings.*;
 
 /**
+ * @author Alessandro Roic
  * This plane must not be touched, otherwise the player will be damaged.
  */
 public class AlliedPlane extends Actor {
@@ -29,9 +30,11 @@ public class AlliedPlane extends Actor {
       settings = Settings.getIstance();
       manager = Manager.getIstance();
       hit = manager.getAssetManager().get(Assets.hit2.getPath());
+      //Load the textures and animations
       alliedTexture = new Sprite(manager.getAssetManager().get(Assets.allied.getPath(),Texture.class));
       TextureAtlas textureAtlas = manager.getAssetManager().get(Assets.alliedDown.getPath());
       explosion = new Animation<TextureRegion>(0.12f,textureAtlas.getRegions());
+      //Sets the bounds of the plane and its properties
       alliedTexture.setBounds(x, Constants.TOP,Dimensions.ALLIED.getWidth(),Dimensions.ALLIED.getHeight());
       this.setBounds(x,Constants.TOP, Dimensions.ALLIED.getWidth(),Dimensions.ALLIED.getHeight());
       addListener(new InputListener(){
@@ -71,13 +74,20 @@ public class AlliedPlane extends Actor {
       }
     }
 
+  /**
+   * Draws the plane into the provided batch
+   * @param batch
+   * @param parentAlpha
+   */
     @Override
     public void draw(Batch batch, float parentAlpha) {
       super.draw(batch,parentAlpha);
       if(!touched){
+        //Draws the base animation
         alliedTexture.draw(batch,parentAlpha);
       }
       else {
+        //Draws the explosion animation
         batch.draw(explosion.getKeyFrame(elapsedTime),getX(),getY(),getWidth(),getHeight());
         if(explosion.isAnimationFinished(elapsedTime)){
           disposable = true;
@@ -85,7 +95,10 @@ public class AlliedPlane extends Actor {
       }
     }
 
-    @Override
+  /**
+   * @return true if the plane can be disposed.
+   */
+  @Override
     public boolean remove() {
       return disposable;
     }
