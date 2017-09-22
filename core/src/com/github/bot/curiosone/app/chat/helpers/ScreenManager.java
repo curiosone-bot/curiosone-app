@@ -27,7 +27,17 @@ public class ScreenManager {
 
   public void showScreen(ScreenEnum screenEnum) throws IOException {
     Screen currentScreen = game.getScreen();
-    Screen newScreen = screenEnum.getScreen();
+    AbstractScreen newScreen = screenEnum.getScreen();
+    newScreen.buildStage();
+    game.setScreen(newScreen);
+    if(currentScreen != null) {
+      currentScreen.dispose();
+    }
+  }
+
+  public void showScreen(Screen screen) throws IOException {
+    Screen currentScreen = game.getScreen();
+    Screen newScreen = screen;
     game.setScreen(newScreen);
     if(currentScreen != null) {
       currentScreen.dispose();
