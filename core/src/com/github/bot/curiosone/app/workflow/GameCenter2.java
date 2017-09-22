@@ -11,13 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 
 import java.io.IOException;
 
-/**
- * Created by federico-pc on 15/09/2017.
- */
 
 public class GameCenter2 extends ScreenAdapter {
   private SpriteBatch batch;
@@ -26,7 +25,7 @@ public class GameCenter2 extends ScreenAdapter {
   private StretchViewport viewp;
   private Stage stage;
 
-  public GameCenter2(final Game game) throws IOException{
+  public GameCenter2() throws IOException{
     this.batch = new SpriteBatch();
 
     /*Camera Settings*/
@@ -40,55 +39,35 @@ public class GameCenter2 extends ScreenAdapter {
     wordTiles.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try {  //Mettete qui sotto lo screen principale
-          game.setScreen(new GameCenter2(game));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+
       }
     });
     arkanoid = CreateButton("Arkanoid",480/2-250/2,800/2-60,250,55);
     arkanoid.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try { //Mettete qui sotto lo screen principale
-          game.setScreen(new GameCenter2(game));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+
       }
     });
     wordCrush = CreateButton("WordCrush",480/2-250/2,800/2-120,250,55);
     wordCrush.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try { //Mettete qui sotto lo screen principale
-          game.setScreen(new GameCenter2(game));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+
       }
     });
     endlessRoad = CreateButton("EndlessRoad",480/2-250/2,800/2-180,250,55);
     endlessRoad.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try { //Mettete qui sotto lo screen principale
-          game.setScreen(new GameCenter2(game));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+
       }
     });
     buildWords = CreateButton("BuildWords",480/2-250/2,800/2-240,250,55);
     buildWords.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try { //Mettete qui sotto lo screen principale
-          game.setScreen(new GameCenter2(game));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+
       }
     });
     chat = CreateButton("Chat",480/2-250/2,800/2-300,250,55);
@@ -96,7 +75,7 @@ public class GameCenter2 extends ScreenAdapter {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button)  {
         try {
-          game.setScreen(new ChatScreen(game));
+          ScreenManager.getInstance().showScreen(ScreenEnum.CHAT);
         } catch (IOException e1) {
           e1.printStackTrace();
         }

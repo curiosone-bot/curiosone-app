@@ -18,8 +18,8 @@ public class ChatScreen implements Screen {
   private ChatRender renderer;
   private ChatWorld world;
 
-  public ChatScreen(Game game) throws IOException {
-    this.world = new ChatWorld(game);
+  public ChatScreen() throws IOException {
+    this.world = new ChatWorld();
     this.renderer = new ChatRender(world);
     world.setRender(renderer);
   }

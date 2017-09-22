@@ -1,6 +1,10 @@
+package com.github.bot.curiosone.app.chat.helpers;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+
+import java.io.IOException;
 
 public class ScreenManager {
   private static ScreenManager instance;
@@ -21,9 +25,9 @@ public class ScreenManager {
     this.game = game;
   }
 
-  public void showScreen(ScreenEnum screen) {
+  public void showScreen(ScreenEnum screenEnum) throws IOException {
     Screen currentScreen = game.getScreen();
-    Screen newScreen = screen.getScreen();
+    Screen newScreen = screenEnum.getScreen();
     game.setScreen(newScreen);
     if(currentScreen != null) {
       currentScreen.dispose();

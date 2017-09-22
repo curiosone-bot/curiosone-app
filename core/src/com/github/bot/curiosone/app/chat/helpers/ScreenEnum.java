@@ -7,7 +7,7 @@ import com.github.bot.curiosone.app.workflow.GameCenter2;
 import java.io.IOException;
 
 public enum ScreenEnum {
-  /*CHAT {
+  CHAT {
     public Screen getScreen() throws IOException {
       return new ChatScreen();
     }
@@ -16,5 +16,6 @@ public enum ScreenEnum {
     public Screen getScreen() throws IOException {
       return new GameCenter2();
     };
-  }*/
+  };
+  public abstract Screen getScreen() throws IOException;
 }

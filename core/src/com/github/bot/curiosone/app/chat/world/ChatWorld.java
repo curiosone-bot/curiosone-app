@@ -17,6 +17,8 @@ import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.workflow.GameCenter;
 import com.github.bot.curiosone.app.workflow.GameCenter2;
 
@@ -36,7 +38,7 @@ public class ChatWorld {
   private TextButton optionButton;
   private int cliccato = 2;
 
-  public ChatWorld(final Game game) throws IOException {
+  public ChatWorld() throws IOException {
     gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
@@ -44,7 +46,7 @@ public class ChatWorld {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         try {
-          game.setScreen(new GameCenter2(game));
+          ScreenManager.getInstance().showScreen(ScreenEnum.GAMECENTER);
         } catch (IOException e1) {
           e1.printStackTrace();
         }

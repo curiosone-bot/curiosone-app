@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.github.bot.curiosone.app.chat.helpers.ApplicationBundle;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
 import com.github.bot.curiosone.app.chat.helpers.View;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
@@ -55,8 +56,9 @@ public class Chat extends Game {
       });
     }
     AssetLoader.load();
+    ScreenManager.getInstance().initialize(this);
     try {
-      setScreen(new ChatScreen(this));
+      setScreen(new ChatScreen());
     } catch (IOException e) {
       e.printStackTrace();
     }
