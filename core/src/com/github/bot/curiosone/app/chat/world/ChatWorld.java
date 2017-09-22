@@ -19,6 +19,7 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
+import com.github.bot.curiosone.app.chat.screens.OptionScreen;
 import com.github.bot.curiosone.app.workflow.GameCenter;
 import com.github.bot.curiosone.app.workflow.GameCenter2;
 
@@ -56,6 +57,16 @@ public class ChatWorld {
     optionButton = new TextButton("", AssetLoader.defaultSkin);
     optionButton.setPosition(354, 727);
     optionButton.setSize(75, 30);
+    optionButton.addListener(new ClickListener() {
+      @Override
+      public void touchUp(InputEvent e, float x, float y, int point, int button) {
+        try {
+          ScreenManager.getInstance().showScreen(new OptionScreen());
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
+      }
+    });
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.send = new SendButton(75, 58, 362, 52);
