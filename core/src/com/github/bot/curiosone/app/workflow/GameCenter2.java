@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
@@ -18,23 +19,11 @@ import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 import java.io.IOException;
 
 
-public class GameCenter2 extends ScreenAdapter {
-  private SpriteBatch batch;
-  private OrthographicCamera camera;
+public class GameCenter2 extends AbstractScreen {
   private TextButton wordTiles,arkanoid,wordCrush,endlessRoad, buildWords,chat;
-  private StretchViewport viewp;
-  private Stage stage;
 
   public GameCenter2() throws IOException{
-    this.batch = new SpriteBatch();
 
-    /*Camera Settings*/
-    camera = new OrthographicCamera();
-    camera.setToOrtho(false,480,800);
-    camera.position.set(480/2,800/2,0);
-    viewp = new StretchViewport(480, 800, camera);
-    //480/2-250/2,800/2,250,55
-    /*Button Areas*/
     wordTiles = CreateButton("WordTiles",480/2-250/2,800/2,250,55);
     wordTiles.addListener(new ClickListener() {
       @Override
@@ -75,22 +64,22 @@ public class GameCenter2 extends ScreenAdapter {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button)  {
         try {
-          ScreenManager.getInstance().showScreen(ScreenEnum.CHAT);
+          ScreenManager.getInstance().showScreen(new ChatScreen());
         } catch (IOException e1) {
           e1.printStackTrace();
         }
       }
     });
-    this.stage = new Stage(viewp, batch);
-    Gdx.input.setInputProcessor(stage);
+  }
 
-    stage.addActor(wordTiles);
-    stage.addActor(arkanoid);
-    stage.addActor(wordCrush);
-    stage.addActor(endlessRoad);
-    stage.addActor(buildWords);
-    stage.addActor(chat);
-
+  @Override
+  public void buildStage() {
+    addActor(wordTiles);
+    addActor(arkanoid);
+    addActor(wordCrush);
+    addActor(endlessRoad);
+    addActor(buildWords);
+    addActor(chat);
   }
 
   private TextButton CreateButton(String name, float x, float y, int width, int height) {
@@ -102,27 +91,7 @@ public class GameCenter2 extends ScreenAdapter {
   }
 
   @Override
-  public void render(float dt) {
-    update();
-    draw();
-  }
-
-  private void draw() {
-    Gdx.gl.glClearColor(1, 1, 1, 1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    stage.draw();
-  }
-
-  @Override
   public void dispose() {
     super.dispose();
-    stage.dispose();
   }
-
-  private void update() {
-    camera.update();
-    stage.act();
-  }
-
-
 }
