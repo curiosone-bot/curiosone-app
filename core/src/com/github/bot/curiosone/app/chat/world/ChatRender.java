@@ -25,12 +25,7 @@ public class ChatRender {
     world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
     Gdx.input.setInputProcessor(stage);
-    stage.addActor(world.getBg());
-    stage.addActor(world.getGameButton());
-    stage.addActor(world.getOptionButton());
-    stage.addActor(world.getSendButton());
-    stage.addActor(world.getInserimento());
-    stage.addActor(world.getScrollPane());
+
   }
 
   public void render() {
@@ -38,6 +33,15 @@ public class ChatRender {
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.draw();
+  }
+
+  public void buildStage() {
+    stage.addActor(world.getBg());
+    stage.addActor(world.getGameButton());
+    stage.addActor(world.getOptionButton());
+    stage.addActor(world.getSendButton());
+    stage.addActor(world.getInserimento());
+    stage.addActor(world.getScrollPane());
   }
 
   public Stage getStage() {

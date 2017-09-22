@@ -7,12 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-public abstract class AbstractScreen extends Stage implements Screen {
+public abstract class AbstractScreen extends Stage implements BuildableStageScreen {
   public AbstractScreen() {
     super(new StretchViewport(480, 800, new OrthographicCamera()));
   }
-
-  public abstract void buildStage();
 
   @Override
   public void render(float delta) {

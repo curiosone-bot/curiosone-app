@@ -64,7 +64,7 @@ public class GameCenter2 extends AbstractScreen {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button)  {
         try {
-          ScreenManager.getInstance().showScreen(new ChatScreen());
+          ScreenManager.getInstance().showScreen(ScreenEnum.CHAT);
         } catch (IOException e1) {
           e1.printStackTrace();
         }
