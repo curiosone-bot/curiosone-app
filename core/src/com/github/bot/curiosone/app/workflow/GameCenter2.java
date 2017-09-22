@@ -22,8 +22,8 @@ import java.io.IOException;
 public class GameCenter2 extends AbstractScreen {
   private TextButton wordTiles,arkanoid,wordCrush,endlessRoad, buildWords,chat;
 
-  public GameCenter2() throws IOException{
-
+  @Override
+  public void buildStage() {
     wordTiles = CreateButton("WordTiles",480/2-250/2,800/2,250,55);
     wordTiles.addListener(new ClickListener() {
       @Override
@@ -70,10 +70,7 @@ public class GameCenter2 extends AbstractScreen {
         }
       }
     });
-  }
 
-  @Override
-  public void buildStage() {
     addActor(wordTiles);
     addActor(arkanoid);
     addActor(wordCrush);
