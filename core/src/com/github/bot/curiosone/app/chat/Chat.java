@@ -15,6 +15,7 @@ import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
 import com.github.bot.curiosone.app.chat.helpers.View;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
+import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
 import java.io.IOException;
 
@@ -69,6 +70,7 @@ public class Chat extends Game {
   public void dispose() {
     super.dispose();
     AssetLoader.dispose();
+    ChatWorld.resetScrollpane();
   }
 
   private float getKeyboardHeight() {

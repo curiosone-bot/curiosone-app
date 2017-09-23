@@ -168,4 +168,9 @@ public class ChatWorld {
     }
     return newPhrase;
   }
+
+  public static void resetScrollpane() {
+    scrollPane = null;
+    scrollTable = null;
+  }
 }
