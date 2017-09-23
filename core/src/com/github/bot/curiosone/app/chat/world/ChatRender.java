@@ -51,4 +51,8 @@ public class ChatRender {
   public StretchViewport getView() {
     return viewp;
   }
+
+  public void dispose() {
+    stage.dispose();
+  }
 }

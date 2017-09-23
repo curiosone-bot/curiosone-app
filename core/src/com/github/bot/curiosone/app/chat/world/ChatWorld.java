@@ -32,8 +32,8 @@ public class ChatWorld {
   private SendButton send;
   private Inserimento inserimento;
   private ChatRender render;
-  private ScrollPane scrollPane;
-  public Table scrollTable = new Table();
+  private static ScrollPane scrollPane;
+  public  static Table scrollTable;
   public Image bg = new Image(AssetLoader.bg);
   private ImageButton gameButton;
   private TextButton optionButton;
@@ -71,11 +71,14 @@ public class ChatWorld {
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.send = new SendButton(75, 58, 362, 52);
 
-    scrollPane = new ScrollPane(scrollTable, AssetLoader.skin);
-    scrollPane.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
-    scrollPane.setSize(390, 700 - scrollPane.getY());
-    scrollPane.setScrollingDisabled(true, false);
-    scrollPane.setupFadeScrollBars(0, 0);
+    if(scrollPane == null || scrollTable == null) {
+      scrollTable = new Table();
+      scrollPane = new ScrollPane(scrollTable, AssetLoader.skin);
+      scrollPane.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
+      scrollPane.setSize(390, 700 - scrollPane.getY());
+      scrollPane.setScrollingDisabled(true, false);
+      scrollPane.setupFadeScrollBars(0, 0);
+    }
   }
 
   public void update(float delta) {
@@ -166,4 +169,3 @@ public class ChatWorld {
     return newPhrase;
   }
 }
-

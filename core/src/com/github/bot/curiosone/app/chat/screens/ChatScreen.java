@@ -60,7 +60,8 @@ public class ChatScreen implements BuildableStageScreen {
 
   @Override
   public void dispose() {
-    //Gdx.app.log("Chat", "dispose called");
+    renderer.dispose();
+    Gdx.input.setOnscreenKeyboardVisible(false);
   }
 
   @Override
