@@ -1,7 +1,7 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
-import com.github.bot.curiosone.app.chat.screens.OptionScreen;
+import com.github.bot.curiosone.app.chat.screens.MenuScreen;
 import com.github.bot.curiosone.app.workflow.GameCenter2;
 
 import java.io.IOException;
@@ -17,9 +17,9 @@ public enum ScreenEnum {
       return new GameCenter2();
     }
   },
-  OPTION {
+  MENU {
     public BuildableStageScreen getScreen() throws IOException {
-      return new OptionScreen();
+      return new MenuScreen();
     }
   };
 

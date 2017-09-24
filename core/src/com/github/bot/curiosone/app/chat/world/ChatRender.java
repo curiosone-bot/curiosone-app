@@ -38,7 +38,7 @@ public class ChatRender {
   public void buildStage() {
     stage.addActor(world.getBg());
     stage.addActor(world.getGameButton());
-    stage.addActor(world.getOptionButton());
+    stage.addActor(world.getMenuButton());
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getScrollPane());

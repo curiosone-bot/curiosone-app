@@ -1,6 +1,5 @@
 package com.github.bot.curiosone.app.chat.world;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -19,9 +18,6 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
-import com.github.bot.curiosone.app.chat.screens.OptionScreen;
-import com.github.bot.curiosone.app.workflow.GameCenter;
-import com.github.bot.curiosone.app.workflow.GameCenter2;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -36,7 +32,7 @@ public class ChatWorld {
   public  static Table scrollTable;
   public Image bg = new Image(AssetLoader.bg);
   private ImageButton gameButton;
-  private TextButton optionButton;
+  private TextButton menuButton;
   private int cliccato = 2;
 
   public ChatWorld() throws IOException {
@@ -54,14 +50,14 @@ public class ChatWorld {
       }
     });
 
-    optionButton = new TextButton("", AssetLoader.defaultSkin);
-    optionButton.setPosition(354, 727);
-    optionButton.setSize(75, 30);
-    optionButton.addListener(new ClickListener() {
+    menuButton = new TextButton("", AssetLoader.defaultSkin);
+    menuButton.setPosition(354, 727);
+    menuButton.setSize(75, 30);
+    menuButton.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         try {
-          ScreenManager.getInstance().showScreen(ScreenEnum.OPTION);
+          ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
         } catch (IOException e1) {
           e1.printStackTrace();
         }
@@ -145,8 +141,8 @@ public class ChatWorld {
     return gameButton;
   }
 
-  public TextButton getOptionButton() {
-    return optionButton;
+  public TextButton getMenuButton() {
+    return menuButton;
   }
 
   public int getIncremento(int n) { return Chat.keyboardHeight != 0 ? 17 : n; }

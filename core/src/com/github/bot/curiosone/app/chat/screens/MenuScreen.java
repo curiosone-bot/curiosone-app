@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
-public class OptionScreen extends AbstractScreen {
+public class MenuScreen extends AbstractScreen {
   private TextButton textButton, textButton2;
 
   @Override
