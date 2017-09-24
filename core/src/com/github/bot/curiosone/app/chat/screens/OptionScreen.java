@@ -12,7 +12,6 @@ public class OptionScreen extends AbstractScreen {
     textButton = new TextButton("ascasc", AssetLoader.defaultSkin);
     textButton2 = new TextButton("ascasc", AssetLoader.defaultSkin);
     reorder(250f, 55f, textButton, textButton2);
-    addActor(textButton);
-    addActor(textButton2);
+    addActors(textButton, textButton2);
   }
 }

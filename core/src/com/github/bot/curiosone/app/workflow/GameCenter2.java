@@ -74,12 +74,7 @@ public class GameCenter2 extends AbstractScreen {
     });
 
     reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
-    addActor(wordTiles);
-    addActor(arkanoid);
-    addActor(wordCrush);
-    addActor(endlessRoad);
-    addActor(buildWords);
-    addActor(chat);
+    addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
   }
 
   @Override

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -23,6 +24,12 @@ public abstract class AbstractScreen extends Stage implements BuildableStageScre
       button.setPosition(POSX, posY);
       posY += CONSTY;
     };
+  }
+
+  protected void addActors(Actor... actors) {
+    for(Actor a : actors) {
+      addActor(a);
+    }
   }
 
   @Override
