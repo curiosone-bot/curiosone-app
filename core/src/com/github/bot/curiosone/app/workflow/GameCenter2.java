@@ -1,23 +1,11 @@
 package com.github.bot.curiosone.app.workflow;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
-import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
-import com.github.bot.curiosone.app.chat.screens.ChatScreen;
-
-import java.io.IOException;
+import com.github.bot.curiosone.app.chat.helpers.Listeners;
 
 
 public class GameCenter2 extends AbstractScreen {
@@ -62,16 +50,7 @@ public class GameCenter2 extends AbstractScreen {
 
       }
     });
-    chat.addListener(new ClickListener() {
-      @Override
-      public void touchUp(InputEvent e, float x, float y, int point, int button)  {
-        try {
-          ScreenManager.getInstance().showScreen(ScreenEnum.CHAT);
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
-      }
-    });
+    chat.addListener(Listeners.CHAT.getListener());
 
     reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
     addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);

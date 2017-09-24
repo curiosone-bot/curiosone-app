@@ -16,6 +16,7 @@ import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.Listeners;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 
@@ -39,30 +40,12 @@ public class ChatWorld {
     gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
-    gameButton.addListener(new ClickListener() {
-      @Override
-      public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try {
-          ScreenManager.getInstance().showScreen(ScreenEnum.GAMECENTER);
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
-      }
-    });
+    gameButton.addListener(Listeners.GAMECENTER.getListener());
 
     menuButton = new TextButton("", AssetLoader.defaultSkin);
     menuButton.setPosition(354, 727);
     menuButton.setSize(75, 30);
-    menuButton.addListener(new ClickListener() {
-      @Override
-      public void touchUp(InputEvent e, float x, float y, int point, int button) {
-        try {
-          ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
-      }
-    });
+    menuButton.addListener(Listeners.MENU.getListener());
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.send = new SendButton(75, 58, 362, 52);
