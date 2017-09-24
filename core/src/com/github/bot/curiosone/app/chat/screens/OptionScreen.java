@@ -5,12 +5,14 @@ import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
 public class OptionScreen extends AbstractScreen {
-  private TextButton textButton = new TextButton("ascasc", AssetLoader.defaultSkin);
+  private TextButton textButton, textButton2;
 
   @Override
   public void buildStage() {
-    textButton.setPosition(0, 0);
-    textButton.setSize(100,100);
+    textButton = new TextButton("ascasc", AssetLoader.defaultSkin);
+    textButton2 = new TextButton("ascasc", AssetLoader.defaultSkin);
+    reorder(250f, 55f, textButton, textButton2);
     addActor(textButton);
+    addActor(textButton2);
   }
 }

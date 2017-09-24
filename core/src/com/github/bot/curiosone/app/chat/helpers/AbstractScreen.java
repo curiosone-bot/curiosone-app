@@ -5,11 +5,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public abstract class AbstractScreen extends Stage implements BuildableStageScreen {
   public AbstractScreen() {
     super(new StretchViewport(480, 800, new OrthographicCamera()));
+  }
+
+  protected static void reorder(float width, float height, Button... buttons) {
+    final float POSX = 240 - (width / 2);
+    final float CONSTY = (800 / (buttons.length + 1));
+    float posY = CONSTY  - (height / 2);
+    Gdx.app.log("len", buttons.length + "");
+    for(Button button : buttons) {
+      button.setSize(width, height);
+      button.setPosition(POSX, posY);
+      posY += CONSTY;
+    };
   }
 
   @Override

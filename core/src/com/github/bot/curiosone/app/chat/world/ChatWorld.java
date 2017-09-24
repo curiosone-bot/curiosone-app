@@ -61,7 +61,7 @@ public class ChatWorld {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         try {
-          ScreenManager.getInstance().showScreen(new OptionScreen());
+          ScreenManager.getInstance().showScreen(ScreenEnum.OPTION);
         } catch (IOException e1) {
           e1.printStackTrace();
         }
