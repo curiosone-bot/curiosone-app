@@ -5,7 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.Listeners;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 
 
 public class GameCenter2 extends AbstractScreen {
@@ -50,7 +51,7 @@ public class GameCenter2 extends AbstractScreen {
 
       }
     });
-    chat.addListener(Listeners.CHAT.getListener());
+    chat.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
 
     reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
     addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);

@@ -16,7 +16,6 @@ import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.Listeners;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 
@@ -40,12 +39,12 @@ public class ChatWorld {
     gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
     gameButton.setPosition(54, 727);
     gameButton.setSize(75, 30);
-    gameButton.addListener(Listeners.GAMECENTER.getListener());
+    gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
 
     menuButton = new TextButton("", AssetLoader.defaultSkin);
     menuButton.setPosition(354, 727);
     menuButton.setSize(75, 30);
-    menuButton.addListener(Listeners.MENU.getListener());
+    menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.send = new SendButton(75, 58, 362, 52);
