@@ -60,7 +60,7 @@ public class Chat extends Game {
     AssetLoader.load();
     ScreenManager.getInstance().initialize(this);
     try {
-      ScreenManager.getInstance().showScreen(ScreenEnum.CHAT);
+      ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
     } catch (IOException e) {
       e.printStackTrace();
     }

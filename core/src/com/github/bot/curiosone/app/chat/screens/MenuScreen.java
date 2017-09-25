@@ -3,15 +3,22 @@ package com.github.bot.curiosone.app.chat.screens;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 
 public class MenuScreen extends AbstractScreen {
-  private TextButton textButton, textButton2;
+  private TextButton chatButton, gameButton, optionButton;
 
   @Override
   public void buildStage() {
-    textButton = new TextButton("ascasc", AssetLoader.defaultSkin);
-    textButton2 = new TextButton("ascasc", AssetLoader.defaultSkin);
-    reorder(250f, 55f, textButton, textButton2);
-    addActors(textButton, textButton2);
+    chatButton = new TextButton("Chat", AssetLoader.defaultSkin);
+    gameButton = new TextButton("Gamecenter", AssetLoader.defaultSkin);
+    optionButton = new TextButton("Option", AssetLoader.defaultSkin);
+
+    chatButton.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
+    gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
+
+    reorder(250f, 55f, optionButton, gameButton, chatButton);
+    addActors(chatButton, gameButton, optionButton);
   }
 }
