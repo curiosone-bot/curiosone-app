@@ -18,6 +18,7 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
+import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -34,6 +35,7 @@ public class ChatWorld {
   private ImageButton gameButton;
   private TextButton menuButton;
   private int cliccato = 2;
+  public static TalkRequestResponse lastBotMessage;
 
   public ChatWorld() throws IOException {
     gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
@@ -48,6 +50,7 @@ public class ChatWorld {
 
     this.inserimento = new Inserimento(290, 80, 45, 40);
     this.send = new SendButton(75, 58, 362, 52);
+    this.lastBotMessage = new TalkRequestResponse();
 
     if(scrollPane == null || scrollTable == null) {
       scrollTable = new Table();

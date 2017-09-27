@@ -41,7 +41,7 @@ public class SendButton extends ImageButton {
       new Thread() {
         public void run() {
           try {
-            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText())), "Bot");
+            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope())), "Bot");
           } catch (IOException e) {
             e.printStackTrace();
           }

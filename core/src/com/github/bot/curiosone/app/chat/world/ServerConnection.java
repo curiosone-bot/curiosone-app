@@ -17,9 +17,10 @@ import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 
 public class ServerConnection{
 
-  public static final String BASE_URL = "https://curiosone-api.herokuapp.com";
+  public static final String BASE_URL = "https://curiosone-bot.herokuapp.com";
   public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
   private OkHttpClient client;
+  private ChatWorld world;
 
 
   public ServerConnection() throws IOException {
@@ -35,15 +36,16 @@ public class ServerConnection{
     Json json = new Json();
    // System.out.println(json.toJson(message));
     String url = BASE_URL + "/talk";
-
-    RequestBody body = RequestBody.create(JSON, json.toJson(message).toString());
+    RequestBody body = RequestBody.create(JSON, message.json());
     Request request = new Request.Builder()
       .url(url)
       .post(body)
       .build();
     try (Response response = this.client.newCall(request).execute()) {
       String data = response.body().string();
-      return json.fromJson(TalkRequestResponse.class, data).getMessage();
+      world.lastBotMessage = json.fromJson(TalkRequestResponse.class, data);
+
+      return world.lastBotMessage.getMessage();
 
     }
     catch(UnknownHostException e)
