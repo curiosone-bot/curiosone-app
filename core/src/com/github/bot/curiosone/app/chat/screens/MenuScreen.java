@@ -17,6 +17,7 @@ public class MenuScreen extends AbstractScreen {
 
     chatButton.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
     gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
+    optionButton.addListener(ScreenManager.getListener(ScreenEnum.OPTION));
 
     reorder(250f, 55f, 300f, optionButton, gameButton, chatButton);
     addActors(chatButton, gameButton, optionButton);
