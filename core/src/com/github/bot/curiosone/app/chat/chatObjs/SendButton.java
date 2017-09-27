@@ -40,11 +40,13 @@ public class SendButton extends ImageButton {
       world.addMessage(inserimento.getText(), "User");
       new Thread() {
         public void run() {
+          world.getInserimento().setDisabled(true);
           try {
             world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText())), "Bot");
           } catch (IOException e) {
             e.printStackTrace();
           }
+          world.getInserimento().setDisabled(false);
         }
       }.start();
 
