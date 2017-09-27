@@ -15,8 +15,12 @@ public abstract class AbstractScreen extends Stage implements BuildableStageScre
   }
 
   protected static void reorder(float width, float height, Button... buttons) {
+    reorder(width, height, 0f, buttons);
+  }
+
+  protected static void reorder(float width, float height, float topOffset, Button... buttons) {
     final float POSX = 240 - (width / 2);
-    final float CONSTY = (800 / (buttons.length + 1));
+    final float CONSTY = ((800 - topOffset) / (buttons.length + 1));
     float posY = CONSTY  - (height / 2);
     Gdx.app.log("len", buttons.length + "");
     for(Button button : buttons) {
