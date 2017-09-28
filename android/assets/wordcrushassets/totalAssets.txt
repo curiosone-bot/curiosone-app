@@ -1,0 +1,292 @@
+totalAssets.png
+size: 2033, 1523
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bucket
+  rotate: false
+  xy: 1021, 192
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+creditsOff
+  rotate: false
+  xy: 1502, 86
+  size: 225, 95
+  orig: 225, 95
+  offset: 0, 0
+  index: -1
+creditsOn
+  rotate: false
+  xy: 1030, 86
+  size: 225, 95
+  orig: 225, 95
+  offset: 0, 0
+  index: -1
+FontPunteggio
+  rotate: false
+  xy: 8, 715
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+fontScuro
+  rotate: false
+  xy: 1432, 192
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+mainBackground
+  rotate: false
+  xy: 1022, 715
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+playOff
+  rotate: false
+  xy: 1738, 86
+  size: 225, 95
+  orig: 225, 95
+  offset: 0, 0
+  index: -1
+playOn
+  rotate: false
+  xy: 1266, 86
+  size: 225, 95
+  orig: 225, 95
+  offset: 0, 0
+  index: -1
+rectangleBox
+  rotate: false
+  xy: 557, 86
+  size: 462, 94
+  orig: 462, 94
+  offset: 0, 0
+  index: -1
+skip
+  rotate: false
+  xy: 760, 192
+  size: 250, 218
+  orig: 250, 218
+  offset: 0, 0
+  index: -1
+skipDown
+  rotate: false
+  xy: 499, 192
+  size: 250, 218
+  orig: 250, 218
+  offset: 0, 0
+  index: -1
+textBox
+  rotate: false
+  xy: 86, 86
+  size: 460, 92
+  orig: 460, 92
+  offset: 0, 0
+  index: -1
+tile1_A
+  rotate: false
+  xy: 1802, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_B
+  rotate: false
+  xy: 1880, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_blank
+  rotate: false
+  xy: 1646, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_C
+  rotate: false
+  xy: 8, 86
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_D
+  rotate: false
+  xy: 1724, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_E
+  rotate: false
+  xy: 1256, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_F
+  rotate: false
+  xy: 398, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_G
+  rotate: false
+  xy: 320, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_H
+  rotate: false
+  xy: 476, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_I
+  rotate: false
+  xy: 1568, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_J
+  rotate: false
+  xy: 86, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_K
+  rotate: false
+  xy: 8, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_L
+  rotate: false
+  xy: 554, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_M
+  rotate: false
+  xy: 788, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_N
+  rotate: false
+  xy: 1022, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_O
+  rotate: false
+  xy: 1178, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_P
+  rotate: false
+  xy: 1100, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Q
+  rotate: false
+  xy: 944, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_R
+  rotate: false
+  xy: 866, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_S
+  rotate: false
+  xy: 710, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_T
+  rotate: false
+  xy: 632, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_U
+  rotate: false
+  xy: 164, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_V
+  rotate: false
+  xy: 242, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_W
+  rotate: false
+  xy: 1958, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_X
+  rotate: false
+  xy: 1412, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Y
+  rotate: false
+  xy: 1334, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Z
+  rotate: false
+  xy: 1490, 8
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+voodoo_cactus_island
+  rotate: false
+  xy: 531, 715
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+wcLogo
+  rotate: false
+  xy: 8, 192
+  size: 480, 120
+  orig: 480, 120
+  offset: 0, 0
+  index: -1

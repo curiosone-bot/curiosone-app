@@ -9,6 +9,8 @@ import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
+import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
+import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
 
 import java.io.IOException;
 
@@ -46,7 +48,12 @@ public class GameCenter2 extends AbstractScreen {
     wordCrush.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-
+        ScreenManager sm = ScreenManager.getInstance();
+        try {
+          sm.showScreen( new MenuScreen(new WordCrushSE(), (Chat) sm.getGame()));
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
       }
     });
     endlessRoad.addListener(new ClickListener() {

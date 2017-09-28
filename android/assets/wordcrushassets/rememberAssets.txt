@@ -1,0 +1,33 @@
+rememberAssets.png
+size: 512, 1794
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bucket
+  rotate: false
+  xy: 0, 0
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+lowBlack
+  rotate: false
+  xy: 0, 400
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+remberFont
+  rotate: false
+  xy: 0, 1200
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+rememberLogo
+  rotate: false
+  xy: 0, 1712
+  size: 325, 82
+  orig: 325, 82
+  offset: 0, 0
+  index: -1

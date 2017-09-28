@@ -1,0 +1,40 @@
+gameModeTexture.png
+size: 462, 505
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gameModeLogo
+  rotate: false
+  xy: 12, 12
+  size: 438, 67
+  orig: 438, 67
+  offset: 0, 0
+  index: -1
+visionaryOff
+  rotate: false
+  xy: 12, 95
+  size: 400, 87
+  orig: 400, 87
+  offset: 0, 0
+  index: -1
+visionaryOn
+  rotate: false
+  xy: 12, 198
+  size: 400, 88
+  orig: 400, 88
+  offset: 0, 0
+  index: -1
+wordsCheckOff
+  rotate: false
+  xy: 12, 302
+  size: 400, 87
+  orig: 400, 87
+  offset: 0, 0
+  index: -1
+wordsCheckOn
+  rotate: false
+  xy: 12, 405
+  size: 400, 88
+  orig: 400, 88
+  offset: 0, 0
+  index: -1
