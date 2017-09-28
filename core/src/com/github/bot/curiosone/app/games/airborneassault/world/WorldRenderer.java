@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -14,7 +15,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.player.Player;
 import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
-import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.chat.Chat;
 
 import java.awt.*;
 
@@ -26,12 +27,14 @@ public class WorldRenderer implements Disposable {
 
   private OrthographicCamera camera;
   private Chat game;
+  private SpriteBatch batch;
   private WorldController controller;
   private BitmapFont score;
 
   public WorldRenderer(WorldController controller, Chat game) {
     this.controller = controller;
     this.game = game;
+    this.batch = new SpriteBatch();
     init();
   }
 
@@ -45,18 +48,18 @@ public class WorldRenderer implements Disposable {
   public void render() {
     camera.update();
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    game.getBatch().setProjectionMatrix(camera.combined);
-    game.getBatch().begin();
+    batch.setProjectionMatrix(camera.combined);
+    batch.begin();
     //draws background
-    controller.scrollingBackground.draw(game.getBatch());
-    game.getBatch().end();
+    controller.scrollingBackground.draw(batch);
+    batch.end();
     //draws the actors
     controller.stage.draw();
-    game.getBatch().begin();
+    batch.begin();
     //draws the healthbar and score
-    controller.healthBar.draw(game.getBatch());
-    controller.score.draw(game.getBatch(),controller.scoreText, Constants.WIDTH/2-controller.layout.width/2,780);
-    game.getBatch().end();
+    controller.healthBar.draw(batch);
+    controller.score.draw(batch,controller.scoreText, Constants.WIDTH/2-controller.layout.width/2,780);
+    batch.end();
   }
 
   public void resize(int width, int height) {
@@ -68,6 +71,7 @@ public class WorldRenderer implements Disposable {
    */
   @Override
   public void dispose() {
+    batch.dispose();
     controller.settings.resetScore();
     controller.settings.resetAcceleration();
     controller.music.stop();
@@ -117,4 +121,3 @@ public class WorldRenderer implements Disposable {
     });
   }
 }
-

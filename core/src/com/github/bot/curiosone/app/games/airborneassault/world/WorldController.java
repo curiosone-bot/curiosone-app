@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -22,7 +23,7 @@ import com.github.bot.curiosone.app.games.airborneassault.screens.GameOverScreen
 import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
 import com.github.bot.curiosone.app.games.airborneassault.spawner.PlaneSpawner;
-import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.chat.Chat;
 
 import java.util.Iterator;
 
@@ -32,6 +33,7 @@ import java.util.Iterator;
 public class WorldController {
 
   private Chat game;
+  private SpriteBatch batch;
   protected OrthographicCamera camera;
   private Iterator<Actor> actorIterator;
   private long lastSpawnedTime;
@@ -50,12 +52,13 @@ public class WorldController {
 
   public WorldController(Chat game){
     this.game = game;
+    this.batch = new SpriteBatch();
     init();
   }
 
   private void init(){
     manager = Manager.getIstance();
-    stage = new Stage(new StretchViewport(Constants.WIDTH,Constants.HEIGHT),game.getBatch());
+    stage = new Stage(new StretchViewport(Constants.WIDTH,Constants.HEIGHT),this.batch);
     Gdx.input.setInputProcessor(stage);
 
     /*Spawning the tiles*/

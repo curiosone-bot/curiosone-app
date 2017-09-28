@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -14,12 +15,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.github.bot.curiosone.app.chat.Chat;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.workflow.Chat;
 import com.github.bot.curiosone.app.workflow.GameCenter;
+
+import java.io.IOException;
 
 /**
  * @author Alessandro Roic
@@ -28,6 +33,7 @@ import com.github.bot.curiosone.app.workflow.GameCenter;
 public class MainMenuScreen extends ScreenAdapter
 {
     private Chat game;
+    private SpriteBatch batch;
     private Texture background;
     private Music music;
     private Sound clickSound;
@@ -38,6 +44,7 @@ public class MainMenuScreen extends ScreenAdapter
 
     public MainMenuScreen(final Chat game) {
         this.game=game;
+        this.batch = new SpriteBatch();
         manager = Manager.getIstance();
         manager.loadAll();
         settings = Settings.getIstance();
@@ -120,8 +127,12 @@ public class MainMenuScreen extends ScreenAdapter
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            dispose();
-            game.setScreen(new GameCenter(game));
+            try {
+              ScreenManager.getInstance().showScreen(ScreenEnum.GAMECENTER);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+
           }
         });
         stage.addActor(exitButton);
@@ -131,10 +142,10 @@ public class MainMenuScreen extends ScreenAdapter
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
-        game.getBatch().begin();
-        game.getBatch().draw(background,0,0,1080,1920);
-        game.getBatch().end();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(background,0,0,1080,1920);
+        batch.end();
         stage.act();
         stage.draw();
     }
@@ -150,6 +161,7 @@ public class MainMenuScreen extends ScreenAdapter
         manager.getAssetManager().clear();
         music.dispose();
         background.dispose();
+        batch.dispose();
         stage.dispose();
         super.dispose();
     }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
@@ -23,6 +24,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 public class GameOverScreen extends ScreenAdapter{
 
   private Chat game;
+  private SpriteBatch batch;
   private Texture gameOverTexture;
   private OrthographicCamera camera;
   private Music gameOverSound;
@@ -34,6 +36,7 @@ public class GameOverScreen extends ScreenAdapter{
 
   public GameOverScreen(final Chat game) {
     this.game = game;
+    this.batch = new SpriteBatch();
     Manager manager = Manager.getIstance();
     settings = Settings.getIstance();
     settings.saveScore();
@@ -79,12 +82,12 @@ public class GameOverScreen extends ScreenAdapter{
   private void draw() {
     camera.update();
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    game.getBatch().setProjectionMatrix(camera.combined);
-    game.getBatch().begin();
-    game.getBatch().draw(gameOverTexture,0,0, Constants.WIDTH, Constants.HEIGHT);
-    bitmapFont.draw(game.getBatch(),"Points : "+settings.getScore(),Constants.WIDTH/2-width1/2,Constants.HEIGHT/2+100);
-    bitmapFont.draw(game.getBatch(),"Record : "+settings.getSavedScore(),Constants.WIDTH/2-width2/2,Constants.HEIGHT/2+50);
-    game.getBatch().end();
+    batch.setProjectionMatrix(camera.combined);
+    batch.begin();
+    batch.draw(gameOverTexture,0,0, Constants.WIDTH, Constants.HEIGHT);
+    bitmapFont.draw(batch,"Points : "+settings.getScore(),Constants.WIDTH/2-width1/2,Constants.HEIGHT/2+100);
+    bitmapFont.draw(batch,"Record : "+settings.getSavedScore(),Constants.WIDTH/2-width2/2,Constants.HEIGHT/2+50);
+    batch.end();
   }
 
   /**
@@ -104,6 +107,7 @@ public class GameOverScreen extends ScreenAdapter{
   public void dispose() {
     settings.resetAcceleration();
     settings.resetScore();
+    batch.dispose();
     super.dispose();
   }
 }

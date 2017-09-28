@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -23,7 +24,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.workflow.Chat;
+import com.github.bot.curiosone.app.chat.Chat;
 
 /**
  * @author Alessandro Roic
@@ -32,6 +33,7 @@ import com.github.bot.curiosone.app.workflow.Chat;
 public class OptionScreen extends ScreenAdapter{
 
     private Chat game;
+    private SpriteBatch batch;
     private Texture background;
     private CheckBox musicCheckBox,sfxCheckBox;
     private TextureRegionDrawable checked,unchecked;
@@ -44,8 +46,9 @@ public class OptionScreen extends ScreenAdapter{
 
     public OptionScreen(final Chat game) {
         this.game = game;
+        this.batch = new SpriteBatch();
         settings = Settings.getIstance();
-        stage = new Stage(new StretchViewport(Constants.WIDTH, Constants.HEIGHT),game.getBatch());
+        stage = new Stage(new StretchViewport(Constants.WIDTH, Constants.HEIGHT),this.batch);
         Gdx.input.setInputProcessor(stage);
         manager = Manager.getIstance();
 
@@ -138,10 +141,10 @@ public class OptionScreen extends ScreenAdapter{
           update();
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
           camera.update();
-          game.getBatch().setProjectionMatrix(camera.combined);
-          game.getBatch().begin();
-          game.getBatch().draw(background,0,0, Constants.WIDTH, Constants.HEIGHT);
-          game.getBatch().end();
+          this.batch.setProjectionMatrix(camera.combined);
+          this.batch.begin();
+          this.batch.draw(background,0,0, Constants.WIDTH, Constants.HEIGHT);
+          this.batch.end();
           stage.act();
           stage.draw();
       }
@@ -166,6 +169,7 @@ public class OptionScreen extends ScreenAdapter{
 
     @Override
     public void dispose() {
+        batch.dispose();
         super.dispose();
         stage.dispose();
     }
