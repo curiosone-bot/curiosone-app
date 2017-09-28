@@ -1,13 +1,13 @@
 Untitled
 - Delay -
 active: false
-- Duration - 
+- Duration -
 lowMin: 400.0
 lowMax: 400.0
-- Count - 
+- Count -
 min: 0
 max: 60
-- Emission - 
+- Emission -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 250.0
@@ -19,7 +19,7 @@ scaling1: 0.0
 timelineCount: 2
 timeline0: 0.0
 timeline1: 0.69863015
-- Life - 
+- Life -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 500.0
@@ -33,15 +33,15 @@ timelineCount: 3
 timeline0: 0.0
 timeline1: 0.66
 timeline2: 1.0
-- Life Offset - 
+- Life Offset -
 active: false
-- X Offset - 
+- X Offset -
 active: false
-- Y Offset - 
+- Y Offset -
 active: false
-- Spawn Shape - 
+- Spawn Shape -
 shape: point
-- Spawn Width - 
+- Spawn Width -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 0.0
@@ -51,7 +51,7 @@ scalingCount: 1
 scaling0: 1.0
 timelineCount: 1
 timeline0: 0.0
-- Spawn Height - 
+- Spawn Height -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 0.0
@@ -61,7 +61,7 @@ scalingCount: 1
 scaling0: 1.0
 timelineCount: 1
 timeline0: 0.0
-- Scale - 
+- Scale -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 38.0
@@ -73,7 +73,7 @@ scaling1: 1.0
 timelineCount: 2
 timeline0: 0.0
 timeline1: 0.46575344
-- Velocity - 
+- Velocity -
 active: true
 lowMin: 0.0
 lowMax: 0.0
@@ -86,7 +86,7 @@ scaling1: 1.0
 timelineCount: 2
 timeline0: 0.0
 timeline1: 0.5890411
-- Angle - 
+- Angle -
 active: true
 lowMin: 0.0
 lowMax: 0.0
@@ -101,7 +101,7 @@ timelineCount: 3
 timeline0: 0.0
 timeline1: 0.999
 timeline2: 1.0
-- Rotation - 
+- Rotation -
 active: true
 lowMin: 1.0
 lowMax: 360.0
@@ -116,18 +116,18 @@ timelineCount: 3
 timeline0: 0.0
 timeline1: 0.2739726
 timeline2: 1.0
-- Wind - 
+- Wind -
 active: false
-- Gravity - 
+- Gravity -
 active: false
-- Tint - 
+- Tint -
 colorsCount: 3
 colors0: 1.0
 colors1: 1.0
 colors2: 1.0
 timelineCount: 1
 timeline0: 0.0
-- Transparency - 
+- Transparency -
 lowMin: 0.0
 lowMax: 0.0
 highMin: 1.0
@@ -143,7 +143,7 @@ timeline0: 0.0
 timeline1: 0.43150684
 timeline2: 0.60273975
 timeline3: 1.0
-- Options - 
+- Options -
 attached: false
 continuous: false
 aligned: false
@@ -151,4 +151,4 @@ additive: true
 behind: false
 premultipliedAlpha: false
 - Image Path -
-stella.png
+wordcrushassets/stella.png

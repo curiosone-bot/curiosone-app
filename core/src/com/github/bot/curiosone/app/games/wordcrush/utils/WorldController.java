@@ -266,7 +266,7 @@ public class WorldController
 
         /* Effect */
         starsEffect = new ParticleEffect();
-        starsEffect.load(Gdx.files.internal("starEffect"),Gdx.files.internal(""));
+        starsEffect.load(Gdx.files.internal("wordcrushassets/starEffect"),Gdx.files.internal(""));
         starsEffect.setPosition(GameConstants.WIDTH/2, GameConstants.HEIGHT/2);
 
 
