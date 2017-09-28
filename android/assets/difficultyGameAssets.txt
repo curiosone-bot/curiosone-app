@@ -1,0 +1,54 @@
+difficultyGameAssets.png
+size: 343, 657
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+easyOff
+  rotate: false
+  xy: 11, 11
+  size: 321, 86
+  orig: 321, 86
+  offset: 0, 0
+  index: -1
+easyOn
+  rotate: false
+  xy: 11, 106
+  size: 321, 87
+  orig: 321, 87
+  offset: 0, 0
+  index: -1
+hardOff
+  rotate: false
+  xy: 11, 202
+  size: 321, 86
+  orig: 321, 86
+  offset: 0, 0
+  index: -1
+hardOn
+  rotate: false
+  xy: 11, 297
+  size: 321, 87
+  orig: 321, 87
+  offset: 0, 0
+  index: -1
+normalOff
+  rotate: false
+  xy: 11, 393
+  size: 321, 86
+  orig: 321, 86
+  offset: 0, 0
+  index: -1
+normalOn
+  rotate: false
+  xy: 11, 488
+  size: 321, 87
+  orig: 321, 87
+  offset: 0, 0
+  index: -1
+selectLogo
+  rotate: false
+  xy: 11, 584
+  size: 265, 62
+  orig: 265, 62
+  offset: 0, 0
+  index: -1

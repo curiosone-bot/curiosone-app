@@ -1,0 +1,194 @@
+atlasLettere.png
+size: 1809, 67
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tile1_A
+  rotate: false
+  xy: 0, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_B
+  rotate: false
+  xy: 67, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_blank
+  rotate: false
+  xy: 134, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_C
+  rotate: false
+  xy: 201, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_D
+  rotate: false
+  xy: 268, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_E
+  rotate: false
+  xy: 335, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_F
+  rotate: false
+  xy: 402, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_G
+  rotate: false
+  xy: 469, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_H
+  rotate: false
+  xy: 536, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_I
+  rotate: false
+  xy: 603, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_J
+  rotate: false
+  xy: 670, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_K
+  rotate: false
+  xy: 737, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_L
+  rotate: false
+  xy: 804, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_M
+  rotate: false
+  xy: 871, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_N
+  rotate: false
+  xy: 938, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_O
+  rotate: false
+  xy: 1005, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_P
+  rotate: false
+  xy: 1072, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Q
+  rotate: false
+  xy: 1139, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_R
+  rotate: false
+  xy: 1206, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_S
+  rotate: false
+  xy: 1273, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_T
+  rotate: false
+  xy: 1340, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_U
+  rotate: false
+  xy: 1407, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_V
+  rotate: false
+  xy: 1474, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_W
+  rotate: false
+  xy: 1541, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_X
+  rotate: false
+  xy: 1608, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Y
+  rotate: false
+  xy: 1675, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
+tile1_Z
+  rotate: false
+  xy: 1742, 0
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: 67
