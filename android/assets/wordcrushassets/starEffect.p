@@ -151,4 +151,4 @@ additive: true
 behind: false
 premultipliedAlpha: false
 - Image Path -
-wordcrushassets/stella.png
+stella.png
