@@ -24,8 +24,7 @@ public class ChatRender {
     viewp = new StretchViewport(480, 800, cam);
     world.getSendButton().setWorld(world);
     this.stage = new Stage(viewp, batch);
-    Gdx.input.setInputProcessor(stage);
-
+    buildStage();
   }
 
   public void render() {
@@ -35,13 +34,14 @@ public class ChatRender {
     stage.draw();
   }
 
-  public void buildStage() {
+  private void buildStage() {
     stage.addActor(world.getBg());
     stage.addActor(world.getGameButton());
     stage.addActor(world.getMenuButton());
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getScrollPane());
+    Gdx.input.setInputProcessor(stage);
   }
 
   public Stage getStage() {

@@ -28,18 +28,15 @@ public class ScreenManager {
   }
 
   public void showScreen(ScreenEnum screenEnum) throws IOException {
-    Screen currentScreen = game.getScreen();
-    BuildableStageScreen newScreen = screenEnum.getScreen();
-    newScreen.buildStage();
-    game.setScreen(newScreen);
-    if(currentScreen != null) {
-      currentScreen.dispose();
-    }
+    showScreen(screenEnum.getScreen());
   }
 
   public void showScreen(Screen screen) throws IOException {
     Screen currentScreen = game.getScreen();
     Screen newScreen = screen;
+    if (newScreen instanceof BuildableStageScreen) {
+      ((BuildableStageScreen) newScreen).buildStage();
+    }
     game.setScreen(newScreen);
     if(currentScreen != null) {
       currentScreen.dispose();
