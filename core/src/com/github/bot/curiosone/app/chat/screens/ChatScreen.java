@@ -14,7 +14,7 @@ import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
 import java.io.IOException;
 
-public class ChatScreen implements BuildableStageScreen {
+public class ChatScreen implements Screen {
 
   private ChatRender renderer;
   private ChatWorld world;
@@ -62,10 +62,5 @@ public class ChatScreen implements BuildableStageScreen {
   public void dispose() {
     renderer.dispose();
     Gdx.input.setOnscreenKeyboardVisible(false);
-  }
-
-  @Override
-  public void buildStage() {
-    renderer.buildStage();
   }
 }

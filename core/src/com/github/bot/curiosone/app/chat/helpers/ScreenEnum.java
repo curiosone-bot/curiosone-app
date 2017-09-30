@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
+import com.badlogic.gdx.Screen;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 import com.github.bot.curiosone.app.chat.screens.MenuScreen;
 import com.github.bot.curiosone.app.chat.screens.OptionScreen;
@@ -9,25 +10,25 @@ import java.io.IOException;
 
 public enum ScreenEnum {
   CHAT {
-    public BuildableStageScreen getScreen() throws IOException {
+    public Screen getScreen() throws IOException {
       return new ChatScreen();
     }
   },
   GAMECENTER {
-    public BuildableStageScreen getScreen() throws IOException {
+    public Screen getScreen() throws IOException {
       return new GameCenter2();
     }
   },
   MENU {
-    public BuildableStageScreen getScreen() throws IOException {
+    public Screen getScreen() throws IOException {
       return new MenuScreen();
     }
   },
   OPTION {
-    public BuildableStageScreen getScreen() throws IOException {
+    public Screen getScreen() throws IOException {
       return new OptionScreen();
     }
   };
 
-  public abstract BuildableStageScreen getScreen() throws IOException;
+  public abstract Screen getScreen() throws IOException;
 }
