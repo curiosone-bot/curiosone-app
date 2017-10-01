@@ -1,7 +1,6 @@
 package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -11,14 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
-import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
+import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -38,27 +35,17 @@ public class ChatWorld {
   public static TalkRequestResponse lastBotMessage;
 
   public ChatWorld() throws IOException {
-    gameButton = new ImageButton(AssetLoader.skin.get("gamecenter", ImageButton.ImageButtonStyle.class));
-    gameButton.setPosition(54, 727);
-    gameButton.setSize(75, 30);
-    gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
+    gameButton = ChatElementFactory.getGameButton();
 
-    menuButton = new TextButton("", AssetLoader.defaultSkin);
-    menuButton.setPosition(354, 727);
-    menuButton.setSize(75, 30);
-    menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
+    menuButton = ChatElementFactory.getMenuButton();
 
-    this.inserimento = new Inserimento(290, 80, 45, 40);
-    this.send = new SendButton(75, 58, 362, 52);
+    this.inserimento = ChatElementFactory.getInserimento();
+    this.send = ChatElementFactory.getSendButton();
     this.lastBotMessage = new TalkRequestResponse();
 
     if(scrollPane == null || scrollTable == null) {
       scrollTable = new Table();
-      scrollPane = new ScrollPane(scrollTable, AssetLoader.skin);
-      scrollPane.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
-      scrollPane.setSize(390, 700 - scrollPane.getY());
-      scrollPane.setScrollingDisabled(true, false);
-      scrollPane.setupFadeScrollBars(0, 0);
+      scrollPane = ChatElementFactory.getScrollPane(scrollTable, inserimento);
     }
   }
 

@@ -9,8 +9,8 @@ import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 
 public class Inserimento extends TextField {
 
-  public Inserimento(int width, int height, int x, int y) {
-    super("", AssetLoader.skin);
+  public Inserimento(int width, int height, int x, int y, Skin skin) {
+    super("", skin);
     this.setSize(width, height);
     this.setPosition(x,y);
   }
