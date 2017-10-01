@@ -24,7 +24,6 @@ public class SendButton extends ImageButton {
 
   private ChatWorld world;
 
-  private AITemporanea ai = new AITemporanea();
   private ServerConnection sc = new ServerConnection();
 
   public SendButton(float width, float height, float x, float y) throws IOException {
