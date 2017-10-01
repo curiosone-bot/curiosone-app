@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.github.bot.curiosone.app.chat.Chat;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.wordcrush.screen.AbstractGameScreen;
 import com.github.bot.curiosone.app.games.wordcrush.screen.CreditsScreen;
 import com.github.bot.curiosone.app.games.wordcrush.screen.DifficultyScreen;
@@ -21,6 +23,8 @@ import com.github.bot.curiosone.app.games.wordcrush.utils.*;
 import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
 import com.github.bot.curiosone.app.games.wordcrush.loaders.Assets;
 import com.github.bot.curiosone.app.games.wordcrush.loaders.AudioManager;
+
+import java.io.IOException;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 
@@ -122,7 +126,12 @@ public class MenuScreen extends AbstractGameScreen
                 if ((keycode == Input.Keys.ESCAPE) || (keycode == Input.Keys.BACK) )
                 { // Maybe perform other operations before exiting
                     AudioManager.instance.play(Assets.instance.assetSound.clickMenuButton);
-                    Gdx.app.exit();
+
+                  try {
+                    ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
                 }
                 return false;
             }
