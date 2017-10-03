@@ -42,7 +42,7 @@ public class SendButton extends ImageButton {
         public void run() {
           world.getInserimento().setDisabled(true);
           try {
-            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope())), "Bot");
+            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope(), world.lastBotMessage.getEmotion())), "Bot");
           } catch (IOException e) {
             e.printStackTrace();
           }

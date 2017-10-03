@@ -7,14 +7,16 @@ package com.github.bot.curiosone.app.chat.helpers;
 public class TalkRequestResponse {
   private String message;
   private String scope;
+  private String emotion;
 
-  public TalkRequestResponse(String message, String scope){
+  public TalkRequestResponse(String message, String scope, String emotion){
     this.message = message;
     this.scope = scope;
+    this.emotion = emotion;
   }
 
   public TalkRequestResponse(){
-    this("", "");
+    this("", "", "");
   }
 
   public String getMessage(){
@@ -25,12 +27,20 @@ public class TalkRequestResponse {
     return scope;
   }
 
+  public String getEmotion(){
+    return emotion;
+  }
+
   public void setMessage(String message){
     this.message = message;
   }
 
   public void setScope(String scope){
     this.scope = scope;
+  }
+
+  public void setEmotion(String emotion){
+    this.emotion = emotion;
   }
 
   public String json(){
