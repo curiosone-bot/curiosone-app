@@ -242,10 +242,13 @@ public class WorldRenderer implements Disposable
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         controller.stage.getBatch().setProjectionMatrix(camera.combined);
         controller.stage.getBatch().begin();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
         drawBackgrounds();
         controller.stage.getBatch().draw(Player.getInstance().getSprite(),Player.getInstance().getX(),Player.getInstance().getY(),Player.getInstance().getOriginX(),Player.getInstance().getOriginY(),Player.getInstance().getWidth(),Player.getInstance().getHeight(),Player.getInstance().getScaleX(),Player.getInstance().getScaleY(),Player.getInstance().getRotation());
         controller.carsSpawner.drawCars(batch);
         controller.stage.getBatch().end();
+        batch.end();
         controller.stage.draw();
         controller.hudStage.draw();
         if (!(controller.buttonsStage== null && controller.pedalsStage == null))

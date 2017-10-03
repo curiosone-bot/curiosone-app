@@ -19,11 +19,15 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
+import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.workflow.GameCenter;
+
+import java.io.IOException;
 
 
 /**
@@ -195,7 +199,11 @@ public class EndlessRoad implements Screen
             public void changed(ChangeEvent event,Actor actor)
             {
             	AssetsLoader.getInstance().dispose();
-                EndlessRoad.this.game.setScreen(new GameCenter(EndlessRoad.this.game));
+              try {
+                ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
             }
         });
 

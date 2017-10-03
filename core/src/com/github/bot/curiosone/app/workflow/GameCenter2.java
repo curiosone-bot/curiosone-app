@@ -9,6 +9,7 @@ import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
+import com.github.bot.curiosone.app.games.endlessroad.scenes.EndlessRoad;
 import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
 import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
 
@@ -59,7 +60,12 @@ public class GameCenter2 extends AbstractScreen {
     endlessRoad.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
-
+        ScreenManager sm = ScreenManager.getInstance();
+        try {
+          sm.showScreen( new EndlessRoad((Chat) sm.getGame()));
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
       }
     });
     buildWords.addListener(new ClickListener() {
