@@ -10,14 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.github.bot.curiosone.app.chat.helpers.ApplicationBundle;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
 import com.github.bot.curiosone.app.chat.helpers.View;
-import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
+import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 
 import java.io.IOException;
+
 
 
 public class Chat extends Game {
@@ -57,7 +59,7 @@ public class Chat extends Game {
         }
       });
     }
-    AssetLoader.load();
+    AssetLoader.load(MODERN);
     ScreenManager.getInstance().initialize(this);
     try {
       ScreenManager.getInstance().showScreen(ScreenEnum.MENU);

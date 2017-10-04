@@ -14,19 +14,13 @@ public class GameCenter2 extends AbstractScreen {
 
   @Override
   public void buildStage() {
-    wordTiles = new TextButton("WordTiles", AssetLoader.defaultSkin);
     arkanoid = new TextButton("Arkanoid", AssetLoader.defaultSkin);
     wordCrush = new TextButton("WordCrush", AssetLoader.defaultSkin);
     endlessRoad = new TextButton("EndlessRoad", AssetLoader.defaultSkin);
     buildWords = new TextButton("BuildWords", AssetLoader.defaultSkin);
     chat = new TextButton("Chat", AssetLoader.defaultSkin);
 
-    wordTiles.addListener(new ClickListener() {
-      @Override
-      public void touchUp(InputEvent e, float x, float y, int point, int button) {
 
-      }
-    });
     arkanoid.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
@@ -53,8 +47,8 @@ public class GameCenter2 extends AbstractScreen {
     });
     chat.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
 
-    reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
-    addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid, wordTiles);
+    reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid);
+    addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid);
   }
 
   @Override

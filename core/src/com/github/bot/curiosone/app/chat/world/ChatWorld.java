@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
+
+
 public class ChatWorld {
 
   private SendButton send;
@@ -30,7 +33,7 @@ public class ChatWorld {
   public  static Table scrollTable;
   public Image bg = new Image(AssetLoader.bg);
   private ImageButton gameButton;
-  private TextButton menuButton;
+  private Button menuButton;
   private int cliccato = 2;
   public static TalkRequestResponse lastBotMessage;
 
@@ -113,7 +116,7 @@ public class ChatWorld {
     return gameButton;
   }
 
-  public TextButton getMenuButton() {
+  public Button getMenuButton() {
     return menuButton;
   }
 
