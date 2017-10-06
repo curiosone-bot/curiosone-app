@@ -20,7 +20,7 @@ public class GameCenter2 extends AbstractScreen {
     buildWords = new TextButton("BuildWords", AssetLoader.defaultSkin);
     chat = new TextButton("Chat", AssetLoader.defaultSkin);
 
-
+    
     arkanoid.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {

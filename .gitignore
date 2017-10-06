@@ -602,3 +602,4 @@ Temporary Items
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 ### Linux - END ###
+core/src/com/github/bot/curiosone/app/workflow/GameCenter2.java
