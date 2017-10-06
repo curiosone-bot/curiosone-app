@@ -14,6 +14,12 @@ com.badlogic.gdx.graphics.Color: {
 		b: 0
 		a: 1
 	}
+	RGBA_228_24_24_255: {
+		r: 0.89666665
+		g: 0.09564453
+		b: 0.09564453
+		a: 1
+	}
 	RGBA_255_255_255_255: {
 		r: 1
 		g: 1
@@ -64,12 +70,27 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		background: UserLabelattendere
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		vScroll: SendButtonattendere
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
 		font: Heavitas
 		fontColor: RGBA_0_0_0_255
 		up: Button_1
 		down: ButtonPressed
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: {
+		font: roboto
+		fontColor: RGBA_56_56_56_255
+		focusedFontColor: RGBA_0_0_0_255
+		background: TextFieldActiveattendere
+		focusedBackground: TextFieldActiveattendere
+		disabledBackground: TextFieldDisactive
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {

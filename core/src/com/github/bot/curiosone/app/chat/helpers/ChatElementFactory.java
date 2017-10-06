@@ -24,7 +24,7 @@ public class ChatElementFactory {
     gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
     switch (style) {
       case MODERN :
-        gameButton.setPosition(308, 708);
+        gameButton.setPosition(400, 708);
         gameButton.setSize(92, 92);
         return gameButton;
       case FUTURISTIC :
@@ -57,13 +57,13 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         try {
-          return new SendButton(60, 65, 400, 20, AssetLoader.skin);
+          return new SendButton(60, 65, 400, 20, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
         } catch (IOException e) {
           e.printStackTrace();
         }
       case FUTURISTIC :
         try {
-          return new SendButton(75, 58, 362, 52, AssetLoader.skin);
+          return new SendButton(75, 58, 362, 52, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
         } catch (IOException e) {
           e.printStackTrace();
         }

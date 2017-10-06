@@ -15,7 +15,6 @@ import com.github.bot.curiosone.app.chat.world.ChatWorld;
 import com.github.bot.curiosone.app.chat.world.ServerConnection;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 
 
@@ -25,7 +24,7 @@ public class SendButton extends ImageButton {
 
   private ServerConnection sc = new ServerConnection();
 
-  public SendButton(float width, float height, float x, float y, Skin skin) throws IOException {
+  public SendButton(float width, float height, float x, float y, ImageButtonStyle skin) throws IOException {
     super(skin);
     this.setPosition(x, y);
     this.setSize(width, height);

@@ -19,49 +19,49 @@ filter: Linear,Linear
 repeat: none
 BackPressedattendere
   rotate: false
-  xy: 96, 146
+  xy: 1, 57
   size: 92, 93
   orig: 92, 93
   offset: 0, 0
   index: -1
 Backattendere
   rotate: false
-  xy: 1, 52
+  xy: 96, 152
   size: 92, 92
   orig: 92, 92
   offset: 0, 0
   index: -1
 BotLabelattendere
   rotate: false
-  xy: 515, 762
+  xy: 1, 246
   size: 270, 80
   orig: 270, 80
   offset: 0, 0
   index: -1
 ButtonPressed
   rotate: false
-  xy: 515, 909
+  xy: 1, 395
   size: 409, 75
   orig: 409, 75
   offset: 0, 0
   index: -1
 Button_1
   rotate: false
-  xy: 1, 390
+  xy: 515, 904
   size: 409, 80
   orig: 409, 80
   offset: 0, 0
   index: -1
 GameButtonPressedattendere
   rotate: false
-  xy: 515, 668
+  xy: 1, 152
   size: 93, 92
   orig: 93, 92
   offset: 0, 0
   index: -1
 GameButtonattendere
   rotate: false
-  xy: 1, 146
+  xy: 515, 662
   size: 93, 93
   orig: 93, 93
   offset: 0, 0
@@ -82,21 +82,21 @@ SendButtonattendere
   index: -1
 TextFieldActiveattendere
   rotate: false
-  xy: 515, 844
+  xy: 515, 839
   size: 364, 63
   orig: 364, 63
   offset: 0, 0
   index: -1
 TextFieldDisactive
   rotate: false
-  xy: 1, 323
+  xy: 1, 328
   size: 366, 65
   orig: 366, 65
   offset: 0, 0
   index: -1
 UserLabelattendere
   rotate: false
-  xy: 1, 241
+  xy: 515, 757
   size: 270, 80
   orig: 270, 80
   offset: 0, 0
