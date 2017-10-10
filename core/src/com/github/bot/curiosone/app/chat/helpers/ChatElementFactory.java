@@ -15,8 +15,8 @@ import java.io.IOException;
 public class ChatElementFactory {
   private static StyleEnum style = StyleEnum.MODERN;
 
-  public static void setStyle(StyleEnum style) {
-    style = style;
+  public static void setStyle(StyleEnum sstyle) {
+    style = sstyle;
   }
 
   public static ImageButton getGameButton() {

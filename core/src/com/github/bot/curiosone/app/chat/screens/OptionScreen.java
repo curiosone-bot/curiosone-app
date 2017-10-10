@@ -1,10 +1,17 @@
 package com.github.bot.curiosone.app.chat.screens;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
+import com.github.bot.curiosone.app.chat.world.ChatWorld;
+
+import java.io.IOException;
+
+import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 
 public class OptionScreen extends AbstractScreen {
   private TextButton style1, style2, style3, menuButton;
@@ -17,6 +24,31 @@ public class OptionScreen extends AbstractScreen {
     menuButton = new TextButton("Menu", AssetLoader.defaultSkin);
 
     menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
+    style1.addListener(new ClickListener() {
+      @Override
+      public void touchUp(InputEvent e, float x, float y, int point, int button) {
+        ChatWorld.resetScrollpane();
+        AssetLoader.load(FUTURISTIC);
+        try {
+          ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
+      }
+    });
+
+    style2.addListener(new ClickListener() {
+      @Override
+      public void touchUp(InputEvent e, float x, float y, int point, int button) {
+        ChatWorld.resetScrollpane();
+        AssetLoader.load(MODERN);
+        try {
+          ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
+        } catch (IOException e1) {
+          e1.printStackTrace();
+        }
+      }
+    });
 
     reorder(250, 55, menuButton, style1, style2, style3);
     addActors(style1, style2, style3, menuButton);
