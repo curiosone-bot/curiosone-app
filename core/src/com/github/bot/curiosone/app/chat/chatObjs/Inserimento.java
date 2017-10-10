@@ -1,6 +1,8 @@
 package com.github.bot.curiosone.app.chat.chatObjs;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -13,5 +15,7 @@ public class Inserimento extends TextField {
     super("", skin);
     this.setSize(width, height);
     this.setPosition(x,y);
+    this.getStyle().background.setLeftWidth(this.getStyle().background.getLeftWidth()+20);
+    this.getStyle().background.setRightWidth(this.getStyle().background.getRightWidth()+20);
   }
 }
