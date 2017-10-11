@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -40,6 +41,7 @@ public class Chat extends Game {
 
   @Override
   public void create() {
+    final Preferences prefs = Gdx.app.getPreferences("Preferences");
     if(fromAndroid){
       skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
       stage = new Stage();
@@ -59,7 +61,7 @@ public class Chat extends Game {
         }
       });
     }
-    AssetLoader.load(MODERN);
+    AssetLoader.load(getType(prefs.getInteger("style")));
     ScreenManager.getInstance().initialize(this);
     try {
       ScreenManager.getInstance().showScreen(ScreenEnum.MENU);

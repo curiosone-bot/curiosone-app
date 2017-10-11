@@ -1,5 +1,7 @@
 package com.github.bot.curiosone.app.chat.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -18,6 +20,8 @@ public class OptionScreen extends AbstractScreen {
 
   @Override
   public void buildStage() {
+    final Preferences prefs = Gdx.app.getPreferences("Preferences");
+
     style1 = new TextButton("style1", AssetLoader.defaultSkin);
     style2 = new TextButton("style2", AssetLoader.defaultSkin);
     style3 = new TextButton("style3", AssetLoader.defaultSkin);
@@ -29,6 +33,8 @@ public class OptionScreen extends AbstractScreen {
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ChatWorld.resetScrollpane();
         AssetLoader.load(FUTURISTIC);
+        prefs.putInteger("style", 0);
+        prefs.flush();
         try {
           ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
         } catch (IOException e1) {
@@ -42,6 +48,8 @@ public class OptionScreen extends AbstractScreen {
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ChatWorld.resetScrollpane();
         AssetLoader.load(MODERN);
+        prefs.putInteger("style", 1);
+        prefs.flush();
         try {
           ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
         } catch (IOException e1) {

@@ -13,7 +13,7 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import java.io.IOException;
 
 public class ChatElementFactory {
-  private static StyleEnum style = StyleEnum.MODERN;
+  private static StyleEnum style;
 
   public static void setStyle(StyleEnum sstyle) {
     style = sstyle;
@@ -113,6 +113,17 @@ public class ChatElementFactory {
   }
 
   public enum StyleEnum {
-    FUTURISTIC, MODERN
+    FUTURISTIC(0), MODERN(1);
+
+    private int id;
+    StyleEnum(int id) {
+      this.id = id;
+    }
+    public int getValue() {
+      return id;
+    }
+    public static StyleEnum getType(int id) {
+      return values()[id];
+    }
   }
 }
