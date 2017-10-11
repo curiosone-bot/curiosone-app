@@ -7,14 +7,16 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.github.bot.curiosone.app.chat.Chat;
+import com.github.bot.curiosone.app.chat.helpers.Actionable;
 import com.github.bot.curiosone.app.chat.helpers.BuildableStageScreen;
 import com.github.bot.curiosone.app.chat.world.ChatRender;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
 import java.io.IOException;
 
-public class ChatScreen implements Screen {
+public class ChatScreen implements Screen, Actionable {
 
   private ChatRender renderer;
   private ChatWorld world;
@@ -62,5 +64,14 @@ public class ChatScreen implements Screen {
   public void dispose() {
     renderer.dispose();
     Gdx.input.setOnscreenKeyboardVisible(false);
+  }
+
+  @Override
+  public void entryTransition() {
+    renderer.getStage().addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+  }
+
+  @Override
+  public void exitTransition() {
   }
 }

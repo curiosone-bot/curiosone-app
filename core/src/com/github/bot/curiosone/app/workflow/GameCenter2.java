@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.workflow;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
@@ -20,7 +21,7 @@ public class GameCenter2 extends AbstractScreen {
     buildWords = new TextButton("BuildWords", AssetLoader.defaultSkin);
     chat = new TextButton("Chat", AssetLoader.defaultSkin);
 
-    
+
     arkanoid.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
@@ -54,5 +55,15 @@ public class GameCenter2 extends AbstractScreen {
   @Override
   public void dispose() {
     super.dispose();
+  }
+
+  @Override
+  public void entryTransition() {
+    this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+  }
+
+  @Override
+  public void exitTransition() {
+    this.addAction(Actions.fadeOut(1));
   }
 }

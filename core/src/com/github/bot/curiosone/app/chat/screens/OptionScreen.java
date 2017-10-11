@@ -3,6 +3,7 @@ package com.github.bot.curiosone.app.chat.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
@@ -60,5 +61,15 @@ public class OptionScreen extends AbstractScreen {
 
     reorder(250, 55, menuButton, style1, style2, style3);
     addActors(style1, style2, style3, menuButton);
+  }
+
+  @Override
+  public void entryTransition() {
+    this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+  }
+
+  @Override
+  public void exitTransition() {
+    this.addAction(Actions.fadeOut(1));
   }
 }
