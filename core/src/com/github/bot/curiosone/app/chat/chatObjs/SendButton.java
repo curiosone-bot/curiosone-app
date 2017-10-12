@@ -32,14 +32,17 @@ public class SendButton extends ImageButton {
   }
 
   private void onClick() throws IOException {
+    AssetLoader.click.play();
     Inserimento inserimento = world.getInserimento();
     if(!inserimento.getText().isEmpty()) {
       world.addMessage(inserimento.getText(), "User");
+      AssetLoader.blop.play();
       new Thread() {
         public void run() {
           world.getInserimento().setDisabled(true);
           try {
             world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope())), "Bot");
+            AssetLoader.blop.play();
           } catch (IOException e) {
             e.printStackTrace();
           }
