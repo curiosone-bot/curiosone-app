@@ -3,6 +3,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.UnknownHostException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -45,16 +46,27 @@ public class ServerConnection{
       String data = response.body().string();
       world.lastBotMessage = json.fromJson(TalkRequestResponse.class, data);
 
-      return world.lastBotMessage.getMessage();
-
     }
     catch(UnknownHostException e)
     {
-      return "error with server comunication, please check your connection and retry ";
+      world.lastBotMessage.setMessage("error with server comunication, please check your connection and retry ");
     }
     catch (SerializationException e) {
-      return "error with server , please retry later";
+      world.lastBotMessage.setMessage("error with server , please retry later");
     }
+    if (world.lastBotMessage.getMessage().equals("error with server , please retry later")) {
+      Random rnd = new Random();
+      if (rnd.nextBoolean()) {
+        world.lastBotMessage.setMessage("You wanna play?");
+        System.out.print(world.getInserimento());
+        world.getInserimento().setPlay(true);
+      }
+    }
+
+    return world.lastBotMessage.getMessage();
   }
 
+  public void setWorld(ChatWorld world) {
+    this.world = world;
+  }
 }

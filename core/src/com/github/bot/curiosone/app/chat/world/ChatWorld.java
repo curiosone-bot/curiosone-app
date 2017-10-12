@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.chat.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -10,21 +11,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.StringTokenizer;
 
-import static com.badlogic.gdx.math.MathUtils.random;
+
 
 
 public class ChatWorld {
@@ -39,6 +40,7 @@ public class ChatWorld {
   private Button menuButton;
   private int cliccato = 2;
   public static TalkRequestResponse lastBotMessage;
+  private Dialog dialog;
 
   public ChatWorld() throws IOException {
     gameButton = ChatElementFactory.getGameButton();
@@ -78,10 +80,9 @@ public class ChatWorld {
 
   public void addMessage (String message, String user) {
     scrollTable.row();
-    Cell cell = scrollTable.add(createLabel(modifyPhrase(playTheGames(message,user)), AssetLoader.skin.get(user, Label.LabelStyle.class))).expandX();
+    Cell cell = scrollTable.add(createLabel(modifyPhrase(message), AssetLoader.skin.get(user, Label.LabelStyle.class))).expandX();
     if(user.equals("User")) cell.right();
     else cell.left();
-    inserimento.setDisabled(false);
     scrollTable.bottom();
     scrollPane.layout();
     scrollPane.scrollTo(0, 0, scrollPane.getWidth(), scrollPane.getHeight());
@@ -144,65 +145,26 @@ public class ChatWorld {
     return newPhrase;
   }
 
-  private String playTheGames(String message, String user )
-  {
-    if(!user.equals("User") /*&& message.equals("Please let's talk about something different than me.")*/)
-    {
-        inserimento.setDisabled(true);
-        PlayGame pg = new PlayGame("play time",AssetLoader.skin);
-        pg.show(render.getStage());
-        return pg.getAnswer();
-
-    }
-    return message;
-  }
-
-  public static class PlayGame extends Dialog
-  {
-    private String result;
-    private String[] games= {"Arkanoid","WordCrush"};
-
-    public PlayGame(String title, Skin skin) {
-      super(title, skin);
-    }
-
-    public PlayGame(String title, Skin skin, String windowStyleName) {
-      super(title, skin, windowStyleName);
-    }
-
-    public PlayGame(String title, WindowStyle windowStyle) {
-      super(title, windowStyle);
-    }
-
-    {
-      int i= random.nextInt(1);
-      text("do you want play "+games[i]);
-      button("yes","ok, let's play "+games[i]);
-      button("no","ok, maybe later");
-    }
-
-    @Override
-    protected void result(Object object) {
-      super.result(object);
-      result = (String) object;
-      if(!object.equals("ok, maybe later"))
-      {
-        String game = ((String) object).replace("ok, let's play ","");
-
-      }
-    }
-
-
-    public String getAnswer()
-    {
-      return result;
-    }
-  }
-
-
-
   public static void resetScrollpane() {
     scrollPane = null;
     scrollTable = null;
+  }
+
+  public void openDialog() {
+    final ScreenEnum game = ScreenEnum.getRandomGame();
+    this.dialog = new Dialog("", AssetLoader.defaultSkin, "dialog") {
+      protected void result (Object object) {
+        if ((boolean) object) {
+          try {
+            ScreenManager.getInstance().showScreen(game);
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    };
+    dialog.padTop(20).padBottom(20);
+    dialog.text("Vuoi giocare a " + game.toString().toLowerCase()).button("Yes", true).button("No", false).key(Input.Keys.ENTER, true).key(Input.Keys.ESCAPE, false);
+    dialog.show(render.getStage());
   }
 }

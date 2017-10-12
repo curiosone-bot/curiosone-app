@@ -23,6 +23,7 @@ public class ChatRender {
     batch.setProjectionMatrix(cam.combined);
     viewp = new StretchViewport(480, 800, cam);
     world.getSendButton().setWorld(world);
+    world.getInserimento().setWorld(world);
     this.stage = new Stage(viewp, batch);
     buildStage();
   }

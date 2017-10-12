@@ -69,6 +69,7 @@ public class SendButton extends ImageButton {
 
   public void setWorld(ChatWorld world) {
     this.world = world;
+    sc.setWorld(world);
   }
 
 }
