@@ -1,0 +1,68 @@
+tank_explosion.png
+size: 1810, 824
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+explosion_1
+  rotate: false
+  xy: 1, 1
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_2
+  rotate: false
+  xy: 363, 1
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_3
+  rotate: false
+  xy: 725, 1
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_4
+  rotate: false
+  xy: 1087, 1
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_5
+  rotate: false
+  xy: 1449, 1
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_6
+  rotate: false
+  xy: 1, 413
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_7
+  rotate: false
+  xy: 363, 413
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_8
+  rotate: false
+  xy: 725, 413
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1
+explosion_9
+  rotate: false
+  xy: 1087, 413
+  size: 360, 410
+  orig: 360, 410
+  offset: 0, 0
+  index: -1

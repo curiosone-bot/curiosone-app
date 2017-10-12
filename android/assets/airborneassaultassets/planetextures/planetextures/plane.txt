@@ -1,0 +1,26 @@
+plane.png
+size: 360, 1920
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Biplane_Entire
+  rotate: false
+  xy: 0, 0
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: -1
+Biplane_entire2
+  rotate: false
+  xy: 0, 640
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: -1
+Biplane_entire3
+  rotate: false
+  xy: 0, 1280
+  size: 360, 640
+  orig: 360, 640
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,75 @@
+allied_explosion.png
+size: 1810, 724
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 1, 1
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 363, 1
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 725, 1
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 1087, 1
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 1449, 1
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 1, 363
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 363, 363
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 725, 363
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 1087, 363
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1
+10
+  rotate: false
+  xy: 1449, 363
+  size: 360, 360
+  orig: 360, 360
+  offset: 0, 0
+  index: -1

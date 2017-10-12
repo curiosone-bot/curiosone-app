@@ -1,13 +1,7 @@
 package com.github.bot.curiosone.app.chat.chatObjs;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
@@ -41,8 +35,7 @@ public class SendButton extends ImageButton {
         public void run() {
           world.getInserimento().setDisabled(true);
           try {
-            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope())), "Bot");
-            AssetLoader.blop.play();
+            world.addMessage(sc.getAnswer(new TalkRequestResponse(world.getInserimento().getText(), world.lastBotMessage.getScope(), world.lastBotMessage.getEmotion())), "Bot");
           } catch (IOException e) {
             e.printStackTrace();
           }

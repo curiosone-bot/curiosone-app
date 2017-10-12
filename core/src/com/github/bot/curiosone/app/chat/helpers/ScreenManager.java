@@ -61,4 +61,8 @@ public class ScreenManager {
     };
   }
 
+  public Game getGame(){
+    return this.game;
+  }
+
 }
