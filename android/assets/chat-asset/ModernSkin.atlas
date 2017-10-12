@@ -1,0 +1,110 @@
+
+ModernSkin.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Heavitas
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+ModernSkin2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BackPressedattendere
+  rotate: false
+  xy: 1, 57
+  size: 92, 93
+  orig: 92, 93
+  offset: 0, 0
+  index: -1
+Backattendere
+  rotate: false
+  xy: 96, 152
+  size: 92, 92
+  orig: 92, 92
+  offset: 0, 0
+  index: -1
+BotLabelattendere
+  rotate: false
+  xy: 1, 246
+  size: 270, 80
+  orig: 270, 80
+  offset: 0, 0
+  index: -1
+ButtonPressed
+  rotate: false
+  xy: 1, 395
+  size: 409, 75
+  orig: 409, 75
+  offset: 0, 0
+  index: -1
+Button_1
+  rotate: false
+  xy: 515, 904
+  size: 409, 80
+  orig: 409, 80
+  offset: 0, 0
+  index: -1
+GameButtonPressedattendere
+  rotate: false
+  xy: 1, 152
+  size: 93, 92
+  orig: 93, 92
+  offset: 0, 0
+  index: -1
+GameButtonattendere
+  rotate: false
+  xy: 515, 662
+  size: 93, 93
+  orig: 93, 93
+  offset: 0, 0
+  index: -1
+SendButtonPressed
+  rotate: false
+  xy: 412, 409
+  size: 58, 61
+  orig: 58, 61
+  offset: 0, 0
+  index: -1
+SendButtonattendere
+  rotate: false
+  xy: 926, 923
+  size: 58, 61
+  orig: 58, 61
+  offset: 0, 0
+  index: -1
+TextFieldActiveattendere
+  rotate: false
+  xy: 515, 839
+  size: 364, 63
+  orig: 364, 63
+  offset: 0, 0
+  index: -1
+TextFieldDisactive
+  rotate: false
+  xy: 1, 328
+  size: 366, 65
+  orig: 366, 65
+  offset: 0, 0
+  index: -1
+UserLabelattendere
+  rotate: false
+  xy: 515, 757
+  size: 270, 80
+  orig: 270, 80
+  offset: 0, 0
+  index: -1
+roboto
+  rotate: false
+  xy: 1, 472
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1

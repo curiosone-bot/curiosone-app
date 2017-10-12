@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.chat;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,14 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.github.bot.curiosone.app.chat.helpers.ApplicationBundle;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
 import com.github.bot.curiosone.app.chat.helpers.View;
-import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
+import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 
 import java.io.IOException;
+
 
 
 public class Chat extends Game {
@@ -38,6 +41,7 @@ public class Chat extends Game {
 
   @Override
   public void create() {
+    final Preferences prefs = Gdx.app.getPreferences("Preferences");
     if(fromAndroid){
       skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
       stage = new Stage();
@@ -57,7 +61,7 @@ public class Chat extends Game {
         }
       });
     }
-    AssetLoader.load();
+    AssetLoader.load(getType(prefs.getInteger("style")));
     ScreenManager.getInstance().initialize(this);
     try {
       ScreenManager.getInstance().showScreen(ScreenEnum.MENU);

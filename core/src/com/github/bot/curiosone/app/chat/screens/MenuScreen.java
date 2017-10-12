@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.chat.screens;
 
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
@@ -21,5 +22,15 @@ public class MenuScreen extends AbstractScreen {
 
     reorder(250f, 55f, 300f, optionButton, gameButton, chatButton);
     addActors(chatButton, gameButton, optionButton);
+  }
+
+  @Override
+  public void entryTransition() {
+    this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+  }
+
+  @Override
+  public void exitTransition() {
+    this.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeOut(1)));
   }
 }

@@ -25,12 +25,12 @@ com.badlogic.gdx.graphics.Color: {
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
-	default: {
-		imageUp: Button
-		imageDown: ButtonPressed
-	}
 	gamecenter: {
 		imageUp: Gamecenterxxxhdpi
+	}
+	send: {
+		imageUp: Button
+		imageDown: ButtonPressed
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {

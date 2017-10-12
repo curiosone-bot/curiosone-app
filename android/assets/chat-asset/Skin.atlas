@@ -18,6 +18,20 @@ ButtonPressed
   orig: 69, 53
   offset: 0, 0
   index: -1
+Gamecenterxxxhdpi
+  rotate: false
+  xy: 1, 100
+  size: 167, 68
+  orig: 167, 68
+  offset: 0, 0
+  index: -1
+digital
+  rotate: false
+  xy: 1, 243
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
 textField
   rotate: false
   xy: 1, 170
@@ -30,19 +44,5 @@ textFieldSelected
   xy: 515, 696
   size: 240, 59
   orig: 240, 59
-  offset: 0, 0
-  index: -1
-digital
-  rotate: false
-  xy: 1, 243
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
-Gamecenterxxxhdpi
-  rotate: false
-  xy: 1, 100
-  size: 167, 68
-  orig: 167, 68
   offset: 0, 0
   index: -1

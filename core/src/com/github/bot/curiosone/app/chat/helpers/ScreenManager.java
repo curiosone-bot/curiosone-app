@@ -2,7 +2,9 @@ package com.github.bot.curiosone.app.chat.helpers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 
@@ -34,8 +36,11 @@ public class ScreenManager {
   public void showScreen(Screen screen) throws IOException {
     Screen currentScreen = game.getScreen();
     Screen newScreen = screen;
-    if (newScreen instanceof BuildableStageScreen) {
-      ((BuildableStageScreen) newScreen).buildStage();
+    if (newScreen instanceof Actionable) {
+      ((Actionable) newScreen).entryTransition();
+      if (newScreen instanceof AbstractScreen) {
+        ((AbstractScreen) newScreen).buildStage();
+      }
     }
     game.setScreen(newScreen);
     if(currentScreen != null) {

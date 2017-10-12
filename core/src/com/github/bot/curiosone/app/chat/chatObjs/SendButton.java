@@ -11,12 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
-import com.github.bot.curiosone.app.chat.world.AITemporanea;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 import com.github.bot.curiosone.app.chat.world.ServerConnection;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 
 
@@ -24,11 +22,10 @@ public class SendButton extends ImageButton {
 
   private ChatWorld world;
 
-  private AITemporanea ai = new AITemporanea();
   private ServerConnection sc = new ServerConnection();
 
-  public SendButton(float width, float height, float x, float y) throws IOException {
-    super(AssetLoader.skin);
+  public SendButton(float width, float height, float x, float y, ImageButtonStyle skin) throws IOException {
+    super(skin);
     this.setPosition(x, y);
     this.setSize(width, height);
     this.addListener(this.click());
@@ -72,6 +69,7 @@ public class SendButton extends ImageButton {
 
   public void setWorld(ChatWorld world) {
     this.world = world;
+    sc.setWorld(world);
   }
 
 }
