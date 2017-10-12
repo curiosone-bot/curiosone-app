@@ -164,7 +164,7 @@ public class ChatWorld {
       }
     };
     dialog.padTop(20).padBottom(20);
-    dialog.text("Vuoi giocare a " + game.toString().toLowerCase()).button("Yes", true).button("No", false).key(Input.Keys.ENTER, true).key(Input.Keys.ESCAPE, false);
+    dialog.text("Do you want play to " + game.toString().toLowerCase()).button("Yes", true).button("No", false).key(Input.Keys.ENTER, true).key(Input.Keys.ESCAPE, false);
     dialog.show(render.getStage());
   }
 }

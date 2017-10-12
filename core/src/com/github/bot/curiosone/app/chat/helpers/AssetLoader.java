@@ -1,6 +1,7 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum;
@@ -12,6 +13,8 @@ public class  AssetLoader {
   public static Skin skin;
   public static Texture bg;
   public static Skin defaultSkin;
+  public static Sound click = Gdx.audio.newSound(Gdx.files.internal("chat-asset/click.mp3"));
+  public static Sound blop = Gdx.audio.newSound(Gdx.files.internal("chat-asset/Blop.mp3"));
 
   public static void load(StyleEnum style) {
     switch (style) {
