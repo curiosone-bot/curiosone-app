@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
 import java.text.DecimalFormat;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
@@ -34,7 +35,7 @@ import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
  */
 public class Records implements Screen
 {
-    private Chat game;
+    private Game game;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Stage stage;
@@ -45,7 +46,7 @@ public class Records implements Screen
     private Label scoreLabel,distanceLabel,scoreText,distanceText;
     private Preferences preferences;
 
-    public Records(Chat game)
+    public Records(Game game)
     {
         this.game = game;
         this.batch = new SpriteBatch();
@@ -94,7 +95,7 @@ public class Records implements Screen
             @Override
             public void changed(ChangeEvent event,Actor actor)
             {
-                game.setScreen(new EndlessRoad(game));
+                game.setScreen(new EndlessRoad());
             }
         });
 

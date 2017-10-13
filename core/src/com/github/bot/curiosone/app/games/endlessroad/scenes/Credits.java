@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -32,7 +33,7 @@ import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
  */
 public class Credits implements Screen
 {
-	private Chat game;
+	private Game game;
   private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Stage stage;
@@ -41,7 +42,7 @@ public class Credits implements Screen
 	private ImageButton backButton;
 
 
-	public Credits(Chat game)
+	public Credits(Game game)
 	{
 		this.game = game;
     this.batch = new SpriteBatch();
@@ -96,7 +97,7 @@ public class Credits implements Screen
 			@Override
 			public void changed(ChangeEvent event, Actor actor)
 			{
-				game.setScreen(new EndlessRoad(game));
+				game.setScreen(new EndlessRoad());
 			}
 
 		});

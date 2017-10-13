@@ -3,6 +3,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +24,10 @@ public class ServerConnection{
   public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
   private OkHttpClient client;
   private ChatWorld world;
-
+  private static final List<String> playArr = Arrays.asList("error with server , please retry later",
+                                                            "error with server comunication, please check your connection and retry ",
+                                                            "Please let's talk about something different than me."
+                                                            );
 
   public ServerConnection() throws IOException {
     client = new OkHttpClient().newBuilder()
@@ -54,7 +59,7 @@ public class ServerConnection{
     catch (SerializationException e) {
       world.lastBotMessage.setMessage("error with server , please retry later");
     }
-    if (world.lastBotMessage.getMessage().equals("error with server , please retry later")) {
+    if (playArr.contains(world.lastBotMessage.getMessage())) {
       Random rnd = new Random();
       if (rnd.nextBoolean()) {
         world.lastBotMessage.setMessage("You wanna play?");

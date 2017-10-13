@@ -3,6 +3,7 @@ package com.github.bot.curiosone.app.games.endlessroad.worldmanager;
 import java.text.DecimalFormat;
 
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
@@ -32,7 +33,7 @@ import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
 
 public class WorldRenderer implements Disposable
 {
-	private Chat game;
+	private Game game;
   private SpriteBatch batch;
 	private WorldController controller;
 	private OrthographicCamera camera,hudCamera;
@@ -42,7 +43,7 @@ public class WorldRenderer implements Disposable
 	private float lastBackgroundY;
 
 
-	public WorldRenderer(Chat game,WorldController controller)
+	public WorldRenderer(Game game,WorldController controller)
 	{
 		this.game = game;
     this.batch = new SpriteBatch();

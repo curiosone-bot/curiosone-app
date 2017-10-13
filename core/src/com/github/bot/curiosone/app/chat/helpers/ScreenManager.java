@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class ScreenManager {
   private static ScreenManager instance;
-  private Game game;
+  private static Game game;
 
   private ScreenManager() {
     super();
@@ -25,8 +25,8 @@ public class ScreenManager {
     return instance;
   }
 
-  public void initialize(Game game) {
-    this.game = game;
+  public void initialize(Game gameInit) {
+    game = gameInit;
   }
 
   public void showScreen(ScreenEnum screenEnum) throws IOException {
@@ -61,8 +61,8 @@ public class ScreenManager {
     };
   }
 
-  public Game getGame(){
-    return this.game;
+  public static Game getGame(){
+    return game;
   }
 
 }

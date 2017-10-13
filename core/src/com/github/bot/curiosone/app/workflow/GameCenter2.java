@@ -63,7 +63,7 @@ public class GameCenter2 extends AbstractScreen {
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ScreenManager sm = ScreenManager.getInstance();
         try {
-          sm.showScreen( new EndlessRoad((Chat) sm.getGame()));
+          sm.showScreen( new EndlessRoad());
         } catch (IOException e1) {
           e1.printStackTrace();
         }

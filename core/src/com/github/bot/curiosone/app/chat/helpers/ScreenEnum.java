@@ -2,9 +2,13 @@ package com.github.bot.curiosone.app.chat.helpers;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
+import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.screens.ChatScreen;
 import com.github.bot.curiosone.app.chat.screens.MenuScreen;
 import com.github.bot.curiosone.app.chat.screens.OptionScreen;
+import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
+import com.github.bot.curiosone.app.games.endlessroad.scenes.EndlessRoad;
+import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
 import com.github.bot.curiosone.app.workflow.GameCenter2;
 
 import java.io.IOException;
@@ -36,17 +40,17 @@ public enum ScreenEnum {
   },
   ENDLESSROAD {
     public Screen getScreen() throws IOException {
-      return new MenuScreen();
+      return new EndlessRoad();
     }
   },
   WORDCRUSH {
     public Screen getScreen() throws IOException {
-      return new MenuScreen();
+      return new com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen(new WordCrushSE(), (Chat) ScreenManager.getGame());
     }
   },
   AIRBORNASSAULT {
     public Screen getScreen() throws IOException {
-      return new MenuScreen();
+      return new MainMenuScreen((Chat) ScreenManager.getGame());
     }
   };
 

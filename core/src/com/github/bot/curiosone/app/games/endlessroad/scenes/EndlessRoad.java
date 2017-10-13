@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -36,7 +37,7 @@ import java.io.IOException;
  */
 public class EndlessRoad implements Screen
 {
-    private Chat game;
+    private Game game;
     private SpriteBatch batch;
     private Sprite background,logo;
     private ImageButton playButton,recordsButton,creditsButton,quitButton,musicGreen,musicRed,speakerButton,muteButton;
@@ -47,10 +48,10 @@ public class EndlessRoad implements Screen
     private Music loop;
 
 
-    public EndlessRoad(Chat game)
+    public EndlessRoad()
     {
 
-        this.game = game;
+        this.game = ScreenManager.getGame();
         this.batch = new SpriteBatch();
         AssetsLoader.getInstance().loadMainMenuAssets();
 

@@ -1,5 +1,6 @@
 package com.github.bot.curiosone.app.games.endlessroad.scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
@@ -17,7 +18,7 @@ public class Gameplay implements Screen
 	private WorldController controller;
 	private WorldRenderer renderer;
 
-	public Gameplay(Chat game)
+	public Gameplay(Game game)
 	{
 		controller = new WorldController(game);
 		renderer = new WorldRenderer(game, controller);

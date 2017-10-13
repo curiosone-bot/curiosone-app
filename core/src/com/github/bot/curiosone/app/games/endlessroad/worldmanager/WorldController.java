@@ -2,6 +2,7 @@ package com.github.bot.curiosone.app.games.endlessroad.worldmanager;
 
 import java.text.DecimalFormat;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
@@ -31,7 +32,7 @@ import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
 
 public class WorldController
 {
-	protected Chat game;
+	protected Game game;
     protected SpriteBatch batch;
     protected OrthographicCamera camera,hudCamera;
     protected Viewport viewport,hudViewport;
@@ -44,7 +45,7 @@ public class WorldController
     protected CarsSpawner carsSpawner;
     protected boolean acceleratorDown,brakeDown;
 
-	public WorldController(Chat game)
+	public WorldController(Game game)
 	{
 		this.game = game;
     this.batch = new SpriteBatch();
