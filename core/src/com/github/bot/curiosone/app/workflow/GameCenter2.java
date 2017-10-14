@@ -14,11 +14,8 @@ import com.github.bot.curiosone.app.games.endlessroad.scenes.EndlessRoad;
 import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
 import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
 
-import java.io.IOException;
-
-
 public class GameCenter2 extends AbstractScreen {
-  private TextButton wordTiles,arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
+  private TextButton arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
 
   @Override
   public void buildStage() {
@@ -34,11 +31,7 @@ public class GameCenter2 extends AbstractScreen {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ScreenManager sm = ScreenManager.getInstance();
-        try {
-          sm.showScreen(new MainMenuScreen((Chat) sm.getGame()));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+        sm.showScreen(new MainMenuScreen((Chat) sm.getGame()));
       }
     });
     arkanoid.addListener(new ClickListener() {
@@ -51,22 +44,14 @@ public class GameCenter2 extends AbstractScreen {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ScreenManager sm = ScreenManager.getInstance();
-        try {
-          sm.showScreen( new MenuScreen(new WordCrushSE(), (Chat) sm.getGame()));
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+        sm.showScreen( new MenuScreen(new WordCrushSE(), (Chat) sm.getGame()));
       }
     });
     endlessRoad.addListener(new ClickListener() {
       @Override
       public void touchUp(InputEvent e, float x, float y, int point, int button) {
         ScreenManager sm = ScreenManager.getInstance();
-        try {
-          sm.showScreen( new EndlessRoad());
-        } catch (IOException e1) {
-          e1.printStackTrace();
-        }
+        sm.showScreen( new EndlessRoad());
       }
     });
     buildWords.addListener(new ClickListener() {
@@ -91,8 +76,5 @@ public class GameCenter2 extends AbstractScreen {
     this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
   }
 
-  @Override
-  public void exitTransition() {
-    this.addAction(Actions.fadeOut(1));
-  }
+
 }

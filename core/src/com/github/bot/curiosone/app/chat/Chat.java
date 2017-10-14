@@ -3,7 +3,6 @@ package com.github.bot.curiosone.app.chat;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.github.bot.curiosone.app.chat.helpers.ApplicationBundle;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.SizeChangeListener;
@@ -19,12 +17,8 @@ import com.github.bot.curiosone.app.chat.helpers.View;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 
-import java.io.IOException;
-
-
 
 public class Chat extends Game {
-
   private View view;
   private Stage stage;
   private boolean fromAndroid = false;
@@ -47,10 +41,10 @@ public class Chat extends Game {
       stage = new Stage();
       final TextField tf1 = new TextField("", skin);
       final TextField tf2 = new TextField("", skin);
-      tf1.setWidth((float)view.getWidth() * 0.6f);
-      tf2.setWidth((float)view.getWidth() * 0.6f);
-      tf1.setHeight((float)view.getHeight() * 0.05f);
-      tf2.setHeight((float)view.getHeight() * 0.05f);
+      tf1.setWidth(view.getWidth() * 0.6f);
+      tf2.setWidth(view.getWidth() * 0.6f);
+      tf1.setHeight(view.getHeight() * 0.05f);
+      tf2.setHeight(view.getHeight() * 0.05f);
       view.addListener(new SizeChangeListener() {
         @Override
         public void onSizeChange(float width, float height) {
@@ -63,11 +57,7 @@ public class Chat extends Game {
     }
     AssetLoader.load(getType(prefs.getInteger("style")));
     ScreenManager.getInstance().initialize(this);
-    try {
-      ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
   }
 
   @Override

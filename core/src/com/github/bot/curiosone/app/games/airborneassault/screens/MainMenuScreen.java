@@ -22,9 +22,7 @@ import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Assets;
 import com.github.bot.curiosone.app.games.airborneassault.assets_manager.Manager;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Constants;
 import com.github.bot.curiosone.app.games.airborneassault.settings.Settings;
-import com.github.bot.curiosone.app.workflow.GameCenter;
 
-import java.io.IOException;
 
 /**
  * @author Alessandro Roic
@@ -127,11 +125,7 @@ public class MainMenuScreen extends ScreenAdapter
 
           @Override
           public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            try {
-              ScreenManager.getInstance().showScreen(ScreenEnum.GAMECENTER);
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
+            ScreenManager.getInstance().showScreen(ScreenEnum.GAMECENTER);
 
           }
         });

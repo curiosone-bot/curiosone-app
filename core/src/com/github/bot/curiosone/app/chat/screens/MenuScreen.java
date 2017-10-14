@@ -29,8 +29,4 @@ public class MenuScreen extends AbstractScreen {
     this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
   }
 
-  @Override
-  public void exitTransition() {
-    this.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeOut(1)));
-  }
 }

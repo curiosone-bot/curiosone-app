@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.chatObjs.Inserimento;
 import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
@@ -22,7 +21,6 @@ import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 
-import java.io.IOException;
 import java.util.StringTokenizer;
 
 
@@ -42,7 +40,7 @@ public class ChatWorld {
   public static TalkRequestResponse lastBotMessage;
   private Dialog dialog;
 
-  public ChatWorld() throws IOException {
+  public ChatWorld() {
     gameButton = ChatElementFactory.getGameButton();
 
     menuButton = ChatElementFactory.getMenuButton();
@@ -155,11 +153,7 @@ public class ChatWorld {
     this.dialog = new Dialog("", AssetLoader.defaultSkin, "dialog") {
       protected void result (Object object) {
         if ((boolean) object) {
-          try {
-            ScreenManager.getInstance().showScreen(game);
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
+          ScreenManager.getInstance().showScreen(game);
         }
       }
     };

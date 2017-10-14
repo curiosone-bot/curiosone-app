@@ -1,27 +1,19 @@
 package com.github.bot.curiosone.app.chat.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.helpers.Actionable;
-import com.github.bot.curiosone.app.chat.helpers.BuildableStageScreen;
 import com.github.bot.curiosone.app.chat.world.ChatRender;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
-import java.io.IOException;
 
 public class ChatScreen implements Screen, Actionable {
 
   private ChatRender renderer;
   private ChatWorld world;
 
-  public ChatScreen() throws IOException {
+  public ChatScreen() {
     this.world = new ChatWorld();
     this.renderer = new ChatRender(world);
     world.setRender(renderer);
@@ -30,7 +22,6 @@ public class ChatScreen implements Screen, Actionable {
 
   @Override
   public void show() {
-    //Gdx.app.log("Chat", "show called");
   }
 
   @Override
@@ -71,7 +62,4 @@ public class ChatScreen implements Screen, Actionable {
     renderer.getStage().addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
   }
 
-  @Override
-  public void exitTransition() {
-  }
 }

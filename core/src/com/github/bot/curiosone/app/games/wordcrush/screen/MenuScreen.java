@@ -127,11 +127,7 @@ public class MenuScreen extends AbstractGameScreen
                 { // Maybe perform other operations before exiting
                     AudioManager.instance.play(Assets.instance.assetSound.clickMenuButton);
 
-                  try {
-                    ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
-                  } catch (IOException e) {
-                    e.printStackTrace();
-                  }
+                  ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
                 }
                 return false;
             }

@@ -11,12 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
-import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
-
-import java.io.IOException;
 
 import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum;
@@ -31,8 +28,8 @@ public class OptionScreen extends AbstractScreen {
   public void buildStage() {
     this.prefs = Gdx.app.getPreferences("Preferences");
 
-    style1 = new TextButton("style1", AssetLoader.defaultSkin);
-    style2 = new TextButton("style2", AssetLoader.defaultSkin);
+    style1 = new TextButton("Futuristic", AssetLoader.defaultSkin);
+    style2 = new TextButton("Modern", AssetLoader.defaultSkin);
     style3 = new TextButton("style3", AssetLoader.defaultSkin);
     menuButton = new TextButton("Menu", AssetLoader.defaultSkin);
 
@@ -44,7 +41,7 @@ public class OptionScreen extends AbstractScreen {
       };
 
     dialog.padTop(20).padBottom(20);
-    dialog.text("frase in inglese").button("Yes", true).button("No", false).key(Input.Keys.ENTER, true).key(Input.Keys.ESCAPE, false);
+    dialog.text("Are you sure to change style? \n (if you do that, chat will be deleted)").button("Yes", true).button("No", false).key(Input.Keys.ENTER, true).key(Input.Keys.ESCAPE, false);
 
     menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
     style1.addListener(getStyleClickListener(FUTURISTIC, style1));
@@ -61,11 +58,7 @@ public class OptionScreen extends AbstractScreen {
       AssetLoader.load(style);
       prefs.putInteger("style", style.getValue());
       prefs.flush();
-      try {
-        ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
-      } catch (IOException e1) {
-        e1.printStackTrace();
-      }
+      ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
     }
   }
 
@@ -86,8 +79,4 @@ public class OptionScreen extends AbstractScreen {
     this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
   }
 
-  @Override
-  public void exitTransition() {
-    this.addAction(Actions.fadeOut(1));
-  }
 }

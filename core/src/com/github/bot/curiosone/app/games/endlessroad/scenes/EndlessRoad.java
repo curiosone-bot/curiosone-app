@@ -25,11 +25,6 @@ import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsLoader;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.AssetsPaths;
 import com.github.bot.curiosone.app.games.endlessroad.utilities.GameInfos;
-import com.github.bot.curiosone.app.chat.Chat;
-import com.github.bot.curiosone.app.workflow.GameCenter;
-
-import java.io.IOException;
-
 
 /**
  * This class represents the main menu screen
@@ -200,11 +195,7 @@ public class EndlessRoad implements Screen
             public void changed(ChangeEvent event,Actor actor)
             {
             	AssetsLoader.getInstance().dispose();
-              try {
-                ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
+              ScreenManager.getInstance().showScreen(ScreenEnum.MENU);
             }
         });
 

@@ -1,7 +1,5 @@
 package com.github.bot.curiosone.app.chat.world;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +27,7 @@ public class ServerConnection{
                                                             "Please let's talk about something different than me."
                                                             );
 
-  public ServerConnection() throws IOException {
+  public ServerConnection() {
     client = new OkHttpClient().newBuilder()
       .connectTimeout(10,TimeUnit.SECONDS)
       .writeTimeout(10, TimeUnit.SECONDS)
