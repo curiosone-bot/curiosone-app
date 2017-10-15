@@ -107,6 +107,7 @@ project(":ios") {
 
 project(":tests") {
   apply plugin: "java"
+  apply plugin: 'jacoco'
   sourceSets.test.java.srcDirs = ["src/"]
 
   dependencies {
@@ -125,6 +126,14 @@ project(":tests") {
     testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
     testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
   }
+
+  jacocoTestReport {
+    reports {
+      xml.enabled true
+      html.enabled false
+    }
+  }
+  check.dependsOn jacocoTestReport
 }
 
 tasks.eclipse.doLast {
