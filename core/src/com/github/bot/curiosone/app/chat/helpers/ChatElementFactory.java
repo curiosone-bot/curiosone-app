@@ -1,5 +1,7 @@
 package com.github.bot.curiosone.app.chat.helpers;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -28,29 +30,26 @@ public class ChatElementFactory {
         gameButton.setSize(92, 92);
         return gameButton;
       case FUTURISTIC :
-        gameButton.setPosition(54, 727);
-        gameButton.setSize(75, 30);
+        gameButton.setPosition(50, 710);
         return gameButton;
       default: return null;
     }
   }
 
   public static Button getMenuButton() {
+    ImageButton menuButton = new ImageButton(AssetLoader.skin.get("menu", ImageButton.ImageButtonStyle.class));
     switch (style) {
       case MODERN :
-        ImageButton menuButton = new ImageButton(AssetLoader.skin.get("menu", ImageButton.ImageButtonStyle.class));
         menuButton.setPosition(0, 708);
         menuButton.setSize(92, 92);
         menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
-        return menuButton;
+        break;
       case FUTURISTIC :
-        TextButton menuButtonFuturistic = new TextButton("", AssetLoader.defaultSkin);
-        menuButtonFuturistic.setPosition(354, 727);
-        menuButtonFuturistic.setSize(75, 30);
-        menuButtonFuturistic.addListener(ScreenManager.getListener(ScreenEnum.MENU));
-        return menuButtonFuturistic;
-      default: return null;
+        menuButton.setPosition(332, 710);
+        menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
+        break;
     }
+    return menuButton;
   }
 
   public static SendButton getSendButton() {
@@ -82,13 +81,27 @@ public class ChatElementFactory {
   }
 
   public static Image getChatBackground() {
-    return new Image(AssetLoader.bg);
+    return new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("chat_background"));
+  }
+
+  public static Image getMenuBackground() {
+    return new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("menu_background"));
   }
 
   public static Label getLabel(String text, Label.LabelStyle labelStyle) {
     Label l = new Label(text, labelStyle);
     l.setFontScale(0.9f);
     return l;
+  }
+
+  public static TextButton getButton(String name, String buttonStyle) {
+    switch (style) {
+      case MODERN :
+        return new TextButton(name, AssetLoader.defaultSkin);
+      case FUTURISTIC :
+        return new TextButton(name, AssetLoader.skin.get(buttonStyle, TextButton.TextButtonStyle.class));
+      default: return null;
+    }
   }
 
   public static ScrollPane getScrollPane(Table scrollTable, Inserimento inserimento) {

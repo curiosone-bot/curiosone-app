@@ -3,6 +3,9 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	digital: {
 		file: digital.fnt
 	}
+	textButton: {
+		file: textButton.fnt
+	}
 }
 com.badlogic.gdx.graphics.Color: {
 	RGBA_0_0_0_255: {
@@ -26,11 +29,16 @@ com.badlogic.gdx.graphics.Color: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	gamecenter: {
-		imageUp: Gamecenterxxxhdpi
+		imageUp: gamecenter
+		imageDown: gamecenter_pressed
 	}
 	send: {
-		imageUp: Button
-		imageDown: ButtonPressed
+		imageUp: send
+		imageDown: send_pressed
+	}
+	menu: {
+		imageUp: home
+		imageDown: home_pressed
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
@@ -51,13 +59,35 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 		hScroll: Button
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	textButton1: {
+		font: textButton
+		fontColor: RGBA_110_238_246_255
+		up: textButton1
+		down: textButton1_pressed
+	}
+	textButton2: {
+		font: textButton
+		fontColor: RGBA_110_238_246_255
+		up: textButton2
+		down: textButton2_pressed
+	}
+	textButton3: {
+		font: textButton
+		fontColor: RGBA_110_238_246_255
+		up: textButton3
+		down: textButton3_pressed
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
 		font: digital
 		fontColor: RGBA_0_0_0_255
-		background: textField
-		focusedBackground: textFieldSelected
-		disabledBackground: textField
+		background: textField_active
+		focusedBackground: textField_active
+		disabledBackground: textField_disactive
+		cursor: cursor
+		selection: cursor
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {

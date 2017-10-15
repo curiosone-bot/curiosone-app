@@ -7,10 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.chat.world.ChatWorld;
@@ -23,15 +25,17 @@ public class OptionScreen extends AbstractScreen {
   private Dialog dialog;
   private Preferences prefs;
   private StyleEnum selectedStyle;
+  private Image bg;
 
   @Override
   public void buildStage() {
     this.prefs = Gdx.app.getPreferences("Preferences");
 
-    style1 = new TextButton("Futuristic", AssetLoader.defaultSkin);
-    style2 = new TextButton("Modern", AssetLoader.defaultSkin);
-    style3 = new TextButton("style3", AssetLoader.defaultSkin);
-    menuButton = new TextButton("Menu", AssetLoader.defaultSkin);
+    style1 = ChatElementFactory.getButton("Futuristic", "textButton1");
+    style2 = ChatElementFactory.getButton("Modern", "textButton2");
+    style3 = ChatElementFactory.getButton("style3","textButton3");
+    menuButton = new TextButton("Menu da eliminare", AssetLoader.defaultSkin);
+    bg = ChatElementFactory.getMenuBackground();
 
     this.dialog =
       new Dialog("", AssetLoader.defaultSkin, "dialog") {
@@ -48,8 +52,8 @@ public class OptionScreen extends AbstractScreen {
 
     style2.addListener(getStyleClickListener(MODERN, style2));
 
-    reorder(250, 55, menuButton, style1, style2, style3);
-    addActors(style1, style2, style3, menuButton);
+    reorder(0f, menuButton, style1, style2, style3);
+    addActors(bg, style1, style2, style3, menuButton);
   }
 
   private void dialogThen(boolean b, StyleEnum style) {

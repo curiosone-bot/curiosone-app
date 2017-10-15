@@ -33,7 +33,7 @@ public class ChatWorld {
   private ChatRender render;
   private static ScrollPane scrollPane;
   public  static Table scrollTable;
-  public Image bg = new Image(AssetLoader.bg);
+  public Image bg = ChatElementFactory.getChatBackground();
   private ImageButton gameButton;
   private Button menuButton;
   private int cliccato = 2;

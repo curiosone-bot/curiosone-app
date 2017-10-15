@@ -18,15 +18,21 @@ public abstract class AbstractScreen extends Stage implements BuildableStageScre
   }
 
   protected static void reorder(float width, float height, float topOffset, Button... buttons) {
-    final float POSX = 240 - (width / 2);
-    final float CONSTY = ((800 - topOffset) / (buttons.length + 1));
-    float posY = CONSTY  - (height / 2);
-    Gdx.app.log("len", buttons.length + "");
     for(Button button : buttons) {
       button.setSize(width, height);
-      button.setPosition(POSX, posY);
+    }
+    reorder(topOffset, buttons);
+  }
+
+  protected static void reorder(float topOffset, Button... buttons) {
+    final float CONSTY = ((800 - topOffset) / (buttons.length + 1));
+    final float MIDDLEX = 240f;
+    float posY = CONSTY;
+    Gdx.app.log("len", buttons.length + "");
+    for(Button button : buttons) {
+      button.setPosition(MIDDLEX - (button.getWidth() / 2), posY - (button.getHeight() / 2));
       posY += CONSTY;
-    };
+    }
   }
 
   protected void addActors(Actor... actors) {

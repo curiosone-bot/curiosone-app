@@ -2,11 +2,13 @@ package com.github.bot.curiosone.app.workflow;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
 import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen;
@@ -16,6 +18,7 @@ import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
 
 public class GameCenter2 extends AbstractScreen {
   private TextButton arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
+  private Image bg;
 
   @Override
   public void buildStage() {
@@ -25,6 +28,7 @@ public class GameCenter2 extends AbstractScreen {
     endlessRoad = new TextButton("EndlessRoad", AssetLoader.defaultSkin);
     buildWords = new TextButton("BuildWords", AssetLoader.defaultSkin);
     chat = new TextButton("Chat", AssetLoader.defaultSkin);
+    bg = ChatElementFactory.getMenuBackground();
 
 
     airborneassault.addListener(new ClickListener() {
@@ -63,7 +67,7 @@ public class GameCenter2 extends AbstractScreen {
     chat.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
 
     reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, airborneassault);
-    addActors(chat, buildWords, endlessRoad, wordCrush, arkanoid, airborneassault);
+    addActors(bg, chat, buildWords, endlessRoad, wordCrush, arkanoid, airborneassault);
   }
 
   @Override
