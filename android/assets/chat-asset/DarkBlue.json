@@ -1,0 +1,78 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	roboto: {
+		file: roboto.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	RGBA_108_229_255_255: {
+		r: 0
+		g: 0.9285555
+		b: 1
+		a: 1
+	}
+	RGBA_5_124_152_255: {
+		r: 0.07475555
+		g: 0.68162555
+		b: 0.7733333
+		a: 1
+	}
+	RGBA_5_16_22_255: {
+		r: 0.020100005
+		g: 0.06548841
+		b: 0.09
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	gamecenter: {
+		imageUp: gamecenter
+		imageDown: gamecenter_pressed
+	}
+	menu: {
+		imageUp: home
+		imageDown: home_pressed
+	}
+	send: {
+		imageUp: send
+		imageDown: send_pressed
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: roboto
+		fontColor: RGBA_108_229_255_255
+		background: label_user
+	}
+	User: {
+		font: roboto
+		fontColor: RGBA_5_16_22_255
+		background: label_user
+	}
+	Bot: {
+		font: roboto
+		fontColor: RGBA_108_229_255_255
+		background: Label_bot
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		hScroll: label_user
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: {
+		font: roboto
+		fontColor: RGBA_5_124_152_255
+		background: testfield_active
+		disabledBackground: textfield_disactive
+		cursor: cursor
+		selection: cursor
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+}

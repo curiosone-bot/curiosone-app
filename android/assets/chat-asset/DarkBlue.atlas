@@ -1,0 +1,97 @@
+
+DarkBlue.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Label_bot
+  rotate: false
+  xy: 1, 247
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+chat_background
+  rotate: false
+  xy: 515, 221
+  size: 482, 802
+  orig: 482, 802
+  offset: 0, 0
+  index: -1
+cursor
+  rotate: false
+  xy: 999, 986
+  size: 8, 37
+  orig: 8, 37
+  offset: 0, 0
+  index: -1
+gamecenter
+  rotate: false
+  xy: 401, 425
+  size: 112, 84
+  orig: 112, 84
+  offset: 0, 0
+  index: -1
+gamecenter_pressed
+  rotate: false
+  xy: 401, 339
+  size: 112, 84
+  orig: 112, 84
+  offset: 0, 0
+  index: -1
+home
+  rotate: false
+  xy: 93, 253
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+home_pressed
+  rotate: false
+  xy: 1, 68
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+label_user
+  rotate: false
+  xy: 1, 154
+  size: 89, 91
+  orig: 89, 91
+  offset: 0, 0
+  index: -1
+roboto
+  rotate: false
+  xy: 1, 511
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+send
+  rotate: false
+  xy: 1, 1
+  size: 72, 65
+  orig: 72, 65
+  offset: 0, 0
+  index: -1
+send_pressed
+  rotate: false
+  xy: 179, 271
+  size: 72, 66
+  orig: 72, 66
+  offset: 0, 0
+  index: -1
+testfield_active
+  rotate: false
+  xy: 1, 425
+  size: 398, 84
+  orig: 398, 84
+  offset: 0, 0
+  index: -1
+textfield_disactive
+  rotate: false
+  xy: 1, 339
+  size: 398, 84
+  orig: 398, 84
+  offset: 0, 0
+  index: -1
