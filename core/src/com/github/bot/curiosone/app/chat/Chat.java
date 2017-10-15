@@ -32,10 +32,12 @@ public class Chat extends Game {
   }
 
   public Chat() {}
-
   @Override
   public void create() {
     final Preferences prefs = Gdx.app.getPreferences("Preferences");
+    /*
+    * from android is used when application is running on android
+    * */
     if(fromAndroid){
       skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
       stage = new Stage();

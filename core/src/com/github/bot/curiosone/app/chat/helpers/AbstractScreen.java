@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
+/*
+ * abstract screen is an abstract class used for screens
+ * */
 public abstract class AbstractScreen extends Stage implements BuildableStageScreen, Actionable {
   public AbstractScreen() {
     super(new StretchViewport(480, 800, new OrthographicCamera()));
@@ -28,7 +31,6 @@ public abstract class AbstractScreen extends Stage implements BuildableStageScre
     final float CONSTY = ((800 - topOffset) / (buttons.length + 1));
     final float MIDDLEX = 240f;
     float posY = CONSTY;
-    Gdx.app.log("len", buttons.length + "");
     for(Button button : buttons) {
       button.setPosition(MIDDLEX - (button.getWidth() / 2), posY - (button.getHeight() / 2));
       posY += CONSTY;

@@ -15,7 +15,9 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.SerializationException;
 import com.github.bot.curiosone.app.chat.helpers.TalkRequestResponse;
 
-
+/*
+ * this class manage connection with server
+ * */
 public class ServerConnection{
 
   public static final String BASE_URL = "https://curiosone-bot.herokuapp.com";

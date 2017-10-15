@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/*
+ *is the enum of screens
+ * */
 public enum ScreenEnum {
   CHAT {
     public Screen getScreen() {

@@ -15,21 +15,22 @@ import com.github.bot.curiosone.app.games.airborneassault.screens.MainMenuScreen
 import com.github.bot.curiosone.app.games.endlessroad.scenes.EndlessRoad;
 import com.github.bot.curiosone.app.games.wordcrush.WordCrushSE;
 import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
-
+/*
+ * this class is the gamecenter screen
+ * */
 public class GameCenter2 extends AbstractScreen {
   private TextButton arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
   private Image bg;
 
   @Override
   public void buildStage() {
-    airborneassault = new TextButton("Airborneassault", AssetLoader.defaultSkin);
-    arkanoid = new TextButton("Arkanoid", AssetLoader.defaultSkin);
-    wordCrush = new TextButton("WordCrush", AssetLoader.defaultSkin);
-    endlessRoad = new TextButton("EndlessRoad", AssetLoader.defaultSkin);
-    buildWords = new TextButton("BuildWords", AssetLoader.defaultSkin);
-    chat = new TextButton("Chat", AssetLoader.defaultSkin);
+    airborneassault = ChatElementFactory.getButton("Airborneassault", "textButton1", 0.55f);
+    arkanoid = ChatElementFactory.getButton("Arkanoid", "textButton1", 0.55f);
+    wordCrush = ChatElementFactory.getButton("WordCrush", "textButton1", 0.55f);
+    endlessRoad = ChatElementFactory.getButton("EndlessRoad", "textButton1", 0.55f);
+    buildWords = ChatElementFactory.getButton("BuildWords", "textButton1", 0.55f);
+    chat = ChatElementFactory.getButton("Chat", "textButton1", 0.55f);
     bg = ChatElementFactory.getMenuBackground();
-
 
     airborneassault.addListener(new ClickListener() {
       @Override

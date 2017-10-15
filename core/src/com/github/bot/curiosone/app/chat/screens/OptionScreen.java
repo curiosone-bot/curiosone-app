@@ -19,7 +19,9 @@ import com.github.bot.curiosone.app.chat.world.ChatWorld;
 
 import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum.*;
 import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum;
-
+/*
+ * Option Screen is the screen of options
+ * */
 public class OptionScreen extends AbstractScreen {
   private TextButton style1, style2, style3, menuButton;
   private Dialog dialog;
@@ -33,7 +35,7 @@ public class OptionScreen extends AbstractScreen {
 
     style1 = ChatElementFactory.getButton("Futuristic", "textButton1");
     style2 = ChatElementFactory.getButton("Modern", "textButton2");
-    style3 = ChatElementFactory.getButton("style3","textButton3");
+    style3 = ChatElementFactory.getButton("Dark Blu","textButton3");
     menuButton = new TextButton("Menu da eliminare", AssetLoader.defaultSkin);
     bg = ChatElementFactory.getMenuBackground();
 

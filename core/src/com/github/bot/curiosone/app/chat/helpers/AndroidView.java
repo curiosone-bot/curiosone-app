@@ -3,7 +3,9 @@ package com.github.bot.curiosone.app.chat.helpers;
 import java.util.ArrayList;
 
 public class AndroidView implements View {
-
+  /*
+  * this class is used for calculate height of keyboard with another class/interface
+  * */
   private ArrayList<SizeChangeListener> listeners = new ArrayList<SizeChangeListener>();
   private float width, height;
 

@@ -9,7 +9,9 @@ import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
-
+/*
+ * menu screen is the screen of main menu
+ * */
 public class MenuScreen extends AbstractScreen {
   private TextButton chatButton, gameButton, optionButton;
   private Image bg;

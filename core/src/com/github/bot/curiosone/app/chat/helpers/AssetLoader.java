@@ -15,7 +15,9 @@ public class  AssetLoader {
   public static Skin defaultSkin;
   public static Sound click = Gdx.audio.newSound(Gdx.files.internal("chat-asset/click.mp3"));
   public static Sound blop = Gdx.audio.newSound(Gdx.files.internal("chat-asset/Blop.mp3"));
-
+  /*
+ * this class is used for load all assets in all program
+ * */
   public static void load(StyleEnum style) {
     switch (style) {
       case FUTURISTIC:

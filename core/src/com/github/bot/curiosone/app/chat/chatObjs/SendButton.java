@@ -17,7 +17,9 @@ public class SendButton extends ImageButton {
   private ChatWorld world;
 
   private ServerConnection sc = new ServerConnection();
-
+    /*
+    * send button create a button used for send the content of textfield to the server
+    * */
   public SendButton(float width, float height, float x, float y, ImageButtonStyle skin) throws IOException {
     super(skin);
     this.setPosition(x, y);
@@ -25,6 +27,10 @@ public class SendButton extends ImageButton {
     this.addListener(this.click());
   }
 
+  /*
+  * onClick is a listener that send the contenct of textfield to the server
+  * and with a new thread wait that the server response.
+  * */
   private void onClick() throws IOException {
     AssetLoader.click.play();
     Inserimento inserimento = world.getInserimento();

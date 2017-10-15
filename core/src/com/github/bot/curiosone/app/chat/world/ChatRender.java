@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
+/*
+ * chat render draws actors
+ * */
+
 public class ChatRender {
 
   private OrthographicCamera cam;
@@ -29,7 +33,6 @@ public class ChatRender {
   }
 
   public void render() {
-    //Gdx.app.log("ChatRender", "render");
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.draw();

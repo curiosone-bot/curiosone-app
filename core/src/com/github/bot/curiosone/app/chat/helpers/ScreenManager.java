@@ -5,7 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-
+/*
+ * this class manage all screens
+ * */
 public class ScreenManager {
   private static ScreenManager instance;
   private static Game game;

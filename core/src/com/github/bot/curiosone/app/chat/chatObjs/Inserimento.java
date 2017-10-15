@@ -8,6 +8,9 @@ public class Inserimento extends TextField {
   private boolean play = false;
   private ChatWorld world;
 
+  /*
+  * inserimento make the textfield for the chat
+  * */
   public Inserimento(int width, int height, int x, int y, Skin skin) {
     super("", skin);
     this.setSize(width, height);

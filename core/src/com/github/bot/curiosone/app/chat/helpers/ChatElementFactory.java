@@ -14,6 +14,11 @@ import com.github.bot.curiosone.app.chat.chatObjs.SendButton;
 
 import java.io.IOException;
 
+/*
+ * this class is used for create all assets used in program but the difference
+ * between one to another is that every style has a particular position and other thing
+ * that need to be refershed every time that style change.
+ * */
 public class ChatElementFactory {
   private static StyleEnum style;
 
@@ -27,7 +32,6 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         gameButton.setPosition(400, 708);
-        gameButton.setSize(92, 92);
         return gameButton;
       case FUTURISTIC :
         gameButton.setPosition(50, 710);
@@ -41,7 +45,6 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         menuButton.setPosition(0, 708);
-        menuButton.setSize(92, 92);
         menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
         break;
       case FUTURISTIC :
@@ -104,6 +107,12 @@ public class ChatElementFactory {
     }
   }
 
+  public static TextButton getButton(String name, String buttonStyle, float fontScale) {
+    TextButton tb=getButton(name , buttonStyle);
+    tb.getLabel().setFontScale(fontScale);
+    return tb;
+  }
+
   public static ScrollPane getScrollPane(Table scrollTable, Inserimento inserimento) {
     ScrollPane scrollPane;
     switch (style) {
@@ -126,7 +135,7 @@ public class ChatElementFactory {
   }
 
   public enum StyleEnum {
-    FUTURISTIC(0), MODERN(1);
+    FUTURISTIC(0), MODERN(1),DARKBLU(3);
 
     private int id;
     StyleEnum(int id) {

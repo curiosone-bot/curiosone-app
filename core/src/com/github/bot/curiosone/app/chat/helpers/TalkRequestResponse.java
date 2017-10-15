@@ -4,6 +4,9 @@ package com.github.bot.curiosone.app.chat.helpers;
  * Created by Luca Pierfederici on 11/09/2017.
  */
 
+/*
+ * this class help ServerConnection to manage the answer of server
+ * */
 public class TalkRequestResponse {
   private String message;
   private String scope;

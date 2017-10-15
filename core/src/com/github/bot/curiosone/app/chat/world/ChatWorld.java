@@ -25,7 +25,9 @@ import java.util.StringTokenizer;
 
 
 
-
+/*
+ * chat world manages events of actor in stage
+ * */
 public class ChatWorld {
 
   private SendButton send;
@@ -56,8 +58,6 @@ public class ChatWorld {
   }
 
   public void update(float delta) {
-    //Gdx.app.log("ChatWorld", "update");
-
 
     render.getStage().act(delta);
     inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
