@@ -27,7 +27,7 @@ import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
  * */
 public class GameCenter2 extends AbstractScreen implements Backable {
   private static Screen prevScreen;
-  private TextButton arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
+  private TextButton arkanoid,wordCrush,endlessRoad,chat, airborneassault;
   private Image bg;
 
   @Override
@@ -36,7 +36,6 @@ public class GameCenter2 extends AbstractScreen implements Backable {
     arkanoid = ChatElementFactory.getButton("Arkanoid", "textButton1", 0.55f);
     wordCrush = ChatElementFactory.getButton("WordCrush", "textButton1", 0.55f);
     endlessRoad = ChatElementFactory.getButton("EndlessRoad", "textButton1", 0.55f);
-    buildWords = ChatElementFactory.getButton("BuildWords", "textButton1", 0.55f);
     chat = ChatElementFactory.getButton("Chat", "textButton1", 0.55f);
     bg = ChatElementFactory.getMenuBackground();
 
@@ -67,16 +66,10 @@ public class GameCenter2 extends AbstractScreen implements Backable {
         sm.showScreen( new EndlessRoad());
       }
     });
-    buildWords.addListener(new ClickListener() {
-      @Override
-      public void touchUp(InputEvent e, float x, float y, int point, int button) {
-
-      }
-    });
     chat.addListener(ScreenManager.getListener(ScreenEnum.CHAT));
 
-    reorder(250, 55, chat, buildWords, endlessRoad, wordCrush, arkanoid, airborneassault);
-    addActors(bg, chat, buildWords, endlessRoad, wordCrush, arkanoid, airborneassault);
+    reorder(250, 55, chat, endlessRoad, wordCrush, arkanoid, airborneassault);
+    addActors(bg, chat, endlessRoad, wordCrush, arkanoid, airborneassault);
   }
 
   @Override
