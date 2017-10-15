@@ -45,7 +45,6 @@ public class ChatRender {
     stage.addActor(world.getSendButton());
     stage.addActor(world.getInserimento());
     stage.addActor(world.getScrollPane());
-    Gdx.input.setInputProcessor(stage);
   }
 
   public Stage getStage() {

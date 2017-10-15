@@ -51,6 +51,41 @@ cursor
   orig: 2, 27
   offset: 0, 0
   index: -1
+Button
+  rotate: false
+  xy: 679, 305
+  size: 80, 60
+  orig: 80, 60
+  offset: 0, 0
+  index: -1
+ButtonPressed
+  rotate: false
+  xy: 679, 250
+  size: 69, 53
+  orig: 69, 53
+  offset: 0, 0
+  index: -1
+Gamecenterxxxhdpi
+  rotate: false
+  xy: 299, 151
+  size: 167, 68
+  orig: 167, 68
+  offset: 0, 0
+  index: -1
+textField
+  rotate: false
+  xy: 483, 367
+  size: 243, 71
+  orig: 243, 71
+  offset: 0, 0
+  index: -1
+textFieldSelected
+  rotate: false
+  xy: 781, 962
+  size: 240, 59
+  orig: 240, 59
+  offset: 0, 0
+  index: -1
 gamecenter
   rotate: false
   xy: 483, 263
@@ -147,40 +182,5 @@ textField_disactive
   xy: 483, 934
   size: 296, 87
   orig: 296, 87
-  offset: 0, 0
-  index: -1
-Button
-  rotate: false
-  xy: 679, 305
-  size: 80, 60
-  orig: 80, 60
-  offset: 0, 0
-  index: -1
-ButtonPressed
-  rotate: false
-  xy: 679, 250
-  size: 69, 53
-  orig: 69, 53
-  offset: 0, 0
-  index: -1
-Gamecenterxxxhdpi
-  rotate: false
-  xy: 299, 151
-  size: 167, 68
-  orig: 167, 68
-  offset: 0, 0
-  index: -1
-textField
-  rotate: false
-  xy: 483, 367
-  size: 243, 71
-  orig: 243, 71
-  offset: 0, 0
-  index: -1
-textFieldSelected
-  rotate: false
-  xy: 781, 962
-  size: 240, 59
-  orig: 240, 59
   offset: 0, 0
   index: -1

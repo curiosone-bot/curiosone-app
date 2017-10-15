@@ -1,5 +1,11 @@
 package com.github.bot.curiosone.app.workflow;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -8,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.github.bot.curiosone.app.chat.Chat;
 import com.github.bot.curiosone.app.chat.helpers.AbstractScreen;
 import com.github.bot.curiosone.app.chat.helpers.AssetLoader;
+import com.github.bot.curiosone.app.chat.helpers.Backable;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory;
 import com.github.bot.curiosone.app.chat.helpers.ScreenEnum;
 import com.github.bot.curiosone.app.chat.helpers.ScreenManager;
@@ -18,7 +25,8 @@ import com.github.bot.curiosone.app.games.wordcrush.screen.MenuScreen;
 /*
  * this class is the gamecenter screen
  * */
-public class GameCenter2 extends AbstractScreen {
+public class GameCenter2 extends AbstractScreen implements Backable {
+  private static Screen prevScreen;
   private TextButton arkanoid,wordCrush,endlessRoad, buildWords,chat, airborneassault;
   private Image bg;
 
@@ -81,5 +89,25 @@ public class GameCenter2 extends AbstractScreen {
     this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
   }
 
+  @Override
+  public void show() {
+    InputProcessor backProcessor = new InputAdapter() {
+      @Override
+      public boolean keyDown(int keycode) {
+        if ((keycode == Input.Keys.ESCAPE) || (keycode == Input.Keys.BACK) ) {
+          System.out.print(true);
+          ScreenManager.getInstance().showScreen(prevScreen);
+        }
+        return false;
+      }
+    };
+    InputMultiplexer multiplexer = new InputMultiplexer(backProcessor, this);
+    Gdx.input.setInputProcessor(multiplexer);
+    Gdx.input.setCatchBackKey(true);
+  }
 
+  @Override
+  public void setPrevScreen(Screen screen) {
+    prevScreen = screen;
+  }
 }

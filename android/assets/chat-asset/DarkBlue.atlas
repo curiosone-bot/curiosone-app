@@ -39,7 +39,7 @@ filter: Linear,Linear
 repeat: none
 Label_bot
   rotate: false
-  xy: 854, 844
+  xy: 852, 842
   size: 90, 90
   orig: 90, 90
   offset: 0, 0
@@ -53,35 +53,35 @@ cursor
   index: -1
 gamecenter
   rotate: false
-  xy: 885, 936
+  xy: 883, 934
   size: 112, 84
   orig: 112, 84
   offset: 0, 0
   index: -1
 gamecenter_pressed
   rotate: false
-  xy: 485, 757
+  xy: 483, 755
   size: 112, 84
   orig: 112, 84
   offset: 0, 0
   index: -1
 home
   rotate: false
-  xy: 599, 757
+  xy: 597, 755
   size: 84, 84
   orig: 84, 84
   offset: 0, 0
   index: -1
 home_pressed
   rotate: false
-  xy: 485, 578
+  xy: 483, 576
   size: 84, 84
   orig: 84, 84
   offset: 0, 0
   index: -1
 label_user
   rotate: false
-  xy: 485, 664
+  xy: 483, 662
   size: 89, 91
   orig: 89, 91
   offset: 0, 0
@@ -89,8 +89,8 @@ label_user
 menu_background
   rotate: false
   xy: 1, 219
-  size: 482, 801
-  orig: 482, 801
+  size: 480, 799
+  orig: 480, 799
   offset: 0, 0
   index: -1
 send
@@ -102,7 +102,7 @@ send
   index: -1
 send_pressed
   rotate: false
-  xy: 576, 689
+  xy: 574, 687
   size: 72, 66
   orig: 72, 66
   offset: 0, 0
@@ -116,7 +116,7 @@ testfield_active
   index: -1
 textButton
   rotate: false
-  xy: 485, 843
+  xy: 483, 841
   size: 367, 91
   orig: 367, 91
   offset: 0, 0
@@ -130,7 +130,7 @@ textButton_pressed
   index: -1
 textfield_disactive
   rotate: false
-  xy: 485, 936
+  xy: 483, 934
   size: 398, 84
   orig: 398, 84
   offset: 0, 0

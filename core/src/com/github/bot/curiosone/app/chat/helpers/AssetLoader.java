@@ -33,6 +33,7 @@ public class  AssetLoader {
         dispose();
         bg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/DarkBlue.atlas")).findRegion("chat_background"));
         menuBg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/DarkBlue.atlas")).findRegion("menu_background"));
+        menuBg.setSize(480, 800);
         skin = new Skin(Gdx.files.internal("chat-asset/DarkBlue.json"));
         ChatElementFactory.setStyle(MODERN);
         break;

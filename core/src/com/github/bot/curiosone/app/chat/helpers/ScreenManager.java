@@ -34,6 +34,13 @@ public class ScreenManager {
   public void showScreen(Screen screen) {
     Screen currentScreen = game.getScreen();
     Screen newScreen = screen;
+    if (newScreen instanceof Backable) {
+      try {
+        ((Backable) newScreen).setPrevScreen(currentScreen.getClass().newInstance());
+      } catch (InstantiationException | IllegalAccessException e) {
+        e.printStackTrace();
+      }
+    }
     if (newScreen instanceof Actionable) {
       ((Actionable) newScreen).entryTransition();
       if (newScreen instanceof AbstractScreen) {

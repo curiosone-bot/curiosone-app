@@ -1,5 +1,10 @@
 package com.github.bot.curiosone.app.chat.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
@@ -34,6 +39,22 @@ public class MenuScreen extends AbstractScreen {
   @Override
   public void entryTransition() {
     this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+  }
+
+  @Override
+  public void show() {
+    InputProcessor backProcessor = new InputAdapter() {
+      @Override
+      public boolean keyDown(int keycode) {
+        if ((keycode == Input.Keys.ESCAPE) || (keycode == Input.Keys.BACK) ) {
+          Gdx.app.exit();
+        }
+        return false;
+      }
+    };
+    InputMultiplexer multiplexer = new InputMultiplexer(backProcessor, this);
+    Gdx.input.setInputProcessor(multiplexer);
+    Gdx.input.setCatchBackKey(true);
   }
 
 }
