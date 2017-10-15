@@ -1,10 +1,15 @@
 apply plugin: "java"
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.6
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
+checkstyle {
+  showViolations = true
+  toolVersion ="8.1"
+}
 
 eclipse.project {
   name = appName + "-core"

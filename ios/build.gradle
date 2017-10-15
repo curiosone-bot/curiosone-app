@@ -1,3 +1,5 @@
+apply plugin: 'checkstyle'
+
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 sourceCompatibility = '1.7'
@@ -14,6 +16,11 @@ createIPA.dependsOn build
 
 robovm {
   archs = "thumbv7:arm64"
+}
+
+checkstyle {
+  showViolations = true
+  toolVersion ="8.1"
 }
 
 eclipse.project {

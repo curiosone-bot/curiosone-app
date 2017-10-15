@@ -1,4 +1,5 @@
 apply plugin: "java"
+apply plugin: 'checkstyle'
 apply plugin: "jetty"
 
 gwt {
@@ -63,6 +64,11 @@ tasks.draftCompileGwt.dependsOn(addSource)
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
+
+checkstyle {
+  showViolations = true
+  toolVersion ="8.1"
+}
 
 eclipse.project {
   name = appName + "-html"
