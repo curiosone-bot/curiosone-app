@@ -1,5 +1,8 @@
 {
 com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	impact: {
+		file: impact.fnt
+	}
 	roboto: {
 		file: roboto.fnt
 	}
@@ -58,6 +61,15 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 	default: {
 		hScroll: label_user
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	textButton1: {
+		font: impact
+		fontColor: RGBA_5_16_22_255
+		overFontColor: RGBA_5_16_22_255
+		up: textButton
+		down: textButton_pressed
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
