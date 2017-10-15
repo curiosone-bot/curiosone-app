@@ -20,7 +20,7 @@ public class MenuScreen extends AbstractScreen {
   public void buildStage() {
     chatButton = ChatElementFactory.getButton("Chat", "textButton1");
     gameButton = ChatElementFactory.getButton("Games", "textButton2");
-    optionButton = ChatElementFactory.getButton("Option", "textButton3");
+    optionButton = ChatElementFactory.getButton("Styles", "textButton3");
     bg = ChatElementFactory.getMenuBackground();
 
     chatButton.addListener(ScreenManager.getListener(ScreenEnum.CHAT));

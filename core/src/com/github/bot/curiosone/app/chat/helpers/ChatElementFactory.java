@@ -40,6 +40,26 @@ public class ChatElementFactory {
     }
   }
 
+  public static int getPadBottomInserimento() {
+    switch (style) {
+      case MODERN :
+        return 10;
+      case FUTURISTIC :
+        return 40;
+      default: return 0;
+    }
+  }
+
+  public static int getPadBottomSend() {
+    switch (style) {
+      case MODERN :
+        return 10;
+      case FUTURISTIC :
+        return 52;
+      default: return 0;
+    }
+  }
+
   public static Button getMenuButton() {
     ImageButton menuButton = new ImageButton(AssetLoader.skin.get("menu", ImageButton.ImageButtonStyle.class));
     switch (style) {
@@ -59,7 +79,7 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         try {
-          return new SendButton(71, 64, 402, 0, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
+          return new SendButton(71, 64, 402, 10, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -100,7 +120,7 @@ public class ChatElementFactory {
   public static TextButton getButton(String name, String buttonStyle) {
     switch (style) {
       case MODERN :
-        return new TextButton(name, AssetLoader.defaultSkin);
+        return new TextButton(name, AssetLoader.skin.get("textButton1", TextButton.TextButtonStyle.class));
       case FUTURISTIC :
         return new TextButton(name, AssetLoader.skin.get(buttonStyle, TextButton.TextButtonStyle.class));
       default: return null;
@@ -118,8 +138,8 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         scrollPane = new ScrollPane(scrollTable, AssetLoader.skin);
-        scrollPane.setPosition(0, 97);   // 20 = textField offset
-        scrollPane.setSize(480, 620);
+        scrollPane.setPosition(20, 97);   // 20 = textField offset
+        scrollPane.setSize(430, 620);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setupFadeScrollBars(0, 0);
         return scrollPane;

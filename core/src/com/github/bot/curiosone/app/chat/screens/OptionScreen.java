@@ -23,7 +23,7 @@ import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.Style
  * Option Screen is the screen of options
  * */
 public class OptionScreen extends AbstractScreen {
-  private TextButton style1, style2, style3, menuButton;
+  private TextButton style1, style2, menuButton;
   private Dialog dialog;
   private Preferences prefs;
   private StyleEnum selectedStyle;
@@ -34,8 +34,7 @@ public class OptionScreen extends AbstractScreen {
     this.prefs = Gdx.app.getPreferences("Preferences");
 
     style1 = ChatElementFactory.getButton("Futuristic", "textButton1");
-    style2 = ChatElementFactory.getButton("Modern", "textButton2");
-    style3 = ChatElementFactory.getButton("Dark Blu","textButton3");
+    style2 = ChatElementFactory.getButton("Dark Blue", "textButton2");
     menuButton = new TextButton("Menu da eliminare", AssetLoader.defaultSkin);
     bg = ChatElementFactory.getMenuBackground();
 
@@ -54,8 +53,8 @@ public class OptionScreen extends AbstractScreen {
 
     style2.addListener(getStyleClickListener(MODERN, style2));
 
-    reorder(0f, menuButton, style1, style2, style3);
-    addActors(bg, style1, style2, style3, menuButton);
+    reorder(0f, menuButton, style1, style2);
+    addActors(bg, style1, style2, menuButton);
   }
 
   private void dialogThen(boolean b, StyleEnum style) {

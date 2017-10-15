@@ -60,10 +60,10 @@ public class ChatWorld {
   public void update(float delta) {
 
     render.getStage().act(delta);
-    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(40));
+    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomInserimento()));
     scrollPane.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     scrollPane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
-    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(52));
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomSend()));
 
     if(Chat.keyboard) {
       if (cliccato > 0) {
@@ -78,7 +78,7 @@ public class ChatWorld {
 
   public void addMessage (String message, String user) {
     scrollTable.row();
-    Cell cell = scrollTable.add(createLabel(modifyPhrase(message), AssetLoader.skin.get(user, Label.LabelStyle.class))).expandX();
+    Cell cell = scrollTable.add(createLabel(modifyPhrase(message), AssetLoader.skin.get(user, Label.LabelStyle.class))).expandX().padTop(15);
     if(user.equals("User")) cell.right();
     else cell.left();
     scrollTable.bottom();
@@ -98,8 +98,7 @@ public class ChatWorld {
     return inserimento;
   }
 
-  private Label createLabel(String text, Label.LabelStyle style)
-  {
+  private Label createLabel(String text, Label.LabelStyle style) {
     Label l = new Label(text, style);
     l.setFontScale(0.9f);
     return l;
