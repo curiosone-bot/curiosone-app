@@ -71,14 +71,11 @@ public class ChatElementFactory {
   }
 
   public static Inserimento getInserimento() {
-    Inserimento ins=new Inserimento(AssetLoader.skin);
     switch (style) {
       case MODERN :
-      //  return new Inserimento(365, 60, 18, 20, AssetLoader.skin);
-        return ins.getInserimento(365,60,18,20,AssetLoader.skin);
+        return new Inserimento(365, 60, 18, 20, AssetLoader.skin);
       case FUTURISTIC :
-       // return new Inserimento(290, 80, 45, 40, AssetLoader.skin);
-        return ins.getInserimento(290, 80, 45, 40,AssetLoader.skin);
+        return new Inserimento(290, 80, 45, 40, AssetLoader.skin);
       default: return null;
     }
   }

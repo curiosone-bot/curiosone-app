@@ -7,22 +7,13 @@ import com.github.bot.curiosone.app.chat.world.ChatWorld;
 public class Inserimento extends TextField {
   private boolean play = false;
   private ChatWorld world;
-  private static Inserimento ins;
 
-
-  public Inserimento(Skin skin)
-  {
-    super("",skin);
-  }
-
-  private Inserimento(int width, int height, int x, int y, Skin skin) {
+  public Inserimento(int width, int height, int x, int y, Skin skin) {
     super("", skin);
-    if(ins==null) {
-      this.setSize(width, height);
-      this.setPosition(x, y);
-      this.getStyle().background.setLeftWidth(this.getStyle().background.getLeftWidth() + 20);
-      this.getStyle().background.setRightWidth(this.getStyle().background.getRightWidth() + 20);
-    }
+    this.setSize(width, height);
+    this.setPosition(x,y);
+    this.getStyle().background.setLeftWidth(20);
+    this.getStyle().background.setRightWidth(20);
   }
 
   @Override
@@ -41,14 +32,7 @@ public class Inserimento extends TextField {
   }
 
   public void setPlay(boolean play) {
-  //  System.out.print(play);
+    System.out.print(play);
     this.play = play;
-  }
-
-  public Inserimento getInserimento(int width, int height, int x, int y, Skin skin)
-  {
-    if(ins==null)
-      ins = new Inserimento(width,height,x,y,skin);
-    return ins;
   }
 }
