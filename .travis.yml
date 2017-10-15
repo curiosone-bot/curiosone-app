@@ -12,7 +12,7 @@ android:
     - android-sdk-license-.+
     - google-gdk-license-.+
 script:
-  - ./gradlew clean tests:test --stacktrace --no-daemon
+  - ./gradlew clean build --stacktrace --no-daemon
 before_install:
   - chmod +x gradlew
   - mkdir "$ANDROID_HOME/licenses" || true
