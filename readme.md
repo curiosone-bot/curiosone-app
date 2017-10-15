@@ -64,6 +64,13 @@ The project comes with some useful tools that will help you automatize some comm
 
 ## Authors
 * **Simone Primarosa** - [simonepri](https://github.com/simonepri)
+* **Luca Pierfederici** - [LucaPierfederici](https://github.com/LucaPierfederici)
+* **Emanuele Volanti** - [emavola](https://github.com/emavola)
+* **Federico Ribaldi** - [neker97](https://github.com/neker97)
+* **Paolo Pierantozzi** - [paolopierantozzi](https://github.com/paolopierantozzi)
+* **Giuseppe Rinaldi** - [GiuseppeRinaldi-1996](https://github.com/GiuseppeRinaldi-1996)
+* **Alessandro Roic** - [AlessandroRoic](https://github.com/AlessandroRoic)
+* **Simone Sanfratello** - [Thrasher96](https://github.com/Thrasher96)
 
 See also the list of [contributors](https://github.com/curiosone-bot/curiosone-app/contributors) who participated in this project.
 
