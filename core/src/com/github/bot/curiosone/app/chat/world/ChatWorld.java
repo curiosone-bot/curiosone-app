@@ -107,10 +107,6 @@ public class ChatWorld {
 
   public ScrollPane getScrollPane() {return scrollPane;}
 
-  public Table getScrollTable() {
-    return scrollTable;
-  }
-
   public Image getBg() {
     return bg;
   }

@@ -3,6 +3,8 @@ package com.github.bot.curiosone.app.chat.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.StyleEnum;
 
@@ -11,7 +13,7 @@ import static com.github.bot.curiosone.app.chat.helpers.ChatElementFactory.Style
 public class  AssetLoader {
 
   public static Skin skin;
-  public static Texture bg;
+  public static Image bg, menuBg;
   public static Skin defaultSkin;
   public static Sound click = Gdx.audio.newSound(Gdx.files.internal("chat-asset/click.mp3"));
   public static Sound blop = Gdx.audio.newSound(Gdx.files.internal("chat-asset/Blop.mp3"));
@@ -22,14 +24,16 @@ public class  AssetLoader {
     switch (style) {
       case FUTURISTIC:
         dispose();
+        bg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("chat_background"));
+        menuBg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("menu_background"));
         skin = new Skin(Gdx.files.internal("chat-asset/Skin.json"));
-        bg = new Texture("chat-asset/bg.png");
         ChatElementFactory.setStyle(FUTURISTIC);
         break;
       case MODERN:
         dispose();
-        skin = new Skin(Gdx.files.internal("chat-asset/ModernSkin.json"));
-        bg = new Texture("chat-asset/ChatBg.png");
+        bg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/DarkBlue.atlas")).findRegion("chat_background"));
+        menuBg = new Image(new TextureAtlas(Gdx.files.internal("chat-asset/DarkBlue.atlas")).findRegion("menu_background"));
+        skin = new Skin(Gdx.files.internal("chat-asset/DarkBlue.json"));
         ChatElementFactory.setStyle(MODERN);
         break;
     }
@@ -39,7 +43,6 @@ public class  AssetLoader {
   public static void dispose() {
     if(skin != null) {
       skin.dispose();
-      bg.dispose();
       defaultSkin.dispose();
     }
   }

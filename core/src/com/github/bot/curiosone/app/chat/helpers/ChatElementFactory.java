@@ -17,7 +17,7 @@ import java.io.IOException;
 /*
  * this class is used for create all assets used in program but the difference
  * between one to another is that every style has a particular position and other thing
- * that need to be refershed every time that style change.
+ * that need to be refreshed every time that style change.
  * */
 public class ChatElementFactory {
   private static StyleEnum style;
@@ -31,7 +31,7 @@ public class ChatElementFactory {
     gameButton.addListener(ScreenManager.getListener(ScreenEnum.GAMECENTER));
     switch (style) {
       case MODERN :
-        gameButton.setPosition(400, 708);
+        gameButton.setPosition(368, 717);
         return gameButton;
       case FUTURISTIC :
         gameButton.setPosition(50, 710);
@@ -44,7 +44,7 @@ public class ChatElementFactory {
     ImageButton menuButton = new ImageButton(AssetLoader.skin.get("menu", ImageButton.ImageButtonStyle.class));
     switch (style) {
       case MODERN :
-        menuButton.setPosition(0, 708);
+        menuButton.setPosition(0, 717);
         menuButton.addListener(ScreenManager.getListener(ScreenEnum.MENU));
         break;
       case FUTURISTIC :
@@ -59,7 +59,7 @@ public class ChatElementFactory {
     switch (style) {
       case MODERN :
         try {
-          return new SendButton(60, 65, 400, 20, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
+          return new SendButton(71, 64, 402, 0, AssetLoader.skin.get("send", ImageButton.ImageButtonStyle.class));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class ChatElementFactory {
   public static Inserimento getInserimento() {
     switch (style) {
       case MODERN :
-        return new Inserimento(365, 60, 18, 20, AssetLoader.skin);
+        return new Inserimento(386, 71, 10, 17, AssetLoader.skin);
       case FUTURISTIC :
         return new Inserimento(290, 80, 45, 40, AssetLoader.skin);
       default: return null;
@@ -84,11 +84,11 @@ public class ChatElementFactory {
   }
 
   public static Image getChatBackground() {
-    return new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("chat_background"));
+    return AssetLoader.bg;
   }
 
   public static Image getMenuBackground() {
-    return new Image(new TextureAtlas(Gdx.files.internal("chat-asset/Skin.atlas")).findRegion("menu_background"));
+    return AssetLoader.menuBg;
   }
 
   public static Label getLabel(String text, Label.LabelStyle labelStyle) {
@@ -117,9 +117,9 @@ public class ChatElementFactory {
     ScrollPane scrollPane;
     switch (style) {
       case MODERN :
-        scrollPane = new ScrollPane(scrollTable, AssetLoader.defaultSkin);
-        scrollPane.setPosition(45, inserimento.getY() + inserimento.getHeight() + 20);   // 20 = textField offset
-        scrollPane.setSize(390, 700 - scrollPane.getY());
+        scrollPane = new ScrollPane(scrollTable, AssetLoader.skin);
+        scrollPane.setPosition(0, 97);   // 20 = textField offset
+        scrollPane.setSize(480, 620);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setupFadeScrollBars(0, 0);
         return scrollPane;
@@ -135,7 +135,7 @@ public class ChatElementFactory {
   }
 
   public enum StyleEnum {
-    FUTURISTIC(0), MODERN(1),DARKBLU(3);
+    FUTURISTIC(0), MODERN(1);
 
     private int id;
     StyleEnum(int id) {
