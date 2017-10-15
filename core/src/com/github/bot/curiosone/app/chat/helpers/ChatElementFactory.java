@@ -50,6 +50,20 @@ public class ChatElementFactory {
     }
   }
 
+  public static int getPadBottomKeyboardInserimento() {
+    return 17;
+  }
+
+  public static int getPadBottomKeyboardSend() {
+    switch (style) {
+      case MODERN :
+        return 17;
+      case FUTURISTIC :
+        return 25;
+      default: return 0;
+    }
+  }
+
   public static int getPadBottomSend() {
     switch (style) {
       case MODERN :

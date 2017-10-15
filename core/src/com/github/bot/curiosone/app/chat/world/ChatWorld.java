@@ -58,12 +58,11 @@ public class ChatWorld {
   }
 
   public void update(float delta) {
-
     render.getStage().act(delta);
-    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomInserimento()));
+    inserimento.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomInserimento(), ChatElementFactory.getPadBottomKeyboardInserimento()));
     scrollPane.setY(inserimento.getY()+ inserimento.getHeight() + 20);
     scrollPane.setHeight(700 - inserimento.getY() - inserimento.getHeight() - 20);
-    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomSend()));
+    send.setY(Chat.keyboardHeight * 800 / Gdx.graphics.getHeight() + getIncremento(ChatElementFactory.getPadBottomSend(), ChatElementFactory.getPadBottomKeyboardSend()));
 
     if(Chat.keyboard) {
       if (cliccato > 0) {
@@ -118,7 +117,7 @@ public class ChatWorld {
     return menuButton;
   }
 
-  public int getIncremento(int n) { return Chat.keyboardHeight != 0 ? 17 : n; }
+  public int getIncremento(int n, int y) { return Chat.keyboardHeight != 0 ? y : n; }
 
   private static String modifyPhrase(String phrase) { //taglio a 24 caratteri
     StringTokenizer st = new StringTokenizer(phrase);
