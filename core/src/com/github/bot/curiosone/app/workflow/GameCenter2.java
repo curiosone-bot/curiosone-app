@@ -86,7 +86,7 @@ public class GameCenter2 extends AbstractScreen implements Backable {
 
   @Override
   public void entryTransition() {
-    this.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+    this.addAction(Actions.sequence(Actions.alpha(0.9f), Actions.fadeIn(0.3f)));
   }
 
   @Override

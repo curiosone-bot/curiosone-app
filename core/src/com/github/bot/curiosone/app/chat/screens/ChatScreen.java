@@ -79,7 +79,7 @@ public class ChatScreen implements Screen, Actionable, Backable {
 
   @Override
   public void entryTransition() {
-    renderer.getStage().addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.2f)));
+    renderer.getStage().addAction(Actions.sequence(Actions.alpha(0.9f), Actions.fadeIn(0.3f)));
   }
 
   @Override
