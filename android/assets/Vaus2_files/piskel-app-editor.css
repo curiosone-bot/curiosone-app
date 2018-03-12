@@ -1,0 +1,113 @@
+#loading-mask {
+  position:fixed;
+  top:0;right:0;bottom:0;left:0;
+  background:black;
+  opacity:1;
+  z-index : 20000;
+  transition : opacity 0.5s;
+  color:white;
+  font-size:24px;
+}
+
+#loading-mask div {
+  top:50%;left:50%;
+  height:50px;
+  width:300px;
+  vertical-align:middle;
+  text-align:center;
+  line-height:50px;
+  margin-top:-25px;
+  margin-left:-150px;
+  position:absolute;
+}
+
+.editor-header-wrap {
+  z-index: 10000;
+  position: relative;
+  font-size: 12pt;
+}
+
+.editor-header-wrap .piskel-button {
+  color: black;
+}
+
+.editor-header-wrap .user-menu-popup-link {
+  color: white;
+}
+.editor-header-wrap .user-menu-popup-link:hover {
+  color: gold;
+}
+
+.editor-header-wrap .navigation {
+  height : 36px;
+  line-height : 36px;
+}
+
+.editor-header-wrap .link {
+  position: relative;
+  z-index : 2;
+}
+
+.editor-header-wrap .small-user-avatar {
+  width: 36px;
+  height: 36px;
+  border: none;
+}
+
+.editor-header-wrap .flat-button {
+  margin: 0 1px 0 0;
+  padding: 0 10px 0 30px;
+  border-top-width: 3px;
+  border-bottom-width: 0;
+  border-radius: 0;
+  height: 36px;
+
+  transition : border 0.2s, color 0.2s;
+}
+
+.editor-header-wrap .flat-button:hover {
+  border-top-color: gold;
+  color: gold;
+}
+
+.piskel-name {
+  position : absolute;
+  left: 0;
+  width : 100%;
+  text-align: center;
+  font-size: 16pt;
+  color: #888;
+  text-shadow: 0 -1px 0 #000;
+}
+
+.piskel-name-saving:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 25px;
+  background-image: url('/static/resources/pacman-loader.gif');
+  height: 25px;
+  margin-left: 5px;
+}
+
+.main-wrapper {
+  margin-top: 40px;
+}
+
+.navigation .logout-link {
+  font-size: 1em;
+  padding-left: 0px;
+  padding-right: 30px;
+  background-position: 50px 10px;
+  line-height: 36px;
+}
+
+@media (max-width: 870px) {
+  .editor-nav-longdesc {
+    display: none;
+  }
+
+  .nav-user-drop-arrow {
+    margin-left: 3px;
+  }
+}
