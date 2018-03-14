@@ -1,7 +1,8 @@
 package com.arkanoid;
 
 import com.arkanoid.screens.GameScreen;
-import com.arkanoid.utils.*;
+import com.arkanoid.utils.Constants;
+import com.arkanoid.utils.Resources;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -64,7 +65,7 @@ public class WorldRenderer implements Disposable
         for (int i = 0; i < world.getLives()-1; i++) {
             batch.draw(world.getPaddle().getSprite(),
                     (520-40*(i+1))*w/Constants.WIDTH,
-                    10*h/Constants.HEIGHT,
+                    10*h/ Constants.HEIGHT,
                     32*w/Constants.WIDTH,
                     8*h/Constants.HEIGHT);
         }
@@ -88,10 +89,6 @@ public class WorldRenderer implements Disposable
             font.draw(batch, ""+world.getScore(), 225*w / Constants.WIDTH, 560*h / Constants.HEIGHT);
             batch.end();
         }
-    }
-
-    public void resize (int width, int height) {
-
     }
 
 	@Override

@@ -2,8 +2,10 @@ package com.arkanoid.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 
@@ -32,7 +34,6 @@ public class MainMenuScreen extends AbstractGameScreen {
         super(game);
 
         playButton = new TextButton("Play", style1);
-        playButton.setPosition(265, 500, Align.center);
         playButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -48,7 +49,6 @@ public class MainMenuScreen extends AbstractGameScreen {
         });
 
         creditsButton = new TextButton("Credits", style1);
-        creditsButton.setPosition(265, 350, Align.center);
         creditsButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -64,7 +64,6 @@ public class MainMenuScreen extends AbstractGameScreen {
 
 
         exitButton = new TextButton("Exit", style1);
-        exitButton.setPosition(265, 200, Align.center);
         exitButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -79,10 +78,13 @@ public class MainMenuScreen extends AbstractGameScreen {
             }
         });
 
-        stage.addActor(playButton);
-        stage.addActor(exitButton);
-        stage.addActor(creditsButton);
-        scaleButtons();
+        //TODO add title
+        table.add(playButton).center().expandY();
+        table.row();
+        table.add(creditsButton).center().uniformY();
+        table.row();
+        table.add(exitButton).center().expandY();
+        stage.addActor(table);
     }
 
 }

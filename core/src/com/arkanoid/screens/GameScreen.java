@@ -45,6 +45,9 @@ public class GameScreen extends AbstractGameScreen {
     private GameState state;
 
     private TextButton resumeButton, menuButton, tryAgainButton;
+    //private Table pauseTable;
+    //private Table gameOverTable;
+
     private InputProcessor pauseProcessor;
 
     public enum GameState {
@@ -57,7 +60,6 @@ public class GameScreen extends AbstractGameScreen {
         super(game, startLevel);
         this.game = game;
 
-        //buttons on a separate input processor from actor stage??
         resumeButton = new TextButton("Resume", style1);
         resumeButton.setPosition(265, 400, Align.center);
         resumeButton.addListener(new InputListener() {
@@ -120,7 +122,8 @@ public class GameScreen extends AbstractGameScreen {
                     if (state != GameState.GAME_OVER) {
                         if (state == GameState.RUNNING) {
                             pause();
-                        } else if (state == GameState.PAUSE) {
+                        }
+                        else if (state == GameState.PAUSE) {
                             resume();
                         }
                     }
@@ -136,6 +139,18 @@ public class GameScreen extends AbstractGameScreen {
         stage.getRoot().removeActor(resumeButton);
         stage.getRoot().removeActor(menuButton);
         stage.getRoot().removeActor(tryAgainButton);
+
+        /*
+        pauseTable = new Table();
+        pauseTable.add(resumeButton).expandY();
+        pauseTable.row();
+        pauseTable.add(menuButton).expandY();
+
+        gameOverTable = new Table();
+        gameOverTable.add(tryAgainButton).expandY();
+        gameOverTable.row();
+        gameOverTable.add(menuButton).expandY();
+        */
 
         init(startLevel);
     }
@@ -184,7 +199,7 @@ public class GameScreen extends AbstractGameScreen {
 
     @Override
     public void resize(int width, int height) {
-        renderer.resize(width, height);
+        //renderer.resize(width, height);
 	}
 
 	@Override
@@ -193,6 +208,7 @@ public class GameScreen extends AbstractGameScreen {
             state = GameState.PAUSE;
             stage.addActor(resumeButton);
             stage.addActor(menuButton);
+            //stage.addActor(pauseTable);
 		}
 	}
 
@@ -201,6 +217,7 @@ public class GameScreen extends AbstractGameScreen {
         if (state == GameState.PAUSE) {
             stage.getRoot().removeActor(resumeButton);
             stage.getRoot().removeActor(menuButton);
+            //stage.getRoot().removeActor(pauseTable);
             state = GameState.RUNNING;
         }
 	}
@@ -208,6 +225,7 @@ public class GameScreen extends AbstractGameScreen {
 	private void displayGameOver() {
         stage.addActor(tryAgainButton);
         stage.addActor(menuButton);
+        //stage.addActor(gameOverTable);
 	}
 
 	@Override

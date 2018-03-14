@@ -1,9 +1,9 @@
 package com.arkanoid.screens;
 
-import com.arkanoid.utils.Constants;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 
@@ -42,17 +42,12 @@ public class CreditsScreen extends AbstractGameScreen {
             }
         });
 
-        stage.addActor(backButton);
-        scaleButtons();
-    }
-
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-        batch.begin();
-        font1.draw(batch, "Created by", 160 * w / Constants.WIDTH, 500 * h / Constants.HEIGHT);
-        font1.draw(batch, "Simone Sanfratello", 100 * w / Constants.WIDTH, 460 * h / Constants.HEIGHT);
-        batch.end();
+        table.add(new Label("Created by", new Label.LabelStyle(font1, font1.getColor()))).center().expandY().bottom();
+        table.row();
+        table.add(new Label("Simone Sanfratello", new Label.LabelStyle(font1, font1.getColor()))).center().expandY().top();
+        table.row();
+        table.add(backButton).center().expandY();
+        stage.addActor(table);
     }
 
 }

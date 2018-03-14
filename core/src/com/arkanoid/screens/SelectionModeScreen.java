@@ -1,8 +1,8 @@
 package com.arkanoid.screens;
 
-import com.arkanoid.utils.Resources;
 import com.arkanoid.utils.Constants;
 import com.arkanoid.utils.IllegalFormatException;
+import com.arkanoid.utils.Resources;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -106,12 +106,25 @@ public class SelectionModeScreen extends AbstractGameScreen {
 
         selectedLevel = 1;
         miniature = Resources.getInstance().getMiniature(selectedLevel);
+
         stage.addActor(backButton);
         stage.addActor(leftArrow);
         stage.addActor(rightArrow);
         stage.addActor(startButton);
         scaleButtons();
 
+
+        /*
+        table.add(new Image(miniature)).center().expandY();
+        table.row();
+        table.add(leftArrow).left();
+        //table.add(rightArrow).right();
+        table.row();
+        table.add(startButton).center().expandY();
+        table.row();
+        table.add(backButton).center().expandY();
+        stage.addActor(table);
+        */
     }
 
     public static SelectionModeScreen getInstance(Game game) {

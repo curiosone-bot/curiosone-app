@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-//import com.badlogic.gdx.utils.Align;
 
 
 /**
@@ -33,6 +33,8 @@ public abstract class AbstractGameScreen extends ScreenAdapter{
     protected TextButton.TextButtonStyle style1;
     protected TextButton.TextButtonStyle style2;
 
+    protected Table table;
+
     protected Music music;
 
     protected float w;
@@ -43,20 +45,23 @@ public abstract class AbstractGameScreen extends ScreenAdapter{
      * @param game the main game instance
      */
     public AbstractGameScreen(Game game) {
-        this.w = Gdx.graphics.getWidth();
-        this.h = Gdx.graphics.getHeight();
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
         this.game = game;
-        this.stage = new Stage();
-        this.batch = stage.getBatch();
-        this.background = Resources.getInstance().getMenuBackground();
-        this.font1 = Resources.getInstance().getFont1();
-        this.font1.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
-        this.font2 = Resources.getInstance().getFont2();
-        this.font2.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
-        this.style1 = new TextButton.TextButtonStyle(null, null, null, font1);
-        this.style2 = new TextButton.TextButtonStyle(null, null, null, font2);
-        this.music = Resources.getInstance().getMenuMusic();
-        this.music.setLooping(true);
+        stage = new Stage();
+        batch = stage.getBatch();
+        background = Resources.getInstance().getMenuBackground();
+        font1 = Resources.getInstance().getFont1();
+        font1.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
+        font2 = Resources.getInstance().getFont2();
+        font2.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
+        style1 = new TextButton.TextButtonStyle(null, null, null, font1);
+        style2 = new TextButton.TextButtonStyle(null, null, null, font2);
+        table = new Table();
+        //table.debug();
+        table.setFillParent(true);
+        music = Resources.getInstance().getMenuMusic();
+        music.setLooping(true);
     }
 
     /**
@@ -65,20 +70,21 @@ public abstract class AbstractGameScreen extends ScreenAdapter{
      * @param startLevel the level to start from
      */
     public AbstractGameScreen(Game game, int startLevel) {
-        //Resources.getInstance().loadGameAssets();
-        this.w = Gdx.graphics.getWidth();
-        this.h = Gdx.graphics.getHeight();
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
         this.game = game;
-        this.stage = new Stage();
-        this.background = Resources.getInstance().getGameBackground();
-        this.font1 = Resources.getInstance().getFont1();
-        this.font1.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
-        this.font2 = Resources.getInstance().getFont2();
-        this.font2.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
-        this.style1 = new TextButton.TextButtonStyle(null, null, null, font1);
-        this.style2 = new TextButton.TextButtonStyle(null, null, null, font2);
-        this.music = Resources.getInstance().getGameMusic();
-        this.music.setLooping(true);
+        stage = new Stage();
+        background = Resources.getInstance().getGameBackground();
+        font1 = Resources.getInstance().getFont1();
+        font1.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
+        font2 = Resources.getInstance().getFont2();
+        font2.getData().setScale(w / Constants.WIDTH, h / Constants.HEIGHT);
+        style1 = new TextButton.TextButtonStyle(null, null, null, font1);
+        style2 = new TextButton.TextButtonStyle(null, null, null, font2);
+        table = new Table();
+        table.setFillParent(true);
+        music = Resources.getInstance().getGameMusic();
+        music.setLooping(true);
     }
 
     protected void scaleButtons() {

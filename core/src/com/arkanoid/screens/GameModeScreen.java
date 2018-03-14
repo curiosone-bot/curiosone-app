@@ -2,8 +2,10 @@ package com.arkanoid.screens;
 
 import com.arkanoid.utils.IllegalFormatException;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 
@@ -20,11 +22,17 @@ public class GameModeScreen extends AbstractGameScreen {
 
     private TextButton classicModeButton, selectionModeButton, backButton;
 
+    public static GameModeScreen getInstance(Game game) {
+        if (instance == null) {
+            instance = new GameModeScreen(game);
+        }
+        return instance;
+    }
+
     private GameModeScreen(final Game game) {
         super(game);
 
         classicModeButton = new TextButton("Classic Mode", style1);
-        classicModeButton.setPosition(265, 500, Align.center);
         classicModeButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -44,7 +52,6 @@ public class GameModeScreen extends AbstractGameScreen {
         });
 
         selectionModeButton = new TextButton("Selection Mode", style1);
-        selectionModeButton.setPosition(265, 350, Align.center);
         selectionModeButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -59,7 +66,6 @@ public class GameModeScreen extends AbstractGameScreen {
         });
 
         backButton = new TextButton("Back", style1);
-        backButton.setPosition(265, 200, Align.center);
         backButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -73,32 +79,13 @@ public class GameModeScreen extends AbstractGameScreen {
             }
         });
 
-        stage.addActor(classicModeButton);
-        stage.addActor(selectionModeButton);
-        stage.addActor(backButton);
-        scaleButtons();
+        table.add(classicModeButton).center().expandY();
+        table.row();
+        table.add(selectionModeButton).center().uniformY();
+        table.row();
+        table.add(backButton).expandY();
+        stage.addActor(table);
 
     }
 
-    public static GameModeScreen getInstance(Game game) {
-        if (instance == null) {
-            instance = new GameModeScreen(game);
-        }
-        return instance;
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
 }
