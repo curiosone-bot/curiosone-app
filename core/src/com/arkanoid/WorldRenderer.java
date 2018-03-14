@@ -44,7 +44,7 @@ public class WorldRenderer implements Disposable
     }
 
     private WorldRenderer setWorld(WorldController world)
-	{
+    {
         this.world = world;
         init();
         return this;
@@ -96,7 +96,7 @@ public class WorldRenderer implements Disposable
 
 	@Override
 	public void dispose() {
-		renderer.dispose();
+        renderer.dispose();
 	}
 
 }
