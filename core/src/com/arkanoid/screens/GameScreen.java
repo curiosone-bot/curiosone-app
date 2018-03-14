@@ -38,37 +38,35 @@ import com.badlogic.gdx.utils.Align;
  * @author Simone Sanfratello
  *
  */
-public class GameScreen extends AbstractGameScreen
-{
-	private WorldController world;
-	private WorldRenderer renderer;
+public class GameScreen extends AbstractGameScreen {
+    private WorldController world;
+    private WorldRenderer renderer;
 
-	private GameState state;
+    private GameState state;
 
-	private TextButton resumeButton, menuButton, tryAgainButton;
+    private TextButton resumeButton, menuButton, tryAgainButton;
     private InputProcessor pauseProcessor;
 
-	public enum GameState
-	{
-		RUNNING,
-		PAUSE,
-		GAME_OVER;
-	}
+    public enum GameState {
+        RUNNING,
+        PAUSE,
+        GAME_OVER;
+    }
 
-	public GameScreen(final Game game, final int startLevel) throws IllegalFormatException {
+    public GameScreen(final Game game, final int startLevel) throws IllegalFormatException {
         super(game, startLevel);
-		this.game = game;
+        this.game = game;
 
         //buttons on a separate input processor from actor stage??
         resumeButton = new TextButton("Resume", style1);
         resumeButton.setPosition(265, 400, Align.center);
-        resumeButton.addListener(new InputListener()
-        {
+        resumeButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 resumeButton.setStyle(style2);
                 return true;
             }
+
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 resumeButton.setStyle(style1);
@@ -78,13 +76,13 @@ public class GameScreen extends AbstractGameScreen
 
         menuButton = new TextButton("Back to Menu", style1);
         menuButton.setPosition(265, 300, Align.center);
-        menuButton.addListener(new InputListener()
-        {
+        menuButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 menuButton.setStyle(style2);
                 return true;
             }
+
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 menuButton.setStyle(style1);
@@ -96,21 +94,20 @@ public class GameScreen extends AbstractGameScreen
 
         tryAgainButton = new TextButton("Try Again", style1);
         tryAgainButton.setPosition(265, 400, Align.center);
-        tryAgainButton.addListener(new InputListener()
-        {
+        tryAgainButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 tryAgainButton.setStyle(style2);
                 return true;
             }
+
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 tryAgainButton.setStyle(style1);
                 stage.dispose();
                 try {
                     init(startLevel);
-                }
-                catch (IllegalFormatException e) {
+                } catch (IllegalFormatException e) {
                     e.printStackTrace();
                 }
             }
@@ -123,8 +120,7 @@ public class GameScreen extends AbstractGameScreen
                     if (state != GameState.GAME_OVER) {
                         if (state == GameState.RUNNING) {
                             pause();
-                        }
-                        else if (state == GameState.PAUSE) {
+                        } else if (state == GameState.PAUSE) {
                             resume();
                         }
                     }
@@ -141,71 +137,72 @@ public class GameScreen extends AbstractGameScreen
         stage.getRoot().removeActor(menuButton);
         stage.getRoot().removeActor(tryAgainButton);
 
-		init(startLevel);
-	}
-	
-	private void init(int startLevel) throws IllegalFormatException
-	{
-		this.world = new WorldController(game, startLevel);
-		this.renderer = WorldRenderer.getInstance(world);
+        init(startLevel);
+    }
+
+    private void init(int startLevel) throws IllegalFormatException
+    {
+        this.world = new WorldController(game, startLevel);
+        this.renderer = WorldRenderer.getInstance(world);
         this.stage = world.getStage();
 
         GameInputProcessor gameProcessor = world.getInputProcessor();
         InputMultiplexer multiplexer = new InputMultiplexer(gameProcessor, pauseProcessor, stage);
         Gdx.input.setInputProcessor(multiplexer);
-		this.state = GameState.RUNNING;
-	}
-	
-	public GameState getState() { return state; }
-	public void setState(GameState state) { this.state = state; }
-	
-	@Override
-	public void show() {
+        this.state = GameState.RUNNING;
+    }
+
+    public GameState getState() { return state; }
+    public void setState(GameState state) { this.state = state; }
+
+    @Override
+    public void show() {
         music.play();
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	}
+    }
 
-	@Override
-	public void render(float deltaTime) {
-		if (state == GameState.RUNNING) {
+    @Override
+    public void render(float deltaTime) {
+        if (state == GameState.RUNNING) {
             try {
                 world.update(deltaTime);
-            } catch (IllegalFormatException e) {
+            }
+            catch (IllegalFormatException e) {
                 e.printStackTrace();
             }
         }
-		else if (state == GameState.PAUSE) {
+        else if (state == GameState.PAUSE) {
 
-		}
-		if (state == GameState.GAME_OVER) {
+        }
+        if (state == GameState.GAME_OVER) {
             displayGameOver();
-		}
-		renderer.render(deltaTime);
-		stage.act();
-		stage.draw();
-	}
+        }
+        renderer.render(deltaTime);
+        stage.act();
+        stage.draw();
+    }
 
-	@Override
-	public void resize(int width, int height) {
+    @Override
+    public void resize(int width, int height) {
         renderer.resize(width, height);
 	}
 
 	@Override
-	public void pause() {
-		if (state == GameState.RUNNING) {
-			state = GameState.PAUSE;
-			stage.addActor(resumeButton);
-			stage.addActor(menuButton);
+    public void pause() {
+        if (state == GameState.RUNNING) {
+            state = GameState.PAUSE;
+            stage.addActor(resumeButton);
+            stage.addActor(menuButton);
 		}
 	}
 
 	@Override
-	public void resume() {
-		if (state == GameState.PAUSE) {
-			stage.getRoot().removeActor(resumeButton);
-			stage.getRoot().removeActor(menuButton);
-			state = GameState.RUNNING;
-		}
+    public void resume() {
+        if (state == GameState.PAUSE) {
+            stage.getRoot().removeActor(resumeButton);
+            stage.getRoot().removeActor(menuButton);
+            state = GameState.RUNNING;
+        }
 	}
 
 	private void displayGameOver() {
@@ -214,12 +211,12 @@ public class GameScreen extends AbstractGameScreen
 	}
 
 	@Override
-	public void hide() {
+    public void hide() {
         music.stop();
 	}
 
 	@Override
-	public void dispose() {
+    public void dispose() {
 
 	}
 

@@ -12,39 +12,38 @@ import com.badlogic.gdx.Gdx;
  */
 public class Arkanoid extends Game
 {
-	
-	@Override
-	public void create() {
+
+    @Override
+    public void create() {
         Resources.getInstance().loadMenuAssets();
         Resources.getInstance().loadGameAssets();
-		setScreen(MainMenuScreen.getInstance(this));
-		Gdx.input.setCatchBackKey(true);
-	}
+        setScreen(MainMenuScreen.getInstance(this));
+        Gdx.input.setCatchBackKey(true);
+    }
 
-	@Override
-	public void render() {
+    @Override
+    public void render() {
         screen.render(Gdx.graphics.getDeltaTime());
 	}
 
-
 	@Override
-	public void resize(int width, int height) {
+    public void resize(int width, int height) {
 		screen.resize(width, height);
 	}
 
 	@Override
-	public void resume() {
+    public void resume() {
 
 	}
 
 	@Override
-	public void pause() {
+    public void pause() {
 		super.pause();
 	}
 
 	@Override
-	public void dispose() {
-		super.dispose();
+    public void dispose() {
+        super.dispose();
         Resources.getInstance().dispose();
 	}
 }

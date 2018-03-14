@@ -18,22 +18,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  */
 public class Level {
 
-	private final int LINES = 13, COLUMNS = 18;
-	
-	private Block[][] blocks;
-	
-	/**
-	 * creates the array of blocks, reading the text file
-	 * correspondent to that level
-	 */
-	public Level(int level) throws IllegalFormatException {
+    private final int LINES = 13, COLUMNS = 18;
+
+    private Block[][] blocks;
+
+    /**
+     * creates the array of blocks, reading the text file
+     * correspondent to that level
+     */
+    public Level(int level) throws IllegalFormatException {
         int w = Gdx.graphics.getWidth();
         int h = Gdx.graphics.getHeight();
 
-		this.blocks = new Block[COLUMNS][LINES];
+        this.blocks = new Block[COLUMNS][LINES];
 
-		String txt = Resources.getInstance().getLevel(level);
-		String[] textLines = txt.split("\r\n");
+        String txt = Resources.getInstance().getLevel(level);
+        String[] textLines = txt.split("\r\n");
 
         try {
             for (int i = 0; i < COLUMNS; i++) {
@@ -58,28 +58,28 @@ public class Level {
             }
         }
         catch (Exception e) {
-            throw new com.arkanoid.utils.IllegalFormatException("The text file is not properly formatted");
+            throw new IllegalFormatException("The text file is not properly formatted");
         }
-	}
+    }
 
-	public int countBlocks() {
-		int nBlocks = 0;
-		for (Block[] line : blocks)
-			for (Block b : line)
-				if (b != null)
-					if (b.isDestructible())
-						nBlocks++;
-		return nBlocks;
-	}
-	
-	public void render(ShapeRenderer sr) {
-		for (Block[] line : blocks)
-			for (Block b : line)
-				if (b != null)
-				    b.render(sr);
-	}
+    public int countBlocks() {
+        int nBlocks = 0;
+        for (Block[] line : blocks)
+            for (Block b : line)
+                if (b != null)
+                    if (b.isDestructible())
+                        nBlocks++;
+        return nBlocks;
+    }
 
-	public Block[][] getBlocks() {
+    public void render(ShapeRenderer sr) {
+        for (Block[] line : blocks)
+            for (Block b : line)
+                if (b != null)
+                    b.render(sr);
+    }
+
+    public Block[][] getBlocks() {
         return blocks;
 	}
 
@@ -93,6 +93,6 @@ public class Level {
         if (blocks[i][j].isDestroyed())
             return false;
         return true;
-    }
+	}
 
 }

@@ -77,7 +77,7 @@ public abstract class Block extends Actor {
         sr.rect(x, y, width, height, borderColor, borderColor, borderColor, borderColor);
         sr.end();
         sr.begin(ShapeRenderer.ShapeType.Filled);
-        sr.rect(x, y+1, width-1, height-1, color, color, topRightColor, color); //it should be x+1 logically, but it doesn't work prperly
+        sr.rect(x, y+1, width-1, height-1, color, color, topRightColor, color); //it should be x+1 logically, but it doesn't work properly
         sr.end();
     }
 }

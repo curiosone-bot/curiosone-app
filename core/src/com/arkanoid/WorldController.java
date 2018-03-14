@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 public class WorldController
 {
-	
+
 	private Game game;
 
 	private Level level;
@@ -38,41 +38,41 @@ public class WorldController
 	private int currentLevel;
 
 	private Stage stage;
-	
+
 	private Sound sound;
 
     private GameInputProcessor processor;
-	
+
 	public WorldController(Game game, int startLevel) throws IllegalFormatException {
-		this.game = game;
-		currentLevel = startLevel;
-		sound = Resources.getInstance().getSound();
+        this.game = game;
+        currentLevel = startLevel;
+        sound = Resources.getInstance().getSound();
         lives = 3;
         stage = new Stage();
         processor = new GameInputProcessor(this);
-		init();
+        init();
 	}
 
 	private void init() throws IllegalFormatException {
-		level = new Level(currentLevel);
-		paddle = new Paddle();
-		ball = new Ball();
-		ball.setPosition(paddle);
-		blocksLeft = level.countBlocks();
+        level = new Level(currentLevel);
+        paddle = new Paddle();
+        ball = new Ball();
+        ball.setPosition(paddle);
+        blocksLeft = level.countBlocks();
 
         stage.addActor(paddle);
         stage.addActor(ball);
         processor.setWorld(this);//updated
 	}
-	
-	public void update(float deltaTime) throws IllegalFormatException {
-		stage.act(deltaTime);
 
-		//updates every actor
-		paddle.updateMotion(deltaTime);
-		if (!ball.getMotion())
-			ball.translate(paddle);
-		ball.updateMotion(deltaTime);
+	public void update(float deltaTime) throws IllegalFormatException {
+        stage.act(deltaTime);
+
+        //updates every actor
+        paddle.updateMotion(deltaTime);
+        if (!ball.getMotion())
+            ball.translate(paddle);
+        ball.updateMotion(deltaTime);
 		if (ball.getY() + ball.getRadius() < 0) 
 			loseLive();
 
@@ -91,11 +91,11 @@ public class WorldController
                     }
                 }
             }
-        }
+		}
 
 		//check if the ball hits the paddle
-		if (ball.getMotion() && Intersector.overlaps(ball.getBounds(), paddle.getBounds()))
-			ball.bounce(paddle);
+        if (ball.getMotion() && Intersector.overlaps(ball.getBounds(), paddle.getBounds()))
+            ball.bounce(paddle);
 
 		//when all destructible blocks are took down, go to the next level
 		if (blocksLeft == 0) nextLevel();
@@ -107,12 +107,12 @@ public class WorldController
      */
 	private void nextLevel() throws IllegalFormatException {
 		if (currentLevel < 10) {
-			currentLevel++;
+            currentLevel++;
             addLive();
-			init();
+            init();
 		}
 		else {
-			((GameScreen) game.getScreen()).setState(GameState.GAME_OVER);
+            ((GameScreen) game.getScreen()).setState(GameState.GAME_OVER);
 		}
 	}
 
@@ -123,13 +123,13 @@ public class WorldController
 	private void loseLive()
 	{
         lives--;
-		if (lives == 0) {
-			((GameScreen) game.getScreen()).setState(GameState.GAME_OVER);
+        if (lives == 0) {
+            ((GameScreen) game.getScreen()).setState(GameState.GAME_OVER);
 		}
 		else {
-			paddle = new Paddle();
-			ball.setMotion(false);
-			ball.setPosition(paddle);
+            paddle = new Paddle();
+            ball.setMotion(false);
+            ball.setPosition(paddle);
             processor.setWorld(this);
 		}
 	}
@@ -162,7 +162,7 @@ public class WorldController
         return game;
 	}
 
-    public GameInputProcessor getInputProcessor() {
+	public GameInputProcessor getInputProcessor() {
         return processor;
     }
 }

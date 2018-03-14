@@ -26,7 +26,7 @@ public class Resources implements Disposable {
 	private final static AssetManager manager = new AssetManager();
 
     private final String menuBackground = "Backgrounds/Menu.jpg";
-	private final String gameBackground = "Backgrounds/Background-0.jpg";
+    private final String gameBackground = "Backgrounds/Background-0.jpg";
 
     private final String level1Miniature = "Miniatures/Level1.png";
     private final String level2Miniature = "Miniatures/Level2.png";
@@ -39,40 +39,40 @@ public class Resources implements Disposable {
     private final String level9Miniature = "Miniatures/Level9.png";
     private final String level10Miniature = "Miniatures/Level10.png";
 
-	private final String consoleFont1 = "Fonts/console.fnt";
-	private final String consoleFont2 = "Fonts/console2.fnt";
+    private final String consoleFont1 = "Fonts/console.fnt";
+    private final String consoleFont2 = "Fonts/console2.fnt";
 
-	private final String menuMusic = "Music/UnstructuredSpaceEchoWave.ogg";
+    private final String menuMusic = "Music/UnstructuredSpaceEchoWave.ogg";
     private final String gameMusic = "Music/Little-Space-Probe...Very-Big-Journey.mp3";
 
-	private final String hitSound = "Sounds/NFF-metal-hit.wav";
+    private final String hitSound = "Sounds/NFF-metal-hit.wav";
 
     private final String sprite = "Vaus1.png";
 
-	private final String level1 = "Levels/Level1.txt";
-	private final String level2 = "Levels/Level2.txt";
-	private final String level3 = "Levels/Level3.txt";
-	private final String level4 = "Levels/Level4.txt";
-	private final String level5 = "Levels/Level5.txt";
-	private final String level6 = "Levels/Level6.txt";
-	private final String level7 = "Levels/Level7.txt";
-	private final String level8 = "Levels/Level8.txt";
-	private final String level9 = "Levels/Level9.txt";
-	private final String level10 = "Levels/Level10.txt";
+    private final String level1 = "Levels/Level1.txt";
+    private final String level2 = "Levels/Level2.txt";
+    private final String level3 = "Levels/Level3.txt";
+    private final String level4 = "Levels/Level4.txt";
+    private final String level5 = "Levels/Level5.txt";
+    private final String level6 = "Levels/Level6.txt";
+    private final String level7 = "Levels/Level7.txt";
+    private final String level8 = "Levels/Level8.txt";
+    private final String level9 = "Levels/Level9.txt";
+    private final String level10 = "Levels/Level10.txt";
 
-	private String levelText;
+    private String levelText;
 
     private Map<Integer, String> miniatures;
-	private Map<Integer, String> levels;
-	private Map<String, Color> colors;
+    private Map<Integer, String> levels;
+    private Map<String, Color> colors;
 
-	private Resources() { }
+    private Resources() { }
 
-	public static Resources getInstance() {
-		if (instance == null)
-			instance = new Resources();
-		return instance;
-	}
+    public static Resources getInstance() {
+        if (instance == null)
+            instance = new Resources();
+        return instance;
+    }
 
     /**
      * Loads assets for menu screens
@@ -99,9 +99,9 @@ public class Resources implements Disposable {
         manager.load(consoleFont2, BitmapFont.class);
         manager.load(menuMusic, Music.class);
         manager.finishLoading();
-    }
+	}
 
-    public Texture getMenuBackground() {
+	public Texture getMenuBackground() {
         return manager.get(menuBackground, Texture.class);
     }
 
@@ -179,7 +179,7 @@ public class Resources implements Disposable {
     public Texture getSprite() {
         return manager.get(sprite, Texture.class);
     }
-	
+
 	/**
      * Return the string from the .txt level
 	 * @param i the number of the level

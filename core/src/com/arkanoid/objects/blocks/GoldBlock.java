@@ -1,7 +1,6 @@
 package com.arkanoid.objects.blocks;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  *
