@@ -51,13 +51,12 @@ public class Level {
                                 blocks[i][j] = new OrdinaryBlock(Resources.getInstance().getColor(colors[j]));
                         }
                         blocks[i][j].setMatrixCoordinates(i, j);
-                        blocks[i][j].setPosition((Constants.BLOCK_WIDTH * j) * w/Constants.WIDTH,
-                                ((Constants.HEIGHT - Constants.BLOCK_HEIGHT) - Constants.BLOCK_HEIGHT * i) * h/Constants.HEIGHT);
+                        blocks[i][j].setPosition((Constants.BLOCK_WIDTH * j) * w / Constants.WIDTH,
+                                ((Constants.HEIGHT - Constants.BLOCK_HEIGHT) - Constants.BLOCK_HEIGHT * i) * h / Constants.HEIGHT);
                     }
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new IllegalFormatException("The text file is not properly formatted");
         }
     }
@@ -81,18 +80,18 @@ public class Level {
 
     public Block[][] getBlocks() {
         return blocks;
-	}
+    }
 
-	public boolean isBlockPresent(int i, int j) {
+    public boolean isBlockPresent(int i, int j) {
         if (i < 0 || i >= COLUMNS)
             return false;
         if (j < 0 || j >= LINES)
             return false;
         if (blocks[i][j] == null)
             return false;
-        if (blocks[i][j].isDestroyed())
+        if (blocks[i][j].isDestroyed()) {
             return false;
+        }
         return true;
-	}
-
+    }
 }
