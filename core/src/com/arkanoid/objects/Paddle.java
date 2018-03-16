@@ -28,38 +28,38 @@ public class Paddle extends Actor {
     public Paddle() {
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getHeight();
-        x = ((Constants.WIDTH - Constants.PADDLE_WIDTH)/2) * w/Constants.WIDTH;
-        y = Constants.PADDLE_Y * h/Constants.HEIGHT;
-        width = Constants.PADDLE_WIDTH * w/Constants.WIDTH;
-        height = Constants.PADDLE_HEIGHT * h/Constants.HEIGHT;
-        velocity = Constants.PADDLE_VELOCITY * w/Constants.WIDTH;
+        x = ((Constants.WIDTH - Constants.PADDLE_WIDTH) / 2) * w / Constants.WIDTH;
+        y = Constants.PADDLE_Y * h / Constants.HEIGHT;
+        width = Constants.PADDLE_WIDTH * w / Constants.WIDTH;
+        height = Constants.PADDLE_HEIGHT * h / Constants.HEIGHT;
+        velocity = Constants.PADDLE_VELOCITY * w / Constants.WIDTH;
         sprite = new Sprite(Resources.getInstance().getSprite());
         sprite.setPosition(x, y);
         sprite.setSize(width, height);
         bounds = new Rectangle(x, y, width, height);
-	}
+    }
 
-	public void updateMotion(float deltaTime) {
+    public void updateMotion(float deltaTime) {
         if (leftMove) {
-            this.x -= velocity*deltaTime;
+            x -= velocity*deltaTime;
             if (x < 0) x = 0;
         }
         if (rightMove) {
-            this.x += velocity*deltaTime;
+            x += velocity*deltaTime;
             if (x > w - width) x = w - width;
         }
         bounds.setPosition(x, y);
         sprite.setPosition(x, y);
-	}
+    }
 
-	public void setLeftMove(boolean b) {
-        if (rightMove && b) rightMove = false;
-        leftMove = b;
-	}
+    public void setLeftMove(boolean leftMove) {
+        if (rightMove && leftMove) rightMove = false;
+        this.leftMove = leftMove;
+    }
 
-	public void setRightMove(boolean b) {
-        if (leftMove && b) leftMove = false;
-        rightMove = b;
+    public void setRightMove(boolean rightMove) {
+        if (leftMove && rightMove) leftMove = false;
+        this.rightMove = rightMove;
     }
 
     @Override
