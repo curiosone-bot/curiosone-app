@@ -10,8 +10,7 @@ import com.badlogic.gdx.Gdx;
  * @author Simone Sanfratello
  *
  */
-public class Arkanoid extends Game
-{
+public class Arkanoid extends Game {
 
     @Override
     public void create() {
@@ -24,26 +23,26 @@ public class Arkanoid extends Game
     @Override
     public void render() {
         screen.render(Gdx.graphics.getDeltaTime());
-	}
+    }
 
-	@Override
+    @Override
     public void resize(int width, int height) {
-		screen.resize(width, height);
-	}
+        screen.resize(width, height);
+    }
 
-	@Override
+    @Override
     public void resume() {
 
-	}
+    }
 
-	@Override
+    @Override
     public void pause() {
-		super.pause();
-	}
+        super.pause();
+    }
 
-	@Override
+    @Override
     public void dispose() {
-        super.dispose();
+        screen.dispose();
         Resources.getInstance().dispose();
-	}
+    }
 }
