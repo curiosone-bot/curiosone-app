@@ -26,17 +26,17 @@ public class Paddle extends Actor {
     private boolean rightMove;
 
     public Paddle() {
-        this.w = Gdx.graphics.getWidth();
-        this.h = Gdx.graphics.getHeight();
-        this.x = ((Constants.WIDTH - Constants.PADDLE_WIDTH)/2) * w/Constants.WIDTH;
-        this.y = Constants.PADDLE_Y * h/Constants.HEIGHT;
-        this.width = Constants.PADDLE_WIDTH * w/Constants.WIDTH;
-        this.height = Constants.PADDLE_HEIGHT * h/Constants.HEIGHT;
-        this.velocity = Constants.PADDLE_VELOCITY * w/Constants.WIDTH;
-        this.sprite = new Sprite(Resources.getInstance().getSprite());
-        this.sprite.setPosition(x, y);
-        this.sprite.setSize(width, height);
-        this.bounds = new Rectangle(x, y, width, height);
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
+        x = ((Constants.WIDTH - Constants.PADDLE_WIDTH)/2) * w/Constants.WIDTH;
+        y = Constants.PADDLE_Y * h/Constants.HEIGHT;
+        width = Constants.PADDLE_WIDTH * w/Constants.WIDTH;
+        height = Constants.PADDLE_HEIGHT * h/Constants.HEIGHT;
+        velocity = Constants.PADDLE_VELOCITY * w/Constants.WIDTH;
+        sprite = new Sprite(Resources.getInstance().getSprite());
+        sprite.setPosition(x, y);
+        sprite.setSize(width, height);
+        bounds = new Rectangle(x, y, width, height);
 	}
 
 	public void updateMotion(float deltaTime) {
@@ -66,18 +66,22 @@ public class Paddle extends Actor {
     public float getX() {
         return x;
     }
+
     @Override
 	public float getY() {
         return y;
     }
+
     @Override
     public void setX(float x) {
         this.x = x;
     }
+
     @Override
     public float getWidth() {
         return width;
     }
+
     @Override
     public float getHeight() {
         return height;
@@ -93,6 +97,6 @@ public class Paddle extends Actor {
 
     public Sprite getSprite() {
         return sprite;
-	}
+    }
 
 }
