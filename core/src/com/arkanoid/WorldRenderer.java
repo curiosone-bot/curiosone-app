@@ -15,10 +15,9 @@ import com.badlogic.gdx.utils.Disposable;
  * @author Simone
  *
  */
-public class WorldRenderer implements Disposable
-{
+public class WorldRenderer implements Disposable {
 
-	private static WorldRenderer instance;
+    private static WorldRenderer instance;
 
     private float w, h;
 
@@ -28,8 +27,7 @@ public class WorldRenderer implements Disposable
     private BitmapFont font;
     private WorldController world;
 
-    private WorldRenderer(WorldController world)
-    {
+    private WorldRenderer(WorldController world) {
         this.world = world;
         renderer = new ShapeRenderer();
         this.w = Gdx.graphics.getWidth();
@@ -37,29 +35,25 @@ public class WorldRenderer implements Disposable
         init();
     }
 
-    public static WorldRenderer getInstance(WorldController world)
-    {
+    public static WorldRenderer getInstance(WorldController world) {
         if (instance == null)
             instance = new WorldRenderer(world);
         return instance.setWorld(world);
     }
 
-    private WorldRenderer setWorld(WorldController world)
-    {
+    private WorldRenderer setWorld(WorldController world) {
         this.world = world;
         init();
         return this;
-	}
+    }
 
-	private void init()
-    {
+    private void init() {
         batch = world.getStage().getBatch();
         background = Resources.getInstance().getGameBackground();
         font = Resources.getInstance().getFont1();
     }
 
-    public void render(float deltaTime)
-    {
+    public void render(float deltaTime) {
         batch.begin();
         batch.draw(background, 0, 0, w, h);
         for (int i = 0; i < world.getLives()-1; i++) {
@@ -91,9 +85,8 @@ public class WorldRenderer implements Disposable
         }
     }
 
-	@Override
-	public void dispose() {
+    @Override
+    public void dispose() {
         renderer.dispose();
-	}
-
+    }
 }
