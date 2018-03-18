@@ -34,10 +34,10 @@ public class Ball extends Actor
     }
 
     /**
-	 * Position the ball with the given x and y
+     * Position the ball with the given x and y
      * @param x x-coordinate
      * @param y y-coordinate
-	 */
+     */
     @Override
     public void setPosition(float x, float y) {
         this.x = x;
@@ -56,10 +56,10 @@ public class Ball extends Actor
     }
 
     /**
-	 * set the ball hit box
-	 * @param x x-coordinate
-	 * @param y y-coordinate
-	 */
+     * set the ball hit box
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
     private void setBounds(float x, float y) {
 		bounds.set(x, y, radius);
 	}
@@ -67,41 +67,42 @@ public class Ball extends Actor
 	@Override
     public float getX() {
         return x;
-	}
-	@Override
+    }
+
+    @Override
     public float getY() {
         return y;
-	}
+    }
 
-	public float getRadius() {
+    public float getRadius() {
         return radius;
-	}
+    }
 
-	public Circle getBounds() {
+    public Circle getBounds() {
         return bounds;
-	}
+    }
 
-	public void setVelocity(float velX, float velY) {
+    public void setVelocity(float velX, float velY) {
         this.velX = velX * w/Constants.WIDTH;
         this.velY = velY * w/Constants.HEIGHT;
-	}
+    }
 
-	public void setMotion(boolean isMoving) {
+    public void setMotion(boolean isMoving) {
         if (isMoving)
             setVelocity(200f, 400f);
         else
             setVelocity(0f, 0f);
         this.isMoving = isMoving;
-	}
+    }
 
-	public boolean getMotion() {
+    public boolean getMotion() {
         return isMoving;
-	}
+    }
 
-	/**
-	 * Update ball movement. The ball bounces on the screen boundaries, except the bottom one(where it falls).
-	 */
-	public void updateMotion(float deltaTime) {
+    /**
+     * Update ball movement. The ball bounces on the screen boundaries, except the bottom one(where it falls).
+     */
+    public void updateMotion(float deltaTime) {
         x += deltaTime*velX;
         y += deltaTime*velY;
         if (x + radius > Gdx.graphics.getWidth()) {
@@ -117,15 +118,15 @@ public class Ball extends Actor
             velY *= -1;
         }
         setBounds(x, y);
-	}
+    }
 
-	/**
-	 * Method called in {@link WorldController} when the ball is stuck on the paddle.
+    /**
+     * Method called in {@link WorldController} when the ball is stuck on the paddle.
      * It translates with the paddle horizontally.
-	 */
-	public void translate(Paddle paddle) {
-		setPosition(paddle);
-	}
+     */
+    public void translate(Paddle paddle) {
+        setPosition(paddle);
+    }
 
 	/**
      * At contact with a block the ball performs a bounce on it
@@ -237,29 +238,29 @@ public class Ball extends Actor
         }
         setBounds(x, y);
 	}
-	
+
 	/**
-	 * Called when the ball bounces on the paddle.
+     * Called when the ball bounces on the paddle.
      * On the red part it bounces with a 45 degrees angle,
      * On the grey part it bounces with a 60 degrees angle.
-	 * @param paddle the paddle
-	 */
+     * @param paddle the paddle
+     */
 	public void bounce(Paddle paddle) {
         float paddleX = paddle.getBounds().getX();
         float paddleY = paddle.getBounds().getY();
         y = paddleY + paddle.getHeight() + radius;
         if (x < paddleX + paddle.getWidth()/8) {
             setVelocity(-316f, 316f);
-		}
-		if (paddleX + paddle.getWidth()/8 <= x && x < paddleX + paddle.getWidth()/2) {
+        }
+        if (paddleX + paddle.getWidth()/8 <= x && x < paddleX + paddle.getWidth()/2) {
             setVelocity(-200f, 400f);
-		}
-		if (paddleX + paddle.getWidth()/2 <= x && x < paddleX + paddle.getWidth()*7/8) {
+        }
+        if (paddleX + paddle.getWidth()/2 <= x && x < paddleX + paddle.getWidth()*7/8) {
             setVelocity(200f, 400f);
-		}
-		if (paddleX + paddle.getWidth()*7/8 <= x) {
+        }
+        if (paddleX + paddle.getWidth()*7/8 <= x) {
             setVelocity(316f, 316f);
-		}
+        }
 	}
 
 	public void render(ShapeRenderer sr) {
@@ -268,4 +269,5 @@ public class Ball extends Actor
         sr.circle(x, y, radius);
         sr.end();
 	}
+	
 }
