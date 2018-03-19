@@ -61,10 +61,10 @@ public class Ball extends Actor
      * @param y y-coordinate
      */
     private void setBounds(float x, float y) {
-		bounds.set(x, y, radius);
-	}
+        bounds.set(x, y, radius);
+    }
 
-	@Override
+    @Override
     public float getX() {
         return x;
     }
@@ -128,13 +128,13 @@ public class Ball extends Actor
         setPosition(paddle);
     }
 
-	/**
+    /**
      * At contact with a block the ball performs a bounce on it
      * and the direction of the ball depends on the side hit and the previous direction of the ball.
      * @param b the block
      * @param l the level that contains the block
      */
-	public void bounce(Block b, Level l) {
+    public void bounce(Block b, Level l) {
 
         float blockX = b.getBounds().getX();
         float blockY = b.getBounds().getY();
@@ -237,15 +237,15 @@ public class Ball extends Actor
             }
         }
         setBounds(x, y);
-	}
+    }
 
-	/**
+    /**
      * Called when the ball bounces on the paddle.
      * On the red part it bounces with a 45 degrees angle,
      * On the grey part it bounces with a 60 degrees angle.
      * @param paddle the paddle
      */
-	public void bounce(Paddle paddle) {
+    public void bounce(Paddle paddle) {
         float paddleX = paddle.getBounds().getX();
         float paddleY = paddle.getBounds().getY();
         y = paddleY + paddle.getHeight() + radius;
@@ -261,13 +261,13 @@ public class Ball extends Actor
         if (paddleX + paddle.getWidth()*7/8 <= x) {
             setVelocity(316f, 316f);
         }
-	}
+    }
 
-	public void render(ShapeRenderer sr) {
+    public void render(ShapeRenderer sr) {
         sr.begin(ShapeType.Filled);
         sr.setColor(Color.CYAN);
         sr.circle(x, y, radius);
         sr.end();
-	}
-	
+    }
+
 }
