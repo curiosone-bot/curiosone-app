@@ -155,8 +155,7 @@ public class GameScreen extends AbstractGameScreen {
         init(startLevel);
     }
 
-    private void init(int startLevel) throws IllegalFormatException
-    {
+    private void init(int startLevel) throws IllegalFormatException {
         this.world = new WorldController(game, startLevel);
         this.renderer = WorldRenderer.getInstance(world);
         this.stage = world.getStage();
@@ -167,8 +166,13 @@ public class GameScreen extends AbstractGameScreen {
         this.state = GameState.RUNNING;
     }
 
-    public GameState getState() { return state; }
-    public void setState(GameState state) { this.state = state; }
+    public GameState getState() {
+        return state;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
+    }
 
     @Override
     public void show() {
@@ -200,19 +204,19 @@ public class GameScreen extends AbstractGameScreen {
     @Override
     public void resize(int width, int height) {
         //renderer.resize(width, height);
-	}
+    }
 
-	@Override
+    @Override
     public void pause() {
         if (state == GameState.RUNNING) {
             state = GameState.PAUSE;
             stage.addActor(resumeButton);
             stage.addActor(menuButton);
             //stage.addActor(pauseTable);
-		}
-	}
+        }
+    }
 
-	@Override
+    @Override
     public void resume() {
         if (state == GameState.PAUSE) {
             stage.getRoot().removeActor(resumeButton);
@@ -220,22 +224,22 @@ public class GameScreen extends AbstractGameScreen {
             //stage.getRoot().removeActor(pauseTable);
             state = GameState.RUNNING;
         }
-	}
+    }
 
-	private void displayGameOver() {
+    private void displayGameOver() {
         stage.addActor(tryAgainButton);
         stage.addActor(menuButton);
         //stage.addActor(gameOverTable);
-	}
+    }
 
-	@Override
+    @Override
     public void hide() {
         music.stop();
-	}
+    }
 
-	@Override
+    @Override
     public void dispose() {
 
-	}
+    }
 
 }

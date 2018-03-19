@@ -20,10 +20,10 @@ import java.util.Map;
  *
  */
 public class Resources implements Disposable {
-	
-	private static Resources instance;
-	
-	private final static AssetManager manager = new AssetManager();
+
+    private static Resources instance;
+
+    private final static AssetManager manager = new AssetManager();
 
     private final String menuBackground = "Backgrounds/Menu.jpg";
     private final String gameBackground = "Backgrounds/Background-0.jpg";
@@ -77,7 +77,7 @@ public class Resources implements Disposable {
     /**
      * Loads assets for menu screens
      */
-	public void loadMenuAssets() {
+    public void loadMenuAssets() {
         manager.load(menuBackground, Texture.class);
 
         miniatures = new HashMap<Integer, String>();
@@ -99,9 +99,9 @@ public class Resources implements Disposable {
         manager.load(consoleFont2, BitmapFont.class);
         manager.load(menuMusic, Music.class);
         manager.finishLoading();
-	}
+    }
 
-	public Texture getMenuBackground() {
+    public Texture getMenuBackground() {
         return manager.get(menuBackground, Texture.class);
     }
 
@@ -172,27 +172,27 @@ public class Resources implements Disposable {
         return manager.get(gameMusic, Music.class);
     }
 
-	public Sound getSound() {
+    public Sound getSound() {
         return manager.get(hitSound, Sound.class);
-	}
+    }
 
     public Texture getSprite() {
         return manager.get(sprite, Texture.class);
     }
 
-	/**
+    /**
      * Return the string from the .txt level
-	 * @param i the number of the level
-	 * @return the text of the level which is processed in {@link com.arkanoid.objects.Level}
-	 */
-	public String getLevel(int i) {
-		FileHandle handle = Gdx.files.internal(levels.get(i));
-		levelText = handle.readString();
-		return levelText;
-	}
-	
-	public Color getColor(String color) {
-		return colors.get(color);
+     * @param i the number of the level
+     * @return the text of the level which is processed in {@link com.arkanoid.objects.Level}
+     */
+    public String getLevel(int i) {
+        FileHandle handle = Gdx.files.internal(levels.get(i));
+        levelText = handle.readString();
+        return levelText;
+    }
+
+    public Color getColor(String color) {
+        return colors.get(color);
 	}
 
     @Override
