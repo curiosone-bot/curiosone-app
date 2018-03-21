@@ -4,10 +4,12 @@ import com.arkanoid.utils.Constants;
 import com.arkanoid.utils.IllegalFormatException;
 import com.arkanoid.utils.Resources;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 
 /**
@@ -23,7 +25,7 @@ public class SelectionModeScreen extends AbstractGameScreen {
 
     private TextButton backButton, leftArrow, rightArrow, startButton;
 
-    private Texture miniature;
+    private Image miniature;
     private int selectedLevel;
 
     private SelectionModeScreen(final Game game) {
@@ -41,7 +43,7 @@ public class SelectionModeScreen extends AbstractGameScreen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 backButton.setStyle(style1);
                 selectedLevel = 1;
-                miniature = Resources.getInstance().getMiniature(1);
+                miniature.setDrawable(new SpriteDrawable(new Sprite(Resources.getInstance().getMiniature(selectedLevel))));
                 game.setScreen(GameModeScreen.getInstance(game));
             }
         });
@@ -60,7 +62,7 @@ public class SelectionModeScreen extends AbstractGameScreen {
                 if (selectedLevel == 1) {
                     selectedLevel = 10;
                 } else selectedLevel--;
-                miniature = Resources.getInstance().getMiniature(selectedLevel);
+                miniature.setDrawable(new SpriteDrawable(new Sprite(Resources.getInstance().getMiniature(selectedLevel))));
             }
         });
 
@@ -78,7 +80,7 @@ public class SelectionModeScreen extends AbstractGameScreen {
                 if (selectedLevel == 10) {
                     selectedLevel = 1;
                 } else selectedLevel++;
-                miniature = Resources.getInstance().getMiniature(selectedLevel);
+                miniature.setDrawable(new SpriteDrawable(new Sprite(Resources.getInstance().getMiniature(selectedLevel))));
             }
         });
 
@@ -99,32 +101,24 @@ public class SelectionModeScreen extends AbstractGameScreen {
                     e.printStackTrace();
                 }
                 selectedLevel = 1;
-                miniature = Resources.getInstance().getMiniature(selectedLevel);
+                miniature.setDrawable(new SpriteDrawable(new Sprite(Resources.getInstance().getMiniature(selectedLevel))));
                 music.stop();
             }
         });
 
         selectedLevel = 1;
-        miniature = Resources.getInstance().getMiniature(selectedLevel);
+        miniature = new Image(Resources.getInstance().getMiniature(selectedLevel));
 
-        stage.addActor(backButton);
-        stage.addActor(leftArrow);
-        stage.addActor(rightArrow);
-        stage.addActor(startButton);
-        scaleButtons();
-
-
-        /*
-        table.add(new Image(miniature)).center().expandY();
+        table.add(miniature).center().expandY().size(miniature.getWidth() * w / Constants.WIDTH, miniature.getHeight() * h / Constants.HEIGHT);
         table.row();
-        table.add(leftArrow).left();
-        //table.add(rightArrow).right();
+        table.add(leftArrow).left().width(table.getWidth()/2);
+        table.add(rightArrow).right().width(table.getWidth()/2);
         table.row();
         table.add(startButton).center().expandY();
         table.row();
         table.add(backButton).center().expandY();
         stage.addActor(table);
-        */
+
     }
 
     public static SelectionModeScreen getInstance(Game game) {
@@ -132,17 +126,6 @@ public class SelectionModeScreen extends AbstractGameScreen {
             instance = new SelectionModeScreen(game);
         }
         return instance;
-    }
-
-    @Override
-    public void render(float delta) {
-        batch.begin();
-        batch.draw(background, 0, 0, w/Constants.WIDTH*background.getWidth(), h/Constants.HEIGHT*background.getHeight());
-        batch.draw(miniature, w/Constants.WIDTH*165, h/Constants.HEIGHT*330,
-                w/Constants.WIDTH*miniature.getWidth(), h/Constants.HEIGHT*miniature.getHeight());
-        batch.end();
-        stage.draw();
-        stage.act(delta);
     }
 
     @Override
