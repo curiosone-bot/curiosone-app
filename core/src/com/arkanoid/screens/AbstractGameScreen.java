@@ -58,7 +58,6 @@ public abstract class AbstractGameScreen extends ScreenAdapter{
         style1 = new TextButton.TextButtonStyle(null, null, null, font1);
         style2 = new TextButton.TextButtonStyle(null, null, null, font2);
         table = new Table();
-        //table.debug();
         table.setFillParent(true);
         music = Resources.getInstance().getMenuMusic();
         music.setLooping(true);
@@ -85,16 +84,6 @@ public abstract class AbstractGameScreen extends ScreenAdapter{
         table.setFillParent(true);
         music = Resources.getInstance().getGameMusic();
         music.setLooping(true);
-    }
-
-    protected void scaleButtons() {
-        for (Actor actor : stage.getActors()) {
-            if (actor instanceof TextButton) {
-                TextButton button = (TextButton)actor;
-                button.setTransform(true);
-                button.setPosition(w / Constants.WIDTH * button.getX(), h / Constants.HEIGHT * button.getY());
-            }
-        }
     }
 
     @Override

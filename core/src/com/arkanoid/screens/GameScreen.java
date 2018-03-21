@@ -12,8 +12,9 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 
 /**
  * Class for the game screen.
@@ -44,9 +45,9 @@ public class GameScreen extends AbstractGameScreen {
 
     private GameState state;
 
-    private TextButton resumeButton, menuButton, tryAgainButton;
-    //private Table pauseTable;
-    //private Table gameOverTable;
+    private TextButton resumeButton, menuButton, tryAgainButton, menuButton2;
+    private Table gameOverTable;
+    private Label scoreLabel;
 
     private InputProcessor pauseProcessor;
 
@@ -61,7 +62,6 @@ public class GameScreen extends AbstractGameScreen {
         this.game = game;
 
         resumeButton = new TextButton("Resume", style1);
-        resumeButton.setPosition(265, 400, Align.center);
         resumeButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -77,7 +77,6 @@ public class GameScreen extends AbstractGameScreen {
         });
 
         menuButton = new TextButton("Back to Menu", style1);
-        menuButton.setPosition(265, 300, Align.center);
         menuButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -94,8 +93,25 @@ public class GameScreen extends AbstractGameScreen {
             }
         });
 
+        menuButton2 = new TextButton("Back to Menu", style1);
+        menuButton2.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                menuButton2.setStyle(style2);
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                menuButton2.setStyle(style1);
+                stage.dispose();
+                music.stop();
+                game.setScreen(MainMenuScreen.getInstance(game));
+            }
+        });
+
         tryAgainButton = new TextButton("Try Again", style1);
-        tryAgainButton.setPosition(265, 400, Align.center);
+        //tryAgainButton.setPosition(265, 400, Align.center);
         tryAgainButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -132,25 +148,22 @@ public class GameScreen extends AbstractGameScreen {
             }
         };
 
-        stage.addActor(resumeButton);
-        stage.addActor(menuButton);
-        stage.addActor(tryAgainButton);
-        scaleButtons();
-        stage.getRoot().removeActor(resumeButton);
-        stage.getRoot().removeActor(menuButton);
-        stage.getRoot().removeActor(tryAgainButton);
+        table.add(new Label("Paused", new Label.LabelStyle(font1, font1.getColor()))).center().expandY();
+        table.row();
+        table.add(resumeButton).center().uniformY();
+        table.row();
+        table.add(menuButton).center().expandY().top();
 
-        /*
-        pauseTable = new Table();
-        pauseTable.add(resumeButton).expandY();
-        pauseTable.row();
-        pauseTable.add(menuButton).expandY();
-
+        scoreLabel = new Label("0", new Label.LabelStyle(font1, font1.getColor()));
         gameOverTable = new Table();
-        gameOverTable.add(tryAgainButton).expandY();
+        gameOverTable.setFillParent(true);
+        gameOverTable.add(new Label("Final Score : ", new Label.LabelStyle(font1, font1.getColor()))).center().expandY().bottom();
         gameOverTable.row();
-        gameOverTable.add(menuButton).expandY();
-        */
+        gameOverTable.add(scoreLabel).center().expandY().top();
+        gameOverTable.row();
+        gameOverTable.add(tryAgainButton).center().uniformY();
+        gameOverTable.row();
+        gameOverTable.add(menuButton2).center().expandY().top();
 
         init(startLevel);
     }
@@ -164,10 +177,6 @@ public class GameScreen extends AbstractGameScreen {
         InputMultiplexer multiplexer = new InputMultiplexer(gameProcessor, pauseProcessor, stage);
         Gdx.input.setInputProcessor(multiplexer);
         this.state = GameState.RUNNING;
-    }
-
-    public GameState getState() {
-        return state;
     }
 
     public void setState(GameState state) {
@@ -189,6 +198,7 @@ public class GameScreen extends AbstractGameScreen {
             catch (IllegalFormatException e) {
                 e.printStackTrace();
             }
+            gameOverTable.getCell(scoreLabel).getActor().setText(""+world.getScore());
         }
         else if (state == GameState.PAUSE) {
 
@@ -197,8 +207,8 @@ public class GameScreen extends AbstractGameScreen {
             displayGameOver();
         }
         renderer.render(deltaTime);
-        stage.act();
         stage.draw();
+        stage.act(deltaTime);
     }
 
     @Override
@@ -210,26 +220,20 @@ public class GameScreen extends AbstractGameScreen {
     public void pause() {
         if (state == GameState.RUNNING) {
             state = GameState.PAUSE;
-            stage.addActor(resumeButton);
-            stage.addActor(menuButton);
-            //stage.addActor(pauseTable);
+            stage.addActor(table);
         }
     }
 
     @Override
     public void resume() {
         if (state == GameState.PAUSE) {
-            stage.getRoot().removeActor(resumeButton);
-            stage.getRoot().removeActor(menuButton);
-            //stage.getRoot().removeActor(pauseTable);
+            stage.getRoot().removeActor(table);
             state = GameState.RUNNING;
         }
     }
 
     private void displayGameOver() {
-        stage.addActor(tryAgainButton);
-        stage.addActor(menuButton);
-        //stage.addActor(gameOverTable);
+        stage.addActor(gameOverTable);
     }
 
     @Override

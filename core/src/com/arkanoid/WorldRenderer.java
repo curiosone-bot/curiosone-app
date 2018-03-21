@@ -1,6 +1,5 @@
 package com.arkanoid;
 
-import com.arkanoid.screens.GameScreen;
 import com.arkanoid.utils.Constants;
 import com.arkanoid.utils.Resources;
 import com.badlogic.gdx.Gdx;
@@ -63,26 +62,12 @@ public class WorldRenderer implements Disposable {
                     32*w/Constants.WIDTH,
                     8*h/Constants.HEIGHT);
         }
-        //batch.draw(world.getPaddle().getSprite().getTexture(), world.getPaddle().getX(), world.getPaddle().getY(), world.getPaddle().getWidth(), world.getPaddle().getHeight(), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         world.getPaddle().draw(batch);
         font.draw(batch, "Score:" + world.getScore(), 10*w / Constants.WIDTH, 20*h / Constants.HEIGHT);
         batch.end();
 
         world.getLevel().render(renderer);
         world.getBall().render(renderer);
-
-        if (((GameScreen)world.getGame().getScreen()).getState() == GameScreen.GameState.PAUSE) {
-            batch.begin();
-            font.draw(batch, "Paused", 205*w / Constants.WIDTH, 600*h / Constants.HEIGHT);
-            batch.end();
-        }
-
-        if (((GameScreen)world.getGame().getScreen()).getState() == GameScreen.GameState.GAME_OVER) {
-            batch.begin();
-            font.draw(batch, "Final Score:", 155*w / Constants.WIDTH, 600*h / Constants.HEIGHT);
-            font.draw(batch, ""+world.getScore(), 225*w / Constants.WIDTH, 560*h / Constants.HEIGHT);
-            batch.end();
-        }
     }
 
     @Override
